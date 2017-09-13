@@ -1,23 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
-        <title>{% block title '' %} - My Silex Application</title>
-
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>{% block title '' %} - Les Alchimistes</title>
+        
+        {% block stylesheets %}
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
-
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css" />
+        {% endblock %}
+        
     </head>
-    <body>
-        {% block content %}{% endblock %}
+
+
+    <body>        
+{#        {% if user_manager.admin %} {# Service\UserManager::isAdmin() #}
+{#
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <a class="navbar-brand">Menu admin</a>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{ path('admin_categories') }}">Gestion rubriques</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_articles') }}">Gestion articles</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        {% endif %}
+#}
+
+        <nav class="navbar navbar-light bg-light ombrage">
+          <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="nav navbar-nav" href="#"><img class="logo" src="{{ asset('images/Alchimiste_logo.png') }}" /></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#"><span class="glyphicon glyphicon glyphicon-lock"></span> Page de connexion</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+            </ul>
+          </div>
+        </nav>
+                
+        {% block javascripts %}
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+        {% endblock %}
     </body>
 </html>
