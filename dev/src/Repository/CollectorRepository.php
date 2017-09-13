@@ -3,6 +3,7 @@
 namespace Repository;
 
 use Entity\Collector;
+
 class CollectorRepository extends RepositoryAbstract{
     public function findByEmail($email) {
         $dbCollector = $this->db->fetchAssoc(
@@ -30,14 +31,14 @@ class CollectorRepository extends RepositoryAbstract{
             'status' => $collector->getStatus(),
         ];
         
-        if ($collector->getId()) {
+        if ($collector->getIdcollector()) {
             $this->db->update('collector', $data,
                 [
                     'id' => $collector->getId()
                 ]);
         } else {
             $this->db->insert('collector', $data);
-            $collector->setId($this->db->lastInsertId());
+            $collector->setIdcollector($this->db->lastInsertId());
         }
     }
     

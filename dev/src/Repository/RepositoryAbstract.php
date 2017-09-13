@@ -2,13 +2,19 @@
 
 namespace Repository;
 
-/**
+use Doctrine\DBAL\Connection;
+
+abstract class RepositoryAbstract {
+    /**
  * 
  * @var Connection
  */
-class RepositoryAbstract {
     protected $db;
     
+    /**
+    * 
+    * @param Connection $db
+    */
     public function __construct(Connection $db) {
         $this->db = $db;
     }

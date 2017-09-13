@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="bloc gris col-lg-10 col-md-8 col-sm-4 col-xs-4s col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-    <form class="form-horizontal " method="POST" >
+    <form class="form-horizontal " method="post" >
         <fieldset>
 
             <div class="form-group">
@@ -26,7 +26,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="adresse">adresse</label>  
                    <div class="col-md-4">
-                       <input id="adresse" name="adress" type="text" placeholder="adresse" class="form-control input-md">
+                       <input id="adresse" name="address" type="text" placeholder="adresse" class="form-control input-md">
                        <span class="help-block">ex : 54 rue du compost</span>  
                    </div>
             </div>
@@ -82,8 +82,8 @@
            <label class="col-md-4 control-label" for="statut">Statut</label>
            <div class="col-md-4">
              <select id="statut" name="status" class="form-control">
-               <option value="1">Collecteur</option>
-               <option value="2">collecteur &amp; administrateur</option>
+               <option value="salarié">Collecteur</option>
+               <option value="admin">collecteur &amp; administrateur</option>
              </select>
            </div>
          </div>
