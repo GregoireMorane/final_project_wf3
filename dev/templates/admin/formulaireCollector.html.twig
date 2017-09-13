@@ -1,0 +1,107 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <div class="bloc gris col-lg-10 col-md-8 col-sm-4 col-xs-4s col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+    <form class="form-horizontal " >
+        <fieldset>
+
+            <div class="form-group">
+            <label class="col-md-4 control-label" for="nom">Nom</label>  
+                <div class="col-md-4">
+                    <input id="nom" name="nom" type="text" placeholder="Nom" class="form-control input-md">
+                    <span class="help-block">ex : Zheng</span>  
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+            <label class="col-md-4 control-label" for="prenom">prenom</label>  
+                <div class="col-md-4">
+                    <input id="prenom" name="prenom" type="text" placeholder="prénom" class="form-control input-md">
+                    <span class="help-block">ex : Simone</span>  
+                </div>
+            </div>
+
+         <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="adresse">adresse</label>  
+                   <div class="col-md-4">
+                       <input id="adresse" name="adresse" type="text" placeholder="adresse" class="form-control input-md">
+                       <span class="help-block">ex : 54 rue du compost</span>  
+                   </div>
+            </div>
+
+         <!-- Text input-->
+         <div class="form-group">
+           <label class="col-md-4 control-label" for="ville">ville</label>  
+           <div class="col-md-4">
+           <input id="ville" name="ville" type="text" placeholder="ville" class="form-control input-md">
+           <span class="help-block">ex : Paris</span>  
+           </div>
+         </div>
+
+         <!-- Text input-->
+         <div class="form-group">
+           <label class="col-md-4 control-label" for="codepostal">code postal</label>  
+           <div class="col-md-4">
+           <input id="codepostal" name="codepostal" type="text" placeholder="code postal" class="form-control input-md">
+           <span class="help-block">ex : code postal</span>  
+           </div>
+         </div>
+
+         <!-- Text input-->
+         <div class="form-group">
+           <label class="col-md-4 control-label" for="telephone">Téléphone</label>  
+           <div class="col-md-4">
+           <input id="telephone" name="telephone" type="text" placeholder="Téléphone" class="form-control input-md">
+           <span class="help-block">ex : 06 15 25 63 83</span>  
+           </div>
+         </div>
+
+         <!-- Password input-->
+         <div class="form-group">
+           <label class="col-md-4 control-label" for="mot de passe">mot de passe</label>
+           <div class="col-md-4">
+             <input id="mot de passe" name="mot de passe" type="password" placeholder="mot de passe" class="form-control input-md">
+             <span class="help-block">ex : mot de passe</span>
+           </div>
+         </div>
+
+         <!-- Select Basic -->
+         <div class="form-group">
+           <label class="col-md-4 control-label" for="centredetraitement">Centre de traitement attribué</label>
+           <div class="col-md-4">
+             <select id="centredetraitement" name="centredetraitement" class="form-control">
+               <option value="1">Les grds Voisins</option>
+               <option value="2">Centre de traitement 2</option>
+               <option value="3">Centre de traitement 3</option>
+               <option value="4">Centre de traitement 4</option>
+               <option value="5">Centre de traitement 5</option>
+             </select>
+           </div>
+         </div>
+
+         <!-- Select Basic -->
+         <div class="form-group">
+           <label class="col-md-4 control-label" for="statut">Statut</label>
+           <div class="col-md-4">
+             <select id="statut" name="statut" class="form-control">
+               <option value="1">Collecteur</option>
+               <option value="2">collecteur &amp; administrateur</option>
+             </select>
+           </div>
+         </div>
+
+         <!-- Button (Double) -->
+         <div class="form-group">
+           <label class="col-md-4 control-label" for="valider"></label>
+           <div class="col-md-8">
+             <button id="valider" name="valider" class="btn btn-success">Valider</button>
+             <button id="annuler" name="annuler" class="btn btn-danger">Annuler</button>
+           </div>
+         </div>
+
+        </fieldset>
+    </form>
+    </div>
+{% endblock %}
