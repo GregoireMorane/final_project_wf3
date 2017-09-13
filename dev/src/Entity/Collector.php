@@ -5,6 +5,7 @@
  * @author ghmor
  */
 namespace Entity;
+
 class Collector
 {
     const STATUS_COLLECTEUR = 'collector';

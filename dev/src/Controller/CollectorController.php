@@ -13,9 +13,13 @@ class CollectorController extends ControllerAbstract{
             $this->sanitizePost();
                 
             $collector
-                ->setLastname($_POST['lastname'])
-                ->setFirstname($_POST['firstname'])
-                ->setEmail($_POST['email']);
+                ->setLastname($_POST['lastname']);
+            $collector
+                    ->setFirstname($_POST['firstname'])
+                    
+               
+                //->setEmail($_POST['email'])
+                ;
 
             if(empty($_POST['lastname'])){
                 $errors['lastname'] = "Le nom est obligatoire";
@@ -61,7 +65,7 @@ class CollectorController extends ControllerAbstract{
             }
         }
         return $this->render(
-            'collector/register.html.twig',
+            'admin/formulaireCollector.html.twig',
             [
                 'collector' => $collector
             ]

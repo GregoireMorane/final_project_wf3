@@ -2,6 +2,7 @@
 
 namespace Repository;
 
+use Entity\Collector;
 class CollectorRepository extends RepositoryAbstract{
     public function findByEmail($email) {
         $dbCollector = $this->db->fetchAssoc(
