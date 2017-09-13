@@ -36,6 +36,11 @@ $app
     ->bind('register')
 ;
 
+$app
+    ->match('/ficheclient','client.controller:registerAction') 
+    ->bind('registerclient')
+;
+
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;

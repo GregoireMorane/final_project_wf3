@@ -17,7 +17,7 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     return $twig;
 });
 
-//définition de la base de donnée
+//dï¿½finition de la base de donnï¿½e
 $app->register (
         new Silex\Provider\DoctrineServiceProvider(),
         [
@@ -45,5 +45,15 @@ $app['collector.controller'] = function () use ($app)
 $app['collector.repository']= function () use ($app){
     return new Repository\CollectorRepository($app['db']);
 };
+
+$app['client.controller'] = function () use ($app)
+{
+    return new Controller\ClientController($app);
+};
+
+$app['client.repository']= function () use ($app){
+    return new Repository\ClientRepository($app['db']);
+};
+
 return $app;
 //commentaire
