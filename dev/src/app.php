@@ -37,10 +37,13 @@ $app->register (
 $app->register(new Silex\Provider\SessionServiceProvider());
 
 //Admin inscription d'un collecteur brouillon
-$app['admin.category.controller'] = function () use ($app)
+$app['collector.controller'] = function () use ($app)
 {
-    return new Controller\ClientController($app);
+    return new Controller\CollectorController($app);
 };
 
+$app['collector.repository']= function () use ($app){
+    return new Repository\CollectorRepository($app['db']);
+};
 return $app;
 //commentaire
