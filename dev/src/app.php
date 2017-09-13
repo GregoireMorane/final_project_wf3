@@ -17,7 +17,7 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     return $twig;
 });
 
-//dÃ©finition de la base de donnÃ©e
+//définition de la base de donnée
 $app->register (
         new Silex\Provider\DoctrineServiceProvider(),
         [
@@ -39,3 +39,4 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 
 
 return $app;
+//commentaire
