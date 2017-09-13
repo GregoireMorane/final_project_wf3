@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of AdressesCollectes
+ * Description of AdressesCollecte
  *
  * @author ghmor
  */
