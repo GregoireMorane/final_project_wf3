@@ -1,0 +1,105 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+
+<div class="bloc vert col-lg-8 col-md-8 col-sm-4 col-xs-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+<form class="form-horizontal">
+    <fieldset>
+        <legend style="text-align: center;"><strong>Ajout d'un client</strong></legend>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="societe">Société</label>  
+            <div class="col-md-4">
+                <input id="societe" name="societe" type="text" placeholder="Webforce3" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="date">Date début contrat</label>  
+            <div class="col-md-4">
+                <input id="date" name="date" type="text" placeholder="01/09/2017" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="selectbasic">Type d'établissement</label>
+            <div class="col-md-4">
+                <select id="selectbasic" name="selectbasic" class="form-control">
+                    <option value="Epicerie">Epicerie</option>
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="RestaurationCollective">Restauration collective</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="siret">Numéro SIRET</label>  
+            <div class="col-md-4">
+                <input id="siret" name="siret" type="text" placeholder="14 chiffres" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="nom">Nom</label>  
+            <div class="col-md-4">
+                <input id="nom" name="nom" type="text" placeholder="Dupont" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="prenom">Prénom</label>  
+            <div class="col-md-4">
+                <input id="prenom" name="prenom" type="text" placeholder="Jérôme" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="email">Email</label>  
+            <div class="col-md-4">
+                <input id="email" name="email" type="text" placeholder="jerome.dupont@mail.com" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="tel">Téléphone</label>  
+            <div class="col-md-4">
+                <input id="tel" name="tel" type="text" placeholder="06 11 22 33 44" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="adresse_facturation">Adresse de facturation</label>  
+            <div class="col-md-4">
+                <input id="adresse_facturation" name="adresse_facturation" type="text" placeholder="1 rue de Paris" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="code_postal">Code Postal</label>  
+            <div class="col-md-4">
+                <input id="code_postal" name="code_postal" type="text" placeholder="75000" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="ville">Ville</label>  
+            <div class="col-md-4">
+                <input id="ville" name="ville" type="text" placeholder="Paris" class="form-control input-md">
+    
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="pays">Pays</label>  
+            <div class="col-md-4">
+                <input id="pays" name="pays" type="text" placeholder="France" class="form-control input-md">
+    
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="actif">Actif</label>
+            <div class="col-md-4">
+                <select id="actif" name="actif" class="form-control">
+                    <option value="1">Actif</option>
+                    <option value="0">Inactif</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="valider"></label>
+            <div class="col-md-8">
+                <button id="valider" name="valider" class="btn btn-success">Valider</button>
+                <button id="annuler" name="annuler" class="btn btn-danger">Annuler</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+</div>
+{% endblock %}
