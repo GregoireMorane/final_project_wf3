@@ -17,4 +17,26 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     return $twig;
 });
 
+//définition de la base de donnée
+$app->register (
+        new Silex\Provider\DoctrineServiceProvider(),
+        [
+            'db.options' =>[
+                        'driver' => 'pdo_mysql',
+                        'host' => 'localhost',
+                        'dbname' => 'alchimistes', 
+                        'user' => 'root',
+                        'password' => '',
+                        'charset' => 'utf8'
+                ]
+        ]
+        );
+
+
+// gestionnaire de sessions de Symfony($app['session']
+$app->register(new Silex\Provider\SessionServiceProvider());
+
+
+
 return $app;
+//commentaire
