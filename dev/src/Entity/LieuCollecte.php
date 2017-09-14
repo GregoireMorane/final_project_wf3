@@ -5,7 +5,7 @@
  * @author ghmor
  */
 namespace Entity;
-class AdressesCollectes {
+class LieuCollecte {
     
     /**
      *
@@ -16,7 +16,7 @@ class AdressesCollectes {
      *
      * @var string
      */
-    private $adress_collection;
+    private $address_collection;
     /**
      *
      * @var string
@@ -62,7 +62,7 @@ class AdressesCollectes {
         return $this->id_collection_address;
     }
 
-    public function getAdress_collection() {
+    public function getAddress_collection() {
         return $this->adress_collection;
     }
 
@@ -103,7 +103,7 @@ class AdressesCollectes {
         return $this;
     }
 
-    public function setAdress_collection($adress_collection) {
+    public function setAddress_collection($adress_collection) {
         $this->adress_collection = $adress_collection;
         return $this;
     }

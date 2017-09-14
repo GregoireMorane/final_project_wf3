@@ -11,12 +11,12 @@ class CollectorController extends ControllerAbstract{
         
         $collector->setLastname($_POST['lastname']);
         $collector->setFirstname($_POST['firstname']); 
-        $collector->setPhoneNumber($_POST['phone_number']); 
+        $collector->setPhone_number($_POST['phone_number']); 
         $collector->setEmail($_POST['email']);
         $collector->setStatus($_POST['status']);
         $collector->setAddress($_POST['address']);
         $collector->setCity($_POST['city']);
-        $collector->setPostalCode($_POST['postal_code']);
+        $collector->setPostal_code($_POST['postal_code']);
         $collector->setPassword($_POST['password']);
         
         if(!empty($_POST)){

@@ -55,5 +55,32 @@ $app['client.repository']= function () use ($app){
     return new Repository\ClientRepository($app['db']);
 };
 
+$app['lieutraitement.controller'] = function () use ($app)
+{
+    return new Controller\LieuTraitementController($app);
+};
+
+$app['lieutraitement.repository']= function () use ($app){
+    return new Repository\LieuTraitementRepository($app['db']);
+};
+
+$app['lieucollecte.controller'] = function () use ($app)
+{
+    return new Controller\LieuCollecteController($app);
+};
+
+$app['lieucollecte.repository']= function () use ($app){
+    return new Repository\LieuCollecteRepository($app['db']);
+};
+
+$app['traitementcollector.controller'] = function () use ($app)
+{
+    return new Controller\TraitementCollectorController($app);
+};
+
+$app['traitementcollector.repository']= function () use ($app){
+    return new Repository\TraitementCollectorRepository($app['db']);
+};
+
 return $app;
 //commentaire

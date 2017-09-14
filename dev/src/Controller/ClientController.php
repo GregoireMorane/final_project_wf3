@@ -116,38 +116,4 @@ class ClientController extends ControllerAbstract{
             ]
         );
     }
-    
-    public function loginAction() {
-        
-        $email = "";
-        
-        if(!empty($_POST['email'])){
-            $this->sanitizePost();
-
-            $email = $_POST['email'];
-            $client = $this->app['client.repository']->findByEmail($email);
-
-            if(!is_null($client)){
-                if ($this->app['client.manager']->verifyPassword($_POST['password'], $client->getPassword())){
-                    $this->app['client.manager']->login($client);
-                    
-                    return $this->redirectRoute('homepage');
-                }
-            }
-            
-            $this->addFlashMessage('identification incorrecte', 'error');
-        }
-        
-        return $this->render(
-                'client/login.html.twig',
-                [
-                    'email' => $email
-                ]
-        );
-    }
-    
-    public function logoutAction() {
-        $this->app['client.manager']->logout();
-        return $this->redirectRoute('homepage');
-    }
 }

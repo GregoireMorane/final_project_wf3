@@ -1,0 +1,35 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+    <form class="form-horizontal" method="post">
+    <fieldset>
+        <legend>Assignation Collecteur à un lieu de Traitement</legend>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="collector_idcollector">Collecteur</label>
+            <div class="col-md-4">
+                <select id="client" name="collector_idcollector" class="form-control">
+                    <option value="1">Collecteur 1</option>
+                    <option value="2">Collecteur 2</option>
+                    <option value="3">Collecteur 3</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="processing_location_id_location_processing">Lieu de traitement</label>
+            <div class="col-md-4">
+                <select id="client" name="processing_location_id_location_processing" class="form-control">
+                    <option value="1">Lieu 1</option>
+                    <option value="2">Lieu 2</option>
+                    <option value="3">Lieu 3</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="button1id"></label>
+            <div class="col-md-8">
+                <button id="button1id" name="button1id" class="btn btn-success" type="submit">Valider</button>
+                <button id="button2id" name="button2id" class="btn btn-danger">Annuler</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
