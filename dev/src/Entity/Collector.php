@@ -1,124 +1,103 @@
 <?php
-
 /**
  * Description of Collecteur
  *
  * @author ghmor
  */
-
 namespace Entity;
 
-class Collector {
+class Collector{
 //    const STATUS_COLLECTEUR = 'salari�';
 //    const STATUS_ADMIN = 'admin';
-
+    
     /**
      *
      * @var int
      */
     private $idcollector;
-
     /**
      *
      * @var string
      */
     private $lastname;
-
     /**
      *
      * @var string
      */
     private $firstname;
-
     /**
      *
      * @var string
      */
     private $phone_number;
-
     /**
      *
      * @var string
      */
     private $password;
-
     /**
      *
      * @var string
      */
     private $email;
-
     /**
      *
      * @var string
      */
     private $status;
-
     /**
      *
      * @var string
      */
     private $address;
-
     /**
      *
      * @var string
      */
     private $city;
-
     /**
      *
      * @var string
      */
     private $postal_code;
-
+    
     //GETTERS
     function getIdcollector() {
         return $this->idcollector;
     }
-
     function getLastname() {
         return $this->lastname;
     }
-
     function getEmail() {
         return $this->email;
     }
-
     function getPassword() {
-        return $this->password;
+       return $this->password;
     }
-
     function getStatus() {
         return $this->status;
     }
-
     function getAddress() {
         return $this->address;
     }
-
     function getCity() {
         return $this->city;
     }
-
-    public function getFullName() {
+    public function getFullName(){
         return $this->firstname . ' ' . $this->lastname;
     }
-
-    public function getFirstname() {
+     public function getFirstname() {
         return $this->firstname;
     }
-
-    public function getPhoneNumber() {
+    public function getPhone_number() {
         return $this->phone_number;
     }
-
-    public function getPostalCode() {
+    public function getPostal_code() {
         return $this->postal_code;
     }
 
     //SETTERS
-
+   
     public function setIdcollector($idcollector) {
         $this->idcollector = $idcollector;
         return $this;
@@ -126,6 +105,11 @@ class Collector {
 
     public function setLastname($lastname) {
         $this->lastname = $lastname;
+        return $this;
+    }
+
+    public function setFirstname($firstname) {
+        $this->firstname = $firstname;
         return $this;
     }
 
@@ -160,22 +144,6 @@ class Collector {
     }
 
     public function setPostal_code($postal_code) {
-        $this->postal_code = $postal_code;
-        return $this;
-    }
-
-    
-    public function setFirstname($firstname) {
-        $this->firstname = $firstname;
-        return $this;
-    }
-
-    public function setPhoneNumber($phone_number) {
-        $this->phone_number = $phone_number;
-        return $this;
-    }
-
-    public function setPostalCode($postal_code) {
         $this->postal_code = $postal_code;
         return $this;
     }

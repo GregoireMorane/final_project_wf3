@@ -22,11 +22,11 @@ class CollectorRepository extends RepositoryAbstract{
         $data = [
             'lastname' => $collector->getLastname(),
             'firstname' => $collector->getFirstname(),
-            'phone_number' => $collector->getPhoneNumber(),
+            'phone_number' => $collector->getPhone_number(),
             'email' => $collector->getEmail(),
             'password' => $collector->getPassword(),
             'address' => $collector->getAddress(),
-            'postal_code' => $collector->getPostalCode(),
+            'postal_code' => $collector->getPostal_code(),
             'city' => $collector->getCity(),
             'status' => $collector->getStatus(),
         ];
@@ -51,14 +51,14 @@ class CollectorRepository extends RepositoryAbstract{
         $collector = new Collector();
         
         $collector
-            ->setIdCollector($data['id_client'])
+            ->setIdCollector($data['idcollector'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
-            ->setPhoneNumber($data['phone_number'])
+            ->setPhone_number($data['phone_number'])
             ->setEmail($data['email'])
             ->setPassword($data['password'])
             ->setAddress($data['address'])                
-            ->setPostalCode($data['postal_code'])
+            ->setPostal_code($data['postal_code'])
             ->setCity($data['city'])
             ->setStatus($data['status']);
 

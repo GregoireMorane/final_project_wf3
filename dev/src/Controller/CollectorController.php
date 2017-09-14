@@ -11,8 +11,8 @@ class CollectorController extends ControllerAbstract{
         
         $collector
         ->setLastname($_POST['lastname'])
-        ->setFirstname($_POST['firstname']); 
-        ->setPhone_number($_POST['phone_number']); 
+        ->setFirstname($_POST['firstname'])
+        ->setPhone_number($_POST['phone_number'])
         ->setEmail($_POST['email'])
         ->setStatus($_POST['status'])
         ->setAddress($_POST['address'])
