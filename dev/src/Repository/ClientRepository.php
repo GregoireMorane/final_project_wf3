@@ -1,6 +1,7 @@
 <?php
 
 namespace Repository;
+use Entity\Client;
 
 class ClientRepository extends RepositoryAbstract{
     public function findByEmail($email) {
@@ -15,10 +16,13 @@ class ClientRepository extends RepositoryAbstract{
             return $this->buildEntity($dbClient);
         }
     }
-    
+    /**
+     * 
+     * @param \Repository\Client $client
+     */
     public function save(Client $client) {
         $data = [
-            'start_date_contract' => $client->getDateStartContract(),
+            'start_date_contract' => $client->getStartDateContract(),
             'lastname' => $client->getLastname(),
             'firstname' => $client->getFirstname(),
             'phone_number' => $client->getPhoneNumber(),
@@ -33,21 +37,21 @@ class ClientRepository extends RepositoryAbstract{
             'is_active' => $client->getIsActive()
         ];
         
-        if ($client->getId()) {
+        if ($client->getIdClient()) {
             $this->db->update('client', $data,
                 [
-                    'id' => $client->getId()
+                    'id' => $client->getIdClient()
                 ]);
         } else {
             $this->db->insert('client', $data);
-            $client->setId($this->db->lastInsertId());
+            $client->setIdClient($this->db->lastInsertId());
         }
     }
     
     /**
      * 
      * @param array $data
-     * @return User
+     * @return Client
      */
     private function buildEntity(array $data) {
         $client = new Client();
