@@ -5,10 +5,10 @@
  * @author ghmor
  */
 namespace Entity;
-class Collector
-{
-    const STATUS_COLLECTEUR = 'collector';
-    const STATUS_ADMIN = 'admin';
+
+class Collector{
+//    const STATUS_COLLECTEUR = 'salarié';
+//    const STATUS_ADMIN = 'admin';
     
     /**
      *
@@ -30,6 +30,11 @@ class Collector
      * @var string
      */
     private $phone_number;
+    /**
+     *
+     * @var string
+     */
+    private $password;
     /**
      *
      * @var string
@@ -63,14 +68,11 @@ class Collector
     function getLastname() {
         return $this->lastname;
     }
-    function getFirstname() {
-        return $this->firstname;
-    }
-    function getPhoneNumber() {
-        return $this->phone_number;
-    }
     function getEmail() {
         return $this->email;
+    }
+    function getPassword() {
+       return $this->password;
     }
     function getStatus() {
         return $this->status;
@@ -84,40 +86,55 @@ class Collector
     public function getFullName(){
         return $this->firstname . ' ' . $this->lastname;
     }
-
-    //SETTERS
-    function getPostalCode() {
+     public function getFirstname() {
+        return $this->firstname;
+    }
+    public function getPhoneNumber() {
+        return $this->phone_number;
+    }
+    public function getPostalCode() {
         return $this->postal_code;
     }
+
+    //SETTERS
+
     function setIdcollector($idcollector) {
         $this->idcollector = $idcollector;
     }
     function setLastname($lastname) {
         $this->lastname = $lastname;
     }
-    function setFirstname($firstname) {
-        $this->firstname = $firstname;
-    }
-    function setPhoneNumber($phone_number) {
-        $this->phone_number = $phone_number;
-    }
     function setEmail($email) {
         $this->email = $email;
     }
     function setStatus($status) {
-        if (!in_array($status, [self::STATUS_COLLECTOR, self::STATUS_ADMIN])) {
-            throw new \UnexpectedValueException('Unrecognized status value');
-        }
+//        if (!in_array($status, [self::STATUS_COLLECTEUR, self::STATUS_ADMIN])) {
+//            throw new \UnexpectedValueException('Unrecognized status value');
+//        }
         $this->status = $status;
         return $this;
     }
     function setAddress($address) {
         $this->address = $address;
     }
+    function setPassword($password) {
+        $this->password = $password;
+    }
     function setCity($city) {
         $this->city = $city;
     }
-    function setPostalCode($postal_code) {
-        $this->postal_code = $postal_code;
+    public function setFirstname($firstname) {
+        $this->firstname = $firstname;
+        return $this;
     }
+    public function setPhoneNumber($phone_number) {
+        $this->phone_number = $phone_number;
+        return $this;
+    }
+    public function setPostalCode($postal_code) {
+        $this->postal_code = $postal_code;
+        return $this;
+    }
+
+
 }
