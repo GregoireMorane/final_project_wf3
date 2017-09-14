@@ -91,6 +91,15 @@ $app['collecte.repository']= function () use ($app){
     return new Repository\CollecteRepository($app['db']);
 };
 
+$app['outputcompost.controller'] = function () use ($app)
+{
+    return new Controller\OutputCompostController($app);
+};
+
+$app['outputcompost.repository']= function () use ($app){
+    return new Repository\OutputCompostRepository($app['db']);
+};
+
 
 return $app;
 //commentaire

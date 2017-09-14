@@ -56,6 +56,12 @@ $app->get('/formulairecollecte', function () use ($app) {
 ->bind('ajoutcollecte')
 ;
 
+$app->get('/formulairecompostesortie', function () use ($app) {
+    return $app['twig']->render('collector/formulaireOutputCompost.html.twig', array());
+})
+->bind('sortiecompost')
+;
+
 $app
     ->match('/fichecollecteur','collector.controller:registerAction') 
     ->bind('registercollector')
@@ -84,6 +90,11 @@ $app
 $app
     ->match('/formulairecollecte','collecte.controller:registerAction') 
     ->bind('registercollecte')
+;
+
+$app
+    ->match('/formulairecompostesortie','outputcompost.controller:registerAction') 
+    ->bind('registeroutputcompost')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
