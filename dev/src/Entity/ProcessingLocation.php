@@ -40,44 +40,60 @@ class ProcessingLocation {
      */
     private $processing_location;
     
-    //GETTERS
-    function getIdLocationProcessing() {
+    public function getId_location_processing() {
         return $this->id_location_processing;
     }
-    function getProcessingAddress() {
+
+    public function getProcessing_address() {
         return $this->processing_address;
     }
-    function getPostalCode() {
+
+    public function getPostal_code() {
         return $this->postal_code;
     }
-    function getCity() {
+
+    public function getCity() {
         return $this->city;
     }
-    function getCountry() {
+
+    public function getCountry() {
         return $this->country;
     }
-    function getProcessingLocation() {
+
+    public function getProcessing_location() {
         return $this->processing_location;
     }
-    
-    //SETTERS
-    function setId_locationProcessing($id_location_processing) {
+
+    public function setId_location_processing($id_location_processing) {
         $this->id_location_processing = $id_location_processing;
+        return $this;
     }
-    function setProcessingAddress($processing_address) {
+
+    public function setProcessing_address($processing_address) {
         $this->processing_address = $processing_address;
+        return $this;
     }
-    function setPostalCode($postal_code) {
+
+    public function setPostal_code($postal_code) {
         $this->postal_code = $postal_code;
+        return $this;
     }
-    function setCity($city) {
+
+    public function setCity($city) {
         $this->city = $city;
+        return $this;
     }
-    function setCountry($country) {
+
+    public function setCountry($country) {
         $this->country = $country;
+        return $this;
     }
-    function setProcessingLocation($processing_location) {
+
+    public function setProcessing_location($processing_location) {
         $this->processing_location = $processing_location;
+        return $this;
     }
+
+
 
 }

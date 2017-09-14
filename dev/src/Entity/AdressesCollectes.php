@@ -58,67 +58,93 @@ class AdressesCollectes {
      */
     private $firm_type;
     
-    //GETTERS
-    function getIdCollectionAddress() {
+    public function getId_collection_address() {
         return $this->id_collection_address;
     }
-    function getAdressCollection() {
+
+    public function getAdress_collection() {
         return $this->adress_collection;
     }
-    function getPostalCode() {
+
+    public function getPostal_code() {
         return $this->postal_code;
     }
-    function getCity() {
+
+    public function getCity() {
         return $this->city;
     }
-    function getFurtherInformation() {
+
+    public function getFurther_information() {
         return $this->further_information;
     }
-    function getCountry() {
+
+    public function getCountry() {
         return $this->country;
     }
-    function getCollectionDay() {
+
+    public function getCollection_day() {
         return $this->collection_day;
     }
-    function getClientIdclient() {
+
+    public function getClient_idclient() {
         return $this->client_idclient;
     }
-    function getLocationProcessingIdlocationProcessing() {
+
+    public function getLocation_processing_idlocation_processing() {
         return $this->location_processing_idlocation_processing;
     }
-    function getFirmType() {
+
+    public function getFirm_type() {
         return $this->firm_type;
     }
-    function setIdCollectionAddress($id_collection_address) {
+
+    public function setId_collection_address($id_collection_address) {
         $this->id_collection_address = $id_collection_address;
+        return $this;
     }
-    function setAdressCollection($adress_collection) {
+
+    public function setAdress_collection($adress_collection) {
         $this->adress_collection = $adress_collection;
+        return $this;
     }
-    function setPostalCode($postal_code) {
+
+    public function setPostal_code($postal_code) {
         $this->postal_code = $postal_code;
+        return $this;
     }
-    function setCity($city) {
+
+    public function setCity($city) {
         $this->city = $city;
+        return $this;
     }
-    function setFurtherInformation($further_information) {
+
+    public function setFurther_information($further_information) {
         $this->further_information = $further_information;
+        return $this;
     }
-    function setCountry($country) {
+
+    public function setCountry($country) {
         $this->country = $country;
+        return $this;
     }
-    function setCollectionDay($collection_day) {
+
+    public function setCollection_day($collection_day) {
         $this->collection_day = $collection_day;
+        return $this;
     }
-    function setClientIdclient($client_idclient) {
+
+    public function setClient_idclient($client_idclient) {
         $this->client_idclient = $client_idclient;
+        return $this;
     }
-    function setLocationProcessingIdlocationProcessing($location_processing_idlocation_processing) {
+
+    public function setLocation_processing_idlocation_processing($location_processing_idlocation_processing) {
         $this->location_processing_idlocation_processing = $location_processing_idlocation_processing;
+        return $this;
     }
-    function setFirmType($firm_type) {
+
+    public function setFirm_type($firm_type) {
         $this->firm_type = $firm_type;
+        return $this;
     }
-
-
 }

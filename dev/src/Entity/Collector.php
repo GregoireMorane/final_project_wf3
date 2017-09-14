@@ -97,32 +97,54 @@ class Collector{
     }
 
     //SETTERS
-
-    function setIdcollector($idcollector) {
+    public function setIdcollector($idcollector) {
         $this->idcollector = $idcollector;
+        return $this;
     }
-    function setLastname($lastname) {
+
+    public function setLastname($lastname) {
         $this->lastname = $lastname;
+        return $this;
     }
-    function setEmail($email) {
+
+    public function setPhone_number($phone_number) {
+        $this->phone_number = $phone_number;
+        return $this;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
+        return $this;
+    }
+
+    public function setEmail($email) {
         $this->email = $email;
+        return $this;
     }
-    function setStatus($status) {
+
+    public function setAddress($address) {
+        $this->address = $address;
+        return $this;
+    }
+
+    public function setCity($city) {
+        $this->city = $city;
+        return $this;
+    }
+
+    public function setPostal_code($postal_code) {
+        $this->postal_code = $postal_code;
+        return $this;
+    }
+
+        function setStatus($status) {
 //        if (!in_array($status, [self::STATUS_COLLECTEUR, self::STATUS_ADMIN])) {
 //            throw new \UnexpectedValueException('Unrecognized status value');
 //        }
         $this->status = $status;
         return $this;
     }
-    function setAddress($address) {
-        $this->address = $address;
-    }
-    function setPassword($password) {
-        $this->password = $password;
-    }
-    function setCity($city) {
-        $this->city = $city;
-    }
+
     public function setFirstname($firstname) {
         $this->firstname = $firstname;
         return $this;
