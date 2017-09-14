@@ -33,7 +33,7 @@ $app->get('/ficheclient', function () use ($app) {
 
 $app
     ->match('/fichecollecteur','collector.controller:registerAction') 
-    ->bind('register')
+    ->bind('registercollector')
 ;
 
 $app
