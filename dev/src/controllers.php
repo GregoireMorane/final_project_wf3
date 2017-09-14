@@ -50,6 +50,12 @@ $app->get('/ajouttraitementcollecteur', function () use ($app) {
 ->bind('ajoutlieucollecte')
 ;
 
+$app->get('/formulairecollecte', function () use ($app) {
+    return $app['twig']->render('collector/formulaireDeCollecte.html.twig', array());
+})
+->bind('ajoutcollecte')
+;
+
 $app
     ->match('/fichecollecteur','collector.controller:registerAction') 
     ->bind('registercollector')
@@ -73,6 +79,11 @@ $app
 $app
     ->match('/ajoutlieucollecte','lieucollecte.controller:registerAction') 
     ->bind('registerlieucollecte')
+;
+
+$app
+    ->match('/formulairecollecte','collecte.controller:registerAction') 
+    ->bind('registercollecte')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {

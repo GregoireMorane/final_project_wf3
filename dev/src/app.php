@@ -82,5 +82,15 @@ $app['traitementcollector.repository']= function () use ($app){
     return new Repository\TraitementCollectorRepository($app['db']);
 };
 
+$app['collecte.controller'] = function () use ($app)
+{
+    return new Controller\CollecteController($app);
+};
+
+$app['collecte.repository']= function () use ($app){
+    return new Repository\CollecteRepository($app['db']);
+};
+
+
 return $app;
 //commentaire

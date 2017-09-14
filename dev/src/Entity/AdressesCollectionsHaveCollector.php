@@ -8,7 +8,11 @@ namespace Entity;
  * @author ghmor
  */
 class AdressesCollectionsHaveCollector {
-    
+    /**
+     *
+     * @var int
+     */
+    private $id_adresses_collections_have_collector;
     /**
      *
      * @var int
@@ -135,4 +139,14 @@ class AdressesCollectionsHaveCollector {
         $this->transformation_place = $transformation_place;
         return $this;
     }
+    public function getId_adresses_collections_have_collector() {
+        return $this->id_adresses_collections_have_collector;
+    }
+
+    public function setId_adresses_collections_have_collector($id_adresses_collections_have_collector) {
+        $this->id_adresses_collections_have_collector = $id_adresses_collections_have_collector;
+        return $this;
+    }
+
+
 }
