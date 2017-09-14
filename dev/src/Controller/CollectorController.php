@@ -9,15 +9,16 @@ class CollectorController extends ControllerAbstract{
         $collector = new Collector();
         $errors = [];
         
-        $collector->setLastname($_POST['lastname']);
-        $collector->setFirstname($_POST['firstname']); 
-        $collector->setPhoneNumber($_POST['phone_number']); 
-        $collector->setEmail($_POST['email']);
-        $collector->setStatus($_POST['status']);
-        $collector->setAddress($_POST['address']);
-        $collector->setCity($_POST['city']);
-        $collector->setPostalCode($_POST['postal_code']);
-        $collector->setPassword($_POST['password']);
+        $collector
+        ->setLastname($_POST['lastname'])
+        ->setFirstname($_POST['firstname']); 
+        ->setPhone_number($_POST['phone_number']); 
+        ->setEmail($_POST['email'])
+        ->setStatus($_POST['status'])
+        ->setAddress($_POST['address'])
+        ->setCity($_POST['city'])
+        ->setPostal_Code($_POST['postal_code'])
+        ->setPassword($_POST['password']);
         
         if(!empty($_POST)){
 //            $this->sanitizePost();
