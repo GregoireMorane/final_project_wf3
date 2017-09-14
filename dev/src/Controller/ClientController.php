@@ -58,6 +58,46 @@ class ClientController extends ControllerAbstract{
 //            }elseif($_POST['password'] != $_POST['password_confirm']){
 //                $errors['password_confirm'] = "La confirmation du mot de passe n'est pas identique au mot de passe.";
 //            }
+//            
+//            if(empty($_POST['start_date_contract'])){
+//                $errors['start_date_contract'] = "La date de d�but de contrat est obligatoire";
+//            }
+//            
+//            if(empty($_POST['billing_address'])){
+//                $errors['billing_address'] = "L'adresse de facturation est obligatoire";
+//            }elseif(strlen($_POST['billing_address'])>45){
+//                $errors['billing_address'] = "L'adresse doit �tre inf�rieur � 45 caract�res";
+//            }
+//            
+//            if(empty($_POST['postal_code'])){
+//                $errors['postal_code'] = "Le code postal est obligatoire";
+//            }elseif(strlen($_POST['postal_code'])>45){
+//                $errors['postal_code'] = "Le code postal doit �tre inf�rieur � 45 caract�res";
+//            }
+//            
+//            if(empty($_POST['city'])){
+//                $errors['city'] = "La ville est obligatoire";
+//            }elseif(strlen($_POST['city'])>45){
+//                $errors['city'] = "La ville doit �tre inf�rieure � 45 caract�res";
+//            }
+//            
+//            if(empty($_POST['country'])){
+//                $errors['country'] = "Le pays est obligatoire";
+//            }elseif(strlen($_POST['country'])>45){
+//                $errors['country'] = "Le pays doit �tre inf�rieur � 45 caract�res";
+//            }
+//                   
+//            if(empty($_POST['company'])){
+//                $errors['company'] = "L'entreprise est obligatoire";
+//            }elseif(strlen($_POST['company'])>45){
+//                $errors['company'] = "L'entreprise doit �tre inf�rieur � 45 caract�res";
+//            }
+//            
+//            if(empty($_POST['siret'])){
+//                $errors['siret'] = "Le siret est obligatoire";
+//            }elseif(strlen($_POST['siret'])>45){
+//                $errors['siret'] = "Le siret doit �tre inf�rieur � 45 caract�res";
+//            }
             
             if(empty($errors)){
                 $this->app['client.repository']->save($client);
