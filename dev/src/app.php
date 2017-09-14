@@ -17,7 +17,7 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     return $twig;
 });
 
-//d�finition de la base de donn�e
+//d�finition de la base de donnée
 $app->register (
         new Silex\Provider\DoctrineServiceProvider(),
         [
@@ -53,6 +53,20 @@ $app['client.controller'] = function () use ($app)
 
 $app['client.repository']= function () use ($app){
     return new Repository\ClientRepository($app['db']);
+};
+
+// formulaire de collecte de biodéchets
+$app['collecte.controller'] = function () use ($app)
+{
+    return new Controller\CollecteControler($app);
+};
+
+$app['collecte.repository']= function () use ($app){
+    return new Repository\CollecteRepository($app['db']);
+};
+
+$app['adresses_collectes.repository']= function () use ($app){
+    return new Repository\AdressesCollectesRepository($app['db']);
 };
 
 return $app;

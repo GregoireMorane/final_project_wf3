@@ -1,0 +1,123 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <div class="bloc jaune col-lg-10 col-md-8 col-sm-4 col-xs-4s col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+        <form class="form-horizontal" method="post">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Formulaire de collecte de biodéchets</legend>
+
+                 
+                
+                
+
+               
+
+                {#<!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="bacsupplémantaire">bac supplémantaire</label>
+                    <div class="col-md-4">
+                        <button id="bacsupplémantaire" name="bacsupplémantaire" class="btn btn-primary">ajout de bac</button>
+                    </div>
+                </div>#}
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="adress_collection_idadress_collection">Lieux collecté</label>
+                    <div class="col-md-4">
+                        <select id="lieucollecté" name="adress_collection_idadress_collection" class="form-control">
+                            <option value="">choisissez </option>
+                            {% for address in addresses %}
+                             <option value="{{address.id_collection_address}}">{{address.adress_collection}} </option>
+                            
+                            {% endfor %}
+                            
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="collection_datetime">heure de ramassage</label>  
+                    <div class="col-md-4">
+                        <input id="collection_datetime" name="collection_datetime" type="date" placeholder="date de collecte" class="form-control input-md">
+                        <span class="help-block">ex: 17h30</span>  
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="bin_number">numero du bac collecté</label>  
+                    <div class="col-md-4">
+                        <input id="bin_number" name="bin_number" type="text" placeholder="numero du bac collecté" class="form-control input-md">
+                        <span class="help-block">ex : 1522563</span>  
+                    </div>
+                </div>
+
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="weight">poids composté en kg</label>  
+                    <div class="col-md-4">
+                        <input id="poids composté" name="weight" type="text" placeholder="poids composté" class="form-control input-md">
+                        <span class="help-block">ex : 40</span>  
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="compost_quality">compostable</label>
+                    <div class="col-md-4">
+                        <select id="compostable" name="compost_quality" class="form-control">
+                            <option value="bon">Bonne</option>
+                            <option value="moyen">Moyenne</option>
+                            <option value="mauvais">Mauvaise</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="commentaire">Commentaires</label>  
+                    <div class="col-md-4">
+                        <input id="commentaire" name="further_information" type="textarea" placeholder="commentaires" class="form-control input-md">
+                        <span class="help-block">ex : pommes pourries</span>  
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="processing_datetime">date de traitement</label>  
+                    <div class="col-md-4">
+                        <input id="processing_datetime" name="processing_datetime" type="date" placeholder="date" class="form-control input-md">
+                        <span class="help-block">ex : 45</span>  
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="processing_location">Lieu de traitement</label>
+                    <div class="col-md-4">
+                        <select id="processing_location " name="processing_location" class="form-control">
+                            <option value="1">les grands voisins</option>
+                            <option value="2">lieu 2</option>
+                            <option value="3">lieu 3</option>
+                            <option value="4">lieu 4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="">sauvegarde </label>
+                    <div class="col-md-8">
+                        <button id="" name="" class="btn btn-success" type="submit">sauvegarder</button>
+                        <button id="Valider et envoyer le formulaire" name="Valider et envoyer le formulaire"  class="btn btn-danger">Valider et envoyer le formulaire</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}
+
+

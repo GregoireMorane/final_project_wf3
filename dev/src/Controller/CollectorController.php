@@ -17,7 +17,7 @@ class CollectorController extends ControllerAbstract{
         ->setStatus($_POST['status'])
         ->setAddress($_POST['address'])
         ->setCity($_POST['city'])
-        ->setPostal_Code($_POST['postal_code'])
+        ->setPostal_code($_POST['postal_code'])
         ->setPassword($_POST['password']);
         
         if(!empty($_POST)){

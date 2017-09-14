@@ -24,7 +24,13 @@ $app->get('/fichecollecteur', function () use ($app) {
 })
 ->bind('fichecollecteur')
 ;
-
+/*
+$app->get('/formulairedecollecte', function () use ($app) {
+    return $app['twig']->render('collector/formulairedecollecte.html.twig', array());
+})
+->bind('formulairedecollecte')
+;
+*/
 $app->get('/ficheclient', function () use ($app) {
     return $app['twig']->render('admin/formulaireClient.html.twig', array());
 })
@@ -39,6 +45,11 @@ $app
 $app
     ->match('/ficheclient','client.controller:registerAction') 
     ->bind('registerclient')
+;
+//appel fonction enregistrement save registerAction pour le formulaire de collecte
+$app
+    ->match('/formulairedecollecte','collecte.controller:registerAction') 
+    ->bind('registercollecte')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
