@@ -31,6 +31,16 @@ $app->get('/ficheclient', function () use ($app) {
 ->bind('ficheclient')
 ;
 
+$app
+    ->match('/fichecollecteur','collector.controller:registerAction') 
+    ->bind('registercollector')
+;
+
+$app
+    ->match('/ficheclient','client.controller:registerAction') 
+    ->bind('registerclient')
+;
+
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;

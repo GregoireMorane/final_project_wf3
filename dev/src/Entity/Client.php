@@ -46,7 +46,7 @@ class Client
      *
      * @var string
      */
-    private $billing_adress;
+    private $billing_address;
     /**
      *
      * @var string
@@ -100,8 +100,8 @@ class Client
     public function getEmail() {
         return $this->email;
     }
-    public function getBillingAdress() {
-        return $this->billing_adress;
+    public function getBillingAddress() {
+        return $this->billing_address;
     }
     public function getPostalCode() {
         return $this->postal_code;
@@ -154,8 +154,8 @@ class Client
         $this->email = $email;
         return $this;
     }
-    public function setBillingAdress($billing_adress){
-        $this->billing_adress = $billing_adress;
+    public function setBillingAddress($billing_address){
+        $this->billing_address = $billing_address;
         return $this;
     }
     public function setPostalCode($postal_code){
@@ -174,7 +174,7 @@ class Client
         $this->is_active = $is_active;
         return $this;
     }
-    public function setCompany($ompany){
+    public function setCompany($company){
         $this->company = $company;
         return $this;
     }
