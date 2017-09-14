@@ -1,0 +1,90 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <div class="col-md-4 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center"><h3 class='panel-title'>Secteurs</h3></div>
+            <div class="panel-body btn-group-vertical btn-block" role="group" aria-label="...">
+                <a href="#" class="btn btn-default">Secteur 1<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a href="#" class="btn btn-default">Secteur 2<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a href="#" class="btn btn-default">Secteur 3<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a href="#" class="btn btn-default">Secteur 4<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <hr>
+                <h4 class="text-center">Recherche</h4>
+                <form class="form-horizontal">
+                <fieldset>
+                <!-- Appended Input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="appendedtext">Collecteur</label>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <input id="appendedtext" name="appendedtext" class="form-control" placeholder="" type="text">
+                      <span class="glyphicon glyphicon-search input-group-addon"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="appendedtext">Client</label>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <input id="appendedtext" name="appendedtext" class="form-control" placeholder="" type="text">
+                      <span class="glyphicon glyphicon-search input-group-addon"></span>
+                    </div>
+                  </div>
+                </div>
+                </fieldset>
+                </form>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-1 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés cette semaine</h3></div>
+                <div class="panel-body">
+                    <p><strong>30000 kilos</strong></p>
+                    <i>Bravo!</i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading "><h3 class='panel-title'>Composte collectés cette semaine</h3></div>
+                <div class="panel-body">
+                    <p><strong>30000 kilos</strong></p>
+                    <i>Bravo!</i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 col-md-offset-1 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading "><h3 class='panel-title'>Collecteur</h3></div>
+                <div class="panel-body">
+                    <h3>Nouveau collecteur</h3>
+                    <button><a><span class="glyphicon glyphicon-plus"></span></a></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading "><h3 class='panel-title'>Client</h3></div>
+                <div class="panel-body">
+                    <h3>Nouveau client</h3>
+                    <button><a><span class="glyphicon glyphicon-plus"></span></a></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-md-offset-1 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading "><h3 class='panel-title'>Secteur</h3></div>
+                <div class="panel-body">
+                    <h3>Nouveau secteur</h3>
+                    <button><a><span class="glyphicon glyphicon-plus"></span></a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
