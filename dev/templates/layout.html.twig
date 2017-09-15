@@ -13,6 +13,7 @@
             <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('css/homepage.css') }}" rel="stylesheet" type="text/css"/>
             <link href="https://fonts.googleapis.com/css?family=Anton|Arvo|Oswald|Poppins" rel="stylesheet">
+            <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         {% endblock %}
     </head>
     <body>
@@ -25,7 +26,7 @@
                 {# on affiche le rendu de la route categories_menu #}
                 {#{{ render(url('categories_menu')) }}#}
                     <li class="nav-item">
-                      <a class="nav-link active" href="#">Page de connexion</a>
+                      <a class="nav-link active" href="{{path('connexion')}}">Page de connexion</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Déconnexion</a>
@@ -40,6 +41,7 @@
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <script src="{{asset('js/homepagescript.js')}}"></script>
         {% endblock %}
     </body>
 </html>
