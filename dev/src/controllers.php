@@ -19,6 +19,7 @@ $app->get('/connexion', function () use ($app) {
 })
 ->bind('connexion')
 ;
+
 $app->get('/fichecollecteur', function () use ($app) {
     return $app['twig']->render('admin/formulaireCollector.html.twig', array());
 })
@@ -31,14 +32,35 @@ $app->get('/formulairedecollecte', function () use ($app) {
 ->bind('formulairedecollecte')
 ;
 */
-$app->get('/ficheclient', function () use ($app) {
-    return $app['twig']->render('admin/formulaireClient.html.twig', array());
-})
-->bind('ficheclient')
-;
+//$app->get('/ficheclient', function () use ($app) {
+//    return $app['twig']->render('admin/formulaireClient.html.twig', array());
+//})
+//->bind('ficheclient')
+//;
+
+//$app->get('/ajoutlieutraitement', function () use ($app) {
+//    return $app['twig']->render('admin/formulaireLieuTraitement.html.twig', array());
+//})
+//->bind('ajoutlieutraitement')
+//;
+
+
+// pas besoin d'appeler cette fonction elle est déjà dans les routes plus bas
+//$app->get('/formulairecollecte', function () use ($app) {
+//    return $app['twig']->render('collector/formulairedecollecte.html.twig', array());
+//})
+//->bind('ajoutcollecte')
+//;
+
+// sortie de compost remplacer par un match 
+//$app->get('/formulairecompostesortie', function () use ($app) {
+//    return $app['twig']->render('collector/formulaireOutputCompost.html.twig', array());
+//})
+//->bind('sortiecompost')
+//;
 
 $app
-    ->match('/fichecollecteur','collector.controller:registerAction') 
+    ->match('/fichecollector','collector.controller:registerAction') 
     ->bind('registercollector')
 ;
 
@@ -48,8 +70,33 @@ $app
 ;
 //appel fonction enregistrement save registerAction pour le formulaire de collecte
 $app
-    ->match('/formulairedecollecte','collecte.controller:registerAction') 
+    ->match('/formulairecollecte','collecte.controller:registerAction') 
     ->bind('registercollecte')
+;
+
+$app
+    ->match('/ajoutlieutraitement','lieutraitement.controller:registerAction') 
+    ->bind('registerlieutraitement')
+;
+
+$app
+    ->match('/ajouttraitementcollecteur','traitementcollector.controller:registerAction') 
+    ->bind('registertraitementcollector')
+;
+
+$app
+    ->match('/ajoutlieucollecte','lieucollecte.controller:registerAction') 
+    ->bind('registerlieucollecte')
+;
+
+$app
+    ->match('/formulairecollecte','collecte.controller:registerAction') 
+    ->bind('registercollecte')
+;
+
+$app
+    ->match('/formulairecompostesortie','outputcompost.controller:registerAction') 
+    ->bind('registeroutputcompost')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {

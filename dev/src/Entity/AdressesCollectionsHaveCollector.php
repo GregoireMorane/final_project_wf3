@@ -7,12 +7,12 @@ namespace Entity;
  *
  * @author ghmor
  */
-class AdressesCollectionsHaveCollector{
+class AdressesCollectionsHaveCollector {
     /**
      *
      * @var int
      */
-    private $id_adresses_collections_have_collector; 
+    private $id_adresses_collections_have_collector;
     /**
      *
      * @var int
@@ -142,17 +142,18 @@ class AdressesCollectionsHaveCollector{
         $this->further_information = $further_information;
         return $this;
     }
-    public function setId_adresses_collections_have_collector($id_adresses_collections_have_collector) {
-        $this->id_adresses_collections_have_collector = $id_adresses_collections_have_collector;
-        return $this;
-    }
+
 
     public function setProcessing_location($processing_location) {
         $this->processing_location = $processing_location;
         return $this;
     }
+   
+
+    public function setId_adresses_collections_have_collector($id_adresses_collections_have_collector) {
+        $this->id_adresses_collections_have_collector = $id_adresses_collections_have_collector;
+        return $this;
+    }
 
 
-    
-    
 }

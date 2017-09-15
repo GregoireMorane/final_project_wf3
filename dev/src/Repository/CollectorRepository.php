@@ -17,6 +17,17 @@ class CollectorRepository extends RepositoryAbstract{
             return $this->buildEntity($dbCollector);
         }
     }
+    // pour afficher les infos collecteur dans les vues
+    public function findAll() 
+    {
+        $dbCollectors = $this->db->fetchAll('SELECT * FROM collector ORDER BY idcollector');
+        $collectors =[];
+        
+        foreach ($dbCollectors as $dbCollector){
+            $collectors[] = $this->buildEntity($dbCollector);
+        }
+        return $collectors;
+    }
     
     public function save(Collector $collector) {
         $data = [
@@ -51,7 +62,7 @@ class CollectorRepository extends RepositoryAbstract{
         $collector = new Collector();
         
         $collector
-            ->setIdCollector($data['idcollector'])
+            ->setIdcollector($data['idcollector'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
             ->setPhone_number($data['phone_number'])

@@ -4,18 +4,7 @@ namespace Repository;
 use Entity\Client;
 
 class ClientRepository extends RepositoryAbstract{
-    public function findByEmail($email) {
-        $dbClient = $this->db->fetchAssoc(
-            'SELECT * FROM client WHERE email = :email',
-            [
-                ':email' => $email
-            ]
-        );
-        
-        if(!empty($dbClient)){
-            return $this->buildEntity($dbClient);
-        }
-    }
+
     /**
      * 
      * @param \Repository\Client $client
@@ -40,12 +29,23 @@ class ClientRepository extends RepositoryAbstract{
         if ($client->getIdClient()) {
             $this->db->update('client', $data,
                 [
-                    'id' => $client->getIdClient()
+                    'id_client' => $client->getIdClient()
                 ]);
         } else {
             $this->db->insert('client', $data);
             $client->setIdClient($this->db->lastInsertId());
         }
+    }
+    
+    public function findAll() 
+    {
+        $dbClients = $this->db->fetchAll('SELECT * FROM client ORDER BY id_client');
+        $clients =[];
+        
+        foreach ($dbClients as $dbClient){
+            $clients[] = $this->buildEntity($dbClient);
+        }
+        return $clients;
     }
     
     /**
@@ -58,7 +58,7 @@ class ClientRepository extends RepositoryAbstract{
         
         $client
             ->setIdClient($data['id_client'])
-            ->setDateStartContract($data['start_date_contract'])
+            ->setStartDateContract($data['start_date_contract'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
             ->setPhoneNumber($data['phone_number'])

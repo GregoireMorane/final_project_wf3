@@ -5,7 +5,7 @@
  * @author ghmor
  */
 namespace Entity;
-class AdressesCollectes {
+class LieuCollecte {
     
     /**
      *
@@ -16,7 +16,7 @@ class AdressesCollectes {
      *
      * @var string
      */
-    private $adress_collection;
+    private $address_collection;
     /**
      *
      * @var string
@@ -61,69 +61,88 @@ class AdressesCollectes {
     public function getId_collection_address() {
         return $this->id_collection_address;
     }
-    public function getAdress_collection() {
+
+    public function getAddress_collection() {
         return $this->adress_collection;
     }
+
     public function getPostal_code() {
         return $this->postal_code;
     }
+
     public function getCity() {
         return $this->city;
     }
+
     public function getFurther_information() {
         return $this->further_information;
     }
+
     public function getCountry() {
         return $this->country;
     }
+
     public function getCollection_day() {
         return $this->collection_day;
     }
+
     public function getClient_idclient() {
         return $this->client_idclient;
     }
+
     public function getLocation_processing_idlocation_processing() {
         return $this->location_processing_idlocation_processing;
     }
+
     public function getFirm_type() {
         return $this->firm_type;
     }
+
     public function setId_collection_address($id_collection_address) {
         $this->id_collection_address = $id_collection_address;
         return $this;
     }
-    public function setAdress_collection($adress_collection) {
+
+    public function setAddress_collection($adress_collection) {
         $this->adress_collection = $adress_collection;
         return $this;
     }
+
     public function setPostal_code($postal_code) {
         $this->postal_code = $postal_code;
         return $this;
     }
+
     public function setCity($city) {
         $this->city = $city;
         return $this;
     }
+
     public function setFurther_information($further_information) {
         $this->further_information = $further_information;
         return $this;
     }
+
     public function setCountry($country) {
         $this->country = $country;
         return $this;
     }
+
     public function setCollection_day($collection_day) {
         $this->collection_day = $collection_day;
         return $this;
     }
+
     public function setClient_idclient($client_idclient) {
         $this->client_idclient = $client_idclient;
         return $this;
     }
+
     public function setLocation_processing_idlocation_processing($location_processing_idlocation_processing) {
         $this->location_processing_idlocation_processing = $location_processing_idlocation_processing;
         return $this;
     }
+
     public function setFirm_type($firm_type) {
         $this->firm_type = $firm_type;
         return $this;

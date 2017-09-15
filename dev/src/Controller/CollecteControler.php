@@ -8,21 +8,17 @@ use Entity\AdressesCollectionsHaveCollector;
 class CollecteControler extends ControllerAbstract{
     
      // affichage dans la page html
-    public function listAction() 
-    {
-        $collecte = $this->app['collect.repository']->findAll();
-        return $this->render('collector/list.html.twig',
-            [
-               'collecte' => $collecte
-            ]
-            );
-        
-    }
+    
     
     public function registerAction() {
         $collecte = new AdressesCollectionsHaveCollector();
         $errors = [];
+        //affichages des infos de lieu à collecter
         $adresses = $this->app['adresses_collectes.repository']->findAll();
+        //affichages des infos  du collecteur
+        $collectors = $this->app['collector.repository']->findAll();
+        //affichages des infos de lieu de traitement
+        $locations = $this->app['lieutraitement.repository']->findAll();
        
         
             if(!empty($_POST)){
@@ -37,6 +33,7 @@ class CollecteControler extends ControllerAbstract{
                 $this->app['collecte.repository']->save($collecte);
                 
                 return $this->redirectRoute('homepage');
+                
             }else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';
                 $message .= '<br>'.implode('<br>', $errors);
@@ -48,7 +45,9 @@ class CollecteControler extends ControllerAbstract{
             'collector/formulairedecollecte.html.twig',
             [
                 'collecte' => $collecte,
-                'addresses' => $adresses
+                'addresses' => $adresses,
+                'collectors' => $collectors,
+                'locations' => $locations
             ]
         );
     }
