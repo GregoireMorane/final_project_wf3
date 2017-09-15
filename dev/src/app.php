@@ -90,6 +90,36 @@ $app['adresses_collectes.repository']= function () use ($app){
 //    return new Repository\ClientRepository($app['db']);
 //};
 
+// modification simone et register identique à  revoir
+// gestionnaire de sessions de Symfony($app['session']
+//$app->register(new SessionServiceProvider());
+//
+//$app['client.manager'] = function () use($app) {
+//    return new Service\ClientManager($app['session']);
+//};
+//
+//$app['collector.manager'] = function () use($app) {
+//    return new Service\CollectorManager($app['session']);
+//};
+//
+////Admin inscription d'un collecteur brouillon
+//$app['collector.controller'] = function () use ($app)
+//{
+//    return new CollectorController($app);
+//};
+//
+//$app['collector.repository']= function () use ($app){
+//    return new CollectorRepository($app['db']);
+//};
+//
+//$app['client.controller'] = function () use ($app)
+//{
+//    return new ClientController($app);
+//};
+//
+//$app['client.repository']= function () use ($app){
+//    return new ClientRepository($app['db']);
+//};
 
 return $app;
 //commentaire
