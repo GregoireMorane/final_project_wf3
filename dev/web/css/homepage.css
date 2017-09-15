@@ -1,0 +1,83 @@
+/* 
+    Created on : 15 sept. 2017, 10:47:01
+    Author     : ghmor
+*/
+*{    
+    margin: 0;
+    padding: 0;
+    border: 00;
+    font-size: 100%;     
+    font: inherit;
+    vertical-align: baseline;    
+    text-decoration: none;
+    list-style: none;
+}
+
+.clear
+{
+    clear: both;
+}
+
+#homepage{
+    font-family: 'Oswald', sans-serif;
+}
+
+.imgHead{
+    min-height: 100px;
+    text-align: center;
+}
+
+.imgHead > h1{
+    position: relative;
+}
+
+.imgBackground{
+    width:100%;
+}
+
+.blocGauche1{
+    float: left;
+    background-color: green;
+}
+
+.blocDroite1{
+    float: left;
+    background-color: green;
+}
+
+.blocGauche2{
+    float: left;
+    background-color: white;
+}
+
+.blocDroite2{
+    float: left;
+    background-color: white;
+}
+
+.blocGauche3{
+    float: left;
+    background-color: green;
+}
+
+.blocDroite3{
+    float: left;
+    background-color: green;
+}
+
+.bloc1{
+    color: white;
+    text-align: center;
+}
+
+.bloc2{
+    text-align: center;
+}
+.bloc3{
+    color: white;
+    text-align: center;
+}
+.footr{
+    background-color: white;
+    text-align: center;
+}
