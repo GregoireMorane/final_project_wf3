@@ -9,7 +9,6 @@
 
 body {
     margin: 0 auto;
-    width: 85%;
 }
 
 .ombrage {
@@ -72,3 +71,4 @@ a.nav-link {
 #collector_nav div{
     padding: 0.5em;
 }
+
