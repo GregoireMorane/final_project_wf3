@@ -47,22 +47,22 @@ class CollectorRepository extends RepositoryAbstract{
      * @param array $data
      * @return User
      */
-    private function buildEntity(array $data) {
-        $collector = new Collector();
-        
-        $collector
-            ->setIdCollector($data['id_client'])
-            ->setLastname($data['lastname'])
-            ->setFirstname($data['firstname'])
-            ->setPhoneNumber($data['phone_number'])
-            ->setEmail($data['email'])
-            ->setPassword($data['password'])
-            ->setAddress($data['address'])                
-            ->setPostalCode($data['postal_code'])
-            ->setCity($data['city'])
-            ->setStatus($data['status']);
-
-        
-        return $collector;
-    }        
+//    private function buildEntity(array $data) {
+//        $collector = new Collector();
+//        
+//        $collector
+//            ->setIdCollector($data['id_client'])
+//            ->setLastname($data['lastname'])
+//            ->setFirstname($data['firstname'])
+//            ->setPhoneNumber($data['phone_number'])
+//            ->setEmail($data['email'])
+//            ->setPassword($data['password'])
+//            ->setAddress($data['address'])                
+//            ->setPostalCode($data['postal_code'])
+//            ->setCity($data['city'])
+//            ->setStatus($data['status']);
+//
+//        
+//        return $collector;
+//    }        
 }

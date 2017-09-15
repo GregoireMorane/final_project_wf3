@@ -63,6 +63,11 @@ $app->get('/formulairecompostesortie', function () use ($app) {
 ;
 
 $app
+    ->match('/connexion','connexion.controller:loginAction') 
+    ->bind('verifconnexion')
+;
+
+$app
     ->match('/fichecollecteur','collector.controller:registerAction') 
     ->bind('registercollector')
 ;

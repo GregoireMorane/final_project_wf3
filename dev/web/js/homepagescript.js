@@ -133,3 +133,26 @@ function drawDemo1() {
 
 var draw = setInterval(drawDemo1,20)
 if (arrow>6.28) console.log(2);
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+
+  var data = google.visualization.arrayToDataTable([
+    ['Parts', 'Nb'],
+    ['Part 1',     11],
+    ['Part 2',      2],
+    ['Part 3',  2],
+    ['Part 4', 2],
+    ['Part 5',    7]
+  ]);
+
+  var options = {
+    title: 'Un autre diagramme'
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+  chart.draw(data, options);
+}

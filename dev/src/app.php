@@ -100,6 +100,19 @@ $app['outputcompost.repository']= function () use ($app){
     return new Repository\OutputCompostRepository($app['db']);
 };
 
+$app['connexion.controller'] = function () use ($app)
+{
+    return new Controller\ConnexionController($app);
+};
+
+$app['connexion.repository']= function () use ($app){
+    return new Repository\ConnexionRepository($app['db']);
+};
+
+$app['user.manager']= function () use ($app){
+    return new Service\UserManager($app['session']);
+};
+
 
 return $app;
 //commentaire

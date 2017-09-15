@@ -84,6 +84,9 @@
     text-align: center;
 }
 
+.footr > a{
+    text-decoration: none; 
+}
 
 #return-to-top {
     position: fixed;
