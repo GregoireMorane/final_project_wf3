@@ -20,11 +20,11 @@ $app->get('/connexion', function () use ($app) {
 ->bind('connexion')
 ;
 
-$app->get('/fichecollecteur', function () use ($app) {
-    return $app['twig']->render('admin/formulaireCollector.html.twig', array());
-})
-->bind('fichecollecteur')
-;
+//$app->get('/fichecollecteur', function () use ($app) {
+//    return $app['twig']->render('admin/formulaireCollector.html.twig', array());
+//})
+//->bind('fichecollecteur')
+//;
 
 $app->get('/ficheclient', function () use ($app) {
     return $app['twig']->render('admin/formulaireClient.html.twig', array());

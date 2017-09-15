@@ -112,7 +112,7 @@ class ClientController extends ControllerAbstract{
             }
         }
         return $this->render(
-            'admin/formulaireCollector.html.twig',
+            'admin/formulaireClient.html.twig',
             [
                 'client' => $client
             ]
