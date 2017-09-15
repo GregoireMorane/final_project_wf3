@@ -20,11 +20,11 @@ $app->get('/connexion', function () use ($app) {
 ->bind('connexion')
 ;
 
-$app->get('/fichecollecteur', function () use ($app) {
-    return $app['twig']->render('admin/formulaireCollector.html.twig', array());
-})
-->bind('fichecollecteur')
-;
+//$app->get('/fichecollecteur', function () use ($app) {
+//    return $app['twig']->render('admin/formulaireCollector.html.twig', array());
+//})
+//->bind('fichecollecteur')
+//;
 /*
 $app->get('/formulairedecollecte', function () use ($app) {
     return $app['twig']->render('collector/formulairedecollecte.html.twig', array());
@@ -60,7 +60,7 @@ $app->get('/formulairedecollecte', function () use ($app) {
 //;
 
 $app
-    ->match('/fichecollector','collector.controller:registerAction') 
+    ->match('/fichecollecteur','collector.controller:registerAction') 
     ->bind('registercollector')
 ;
 

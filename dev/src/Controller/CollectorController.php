@@ -9,7 +9,7 @@ class CollectorController extends ControllerAbstract{
      public function listAction() 
     {
         $collector = $this->app['collector.repository']->findAll();
-        return $this->render('formulairedecollecte.html.twig',
+        return $this->render('formulaireCollector.html.twig',
             [
                'collectors' => $collectors
             ]
@@ -20,20 +20,20 @@ class CollectorController extends ControllerAbstract{
         $collector = new Collector();
         $errors = [];
         
-        $collector
-            ->setLastname($_POST['lastname'])
-            ->setFirstname($_POST['firstname'])
-            ->setPhone_number($_POST['phone_number']) 
-            ->setEmail($_POST['email'])
-            ->setStatus($_POST['status'])
-            ->setAddress($_POST['address'])
-            ->setCity($_POST['city'])
-            ->setPostal_code($_POST['postal_code'])
-            ->setPassword($_POST['password']);
+      
         
         if(!empty($_POST)){
 //            $this->sanitizePost();
-
+                $collector
+                          ->setLastname($_POST['lastname'])
+                          ->setFirstname($_POST['firstname'])
+                          ->setPhone_number($_POST['phone_number']) 
+                          ->setEmail($_POST['email'])
+                          ->setStatus($_POST['status'])
+                          ->setAddress($_POST['address'])
+                          ->setCity($_POST['city'])
+                          ->setPostal_code($_POST['postal_code'])
+                          ->setPassword($_POST['password']);
               
 //            if(empty($_POST['lastname'])){
 //                $errors['lastname'] = "Le nom est obligatoire";
