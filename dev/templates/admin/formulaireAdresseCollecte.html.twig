@@ -7,9 +7,9 @@
             <label class="col-md-4 control-label" for="client_idclient">Site apartenant au client </label>
             <div class="col-md-4">
                 <select id="client" name="client_idclient" class="form-control">
-                    <option value="1">Client 1</option>
-                    <option value="2">Client 2</option>
-                    <option value="3">Client 3</option>
+                    {% for client in clients %}
+                             <option value="{{client.idClient}}">{{client.lastname}} </option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
@@ -52,8 +52,9 @@
             <div class="col-md-4">
                 <select id="lieu_traitement" name="location_processing_idlocation_processing" class="form-control">
                     <option value="1">Lieu traitement 1</option>
-                    <option value="2">Lieu traitement 2</option>
-                    <option value="3">Lieu traitement 3</option>
+                    {% for location in locations %}
+                             <option value="{{location.id_location_processing}}">{{location.processing_location}} </option>
+                    {% endfor %}
                 </select>
             </div>
         </div>

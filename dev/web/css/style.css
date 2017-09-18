@@ -2,15 +2,21 @@
 *{    
     margin: 0;    padding: 0;    border: 00;    font-size: 100%; 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/jerome
     /* taille de caract�re par d�faut du navigateur */    
     font: inherit;    vertical-align: baseline;    
     text-decoration: none; /* enl�ve le soulignement des liens */
     list-style: none;
+<<<<<<< HEAD
 =======
     /* taille de caract�re par d�faut du navigateur */ @    
     font: inherit;    vertical-align: baseline;    
     text-decoration: none; /* enl�ve le soulignement des liens */
 >>>>>>> origin/gregoire
+=======
+>>>>>>> origin/jerome
 }
 
 body {
@@ -35,6 +41,7 @@ span.glyphicon-log-out {
 a.nav-link {
     line-height: 5em;
 }
+<<<<<<< HEAD
 <<<<<<< .merge_file_a03972
 */
 
@@ -43,6 +50,11 @@ a.nav-link {
 
 /*apparence des blocs */
 >>>>>>> .merge_file_a10804
+=======
+*/
+
+/* APPARENCE DES BLOCS */
+>>>>>>> origin/jerome
 .gris {
     -moz-box-shadow: 1px 3px 10px 0px #656565;
     -webkit-box-shadow: 1px 3px 10px 0px #656565;
@@ -54,6 +66,10 @@ a.nav-link {
     border-radius: 10px;
     background: rgba(0,0,0,0.03);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/jerome
 .vert {
     -moz-box-shadow: 1px 3px 10px 0px #40a629;
     -webkit-box-shadow: 1px 3px 10px 0px #40a629;
@@ -79,14 +95,20 @@ a.nav-link {
 }
 
 .bloc{
+<<<<<<< HEAD
 <<<<<<< .merge_file_a03972
 
 =======
 >>>>>>> .merge_file_a10804
+=======
+    margin-bottom: 30px;
+    margin-top: 30px;
+>>>>>>> origin/jerome
     padding-bottom: 15px;
     padding-top: 15px;
 }
 
+<<<<<<< HEAD
 <<<<<<< .merge_file_a03972
     margin-bottom: 30px;
     margin-top: 30px;
@@ -94,3 +116,22 @@ a.nav-link {
     margin-bottom: 10px;
     margin-top: 10px;
 >>>>>>> .merge_file_a10804
+=======
+#liens > div {
+    padding: 0.5em;
+}
+
+.panel-body {
+    padding: 0px 15px 15px 15px;
+}
+
+span.glyphicon-eye-open {
+    font-size: 1.5em;
+}
+
+#biodechets, #contact {
+    position: relative;
+    bottom: 0em;
+    color: white;
+}
+>>>>>>> origin/jerome

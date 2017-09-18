@@ -13,6 +13,10 @@ class OutputCompostController extends ControllerAbstract{
     public function registerAction(){
         $output = new OutputCompost();
         $errors = [];
+         //affichages des infos  du collecteur
+        $collectors = $this->app['collector.repository']->findAll();
+        //affichages des infos de lieu de traitement
+        $locations = $this->app['lieutraitement.repository']->findAll();
         
         if(!empty($_POST)){
             $output->setOutput_datetime($_POST['output_datetime'])
@@ -25,13 +29,19 @@ class OutputCompostController extends ControllerAbstract{
                 return $this->redirectRoute('homepage');
             }
             else{
-                return $this->render(
-                    'collector/formulaireOutputCompost.html.twig',
-                    [
-                        'output' => $output
-                    ]
-                );
+                $message = '<strong>Le formulaire contient des erreurs</strong>';
+                $message .= '<br>'.implode('<br>', $errors);
+                $this->addFlashMessage($message, 'error');
+                
             }
         }
+        return $this->render(
+                    'collector/formulaireOutputCompost.html.twig',
+                    [
+                        'output' => $output,
+                        'collectors' => $collectors,
+                        'locations' => $locations
+                    ]
+                );
     }
 }

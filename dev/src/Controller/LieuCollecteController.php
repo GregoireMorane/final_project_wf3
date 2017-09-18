@@ -14,10 +14,15 @@ class LieuCollecteController extends ControllerAbstract{
     public function registerAction(){
         $lieu = new LieuCollecte();
         $errors = [];
+        //afficahge des infos des infos clients 
+        $clients = $this->app['client.repository']->findAll();
+        //affichages des infos de lieu de traitement
+        $locations = $this->app['lieutraitement.repository']->findAll();
         
         if(!empty($_POST)){
             
-            $lieu->setAddress_collection($_POST['adress_collection'])
+                $lieu
+                    ->setAddress_collection($_POST['adress_collection'])
                     ->setPostal_code($_POST['postal_code'])
                     ->setCity($_POST['city'])
                     ->setFurther_information($_POST['further_information'])
@@ -40,7 +45,9 @@ class LieuCollecteController extends ControllerAbstract{
         return $this->render(
             'admin/formulaireAdresseCollecte.html.twig',
             [
-                'adresses_collectes' => $lieu
+                'adresses_collectes' => $lieu,
+                'clients' =>$clients,
+                'locations' => $locations,
             ]
         );
     }

@@ -75,16 +75,11 @@ $app->get('/compteadmin', function () use ($app) {
 
 ->bind('compteadmin')
 ;
-//Routes des actions
+
 $app->get('/compteclient', function () use ($app) {
     return $app['twig']->render('compteclient.html.twig', array());
 })
 ->bind('compteclient')
-;
-
-$app
-    ->match('/connexion','connexion.controller:loginAction') 
-    ->bind('verifconnexion')
 ;
 
 $app

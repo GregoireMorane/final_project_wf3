@@ -6,7 +6,7 @@
         <fieldset>
             <legend style="text-align: center;"><strong>Ajout d'un collecteur</strong></legend>
             <div class="form-group">
-            <label class="col-md-4 control-label" for="nom">Nom</label>  
+            <label class="col-md-4 control-label" for="lastname">Nom</label>  
                 <div class="col-md-4">
                     <input id="nom" name="lastname" type="text" placeholder="Nom" class="form-control input-md">
                     <span class="help-block">ex : Zheng</span>  
@@ -17,7 +17,7 @@
             <div class="form-group">
             <label class="col-md-4 control-label" for="prenom">prenom</label>  
                 <div class="col-md-4">
-                    <input id="prenom" name="firstname" type="text" placeholder="pr�nom" class="form-control input-md">
+                    <input id="prénom" name="firstname" type="text" placeholder="pré    nom" class="form-control input-md">
                     <span class="help-block">ex : Simone</span>  
                 </div>
             </div>
@@ -60,9 +60,9 @@
          
          <!-- Text input-->
          <div class="form-group">
-           <label class="col-md-4 control-label" for="telephone">T�l�phone</label>  
+           <label class="col-md-4 control-label" for="telephone">Téléphone</label>  
            <div class="col-md-4">
-           <input id="telephone" name="phone_number" type="text" placeholder="T�l�phone" class="form-control input-md">
+           <input id="telephone" name="phone_number" type="text" placeholder="Téléphone" class="form-control input-md">
            <span class="help-block">ex : 06 15 25 63 83</span>  
            </div>
          </div>
@@ -82,8 +82,8 @@
            <label class="col-md-4 control-label" for="statut">Statut</label>
            <div class="col-md-4">
              <select id="statut" name="status" class="form-control">
-               <option value="salarié">Collecteur</option>
                <option value="admin">collecteur &amp; administrateur</option>
+                <option value="salarié">Collecteur</option>
              </select>
            </div>
          </div>
@@ -101,3 +101,4 @@
     </form>
     </div>
 {% endblock %}
+              

@@ -31,12 +31,24 @@ class LieuTraitementRepository extends RepositoryAbstract{
             $location->setId_location_processing($this->db->lastInsertId());
         }
     }
+    //fonction pour boucler sur les lieux de traitements
+     public function findAll() 
+    {
+        $dbLocations = $this->db->fetchAll('SELECT * FROM processing_location ORDER BY id_location_processing');
+        $locations =[];
+        
+        foreach ($dbLocations as $dbLocation){
+            $locations[] = $this->buildEntity($dbLocation);
+        }
+        return $locations;
+    }
     
     private function buildEntity(array $data)
     {
-        $location = new ProcessingLocation();
+        $location = new ProcessingLocation;
         
-        $location->setId_location_processing($data['id_location_processing'])
+        $location
+                ->setId_location_processing($data['id_location_processing'])
                 ->setProcessing_location($data['processing_location'])
                 ->setProcessing_address($data['processing_address'])
                 ->setPostal_code($data['postal_code'])

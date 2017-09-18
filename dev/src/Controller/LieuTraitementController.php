@@ -13,6 +13,9 @@ class LieuTraitementController extends ControllerAbstract{
     public function registerAction(){
         $location = new ProcessingLocation();
         $errors = [];
+        $clients = $this->app['client.repository']->findAll();
+        //affichages des infos de lieu de traitement
+        $locations = $this->app['lieutraitement.repository']->findAll();
         
         if(!empty($_POST)){
             $location->setProcessing_location($_POST['processing_location'])
@@ -32,7 +35,11 @@ class LieuTraitementController extends ControllerAbstract{
                 $this->addFlashMessage($message, 'error');
             }
         }
-        return $this->render('formulaireLieuTraitement.html.twig', 
-                ['lieutraitement' => $location]);
+        return $this->render('admin/formulaireLieuTraitement.html.twig', 
+                [
+                    'lieutraitement' => $location,
+                    'clients' =>$clients,
+                    'locations' => $locations
+                ]);
     }
 }

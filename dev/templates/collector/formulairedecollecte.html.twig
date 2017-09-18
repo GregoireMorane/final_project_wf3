@@ -1,0 +1,105 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+        <form class="form-horizontal" method="post">
+            <fieldset>
+                <!-- Form Name -->
+                <legend style="text-align: center;"><strong>Formulaire de collecte des biodéchets</strong></legend>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="adress_collection_idadress_collection">Lieux collecté</label>
+                    <div class="col-md-4">
+                        <select id="lieucollecté" name="adress_collection_idadress_collection" class="form-control">
+                            <option value="1">biocoop montparnasse</option>
+                            {% for address in addresses %}
+                             <option value="{{address.id_collection_address}}">{{address.adress_collection}} </option>
+                            
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="collector_idcollector">Collecteur</label>
+                    <div class="col-md-4">
+                        <select id="lieucollecté" name="adress_collection_idadress_collection" class="form-control">
+                            <option value="">choisissez </option>
+                            {% for collector in collectors %}
+                             <option value="{{collector.idcollector}}">{{collector.firstname}} </option>
+                            
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="collection_datetime">heure de ramassage</label>  
+                    <div class="col-md-4">
+                        <input id="collection_datetime" name="collection_datetime" type="text" placeholder="date de collecte" class="form-control input-md">
+                        <span class="help-block">ex: 17h30</span>  
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="bin_number">numero du bac collecté</label>  
+                    <div class="col-md-4">
+                        <input id="bin_number" name="bin_number" type="text" placeholder="numero du bac collecté" class="form-control input-md">
+                        <span class="help-block">ex : 1522563</span>  
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="weight">poids composté en kg</label>  
+                    <div class="col-md-4">
+                        <input id="poids composté" name="weight" type="text" placeholder="poids composté" class="form-control input-md">
+                        <span class="help-block">ex : 40</span>  
+                    </div>
+                </div>
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="compost_quality">compostable</label>
+                    <div class="col-md-4">
+                        <select id="compostable" name="compost_quality" class="form-control">
+                            <option value="bon">Bonne</option>
+                            <option value="moyen">Moyenne</option>
+                            <option value="mauvais">Mauvaise</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="commentaire">Commentaires</label>  
+                    <div class="col-md-4">
+                        <input id="commentaire" name="further_information" type="textarea" placeholder="commentaires" class="form-control input-md">
+                        <span class="help-block">ex : pommes pourries</span>  
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="processing_datetime">date de traitement</label>  
+                    <div class="col-md-4">
+                        <input id="processing_datetime" name="processing_datetime" type="text" placeholder="date" class="form-control input-md">
+                        <span class="help-block">ex : 45</span>  
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="processing_location">Lieu de traitement</label>
+                    <div class="col-md-4">
+                        <select id="processing_location " name="processing_location" class="form-control">
+                            <option value="1">choisissez le lieu de traitement</option>
+                            {% for location in locations %}
+                             <option value="{{location.id_location_processing}}">{{location.processing_location}} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="">sauvegarde </label>
+                    <div class="col-md-8">
+                        <button id="" name="" class="btn btn-success" type="submit">sauvegarder</button>
+                        <button id="Valider et envoyer le formulaire" name="Valider et envoyer le formulaire"  class="btn btn-danger">Valider et envoyer le formulaire</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+{% endblock %}
