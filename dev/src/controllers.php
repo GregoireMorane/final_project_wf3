@@ -20,21 +20,21 @@ $app->get('/connexion', function () use ($app) {
 ->bind('connexion')
 ;
 
-$app->get('/comptecollecteur', function () use ($app) {
+$app->get('/compte/collecteur', function () use ($app) {
     return $app['twig']->render('comptecollecteur.html.twig', array());
 })
 
 ->bind('comptecollecteur')
 ;
 
-$app->get('/compteadmin', function () use ($app) {
+$app->get('/compte/admin', function () use ($app) {
     return $app['twig']->render('compteadmin.html.twig', array());
 })
 
 ->bind('compteadmin')
 ;
 
-$app->get('/compteclient', function () use ($app) {
+$app->get('/compte/client', function () use ($app) {
     return $app['twig']->render('compteclient.html.twig', array());
 })
 ->bind('compteclient')
