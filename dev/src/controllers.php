@@ -14,67 +14,81 @@ $app->get('/', function () use ($app) {
 ->bind('homepage')
 ;
 
-$app->get('/connexion', function () use ($app) {
-    return $app['twig']->render('connexion.html.twig', array());
-})
-->bind('connexion')
-;
+//$app->get('/connexion', function () use ($app) {
+//    return $app['twig']->render('connexion.html.twig', array());
+//})
+//->bind('connexion')
+//;
 
-$app->get('/compteadmin', function () use ($app) {
+//$app->get('/compte/collecteur', function () use ($app) {
+//    return $app['twig']->render('comptecollecteur.html.twig', array());
+//})
+//->bind('comptecollecteur')
+//;
+
+$app->get('/compte/admin', function () use ($app) {
     return $app['twig']->render('compteadmin.html.twig', array());
 })
-
 ->bind('compteadmin')
 ;
 
-$app->get('/compteclient', function () use ($app) {
-    return $app['twig']->render('compteclient.html.twig', array());
+//Routes des actions
+$app->get('/compte/client', function () use ($app) {
+    $client = $app['user.manager']->getUser();
+    $collectors = $app['collector.repository']->findByClientId($client->getIdClient());
+
+    return $app['twig']->render('compteclient.html.twig', array('collectors' => $collectors));
 })
 ->bind('compteclient')
 ;
 
 $app
-    ->match('/fichecollecteur','collector.controller:registerAction') 
+    ->match('/formulaire/ajout/collecteur','collector.controller:registerAction') 
     ->bind('registercollector')
 ;
 
 $app
-    ->match('/ficheclient','client.controller:registerAction') 
+    ->match('/formulaire/ajout/client','client.controller:registerAction') 
     ->bind('registerclient')
 ;
 
 $app
-    ->match('/ajoutlieutraitement','lieutraitement.controller:registerAction') 
+    ->match('/formulaire/ajout/lieutraitement','lieutraitement.controller:registerAction') 
     ->bind('registerlieutraitement')
 ;
 
 $app
-    ->match('/ajouttraitementcollecteur','traitementcollector.controller:registerAction') 
+    ->match('/formulaire/ajout/traitementcollecteur','traitementcollector.controller:registerAction') 
     ->bind('registertraitementcollector')
 ;
 
 $app
-    ->match('/ajoutlieucollecte','lieucollecte.controller:registerAction') 
+    ->match('/formulaire/ajout/lieucollecte','lieucollecte.controller:registerAction') 
     ->bind('registerlieucollecte')
 ;
 
 $app
-    ->match('/formulairecollecte','collecte.controller:registerAction') 
+    ->match('/formulaire/collecte','collecte.controller:registerAction') 
     ->bind('registercollecte')
 ;
 
 $app
-    ->match('/formulairecompostesortie','outputcompost.controller:registerAction') 
+    ->match('/formulaire/sortiecompost','outputcompost.controller:registerAction') 
     ->bind('registeroutputcompost')
 ;
 
 $app
     ->match('/connexion','connexion.controller:loginAction') 
-    ->bind('verifconnexion')
+    ->bind('connexion')
 ;
 
 $app
-    ->match('/comptecollecteur','lieucollecte.controller:listAction') 
+    ->match('/deconnexion','connexion.controller:logoutAction') 
+    ->bind('deconnexion')
+;
+
+$app
+    ->match('/compte/collecteur','lieucollecte.controller:listAction') 
     ->bind('comptecollecteur')
 ;
 

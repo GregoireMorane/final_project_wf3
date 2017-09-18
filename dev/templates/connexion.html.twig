@@ -1,7 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-    <div class="bloc vert col-lg-8 col-md-8 col-sm-4 col-xs-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+    
         <form class="form-horizontal" method="post">
             <fieldset>
                 <legend style="text-align : center;">Identifiez vous</legend>
@@ -31,15 +31,15 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="email">Votre identifiant</label>  
                     <div class="col-md-4">
-                        <input id="email" name="email" type="text" placeholder="ex@ex.ex" class="form-control input-md">
-                        <a>Identifiant oublié</a>
+                        <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md">
+                        <span>Identifiant oublié : Merci de contacter Les Alchimistes</span> 
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="password">Votre mot de passe</label>  
                     <div class="col-md-4">
-                        <input id="password" name="password" type="text" placeholder="mot de passe" class="form-control input-md">
-                        <a>Mot de passe oublié</a>  
+                        <input id="password" name="password" type="password" placeholder="Mot de passe" class="form-control input-md">
+                        <span>Mot de passe oublié : Merci de contacter Les Alchimistes</span>  
                     </div>
                 </div>
                 <div class="form-group">
@@ -50,5 +50,5 @@
                 </div>
             </fieldset>
         </form>
-    </div>
+    
 {% endblock %}

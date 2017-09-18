@@ -12,7 +12,6 @@ $app->register(new HttpFragmentServiceProvider());
 $app['twig'] = $app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
     $twig->addGlobal('user_manager', $app['user.manager']);
-    
     return $twig;
 });
 //d�finition de la base de donn�e
@@ -36,7 +35,6 @@ $app['collector.controller'] = function () use ($app)
 {
     return new Controller\CollectorController($app);
 };
-
 $app['collector.repository']= function () use ($app){
     return new Repository\CollectorRepository($app['db']);
 };

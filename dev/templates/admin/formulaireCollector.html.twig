@@ -1,7 +1,6 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-    <div class="bloc gris col-lg-10 col-md-8 col-sm-4 col-xs-4s col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
     <form class="form-horizontal " method="post" >
         <fieldset>
             <legend style="text-align: center;"><strong>Ajout d'un collecteur</strong></legend>
@@ -9,96 +8,72 @@
             <label class="col-md-4 control-label" for="lastname">Nom</label>  
                 <div class="col-md-4">
                     <input id="nom" name="lastname" type="text" placeholder="Nom" class="form-control input-md">
-                    <span class="help-block">ex : Zheng</span>  
                 </div>
             </div>
-
-            <!-- Text input-->
             <div class="form-group">
-            <label class="col-md-4 control-label" for="prenom">Prénom</label>  
+            <label class="col-md-4 control-label" for="firstname">Prénom</label>  
                 <div class="col-md-4">
-                    <input id="prénom" name="firstname" type="text" placeholder="prénom" class="form-control input-md">
-                    <span class="help-block">ex : Simone</span>  
+                    <input id="prénom" name="firstname" type="text" placeholder="Prénom" class="form-control input-md">  
                 </div>
             </div>
-
-         <!-- Text input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="adresse">Adresse</label>  
-                   <div class="col-md-4">
-                       <input id="adresse" name="address" type="text" placeholder="adresse" class="form-control input-md">
-                       <span class="help-block">ex : 54 rue du compost</span>  
-                   </div>
+                <label class="col-md-4 control-label" for="address">Adresse</label>  
+                <div class="col-md-4">
+                    <input id="adresse" name="address" type="text" placeholder="Adresse" class="form-control input-md"> 
+                </div>
             </div>
-
-         <!-- Text input-->
-         <div class="form-group">
-           <label class="col-md-4 control-label" for="ville">Ville</label>  
-           <div class="col-md-4">
-           <input id="ville" name="city" type="text" placeholder="ville" class="form-control input-md">
-           <span class="help-block">ex : Paris</span>  
-           </div>
-         </div>
-
-         <!-- Text input-->
-         <div class="form-group">
-           <label class="col-md-4 control-label" for="codepostal">Code postal</label>  
-           <div class="col-md-4">
-           <input id="codepostal" name="postal_code" type="text" placeholder="code postal" class="form-control input-md">
-           <span class="help-block">ex : code postal</span>  
-           </div>
-         </div>
-         
-         <!-- Text input-->
-         <div class="form-group">
-           <label class="col-md-4 control-label" for="email">Email</label>  
-           <div class="col-md-4">
-           <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md">
-           <span class="help-block">ex : 06 15 25 63 83</span>  
-           </div>
-         </div>
-         
-         <!-- Text input-->
-         <div class="form-group">
-           <label class="col-md-4 control-label" for="telephone">Téléphone</label>  
-           <div class="col-md-4">
-           <input id="telephone" name="phone_number" type="text" placeholder="Téléphone" class="form-control input-md">
-           <span class="help-block">ex : 06 15 25 63 83</span>  
-           </div>
-         </div>
-
-         <!-- Password input-->
-         <div class="form-group">
-           <label class="col-md-4 control-label" for="mot de passe">Mot de passe</label>
-           <div class="col-md-4">
-             <input id="mot de passe" name="password" type="password" placeholder="mot de passe" class="form-control input-md">
-             <span class="help-block">ex : mot de passe</span>
-           </div>
-         </div>
-
-        
-         <!-- Select Basic -->
-         <div class="form-group">
-           <label class="col-md-4 control-label" for="statut">Statut</label>
-           <div class="col-md-4">
-             <select id="statut" name="status" class="form-control">
-               <option value="admin">collecteur &amp; administrateur</option>
-                <option value="salarié">Collecteur</option>
-             </select>
-           </div>
-         </div>
-
-         <!-- Button (Double) -->
-         <div class="form-group">
-           <label class="col-md-4 control-label" for="valider"></label>
-           <div class="col-md-8">
-             <button id="valider" name="valider" class="btn btn-success" type="submit">Valider</button>
-             <button id="annuler" name="annuler" class="btn btn-danger">Annuler</button>
-           </div>
-         </div>
-
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="city">Ville</label>  
+                <div class="col-md-4">
+                    <input id="ville" name="city" type="text" placeholder="ville" class="form-control input-md">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="postal_code">Code postal</label>  
+                <div class="col-md-4">
+                    <input id="codepostal" name="postal_code" type="text" placeholder="Code postal" class="form-control input-md">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="email">Email</label>  
+                <div class="col-md-4">
+                    <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="telephone">Numéro de téléphone</label>  
+                <div class="col-md-4">
+                    <input id="telephone" name="phone_number" type="text" placeholder="Numéro de téléphone" class="form-control input-md"> 
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Mot de passe</label>
+                <div class="col-md-4">
+                    <input id="mot de passe" name="password" type="password" placeholder="Mot de passe" class="form-control input-md">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password_confirm">Confirmation du mot de passe</label>
+                <div class="col-md-4">
+                    <input id="mot de passe" name="password_confirm" type="password" placeholder="Confirmation du mot de passe" class="form-control input-md">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="statut">Statut</label>
+                <div class="col-md-4">
+                    <select id="statut" name="status" class="form-control">
+                        <option value="salarié">Collecteur</option>
+                        <option value="admin">collecteur &amp; administrateur</option>
+                    </select>
+                </div>
+             </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="valider"></label>
+                <div class="col-md-8">
+                    <button id="valider" name="valider" class="btn btn-success" type="submit">Valider</button>
+                </div>
+            </div>
         </fieldset>
     </form>
-    </div>
 {% endblock %}
               

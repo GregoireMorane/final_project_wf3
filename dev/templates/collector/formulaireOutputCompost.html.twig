@@ -6,22 +6,22 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="output_datetime">Date de sortie</label>  
             <div class="col-md-4">
-                <input id="poids" name="output_datetime" type="text" placeholder="100" class="form-control input-md"> 
+                <input id="poids" name="output_datetime" type="text" placeholder="Date de sortie" class="form-control input-md"> 
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label" for="quantity_exit">Poids (en kg)</label>  
+            <label class="col-md-4 control-label" for="quantity_exit">Poids</label>  
             <div class="col-md-4">
-                <input id="poids" name="quantity_exit" type="text" placeholder="100" class="form-control input-md"> 
+                <input id="poids" name="quantity_exit" type="text" placeholder="Poids en kg" class="form-control input-md"> 
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label" for="collector_idcollector">Collecteur</label>
             <div class="col-md-4">
                 <select id="client" name="collector_idcollector" class="form-control">
-                    <option value="1">Choisissez le collecteur</option>
+                    <option value="1">Choisissez un collecteur</option>
                     {% for collector in collectors %}
-                             <option value="{{collector.idcollector}}">{{collector.firstname}} </option>
+                             <option value="{{collector.idcollector}}">{{collector.firstname}} {{collector.lastname}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -30,7 +30,7 @@
             <label class="col-md-4 control-label" for="location_processing_idlocation_processing">Lieu de traitement</label>
             <div class="col-md-4">
                 <select id="client" name="location_processing_idlocation_processing" class="form-control">
-                    <option value="1">Lieu de traitement</option>
+                    <option value="1">Choisissez un lieu de traitement</option>
                     {% for location in locations %}
                             <option value="{{location.id_location_processing}}">{{location.processing_location}} </option>
                     {% endfor %}
