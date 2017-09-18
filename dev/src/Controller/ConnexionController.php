@@ -23,11 +23,12 @@ class ConnexionController extends ControllerAbstract{
 
                 $email = $_POST['email'];
                 $client = $this->app['connexion.repository']->findByEmailClient($email);
-                
+                //dump($client);
                 if(!is_null($client)){
+                    //dump($this->app['user.manager']->verifyPassword($_POST['password'], $client->getPassword()));dump($_POST);die();
                     if($this->app['user.manager']->verifyPassword($_POST['password'], $client->getPassword())){
                         $this->app['user.manager']->loginClient($client);
-                        return $this->redirectRoute('ficheclient');
+                        return $this->redirectRoute('compteclient');
                     }
                 }
             }
