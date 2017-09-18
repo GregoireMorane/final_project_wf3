@@ -5,63 +5,89 @@ namespace Controller;
 use Entity\Collector;
 
 class CollectorController extends ControllerAbstract{
+    
+    public function indexAction()
+    {
+        
+    }
+    
+     public function listAction() 
+    {
+        $collector = $this->app['collector.repository']->findAll();
+        return $this->render('formulaireCollector.html.twig',
+            [
+               'collectors' => $collectors
+            ]
+            );
+    }
+    
     public function registerAction() {
         $collector = new Collector();
         $errors = [];
         
-        $collector->setLastname($_POST['lastname']);
-        $collector->setFirstname($_POST['firstname']); 
-        $collector->setPhone_number($_POST['phone_number']); 
-        $collector->setEmail($_POST['email']);
-        $collector->setStatus($_POST['status']);
-        $collector->setAddress($_POST['address']);
-        $collector->setCity($_POST['city']);
-        $collector->setPostal_code($_POST['postal_code']);
-        $collector->setPassword($_POST['password']);
+      
         
         if(!empty($_POST)){
-//            $this->sanitizePost();
+            $this->sanitizePost();
+            $collector
+                      ->setLastname($_POST['lastname'])
+                      ->setFirstname($_POST['firstname'])
+                      ->setPhone_number($_POST['phone_number']) 
+                      ->setEmail($_POST['email'])
+                      ->setStatus($_POST['status'])
+                      ->setAddress($_POST['address'])
+                      ->setCity($_POST['city'])
+                      ->setPostal_code($_POST['postal_code'])
+                      ->setPassword($_POST['password']);
 
-              
-//            if(empty($_POST['lastname'])){
-//                $errors['lastname'] = "Le nom est obligatoire";
-//            }elseif(strlen($_POST['lastname'])>100){
-//                $errors['lastname'] = "Le nom doit être inférieur à 100 caractères";
-//            }
-//
-//            if(empty($_POST['firstname'])){
-//                $errors['firstname'] = "Le prénom est obligatoire";
-//            }elseif(strlen($_POST['firstname'])>100){
-//                $errors['firstname'] = "Le prénom doit être inférieur à 100 caractères";
-//            }
-//
-//            if(empty($_POST['email'])){
-//                $errors['email'] = "L'email est obligatoire";
-//            }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-//                $errors['email'] = "L'email n'est pas valide";
-//            }elseif (!is_null($this->app['collector.repository']->findByEmail($_POST['email']))) {
-//                $errors['email'] = "L'email est déjà utilisé";
-//            }
-//
-//            if(empty($_POST['password'])){
-//                $errors['password'] = "Le mot de passe est obligatoire";
-//            }elseif(!preg_match("/^[a-zA-Z0-9_-]{6,20}$/", $_POST['password'])){
-//                $errors['password'] = "Le mot de passe doit faire entre 6 et 20 caractères et ne doit contenir que des lettres, des chiffres ou des caractères _ et -";
-//            }
-//
-//            if(empty($_POST['password_confirm'])){
-//                $errors['password_confirm'] = "La confirmation du mot de passe est obligatoire";
-//            }elseif($_POST['password'] != $_POST['password_confirm']){
-//                $errors['password_confirm'] = "La confirmation du mot de passe n'est pas identique au mot de passe.";
-//            }
+            if(empty($_POST['lastname'])){
+                $errors['lastname'] = "Le nom est obligatoire";
+            }
+            
+            if(empty($_POST['firstname'])){
+                $errors['firstname'] = "Le prénom est obligatoire";
+            }
+            
+            if(empty($_POST['address'])){
+                $errors['address'] = "Le prénom est obligatoire";
+            }
+            
+            if(empty($_POST['city'])){
+                $errors['city'] = "La ville est obligatoire";
+            }
+            
+            if(empty($_POST['postal_code'])){
+                $errors['postal_code'] = "Le code postal est obligatoire";
+            }
+
+            if(empty($_POST['email'])){
+                $errors['email'] = "L'email est obligatoire";
+            }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+                $errors['email'] = "L'email n'est pas valide";
+            }
+            
+            if(empty($_POST['phone_number'])){
+                $errors['phone_number'] = "Le numéro de téléphone est obligatoire";
+            }
+            
+            if(empty($_POST['password'])){
+                $errors['password'] = "Le mot de passe est obligatoire";
+            }elseif(!preg_match("/^[a-zA-Z0-9_-]{6,20}$/", $_POST['password'])){
+                $errors['password'] = "Le mot de passe doit faire entre 6 et 20 caractères et ne doit contenir que des lettres, des chiffres ou des caractères _ et -";
+            }
+            if(empty($_POST['password_confirm'])){
+                $errors['password_confirm'] = "La confirmation du mot de passe est obligatoire";
+            }elseif($_POST['password'] != $_POST['password_confirm']){
+                $errors['password_confirm'] = "La confirmation du mot de passe n'est pas identique au mot de passe.";
+            }
             
             if(empty($errors)){
-                //pas be soin d'encoder le code
-                //$collector->setPassword($this->app['collector.manager']->encodePassword($_POST['password']));
+                $collector->setPassword($this->app['user.manager']->encodePassword($_POST['password']));
                 $this->app['collector.repository']->save($collector);
-                
-                return $this->redirectRoute('homepage');
-            } else{
+                $message = '<strong>L\'utilisateur à bien été enregistré</strong>';
+                $this->addFlashMessage($message, 'success');
+                return $this->redirectRoute('connexion');
+            }else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';
                 $message .= '<br>'.implode('<br>', $errors);
                 $this->addFlashMessage($message, 'error');
@@ -108,4 +134,6 @@ class CollectorController extends ControllerAbstract{
         $this->app['collector.manager']->logout();
         return $this->redirectRoute('homepage');
     }
+    
+    
 }

@@ -37,17 +37,28 @@ class ClientRepository extends RepositoryAbstract{
         }
     }
     
+    public function findAll() 
+    {
+        $dbClients = $this->db->fetchAll('SELECT * FROM client ORDER BY id_client');
+        $clients =[];
+        
+        foreach ($dbClients as $dbClient){
+            $clients[] = $this->buildEntity($dbClient);
+        }
+        return $clients;
+    }
+    
     /**
      * 
      * @param array $data
      * @return Client
      */
     private function buildEntity(array $data) {
-        $client = new Client();
+            $client = new Client();
         
         $client
             ->setIdClient($data['id_client'])
-            ->setDateStartContract($data['start_date_contract'])
+            ->setStartDateContract($data['start_date_contract'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
             ->setPhoneNumber($data['phone_number'])

@@ -27,7 +27,7 @@ class ConnexionController extends ControllerAbstract{
                 if(!is_null($client)){
                     //dump($this->app['user.manager']->verifyPassword($_POST['password'], $client->getPassword()));dump($_POST);die();
                     if($this->app['user.manager']->verifyPassword($_POST['password'], $client->getPassword())){
-                        $this->app['user.manager']->loginClient($client);
+                        $this->app['user.manager']->loginUser($client);
                         return $this->redirectRoute('compteclient');
                     }
                 }
@@ -36,10 +36,11 @@ class ConnexionController extends ControllerAbstract{
 
                 $email = $_POST['email'];
                 $collector = $this->app['connexion.repository']->findByEmailCollectorAdmin($email);
-                
+                //dump($collector);
                 if(!is_null($collector)){
+                    //dump($this->app['user.manager']->verifyPassword($_POST['password'], $collector->getPassword()));dump($_POST);die();
                     if($this->app['user.manager']->verifyPassword($_POST['password'], $collector->getPassword())){
-                        $this->app['user.manager']->loginCollector($collector);
+                        $this->app['user.manager']->loginUser($collector);
                         return $this->redirectRoute('comptecollecteur');
                     }
                 }
@@ -48,16 +49,22 @@ class ConnexionController extends ControllerAbstract{
 
                 $email = $_POST['email'];
                 $collector = $this->app['connexion.repository']->findByEmailCollectorAdmin($email);
-                
+                //dump($collector);
                 if(!is_null($collector)){
+                    //dump($this->app['user.manager']->verifyPassword($_POST['password'], $collector->getPassword()));dump($_POST);die();
                     if($this->app['user.manager']->verifyPassword($_POST['password'], $collector->getPassword())){
-                        $this->app['user.manager']->loginAdmin($collector);
+                        $this->app['user.manager']->loginUser($collector);
                         return $this->redirectRoute('compteadmin');
                     }
                 }
             }
             $this->addFlashMessage('Identification incorrecte', 'error');
         }
-        return $this->render('admin/formulaireClient.html.twig');
+        return $this->render('connexion.html.twig');
+    }
+    
+    public function logoutAction(){
+        $this->app['user.manager']->logout();
+        return $this->redirectRoute('homepage');
     }
 }

@@ -57,7 +57,7 @@ class AdressesCollectionsHaveCollector {
      *
      * @var string
      */
-    private $transformation_place;
+    private $processing_location;
     
     public function getAdress_collection_idadress_collection() {
         return $this->adress_collection_idadress_collection;
@@ -87,14 +87,22 @@ class AdressesCollectionsHaveCollector {
         return $this->compost_quality;
     }
 
+   
     public function getFurther_information() {
         return $this->further_information;
     }
 
-    public function getTransformation_place() {
-        return $this->transformation_place;
+    public function getId_adresses_collections_have_collector() {
+        return $this->id_adresses_collections_have_collector;
     }
 
+    public function getProcessing_location() {
+        return $this->processing_location;
+    }
+
+    
+    
+    
     public function setAdress_collection_idadress_collection($adress_collection_idadress_collection) {
         $this->adress_collection_idadress_collection = $adress_collection_idadress_collection;
         return $this;
@@ -135,13 +143,12 @@ class AdressesCollectionsHaveCollector {
         return $this;
     }
 
-    public function setTransformation_place($transformation_place) {
-        $this->transformation_place = $transformation_place;
+
+    public function setProcessing_location($processing_location) {
+        $this->processing_location = $processing_location;
         return $this;
     }
-    public function getId_adresses_collections_have_collector() {
-        return $this->id_adresses_collections_have_collector;
-    }
+   
 
     public function setId_adresses_collections_have_collector($id_adresses_collections_have_collector) {
         $this->id_adresses_collections_have_collector = $id_adresses_collections_have_collector;

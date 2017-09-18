@@ -3,7 +3,6 @@
 namespace Repository;
 
 use Entity\Collector;
-use Symfony\Component\Security\Core\User\User;
 
 class CollectorRepository extends RepositoryAbstract{
     public function findByEmail($email) {
@@ -18,25 +17,15 @@ class CollectorRepository extends RepositoryAbstract{
             return $this->buildEntity($dbCollector);
         }
     }
-    
-    public function findByClientId($id) {
-        $query = <<<SQL
-SELECT c.*
-FROM collector c
-JOIN collector_has_processing_location chpl ON chpl.collector_idcollector = c.idcollector
-JOIN processing_location pl ON pl.id_location_processing = chpl.processing_location_id_location_processing
-JOIN adresses_collectes ac ON ac.location_processing_idlocation_processing = pl.id_location_processing
-JOIN client ON client.id_client = ac.client_idclient
-WHERE client.id_client = :id
-SQL;
-                
-        $dbCollectors = $this->db->fetchAll($query, [':id' => $id]);
-        $collectors = [];
+    // pour afficher les infos collecteur dans les vues
+    public function findAll() 
+    {
+        $dbCollectors = $this->db->fetchAll('SELECT * FROM collector ORDER BY idcollector');
+        $collectors =[];
         
-        foreach ($dbCollectors as $dbCollector) {
+        foreach ($dbCollectors as $dbCollector){
             $collectors[] = $this->buildEntity($dbCollector);
         }
-        
         return $collectors;
     }
     
@@ -44,11 +33,11 @@ SQL;
         $data = [
             'lastname' => $collector->getLastname(),
             'firstname' => $collector->getFirstname(),
-            'phone_number' => $collector->getPhoneNumber(),
+            'phone_number' => $collector->getPhone_number(),
             'email' => $collector->getEmail(),
             'password' => $collector->getPassword(),
             'address' => $collector->getAddress(),
-            'postal_code' => $collector->getPostalCode(),
+            'postal_code' => $collector->getPostal_code(),
             'city' => $collector->getCity(),
             'status' => $collector->getStatus(),
         ];
@@ -73,7 +62,7 @@ SQL;
         $collector = new Collector();
         
         $collector
-            ->setIdCollector($data['idcollector'])
+            ->setIdcollector($data['idcollector'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
             ->setPhone_number($data['phone_number'])

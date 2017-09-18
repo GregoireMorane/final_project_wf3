@@ -89,10 +89,10 @@ class Collector{
      public function getFirstname() {
         return $this->firstname;
     }
-    public function getPhoneNumber() {
+    public function getPhone_number() {
         return $this->phone_number;
     }
-    public function getPostalCode() {
+    public function getPostal_code() {
         return $this->postal_code;
     }
 
