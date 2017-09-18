@@ -31,6 +31,26 @@ $app->get('/ficheclient', function () use ($app) {
 ->bind('ficheclient')
 ;
 
+$app->get('/comptecollecteur', function () use ($app) {
+    return $app['twig']->render('comptecollecteur.html.twig', array());
+})
+
+->bind('comptecollecteur')
+;
+
+$app->get('/compteadmin', function () use ($app) {
+    return $app['twig']->render('compteadmin.html.twig', array());
+})
+
+->bind('compteadmin')
+;
+//Routes des actions
+$app->get('/compteclient', function () use ($app) {
+    return $app['twig']->render('compteclient.html.twig', array());
+})
+->bind('compteclient')
+;
+
 $app
     ->match('/fichecollecteur','collector.controller:registerAction') 
     ->bind('registercollector')

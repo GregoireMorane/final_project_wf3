@@ -1,5 +1,4 @@
 <?php
-
 namespace Controller;
 
 use Entity\Collector;
@@ -61,7 +60,7 @@ class CollectorController extends ControllerAbstract{
                 $this->app['collector.repository']->save($collector);
                 
                 return $this->redirectRoute('homepage');
-            }else{
+            } else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';
                 $message .= '<br>'.implode('<br>', $errors);
                 $this->addFlashMessage($message, 'error');

@@ -1,0 +1,95 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div id="liens" class="row">
+            <div class="col-md-6 col-xs-12">
+                <button type="button" class="btn btn-block"><a href="#biodechets">Vos biodéchets<a></button>
+            </div>
+            <div class=" col-md-6 col-xs-12">
+                <button type="button" class="btn btn-block"><a href="#contact">Vous et les alchimistes</a></button>
+            </div>
+        </div>
+
+        <div id="biodechets"></div>
+        <div class="row bloc jaune">
+
+            <div class="col-xs-12 col-md-4 panel-body btn-group-vertical" role="group">
+                <button type="button" class="btn btn-primary">Vos DAC</button>
+                <button type="button" class="btn btn-default">nom client 12/09/2017<span class="glyphicon glyphicon-eye-open pull-right"><a></a></span></button>
+                <button type="button" class="btn btn-default">nom client 12/09/2017<span class="glyphicon glyphicon-eye-open pull-right"></span></button>
+                <button type="button" class="btn btn-default">nom client 12/09/2017<span class="glyphicon glyphicon-eye-open pull-right"></span></button>
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title">Nombre de kilos de biodéchets collectés<br />cette semaine</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        20976 kilos
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title">Nombre de kilos de biodéchets collectés<br />depuis le début</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        20976 kilos
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="contact"></div>
+        <div class="row bloc vert">
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">Vos informations</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Nom Etablissement</p>
+                        <p>Adresse client</p>
+                        <p>Tél. (de 9h à 17h30)</p>
+                        <p>Nom contact :</p>
+                        <p>Courriel :</p>
+                        <p>Jours de collecte</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">Votre collecteur</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Nom contact</p>
+                        <p>Tél. (de 9h à 17h30):</p>
+                        <p>Courriel :<br /></p>
+                        <p>Contactez Jonathan en cas de besoin de ramassage</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">Votre contact administrateur</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Nom contact :</p>
+                        <p>Tél. (de 9h à 17h30):</p>
+                        <p>Courriel :</p>
+                        <p>Contactez Hélène pour tous les sujets relatifs aux Alchimistes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
