@@ -20,22 +20,24 @@ $app->get('/', function () use ($app) {
 //->bind('connexion')
 //;
 
-$app->get('/compte/collecteur', function () use ($app) {
-    return $app['twig']->render('comptecollecteur.html.twig', array());
-})
-
-->bind('comptecollecteur')
-;
+//$app->get('/compte/collecteur', function () use ($app) {
+//    return $app['twig']->render('comptecollecteur.html.twig', array());
+//})
+//->bind('comptecollecteur')
+//;
 
 $app->get('/compte/admin', function () use ($app) {
     return $app['twig']->render('compteadmin.html.twig', array());
 })
-
 ->bind('compteadmin')
 ;
 
+//Routes des actions
 $app->get('/compte/client', function () use ($app) {
-    return $app['twig']->render('compteclient.html.twig', array());
+    $client = $app['user.manager']->getUser();
+    $collectors = $app['collector.repository']->findByClientId($client->getIdClient());
+
+    return $app['twig']->render('compteclient.html.twig', array('collectors' => $collectors));
 })
 ->bind('compteclient')
 ;
@@ -86,7 +88,7 @@ $app
 ;
 
 $app
-    ->match('/comptecollecteur','lieucollecte.controller:listAction') 
+    ->match('/compte/collecteur','lieucollecte.controller:listAction') 
     ->bind('comptecollecteur')
 ;
 

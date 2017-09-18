@@ -3,6 +3,7 @@
 namespace Repository;
 
 use Entity\Collector;
+use Symfony\Component\Security\Core\User\User;
 
 class CollectorRepository extends RepositoryAbstract{
     public function findByEmail($email) {
@@ -17,7 +18,7 @@ class CollectorRepository extends RepositoryAbstract{
             return $this->buildEntity($dbCollector);
         }
     }
-    // pour afficher les infos collecteur dans les vues
+    
     public function findAll() 
     {
         $dbCollectors = $this->db->fetchAll('SELECT * FROM collector ORDER BY idcollector');
@@ -29,15 +30,36 @@ class CollectorRepository extends RepositoryAbstract{
         return $collectors;
     }
     
+    public function findByClientId($id) {
+        $query = <<<SQL
+SELECT c.*
+FROM collector c
+JOIN collector_has_processing_location chpl ON chpl.collector_idcollector = c.idcollector
+JOIN processing_location pl ON pl.id_location_processing = chpl.processing_location_id_location_processing
+JOIN adresses_collectes ac ON ac.location_processing_idlocation_processing = pl.id_location_processing
+JOIN client ON client.id_client = ac.client_idclient
+WHERE client.id_client = :id
+SQL;
+                
+        $dbCollectors = $this->db->fetchAll($query, [':id' => $id]);
+        $collectors = [];
+        
+        foreach ($dbCollectors as $dbCollector) {
+            $collectors[] = $this->buildEntity($dbCollector);
+        }
+        
+        return $collectors;
+    }
+    
     public function save(Collector $collector) {
         $data = [
             'lastname' => $collector->getLastname(),
             'firstname' => $collector->getFirstname(),
-            'phone_number' => $collector->getPhone_number(),
+            'phone_number' => $collector->getPhoneNumber(),
             'email' => $collector->getEmail(),
             'password' => $collector->getPassword(),
             'address' => $collector->getAddress(),
-            'postal_code' => $collector->getPostal_code(),
+            'postal_code' => $collector->getPostalCode(),
             'city' => $collector->getCity(),
             'status' => $collector->getStatus(),
         ];
@@ -62,7 +84,7 @@ class CollectorRepository extends RepositoryAbstract{
         $collector = new Collector();
         
         $collector
-            ->setIdcollector($data['idcollector'])
+            ->setIdCollector($data['idcollector'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
             ->setPhone_number($data['phone_number'])

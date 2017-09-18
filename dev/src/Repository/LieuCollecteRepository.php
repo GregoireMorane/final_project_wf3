@@ -14,7 +14,8 @@ class LieuCollecteRepository extends RepositoryAbstract{
     public function save(LieuCollecte $lieu)
     {
         $data = [
-          'adress_collection' => $lieu->getAddress_collection(),
+          'address_collection' => $lieu->getAddress_collection(),
+          'address_name' => $lieu->getAddress_name(),
           'postal_code' => $lieu->getPostal_code(),
           'city' => $lieu->getCity(),
           'further_information' => $lieu->getFurther_information(),
@@ -65,8 +66,8 @@ class LieuCollecteRepository extends RepositoryAbstract{
         
         $lieu
                 ->setId_collection_address($data['id_collection_address'])
-                ->setAddress_name($data['adress_name'])
-                ->setAddress_collection($data['adress_collection'])
+                ->setAddress_name($data['address_name'])
+                ->setAddress_collection($data['address_collection'])
                 ->setPostal_code($data['postal_code'])
                 ->setCity($data['city'])
                 ->setFurther_information($data['further_information'])
