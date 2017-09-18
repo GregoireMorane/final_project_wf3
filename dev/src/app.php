@@ -69,5 +69,64 @@ $app['client.repository']= function () use ($app){
     return new ClientRepository($app['db']);
 };
 
+$app['lieutraitement.controller'] = function () use ($app)
+{
+    return new Controller\LieuTraitementController($app);
+};
+
+$app['lieutraitement.repository']= function () use ($app){
+    return new Repository\LieuTraitementRepository($app['db']);
+};
+
+$app['lieucollecte.controller'] = function () use ($app)
+{
+    return new Controller\LieuCollecteController($app);
+};
+
+$app['lieucollecte.repository']= function () use ($app){
+    return new Repository\LieuCollecteRepository($app['db']);
+};
+
+$app['traitementcollector.controller'] = function () use ($app)
+{
+    return new Controller\TraitementCollectorController($app);
+};
+
+$app['traitementcollector.repository']= function () use ($app){
+    return new Repository\TraitementCollectorRepository($app['db']);
+};
+
+$app['collecte.controller'] = function () use ($app)
+{
+    return new Controller\CollecteController($app);
+};
+
+$app['collecte.repository']= function () use ($app){
+    return new Repository\CollecteRepository($app['db']);
+};
+
+$app['outputcompost.controller'] = function () use ($app)
+{
+    return new Controller\OutputCompostController($app);
+};
+
+$app['outputcompost.repository']= function () use ($app){
+    return new Repository\OutputCompostRepository($app['db']);
+};
+
+$app['connexion.controller'] = function () use ($app)
+{
+    return new Controller\ConnexionController($app);
+};
+
+$app['connexion.repository']= function () use ($app){
+    return new Repository\ConnexionRepository($app['db']);
+};
+
+$app['user.manager']= function () use ($app){
+    return new Service\UserManager($app['session']);
+};
+
+
 return $app;
 //commentaire
