@@ -32,7 +32,7 @@ class LieuCollecteController extends ControllerAbstract{
             
                 $lieu
                     ->setAddress_collection($_POST['adress_collection'])
-                    ->setAddress_name($_POST[$address_name])
+                    ->setAddress_name($_POST['address_name'])
                     ->setPostal_code($_POST['postal_code'])
                     ->setCity($_POST['city'])
                     ->setFurther_information($_POST['further_information'])
