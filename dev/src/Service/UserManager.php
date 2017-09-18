@@ -70,7 +70,8 @@ class UserManager {
     }
     public function getAdminName(){
         if($this->session->has('admin')){
-            return $this->getCollector()->getFullName();
+            return $this
+                    ->getCollector()->getFullName();
         }
         return '';
     }
