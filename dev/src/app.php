@@ -93,4 +93,3 @@ $app['user.manager']= function () use ($app){
 };
 
 return $app;
-//commentaire
