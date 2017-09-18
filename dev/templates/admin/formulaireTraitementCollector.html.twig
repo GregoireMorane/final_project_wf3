@@ -7,7 +7,7 @@
             <label class="col-md-4 control-label" for="collector_idcollector">Collecteur</label>
             <div class="col-md-4">
                 <select id="client" name="collector_idcollector" class="form-control">
-                    <option value="">choississez un collecteur</option>
+                    <option value="">Choississez un collecteur</option>
                     {% for collector in collectors %}
                             <option value="{{collector.idcollector}}">{{collector.firstname}} </option>
                     {% endfor %}

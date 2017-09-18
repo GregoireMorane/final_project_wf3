@@ -71,7 +71,7 @@ $app
 ;
 
 $app
-    ->match('/formulaire/compostesortie','outputcompost.controller:registerAction') 
+    ->match('/formulaire/sortiecompost','outputcompost.controller:registerAction') 
     ->bind('registeroutputcompost')
 ;
 

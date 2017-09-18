@@ -25,7 +25,9 @@ class TraitementCollectorController extends ControllerAbstract{
         
             if(empty($errors)){
                 $this->app['traitementcollector.repository']->save($collectorAsTraitement);
-                return $this->redirectRoute('homepage');
+                $message = '<strong>Le collecteur à bien été assigné au lieu de traitement</strong>';
+                $this->addFlashMessage($message, 'success');
+                return $this->redirectRoute('compteadmin');
             }
             else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';

@@ -32,9 +32,39 @@ class LieuCollecteController extends ControllerAbstract{
                     ->setLocation_processing_idlocation_processing($_POST['location_processing_idlocation_processing'])
                     ->setFirm_type($_POST['firm_type']);
             
+            if(empty($_POST['client_idclient'])){
+                $errors['client_idclient'] = "Le client est obligatoire";
+            }
+            
+            if(empty($_POST['adress_collection'])){
+                $errors['adress_collection'] = "L'adresse est obligatoire";
+            }
+            
+            if(empty($_POST['firm_type'])){
+                $errors['firm_type'] = "Le type d'établissement est obligatoire";
+            }
+            
+            if(empty($_POST['city'])){
+                $errors['city'] = "La ville est obligatoire";
+            }
+            
+            if(empty($_POST['postal_code'])){
+                $errors['postal_code'] = "Le code postal est obligatoire";
+            }
+            
+            if(empty($_POST['country'])){
+                $errors['country'] = "Le pays est obligatoire";
+            }
+            
+            if(empty($_POST['location_processing_idlocation_processing'])){
+                $errors['location_processing_idlocation_processing'] = "L'adresse de traitement est obligatoire";
+            }   
+                
             if(empty($errors)){
                 $this->app['lieucollecte.repository']->save($lieu);
-                return $this->redirectRoute('homepage');
+                $message = '<strong>L\'adresse de collecte à bien été enregistré</strong>';
+                $this->addFlashMessage($message, 'success');
+                return $this->redirectRoute('compteadmin');
             }
             else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';
