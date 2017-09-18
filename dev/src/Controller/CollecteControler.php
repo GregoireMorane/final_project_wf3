@@ -14,7 +14,7 @@ class CollecteControler extends ControllerAbstract{
         $collecte = new AdressesCollectionsHaveCollector();
         $errors = [];
         //affichages des infos de lieu à collecter
-        $adresses = $this->app['adresses_collectes.repository']->findAll();
+        $lieux = $this->app['lieucollecte.repository']->findAll();
         //affichages des infos  du collecteur
         $collectors = $this->app['collector.repository']->findAll();
         //affichages des infos de lieu de traitement
@@ -22,12 +22,16 @@ class CollecteControler extends ControllerAbstract{
        
         
             if(!empty($_POST)){
-                 $collecte
-            ->setBin_number($_POST['bin_number'])
-            ->setAdress_collection_idadress_collection($_POST['adress_collection_idadress_collection'])
-            ->setCollection_datetime($_POST['collection_datetime'])
-            ->setWeight($_POST['weight'])
-            ->setFurther_information($_POST['further_information']);
+            $collecte->setAdress_collection_idadress_collection($_POST['adress_collection_idadress_collection'])
+                    ->setCollector_idcollector($_POST['collector_idcollector'])
+                    ->setCollection_datetime($_POST['collection_datetime'])
+                    ->setBin_number($_POST['bin_number'])
+                    ->setProcessing_datetime($_POST['processing_datetime'])
+                    ->setWeight($_POST['weight'])
+                    ->setCompost_quality($_POST['compost_quality'])
+                    ->setFurther_information($_POST['further_information'])
+                    ->setProcessing_location($_POST['processing_location']);
+            
                 if(empty($errors)){
                 
                 $this->app['collecte.repository']->save($collecte);
@@ -45,7 +49,7 @@ class CollecteControler extends ControllerAbstract{
             'collector/formulairedecollecte.html.twig',
             [
                 'collecte' => $collecte,
-                'addresses' => $adresses,
+                'lieux' => $lieux,
                 'collectors' => $collectors,
                 'locations' => $locations
             ]

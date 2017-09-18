@@ -20,7 +20,7 @@ class CollecteRepository extends RepositoryAbstract{
             'weight' => $collecte->getWeight(),
             'compost_quality' => $collecte->getCompost_quality(),
             'further_information' => $collecte->getFurther_information(),
-            'processing_location' => $collecte->getTransformation_place()
+            'processing_location' => $collecte->getProcessing_location()
         ];
         
         if($collecte->getId_adresses_collections_have_collector()){

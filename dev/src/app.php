@@ -1,14 +1,9 @@
 <?php
-
-use Controller\ClientController;
-use Controller\CollectorController;
-use Repository\ClientRepository;
-use Repository\CollectorRepository;
-use Silex\Provider\ServiceControllerServiceProvider;
-use Silex\Provider\SessionServiceProvider;
+use Silex\Application;
+use Silex\Provider\AssetServiceProvider;
 use Silex\Provider\TwigServiceProvider;
-
-
+use Silex\Provider\ServiceControllerServiceProvider;
+use Silex\Provider\HttpFragmentServiceProvider;
 $app = new Application();
 $app->register(new ServiceControllerServiceProvider());
 $app->register(new AssetServiceProvider());
@@ -20,7 +15,7 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
 });
 //d�finition de la base de donn�e
 $app->register (
-        new DoctrineServiceProvider(),
+        new Silex\Provider\DoctrineServiceProvider(),
         [
             'db.options' =>[
                         'driver' => 'pdo_mysql',
@@ -33,24 +28,21 @@ $app->register (
         ]
         );
 // gestionnaire de sessions de Symfony($app['session']
-
-$app->register(new SessionServiceProvider());
-
-
+$app->register(new Silex\Provider\SessionServiceProvider());
 //Admin inscription d'un collecteur brouillon
 $app['collector.controller'] = function () use ($app)
 {
-    return new CollectorController($app);
+    return new Controller\CollectorController($app);
 };
 $app['collector.repository']= function () use ($app){
-    return new CollectorRepository($app['db']);
+    return new Repository\CollectorRepository($app['db']);
 };
 $app['client.controller'] = function () use ($app)
 {
-    return new ClientController($app);
+    return new Controller\ClientController($app);
 };
 $app['client.repository']= function () use ($app){
-    return new ClientRepository($app['db']);
+    return new Repository\ClientRepository($app['db']);
 };
 $app['lieutraitement.controller'] = function () use ($app)
 {
@@ -87,22 +79,15 @@ $app['outputcompost.controller'] = function () use ($app)
 $app['outputcompost.repository']= function () use ($app){
     return new Repository\OutputCompostRepository($app['db']);
 };
-
 $app['connexion.controller'] = function () use ($app)
 {
     return new Controller\ConnexionController($app);
 };
-
 $app['connexion.repository']= function () use ($app){
     return new Repository\ConnexionRepository($app['db']);
 };
-
 $app['user.manager']= function () use ($app){
     return new Service\UserManager($app['session']);
 };
-
-$app['adresses_collectes.repository']= function () use ($app){
-    return new Repository\AdressesCollectesRepository($app['db']);
-};
-
 return $app;
+//commentaire

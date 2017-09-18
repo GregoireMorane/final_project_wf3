@@ -8,9 +8,8 @@
                     <label class="col-md-4 control-label" for="adress_collection_idadress_collection">Lieux collecté</label>
                     <div class="col-md-4">
                         <select id="lieucollecté" name="adress_collection_idadress_collection" class="form-control">
-                            <option value="1">biocoop montparnasse</option>
-                            {% for address in addresses %}
-                             <option value="{{address.id_collection_address}}">{{address.adress_collection}} </option>
+                            {% for lieu in lieux %}
+                             <option value="{{lieu.id_collection_address}}">{{lieu.adress_collection}} </option>
                             
                             {% endfor %}
                         </select>
@@ -19,8 +18,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="collector_idcollector">Collecteur</label>
                     <div class="col-md-4">
-                        <select id="lieucollecté" name="adress_collection_idadress_collection" class="form-control">
-                            <option value="">choisissez </option>
+                        <select id="lieucollecté" name="collector_idcollector" class="form-control">
                             {% for collector in collectors %}
                              <option value="{{collector.idcollector}}">{{collector.firstname}} </option>
                             
@@ -85,7 +83,6 @@
                     <label class="col-md-4 control-label" for="processing_location">Lieu de traitement</label>
                     <div class="col-md-4">
                         <select id="processing_location " name="processing_location" class="form-control">
-                            <option value="1">choisissez le lieu de traitement</option>
                             {% for location in locations %}
                              <option value="{{location.id_location_processing}}">{{location.processing_location}} </option>
                             {% endfor %}

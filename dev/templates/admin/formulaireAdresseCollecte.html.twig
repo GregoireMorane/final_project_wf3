@@ -51,7 +51,6 @@
             <label class="col-md-4 control-label" for="location_processing_idlocation_processing">Lieu de traitement</label>
             <div class="col-md-4">
                 <select id="lieu_traitement" name="location_processing_idlocation_processing" class="form-control">
-                    <option value="1">Lieu traitement 1</option>
                     {% for location in locations %}
                              <option value="{{location.id_location_processing}}">{{location.processing_location}} </option>
                     {% endfor %}
