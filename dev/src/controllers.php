@@ -85,6 +85,11 @@ $app
     ->bind('deconnexion')
 ;
 
+$app
+    ->match('/comptecollecteur','lieucollecte.controller:listAction') 
+    ->bind('comptecollecteur')
+;
+
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;

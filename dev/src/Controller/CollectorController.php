@@ -6,6 +6,11 @@ use Entity\Collector;
 
 class CollectorController extends ControllerAbstract{
     
+    public function indexAction()
+    {
+        
+    }
+    
      public function listAction() 
     {
         $collector = $this->app['collector.repository']->findAll();
@@ -129,4 +134,6 @@ class CollectorController extends ControllerAbstract{
         $this->app['collector.manager']->logout();
         return $this->redirectRoute('homepage');
     }
+    
+    
 }

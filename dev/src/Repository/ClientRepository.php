@@ -54,7 +54,7 @@ class ClientRepository extends RepositoryAbstract{
      * @return Client
      */
     private function buildEntity(array $data) {
-        $client = new Client();
+            $client = new Client();
         
         $client
             ->setIdClient($data['id_client'])

@@ -1,6 +1,8 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
+    <div class="container">
+    <h1>Bienvenue {{ user_manager.collectorName }}!</h1>
     <div id="collector_nav" class="row">
         <div class="col-md-4 col-xs-12">
             <button type="button" class="btn btn-block"><a href="#collecte">Collecte de biodéchets</a></button>
@@ -25,20 +27,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading text-center"><h3 class='panel-title'>Formulaires à compléter</h3></div>
                 <div class="panel-body btn-group-vertical btn-block" role="group" aria-label="...">
+                {%for lieu in lieux%}
                     <button type="button" class="btn btn-default">
-                        Nom Client
+                        {{ lieu.address_name }}
                         <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
                     </button>
-                    
-                    <button type="button" class="btn btn-default">
-                        Nom Client
-                        <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
-                    </button>
-                    
-                    <button type="button" class="btn btn-default">
-                        Nom Client
-                        <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
-                    </button>
+                {%endfor%}
                 </div>
             </div>
         </div>
@@ -119,7 +113,7 @@
             <div class="panel panel-default text-center">
                 <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés aujourd'hui</h3></div>
                 <div class="panel-body">
-                    <p><strong>3000 kilos</strong></p>
+                    <strong>3000 kilos</strong><br>
                     <i>Super!</i>
                 </div>
             </div>
@@ -128,7 +122,7 @@
             <div class="panel panel-default text-center">
                 <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés cette semaine</h3></div>
                 <div class="panel-body">
-                    <p><strong>30000 kilos</strong></p>
+                    <strong>3000 kilos</strong><br>
                     <i>Bravo!</i>
                 </div>
             </div>
@@ -137,7 +131,7 @@
             <div class="panel panel-default text-center">
                 <div class="panel-heading "><h3 class='panel-title'>Composte collecté cette semaine</h3></div>
                 <div class="panel-body">
-                    <p><strong>3000 kilos</strong></p>
+                    <strong>3000 kilos</strong><br>
                     <i>:)</i>
                 </div>
             </div>
@@ -146,10 +140,11 @@
             <div class="panel panel-default text-center">
                 <div class="panel-heading "><h3 class='panel-title'>Composte collecté depuis le début de votre mission</h3></div>
                 <div class="panel-body">
-                    <p><strong>3000 kilos</strong></p>
+                    <strong>3000 kilos</strong><br>
                     <i>Génial</i>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}
