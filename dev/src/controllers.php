@@ -41,37 +41,37 @@ $app->get('/compteclient', function () use ($app) {
 ;
 
 $app
-    ->match('/fichecollecteur','collector.controller:registerAction') 
+    ->match('/formulaire/ajout/collecteur','collector.controller:registerAction') 
     ->bind('registercollector')
 ;
 
 $app
-    ->match('/ficheclient','client.controller:registerAction') 
+    ->match('/formulaire/ajout/client','client.controller:registerAction') 
     ->bind('registerclient')
 ;
 
 $app
-    ->match('/ajoutlieutraitement','lieutraitement.controller:registerAction') 
+    ->match('/formulaire/ajout/lieutraitement','lieutraitement.controller:registerAction') 
     ->bind('registerlieutraitement')
 ;
 
 $app
-    ->match('/ajouttraitementcollecteur','traitementcollector.controller:registerAction') 
+    ->match('/formulaire/ajout/traitementcollecteur','traitementcollector.controller:registerAction') 
     ->bind('registertraitementcollector')
 ;
 
 $app
-    ->match('/ajoutlieucollecte','lieucollecte.controller:registerAction') 
+    ->match('/formulaire/ajout/lieucollecte','lieucollecte.controller:registerAction') 
     ->bind('registerlieucollecte')
 ;
 
 $app
-    ->match('/formulairecollecte','collecte.controller:registerAction') 
+    ->match('/formulaire/collecte','collecte.controller:registerAction') 
     ->bind('registercollecte')
 ;
 
 $app
-    ->match('/formulairecompostesortie','outputcompost.controller:registerAction') 
+    ->match('/formulaire/compostesortie','outputcompost.controller:registerAction') 
     ->bind('registeroutputcompost')
 ;
 
