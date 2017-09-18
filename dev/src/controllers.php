@@ -14,11 +14,11 @@ $app->get('/', function () use ($app) {
 ->bind('homepage')
 ;
 
-$app->get('/connexion', function () use ($app) {
-    return $app['twig']->render('connexion.html.twig', array());
-})
-->bind('connexion')
-;
+//$app->get('/connexion', function () use ($app) {
+//    return $app['twig']->render('connexion.html.twig', array());
+//})
+//->bind('connexion')
+//;
 
 $app->get('/compte/collecteur', function () use ($app) {
     return $app['twig']->render('comptecollecteur.html.twig', array());
@@ -77,7 +77,12 @@ $app
 
 $app
     ->match('/connexion','connexion.controller:loginAction') 
-    ->bind('verifconnexion')
+    ->bind('connexion')
+;
+
+$app
+    ->match('/deconnexion','connexion.controller:logoutAction') 
+    ->bind('deconnexion')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
