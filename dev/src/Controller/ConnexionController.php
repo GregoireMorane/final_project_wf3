@@ -40,7 +40,7 @@ class ConnexionController extends ControllerAbstract{
                 if(!is_null($collector)){
                     if($this->app['user.manager']->verifyPassword($_POST['password'], $collector->getPassword())){
                         $this->app['user.manager']->loginCollector($collector);
-                        return $this->redirectRoute('fichecollecteur');
+                        return $this->redirectRoute('comptecollecteur');
                     }
                 }
             }
