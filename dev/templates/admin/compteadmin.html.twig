@@ -1,0 +1,157 @@
+{% extends "layout.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {#<link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css"/>#}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/menuadmin.css') }}" rel="stylesheet" type="text/css"/>
+
+{% endblock %}
+{% block content %}
+    <div class="container ">                                     
+        <div class="list col-md-4">
+            <div id=monmenu style="padding-left: 145px">
+
+                <ul class=niveau1>
+                    <li>Lieu de traitement
+                        <ul class=niveau2>
+                            <li class=plus>
+                                Collecteur
+                                </a>
+                                <ul class=niveau3>
+                                    <li>
+                                        <a href="#">
+                                            Client 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Client 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>Lieu de traitement
+                        <ul class=niveau2>
+                            <li class=plus>
+                                Collecteur
+                                </a>
+                                <ul class=niveau3>
+                                    <li>
+                                        <a href="#">
+                                            Client 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Client 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="listeresponsive row">
+            <div class="dropdown col-sm-4 col-xs-5">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Quel lieu de traitemnet
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Lieu de traitement</a></li>
+                    <li><a href="#">Lieu de traitement 2</a></li>
+                    <li><a href="#">Lieu de traitement 3</a></li>
+                    {#<li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>#}
+                </ul>
+            </div> 
+                <div class="dropdown col-sm-4 col-xs-5">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Quel le collecteur?
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">collecteur</a></li>
+                    <li><a href="#">collecteur 2</a></li>
+                    <li><a href="#">collecteur3</a></li>
+                    {#<li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>#}
+                </ul>
+            </div> 
+                <div class="dropdown col-sm-4 col-xs-6">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Quel client?
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Client</a></li>
+                    <li><a href="#">Client 2</a></li>
+                    <li><a href="#">Client 3</a></li>
+                    {#<li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>#}
+                </ul>
+            </div> 
+        </div>
+
+
+        <div class="row col-md-8"> 
+            {#conteneur contient les blocs#}
+            {#{% for location in locations %}
+                <a href="#"><span class="pull-left glyphicon glyphicon-edit"></span></a>
+                    <span id="title" class="text-center" value="{{location.id_location_processing}}>{{location.processing_location}}</span>
+               
+           {% endfor %}#}
+
+            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés cette semaine</h3></div>
+                    <div class="panel-body">
+                        <p><strong>30000 kilos</strong></p>
+                        <i>Bravo!</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h3 class='panel-title'>Composte collecté cette semaine</h3></div>
+                    <div class="panel-body">
+                        <p><strong>30000 kilos</strong></p>
+                        <i>Bravo!</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-1 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h3 class='panel-title'>Collecteur</h3></div>
+                    <div class="panel-body">
+                        <h3>Nouveau collecteur</h3>
+                        <button><a><span class="glyphicon glyphicon-plus"></span></a></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h3 class='panel-title'>Client</h3></div>
+                    <div class="panel-body">
+                        <h3>Nouveau client</h3>
+                        <button><a><span class="glyphicon glyphicon-plus"></span></a></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-1 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h3 class='panel-title'>Secteur</h3></div>
+                    <div class="panel-body">
+                        <h3>Nouveau secteur</h3>
+                        <button><a><span class="glyphicon glyphicon-plus"></span></a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

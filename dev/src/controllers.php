@@ -29,6 +29,16 @@ $app
         ->bind('connexion')
 ;
 
+$app->get('/compteadmin', function () use ($app) {
+    return $app['twig']->render('admin/compteadmin.html.twig', array());
+})
+->bind('compteadmin')
+;
+
+//$app
+//        ->match('/compteadmin', 'compteadmin.controller:listAction')
+//        ->bind('accueiladmin')
+//;
 //$app->get('/fichecollecteur', function () use ($app) {
 //    return $app['twig']->render('admin/formulaireCollector.html.twig', array());
 //})

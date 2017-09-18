@@ -106,6 +106,10 @@ $app['connexion.repository']= function () use ($app){
 $app['user.manager']= function () use ($app){
     return new UserManager($app['session']);
 };
+// affichage dans la vue compte admin 18 09
+$app['compteadmin.controller']= function () use ($app){
+    return new Controller\CompteAdmin($app);
+};
 //affichage des infos clients dans la vue ajoutlieudecollect
 //$app['client.repository']= function () use ($app){
 //    return new Repository\ClientRepository($app['db']);

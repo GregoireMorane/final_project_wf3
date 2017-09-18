@@ -47,7 +47,7 @@ class LieuCollecteController extends ControllerAbstract{
             [
                 'adresses_collectes' => $lieu,
                 'clients' =>$clients,
-                'locations' => $locations,
+                'locations' => $locations
             ]
         );
     }
