@@ -177,14 +177,7 @@ bloc1 > ul {
 	list-style: none;
 	margin-left: 100px;
 }
-p {
-	float: right;
-	color: rgba(159,155,147,0);
-	padding-right: 100px;
-	-webkit-transition: color .5s linear;
-	-moz-transition: color .5s linear;
-	-o-transition: color .5s linear;
-}
+
 #name {
 	position: absolute;
 	width: 200px;

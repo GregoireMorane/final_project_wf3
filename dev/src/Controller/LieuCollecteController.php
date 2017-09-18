@@ -11,6 +11,15 @@ use Entity\LieuCollecte;
  * @author ghmor
  */
 class LieuCollecteController extends ControllerAbstract{
+    public function listAction() {
+        $lieux = $this->app['lieucollecte.repository']->findByEmptyWeight();
+        return $this->render('comptecollecteur.html.twig',
+            [
+               'lieux' => $lieux
+            ]
+        );
+    }
+    
     public function registerAction(){
         $lieu = new LieuCollecte();
         $errors = [];
@@ -23,6 +32,7 @@ class LieuCollecteController extends ControllerAbstract{
             
                 $lieu
                     ->setAddress_collection($_POST['adress_collection'])
+                    ->setAddress_name($_POST[$address_name])
                     ->setPostal_code($_POST['postal_code'])
                     ->setCity($_POST['city'])
                     ->setFurther_information($_POST['further_information'])

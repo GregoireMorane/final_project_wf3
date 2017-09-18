@@ -20,13 +20,6 @@ $app->get('/connexion', function () use ($app) {
 ->bind('connexion')
 ;
 
-$app->get('/comptecollecteur', function () use ($app) {
-    return $app['twig']->render('comptecollecteur.html.twig', array());
-})
-
-->bind('comptecollecteur')
-;
-
 $app->get('/compteadmin', function () use ($app) {
     return $app['twig']->render('compteadmin.html.twig', array());
 })
@@ -78,6 +71,11 @@ $app
 $app
     ->match('/connexion','connexion.controller:loginAction') 
     ->bind('verifconnexion')
+;
+
+$app
+    ->match('/comptecollecteur','lieucollecte.controller:listAction') 
+    ->bind('comptecollecteur')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
