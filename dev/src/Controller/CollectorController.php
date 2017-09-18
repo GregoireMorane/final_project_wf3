@@ -14,25 +14,27 @@ class CollectorController extends ControllerAbstract {
         );
     }
 
+
     public function registerAction() {
         $collector = new Collector();
         $errors = [];
-
-
-
-        if (!empty($_POST)) {
+        
+      
+        
+        if(!empty($_POST)){
+            dump($_POST);die();
 //            $this->sanitizePost();
-            $collector
-                    ->setLastname($_POST['lastname'])
-                    ->setFirstname($_POST['firstname'])
-                    ->setPhone_number($_POST['phone_number'])
-                    ->setEmail($_POST['email'])
-                    ->setStatus($_POST['status'])
-                    ->setAddress($_POST['address'])
-                    ->setCity($_POST['city'])
-                    ->setPostal_code($_POST['postal_code'])
-                    ->setPassword($_POST['password']);
-
+                $collector
+                          ->setLastname($_POST['lastname'])
+                          ->setFirstname($_POST['firstname'])
+                          ->setPhone_number($_POST['phone_number']) 
+                          ->setEmail($_POST['email'])
+                          ->setStatus($_POST['status'])
+                          ->setAddress($_POST['address'])
+                          ->setCity($_POST['city'])
+                          ->setPostal_code($_POST['postal_code'])
+                          ->setPassword($_POST['password']);
+              
 //            if(empty($_POST['lastname'])){
 //                $errors['lastname'] = "Le nom est obligatoire";
 //            }elseif(strlen($_POST['lastname'])>100){
@@ -64,54 +66,56 @@ class CollectorController extends ControllerAbstract {
 //            }elseif($_POST['password'] != $_POST['password_confirm']){
 //                $errors['password_confirm'] = "La confirmation du mot de passe n'est pas identique au mot de passe.";
 //            }
-
-            if (empty($errors)) {
+            
+            if(empty($errors)){
                 //pas be soin d'encoder le code
                 //$collector->setPassword($this->app['collector.manager']->encodePassword($_POST['password']));
                 $this->app['collector.repository']->save($collector);
-
+                
                 return $this->redirectRoute('homepage');
-            } else {
+            }else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';
-                $message .= '<br>' . implode('<br>', $errors);
+                $message .= '<br>'.implode('<br>', $errors);
                 $this->addFlashMessage($message, 'error');
             }
         }
         return $this->render(
-                        'admin/formulaireCollector.html.twig', [
-                    'collector' => $collector
-                        ]
+            'admin/formulaireCollector.html.twig',
+            [
+                'collector' => $collector
+            ]
         );
     }
-
+    
     public function loginAction() {
-
+        
         $email = "";
-
-        if (!empty($_POST['email'])) {
+        
+        if(!empty($_POST['email'])){
             $this->sanitizePost();
 
             $email = $_POST['email'];
             $collector = $this->app['collector.repository']->findByEmail($email);
 
-            if (!is_null($collector)) {
-                if ($this->app['collector.manager']->verifyPassword($_POST['password'], $collector->getPassword())) {
+            if(!is_null($collector)){
+                if ($this->app['collector.manager']->verifyPassword($_POST['password'], $collector->getPassword())){
                     $this->app['collector.manager']->login($collector);
-
+                    
                     return $this->redirectRoute('homepage');
                 }
             }
-
+            
             $this->addFlashMessage('identification incorrecte', 'error');
         }
-
+        
         return $this->render(
-                        'collector/login.html.twig', [
+                'collector/login.html.twig',
+                [
                     'email' => $email
-                        ]
+                ]
         );
     }
-
+    
     public function logoutAction() {
         $this->app['collector.manager']->logout();
         return $this->redirectRoute('homepage');

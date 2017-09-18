@@ -1,13 +1,10 @@
 <?php
 
 namespace Repository;
+
 use Entity\ProcessingLocation;
 
-/**
- * Description of LieuTraitementRepository
- *
- * @author ghmor
- */
+
 class LieuTraitementRepository extends RepositoryAbstract{
     public function save(ProcessingLocation $location){
         $data = [

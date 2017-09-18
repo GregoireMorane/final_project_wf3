@@ -9,126 +9,80 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 //Request::setTrustedProxies(array('127.0.0.1'));
 
 $app->get('/', function () use ($app) {
-            return $app['twig']->render('index.html.twig', array());
-        })
-        ->bind('homepage')
+    return $app['twig']->render('index.html.twig', array());
+})
+->bind('homepage')
 ;
 
-//$app->get('/connexion', function () use ($app) {
-//            return $app['twig']->render('connexion.html.twig', array());
-//        })
-//        ->bind('connexion')
-//;
+$app->get('/connexion', function () use ($app) {
+    return $app['twig']->render('connexion.html.twig', array());
+})
+->bind('connexion')
+;
+
 $app->get('/comptecollecteur', function () use ($app) {
     return $app['twig']->render('comptecollecteur.html.twig', array());
 })
+
 ->bind('comptecollecteur')
 ;
-$app
-        ->match('/compteclient', 'connexion.controller:loginAction')
-        ->bind('connexion')
-;
 
-$app->get('/compteadmin', function () use ($app) {
-    return $app['twig']->render('admin/compteadmin.html.twig', array());
-})
-->bind('compteadmin')
+//chemins pour la page compte admin
+$app
+    ->match('/compteadmin','lieutraitement.controller:listAction') 
+    ->bind('compteadmin')
 ;
 
 //$app
-//        ->match('/compteadmin', 'compteadmin.controller:listAction')
-//        ->bind('accueiladmin')
+//    ->match('/compteadmin','collector.controller:listActionCompteAdmin') 
+//    ->bind('compteadmin')
 //;
-//$app->get('/fichecollecteur', function () use ($app) {
-//    return $app['twig']->render('admin/formulaireCollector.html.twig', array());
-//})
-//->bind('fichecollecteur')
-//;
-/*
-  $app->get('/formulairedecollecte', function () use ($app) {
-  return $app['twig']->render('collector/formulairedecollecte.html.twig', array());
-  })
-  ->bind('formulairedecollecte')
-  ;
- */
-//$app->get('/ficheclient', function () use ($app) {
-//    return $app['twig']->render('admin/formulaireClient.html.twig', array());
-//})
-//->bind('ficheclient')
-//;
-//$app->get('/ajoutlieutraitement', function () use ($app) {
-//    return $app['twig']->render('admin/formulaireLieuTraitement.html.twig', array());
-//})
-//->bind('ajoutlieutraitement')
-//;
-// pas besoin d'appeler cette fonction elle est déjà dans les routes plus bas
-//$app->get('/formulairecollecte', function () use ($app) {
-//    return $app['twig']->render('collector/formulairedecollecte.html.twig', array());
-//})
-//->bind('ajoutcollecte')
-//;
-// sortie de compost remplacer par un match 
-//$app->get('/formulairecompostesortie', function () use ($app) {
-//    return $app['twig']->render('collector/formulaireOutputCompost.html.twig', array());
-//})
-//->bind('sortiecompost')
-//;
+//fin
 
-//remplacer par la route classique
-//$app->get('/compteclient', function () use ($app) {
-//            return $app['twig']->render('compteclient.html.twig', array());
-//        })
-//        ->bind('compteclient')
-//;
-
-$app
-        ->match('/compteclient', 'compte.controller:registerAction')
-        ->bind('accueilclient')
-;
-        
-$app
-        ->match('/connexion', 'connexion.controller:loginAction')
-        ->bind('verifconnexion')
+$app->get('/compteclient', function () use ($app) {
+    return $app['twig']->render('compteclient.html.twig', array());
+})
+->bind('compteclient')
 ;
 
 $app
-        ->match('/fichecollecteur', 'collector.controller:registerAction')
-        ->bind('registercollector')
+    ->match('/fichecollecteur','collector.controller:registerAction') 
+    ->bind('registercollector')
 ;
 
 $app
-        ->match('/ficheclient', 'client.controller:registerAction')
-        ->bind('registerclient')
-;
-//appel fonction enregistrement save registerAction pour le formulaire de collecte
-$app
-        ->match('/formulairecollecte', 'collecte.controller:registerAction')
-        ->bind('registercollecte')
+    ->match('/ficheclient','client.controller:registerAction') 
+    ->bind('registerclient')
 ;
 
 $app
-        ->match('/ajoutlieutraitement', 'lieutraitement.controller:registerAction')
-        ->bind('registerlieutraitement')
+    ->match('/ajoutlieutraitement','lieutraitement.controller:registerAction') 
+    ->bind('registerlieutraitement')
 ;
 
 $app
-        ->match('/ajouttraitementcollecteur', 'traitementcollector.controller:registerAction')
-        ->bind('registertraitementcollector')
+    ->match('/ajouttraitementcollecteur','traitementcollector.controller:registerAction') 
+    ->bind('registertraitementcollector')
 ;
 
 $app
-        ->match('/ajoutlieucollecte', 'lieucollecte.controller:registerAction')
-        ->bind('registerlieucollecte')
+    ->match('/ajoutlieucollecte','lieucollecte.controller:registerAction') 
+    ->bind('registerlieucollecte')
 ;
 
 $app
-        ->match('/formulairecollecte', 'collecte.controller:registerAction')
-        ->bind('registercollecte')
+    ->match('/formulairecollecte','collecte.controller:registerAction') 
+    ->bind('registercollecte')
 ;
 
 $app
-        ->match('/formulairecompostesortie', 'outputcompost.controller:registerAction')
-        ->bind('registeroutputcompost')
+    ->match('/formulairecompostesortie','outputcompost.controller:registerAction') 
+    ->bind('registeroutputcompost')
+;
+
+$app
+    ->match('/connexion','connexion.controller:loginAction') 
+    ->bind('verifconnexion')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
@@ -138,9 +92,9 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
 
     // 404.html, or 40x.html, or 4xx.html, or error.html
     $templates = array(
-        'errors/' . $code . '.html.twig',
-        'errors/' . substr($code, 0, 2) . 'x.html.twig',
-        'errors/' . substr($code, 0, 1) . 'xx.html.twig',
+        'errors/'.$code.'.html.twig',
+        'errors/'.substr($code, 0, 2).'x.html.twig',
+        'errors/'.substr($code, 0, 1).'xx.html.twig',
         'errors/default.html.twig',
     );
 

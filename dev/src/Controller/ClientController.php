@@ -101,6 +101,8 @@ class ClientController extends ControllerAbstract{
 //            }
             
             if(empty($errors)){
+                //$client->setPassword($this->app['user.manager']->encodePassword($_POST['password']));
+                //$client->setPassword($this->app['user.manager']);
                 $this->app['client.repository']->save($client);
                 
                 return $this->redirectRoute('homepage');

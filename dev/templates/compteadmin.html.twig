@@ -11,24 +11,26 @@
     <div class="container ">                                     
         <div class="list col-md-4">
             <div id=monmenu style="padding-left: 145px">
-
                 <ul class=niveau1>
-                    <li>Lieu de traitement
+                    {% for location in locations %}
+                               
+                    
+                    <li>{{location.processing_location}}
                         <ul class=niveau2>
-                            <li class=plus>
-                                Collecteur
+                            {% for collector in collectors %}
+                                <li class=plus>
+                                 {{collector.firstname}} 
                                 </a>
                                 <ul class=niveau3>
+                                    {% for client in clients %}
                                     <li>
                                         <a href="#">
-                                            Client 1</a>
+                                            {{client.firstname}} </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            Client 2</a>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </li>
+                            {% endfor %}
                         </ul>
                     </li>
 
@@ -49,7 +51,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li>{% endfor %}
                 </ul>
 
             </div>
@@ -146,7 +148,7 @@
                     <div class="panel-heading "><h3 class='panel-title'>Secteur</h3></div>
                     <div class="panel-body">
                         <h3>Nouveau secteur</h3>
-                        <button><a><span class="glyphicon glyphicon-plus"></span></a></button>
+                        <button><a ><span class="glyphicon glyphicon-plus"></span></a></button>
                     </div>
                 </div>
             </div>

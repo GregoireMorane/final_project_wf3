@@ -1,8 +1,11 @@
 <?php
+
 namespace Service;
+
 use Entity\Client;
 use Entity\Collector;
 use Symfony\Component\HttpFoundation\Session\Session;
+
 /**
  * Description of UserManager
  *

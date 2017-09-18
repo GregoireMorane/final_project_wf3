@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Entity\ProcessingLocation;
+Use Repository\LieuTraitementRepository;
 
 /**
  * Description of LieuTraitementController
@@ -37,9 +38,22 @@ class LieuTraitementController extends ControllerAbstract{
         }
         return $this->render('admin/formulaireLieuTraitement.html.twig', 
                 [
-                    'lieutraitement' => $location,
+                    'lieutraitement' =>$location,
                     'clients' =>$clients,
-                    'locations' => $locations
+                    'locations' =>$locations
                 ]);
+        
+    }
+    public function listAction() {
+        $clients = $this->app['client.repository']->findAll();
+        $collectors = $this->app['collector.repository']->findAll();
+        $locations = $this->app['lieutraitement.repository']->findAll();
+        return $this->render('compteadmin.html.twig', 
+                    [
+                    'locations' => $locations,
+                    'collectors' => $collectors,
+                    'clients' => $clients
+                    ]
+        );
     }
 }

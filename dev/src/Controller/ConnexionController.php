@@ -1,7 +1,10 @@
 <?php
+
 namespace Controller;
+
 use Entity\Client;
 use Entity\Collector;
+
 /**
  * Description of ConnexionController
  *
@@ -17,13 +20,15 @@ class ConnexionController extends ControllerAbstract{
         if(!empty($_POST))
         {
             if($_POST['radios'] == 'client'){
+
                 $email = $_POST['email'];
                 $client = $this->app['connexion.repository']->findByEmailClient($email);
-                
+                //dump($client);
                 if(!is_null($client)){
+                    //dump($this->app['user.manager']->verifyPassword($_POST['password'], $client->getPassword()));dump($_POST);die();
                     if($this->app['user.manager']->verifyPassword($_POST['password'], $client->getPassword())){
                         $this->app['user.manager']->loginClient($client);
-                        return $this->redirectRoute('ficheclient');
+                        return $this->redirectRoute('compteclient');
                     }
                 }
             }
@@ -34,7 +39,7 @@ class ConnexionController extends ControllerAbstract{
                 if(!is_null($collector)){
                     if($this->app['user.manager']->verifyPassword($_POST['password'], $collector->getPassword())){
                         $this->app['user.manager']->loginCollector($collector);
-                        return $this->redirectRoute('fichecollecteur');
+
                     }
                 }
             }
@@ -51,6 +56,5 @@ class ConnexionController extends ControllerAbstract{
             }
             $this->addFlashMessage('Identification incorrecte', 'error');
         }
-        return $this->render('index.html.twig');
+                        return $this->redirectRoute('comptecollecteur');
     }
-}
