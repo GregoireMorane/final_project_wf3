@@ -7,7 +7,7 @@
 namespace Entity;
 
 class Collector{
-//    const STATUS_COLLECTEUR = 'salarié';
+//    const STATUS_COLLECTEUR = 'salariï¿½';
 //    const STATUS_ADMIN = 'admin';
     
     /**
@@ -97,44 +97,55 @@ class Collector{
     }
 
     //SETTERS
-
-    function setIdcollector($idcollector) {
+   
+    public function setIdcollector($idcollector) {
         $this->idcollector = $idcollector;
-    }
-    function setLastname($lastname) {
-        $this->lastname = $lastname;
-    }
-    function setEmail($email) {
-        $this->email = $email;
-    }
-    function setStatus($status) {
-//        if (!in_array($status, [self::STATUS_COLLECTEUR, self::STATUS_ADMIN])) {
-//            throw new \UnexpectedValueException('Unrecognized status value');
-//        }
-        $this->status = $status;
         return $this;
     }
-    function setAddress($address) {
-        $this->address = $address;
+
+    public function setLastname($lastname) {
+        $this->lastname = $lastname;
+        return $this;
     }
-    function setPassword($password) {
-        $this->password = $password;
-    }
-    function setCity($city) {
-        $this->city = $city;
-    }
+
     public function setFirstname($firstname) {
         $this->firstname = $firstname;
         return $this;
     }
-    public function setPhoneNumber($phone_number) {
+
+    public function setPhone_number($phone_number) {
         $this->phone_number = $phone_number;
         return $this;
     }
-    public function setPostalCode($postal_code) {
-        $this->postal_code = $postal_code;
+
+    public function setPassword($password) {
+        $this->password = $password;
         return $this;
     }
 
+    public function setEmail($email) {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function setAddress($address) {
+        $this->address = $address;
+        return $this;
+    }
+
+    public function setCity($city) {
+        $this->city = $city;
+        return $this;
+    }
+
+    public function setPostal_code($postal_code) {
+        $this->postal_code = $postal_code;
+        return $this;
+    }
 
 }

@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Client :  127.0.0.1
--- Généré le :  Mer 13 Septembre 2017 à 10:48
--- Version du serveur :  10.1.21-MariaDB
--- Version de PHP :  5.6.30
+-- Hôte : 127.0.0.1
+-- Généré le :  ven. 15 sep. 2017 à 10:32
+-- Version du serveur :  10.1.22-MariaDB
+-- Version de PHP :  7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,6 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `adresses_collectes` (
   `id_collection_address` int(11) NOT NULL,
+  `firm_type` enum('epicerie','restaurant','restaurantCollectif') DEFAULT NULL,
+  `address_name` varchar(45) DEFAULT NULL,
   `adress_collection` varchar(45) DEFAULT NULL,
   `postal_code` varchar(45) DEFAULT NULL,
   `city` varchar(45) DEFAULT NULL,
@@ -35,8 +39,7 @@ CREATE TABLE `adresses_collectes` (
   `country` varchar(45) DEFAULT NULL,
   `collection_day` enum('lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche') DEFAULT NULL,
   `client_idclient` int(11) NOT NULL,
-  `location_processing_idlocation_processing` int(11) NOT NULL,
-  `firm_type` enum('epicerie','restaurant','restaurantCollectif') DEFAULT NULL
+  `location_processing_idlocation_processing` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -54,7 +57,8 @@ CREATE TABLE `adresses_collections_have_collector` (
   `weight` tinyint(3) DEFAULT NULL,
   `compost_quality` enum('bon','moyen','mauvais') DEFAULT NULL,
   `further_information` text,
-  `transformation_place` varchar(60) DEFAULT NULL
+  `transformation_place` varchar(60) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -76,7 +80,8 @@ CREATE TABLE `client` (
   `country` varchar(45) DEFAULT NULL,
   `is_active` tinyint(4) DEFAULT NULL,
   `company` varchar(45) DEFAULT NULL,
-  `siret` varchar(45) DEFAULT NULL
+  `siret` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -94,7 +99,19 @@ CREATE TABLE `collector` (
   `status` enum('salarié','admin') DEFAULT 'salarié',
   `address` varchar(45) DEFAULT NULL,
   `city` varchar(45) DEFAULT NULL,
-  `postal_code` varchar(45) DEFAULT NULL
+  `postal_code` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `collector_has_processing_location`
+--
+
+CREATE TABLE `collector_has_processing_location` (
+  `collector_idcollector` int(11) NOT NULL,
+  `processing_location_id_location_processing` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -127,7 +144,7 @@ CREATE TABLE `processing_location` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Index pour les tables exportées
+-- Index pour les tables déchargées
 --
 
 --
@@ -159,6 +176,14 @@ ALTER TABLE `collector`
   ADD PRIMARY KEY (`idcollector`);
 
 --
+-- Index pour la table `collector_has_processing_location`
+--
+ALTER TABLE `collector_has_processing_location`
+  ADD PRIMARY KEY (`collector_idcollector`,`processing_location_id_location_processing`),
+  ADD KEY `fk_collector_has_processing_location_processing_location1_idx` (`processing_location_id_location_processing`),
+  ADD KEY `fk_collector_has_processing_location_collector1_idx` (`collector_idcollector`);
+
+--
 -- Index pour la table `output_compost`
 --
 ALTER TABLE `output_compost`
@@ -173,7 +198,7 @@ ALTER TABLE `processing_location`
   ADD PRIMARY KEY (`id_location_processing`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
@@ -202,7 +227,7 @@ ALTER TABLE `output_compost`
 ALTER TABLE `processing_location`
   MODIFY `id_location_processing` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Contraintes pour les tables exportées
+-- Contraintes pour les tables déchargées
 --
 
 --
@@ -220,11 +245,19 @@ ALTER TABLE `adresses_collections_have_collector`
   ADD CONSTRAINT `fk_adresses_collectes_has_collecteur_collecteur1` FOREIGN KEY (`collector_idcollector`) REFERENCES `collector` (`idcollector`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Contraintes pour la table `collector_has_processing_location`
+--
+ALTER TABLE `collector_has_processing_location`
+  ADD CONSTRAINT `fk_collector_has_processing_location_collector1` FOREIGN KEY (`collector_idcollector`) REFERENCES `collector` (`idcollector`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_collector_has_processing_location_processing_location1` FOREIGN KEY (`processing_location_id_location_processing`) REFERENCES `processing_location` (`id_location_processing`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Contraintes pour la table `output_compost`
 --
 ALTER TABLE `output_compost`
   ADD CONSTRAINT `fk_Sortie_composte_collecteur1` FOREIGN KEY (`collector_idcollector`) REFERENCES `collector` (`idcollector`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Sortie_composte_lieu_traitement1` FOREIGN KEY (`location_processing_idlocation_processing`) REFERENCES `processing_location` (`id_location_processing`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

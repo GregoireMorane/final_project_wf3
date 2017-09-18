@@ -3,6 +3,7 @@
 namespace Repository;
 
 use Entity\Collector;
+use Symfony\Component\Security\Core\User\User;
 
 class CollectorRepository extends RepositoryAbstract{
     public function findByEmail($email) {
@@ -16,6 +17,27 @@ class CollectorRepository extends RepositoryAbstract{
         if(!empty($dbCollector)){
             return $this->buildEntity($dbCollector);
         }
+    }
+    
+    public function findByClientId($id) {
+        $query = <<<SQL
+SELECT c.*
+FROM collector c
+JOIN collector_has_processing_location chpl ON chpl.collector_idcollector = c.idcollector
+JOIN processing_location pl ON pl.id_location_processing = chpl.processing_location_id_location_processing
+JOIN adresses_collectes ac ON ac.location_processing_idlocation_processing = pl.id_location_processing
+JOIN client ON client.id_client = ac.client_idclient
+WHERE client.id_client = :id
+SQL;
+                
+        $dbCollectors = $this->db->fetchAll($query, [':id' => $id]);
+        $collectors = [];
+        
+        foreach ($dbCollectors as $dbCollector) {
+            $collectors[] = $this->buildEntity($dbCollector);
+        }
+        
+        return $collectors;
     }
     
     public function save(Collector $collector) {
@@ -51,14 +73,14 @@ class CollectorRepository extends RepositoryAbstract{
         $collector = new Collector();
         
         $collector
-            ->setIdCollector($data['id_client'])
+            ->setIdCollector($data['idcollector'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
-            ->setPhoneNumber($data['phone_number'])
+            ->setPhone_number($data['phone_number'])
             ->setEmail($data['email'])
             ->setPassword($data['password'])
             ->setAddress($data['address'])                
-            ->setPostalCode($data['postal_code'])
+            ->setPostal_code($data['postal_code'])
             ->setCity($data['city'])
             ->setStatus($data['status']);
 

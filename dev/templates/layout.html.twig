@@ -11,6 +11,9 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('css/homepage.css') }}" rel="stylesheet" type="text/css"/>
+            <link href="https://fonts.googleapis.com/css?family=Anton|Arvo|Oswald|Poppins" rel="stylesheet">
+            <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         {% endblock %}
     </head>
     <body>
@@ -20,17 +23,31 @@
                     <li class="nav-item">
                       <a class="nav-link active" href="{{path('homepage')}}"><img class="logo" src="{{asset('images/Alchimiste_logo.png')}}"></a>
                     </li>
+                {# on affiche le rendu de la route categories_menu #}
+                {#{{ render(url('categories_menu')) }}#}
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{{path('connexion')}}">Page de connexion</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Déconnexion</a>
+                    </li>
                 </ul>
             </div>
+        </nav
         </nav>
 
-        <div class="container">
-            {% block content %}{% endblock %}
-        </div>
+
+            {% block content %}
+            
+            {% endblock %}
+
         
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script src="{{asset('js/homepagescript.js')}}"></script>
+            <script src="{{asset('js/menu.js')}}"></script>
         {% endblock %}
     </body>
 </html>

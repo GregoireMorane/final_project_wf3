@@ -4,6 +4,7 @@ use Controller\ClientController;
 use Controller\CollectorController;
 use Repository\ClientRepository;
 use Repository\CollectorRepository;
+use Service\UserManager;
 use Silex\Application;
 use Silex\Provider\AssetServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
@@ -20,6 +21,9 @@ $app->register(new HttpFragmentServiceProvider());
 $app['twig'] = $app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
 
+    // le UserManager est accessible dans twig dans la globale user_manager
+    $twig->addGlobal('user_manager', $app['user.manager']);
+    
     return $twig;
 });
 
@@ -68,6 +72,65 @@ $app['client.controller'] = function () use ($app)
 $app['client.repository']= function () use ($app){
     return new ClientRepository($app['db']);
 };
+
+$app['lieutraitement.controller'] = function () use ($app)
+{
+    return new Controller\LieuTraitementController($app);
+};
+
+$app['lieutraitement.repository']= function () use ($app){
+    return new Repository\LieuTraitementRepository($app['db']);
+};
+
+$app['lieucollecte.controller'] = function () use ($app)
+{
+    return new Controller\LieuCollecteController($app);
+};
+
+$app['lieucollecte.repository']= function () use ($app){
+    return new Repository\LieuCollecteRepository($app['db']);
+};
+
+$app['traitementcollector.controller'] = function () use ($app)
+{
+    return new Controller\TraitementCollectorController($app);
+};
+
+$app['traitementcollector.repository']= function () use ($app){
+    return new Repository\TraitementCollectorRepository($app['db']);
+};
+
+$app['collecte.controller'] = function () use ($app)
+{
+    return new Controller\CollecteController($app);
+};
+
+$app['collecte.repository']= function () use ($app){
+    return new Repository\CollecteRepository($app['db']);
+};
+
+$app['outputcompost.controller'] = function () use ($app)
+{
+    return new Controller\OutputCompostController($app);
+};
+
+$app['outputcompost.repository']= function () use ($app){
+    return new Repository\OutputCompostRepository($app['db']);
+};
+
+$app['connexion.controller'] = function () use ($app)
+{
+    return new Controller\ConnexionController($app);
+};
+
+$app['connexion.repository']= function () use ($app){
+    return new Repository\ConnexionRepository($app['db']);
+};
+
+$app['user.manager']= function () use ($app){
+    return new UserManager($app['session']);
+};
+
 
 return $app;
 //commentaire

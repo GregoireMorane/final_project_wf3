@@ -8,7 +8,11 @@ namespace Entity;
  * @author ghmor
  */
 class AdressesCollectionsHaveCollector {
-    
+    /**
+     *
+     * @var int
+     */
+    private $id_adresses_collections_have_collector;
     /**
      *
      * @var int
@@ -55,61 +59,93 @@ class AdressesCollectionsHaveCollector {
      */
     private $transformation_place;
     
-    //GETTERS
-    function getAdressCollectionIdadressCollection() {
+    public function getAdress_collection_idadress_collection() {
         return $this->adress_collection_idadress_collection;
     }
-    function getCollectorIdcollector() {
+
+    public function getCollector_idcollector() {
         return $this->collector_idcollector;
     }
-    function getCollectionDatetime() {
+
+    public function getCollection_datetime() {
         return $this->collection_datetime;
     }
-    function getBinNumber() {
+
+    public function getBin_number() {
         return $this->bin_number;
     }
-    function getProcessingDatetime() {
+
+    public function getProcessing_datetime() {
         return $this->processing_datetime;
     }
-    function getWeight() {
+
+    public function getWeight() {
         return $this->weight;
     }
-    function getCompostQuality() {
+
+    public function getCompost_quality() {
         return $this->compost_quality;
     }
-    function getFurtherInformation() {
+
+    public function getFurther_information() {
         return $this->further_information;
     }
-    function getTransformationPlace() {
+
+    public function getTransformation_place() {
         return $this->transformation_place;
     }
-    //SETTERS
-    function setAdressCollectionIdadressCollection($adress_collection_idadress_collection) {
+
+    public function setAdress_collection_idadress_collection($adress_collection_idadress_collection) {
         $this->adress_collection_idadress_collection = $adress_collection_idadress_collection;
+        return $this;
     }
-    function setCollectorIdcollector($collector_idcollector) {
+
+    public function setCollector_idcollector($collector_idcollector) {
         $this->collector_idcollector = $collector_idcollector;
+        return $this;
     }
-    function setCollectionDatetime($collection_datetime) {
+
+    public function setCollection_datetime($collection_datetime) {
         $this->collection_datetime = $collection_datetime;
+        return $this;
     }
-    function setBinNumber($bin_number) {
+
+    public function setBin_number($bin_number) {
         $this->bin_number = $bin_number;
+        return $this;
     }
-    function setProcessingDatetime($processing_datetime) {
+
+    public function setProcessing_datetime($processing_datetime) {
         $this->processing_datetime = $processing_datetime;
+        return $this;
     }
-    function setWeight($weight) {
+
+    public function setWeight($weight) {
         $this->weight = $weight;
+        return $this;
     }
-    function setCompostQuality($compost_quality) {
+
+    public function setCompost_quality($compost_quality) {
         $this->compost_quality = $compost_quality;
+        return $this;
     }
-    function setFurtherInformation($further_information) {
+
+    public function setFurther_information($further_information) {
         $this->further_information = $further_information;
+        return $this;
     }
-    function setTransformationPlace($transformation_place) {
+
+    public function setTransformation_place($transformation_place) {
         $this->transformation_place = $transformation_place;
+        return $this;
+    }
+    public function getId_adresses_collections_have_collector() {
+        return $this->id_adresses_collections_have_collector;
+    }
+
+    public function setId_adresses_collections_have_collector($id_adresses_collections_have_collector) {
+        $this->id_adresses_collections_have_collector = $id_adresses_collections_have_collector;
+        return $this;
     }
 
 

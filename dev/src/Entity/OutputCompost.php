@@ -34,39 +34,52 @@ class OutputCompost {
      */
     private $collector_idcollector;
     
-    //GETTERS
-    function getIdoutputCompost() {
+    public function getIdoutput_compost() {
         return $this->idoutput_compost;
     }
-    function getOutputDatetime() {
+
+    public function getOutput_datetime() {
         return $this->output_datetime;
     }
-    function getQuantityExit() {
+
+    public function getQuantity_exit() {
         return $this->quantity_exit;
     }
-    function getLocationProcessingIdlocationProcessing() {
+
+    public function getLocation_processing_idlocation_processing() {
         return $this->location_processing_idlocation_processing;
     }
-    function getCollectorIdcollector() {
+
+    public function getCollector_idcollector() {
         return $this->collector_idcollector;
     }
-    
-    //SETTERS
-    function setIdoutputCompost($idoutput_compost) {
+
+    public function setIdoutput_compost($idoutput_compost) {
         $this->idoutput_compost = $idoutput_compost;
+        return $this;
     }
-    function setOutputDatetime($output_datetime) {
+
+    public function setOutput_datetime($output_datetime) {
         $this->output_datetime = $output_datetime;
+        return $this;
     }
-    function setQuantityExit($quantity_exit) {
+
+    public function setQuantity_exit($quantity_exit) {
         $this->quantity_exit = $quantity_exit;
+        return $this;
     }
-    function setLocationProcessingIdlocationProcessing($location_processing_idlocation_processing) {
+
+    public function setLocation_processing_idlocation_processing($location_processing_idlocation_processing) {
         $this->location_processing_idlocation_processing = $location_processing_idlocation_processing;
+        return $this;
     }
-    function setCollectorIdcollector($collector_idcollector) {
+
+    public function setCollector_idcollector($collector_idcollector) {
         $this->collector_idcollector = $collector_idcollector;
+        return $this;
     }
+
+
 
 
 }

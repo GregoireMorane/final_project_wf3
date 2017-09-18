@@ -1,0 +1,78 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4 col-xs-12 panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <a href="#"><span class="pull-left glyphicon glyphicon-edit"></span></a>
+                <span id="title" class="text-center">Secteur 1</span>
+                <a data-toggle="collapse" href="#listecollecteurs"><span class="pull-right glyphicon glyphicon-menu-down"></span></a>
+            </div>
+        </div>
+        <div class=panel-body">
+            <ul id="listecollecteurs" class="list-group collapse out">
+                <li class="list-group-item">
+                    <a data-toggle="collapse" href="#listesecteurs">
+                        <span>Collecteur 1</span><span class="pull-right glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <ul id="listesecteurs" class="collapse">
+                        <li class="list-group-item" role="tabpanel" aria-labelledby="headingSubTwo">
+                            <span><a href="#">Clients du secteur</a></span>
+                        </li>
+                    </ul>              
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-md-offset-1 col-xs-12">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés cette semaine</h3></div>
+            <div class="panel-body">
+                <p><strong>30000 kilos</strong></p>
+                <i>Bravo!</i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-xs-12">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading "><h3 class='panel-title'>Composte collecté cette semaine</h3></div>
+            <div class="panel-body">
+                <p><strong>30000 kilos</strong></p>
+                <i>Bravo!</i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-md-offset-1 col-xs-12">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading "><h3 class='panel-title'>Collecteur</h3></div>
+            <div class="panel-body">
+                <h3>Nouveau collecteur</h3>
+                <button><a><span class="glyphicon glyphicon-plus"></span></a></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-xs-12">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading "><h3 class='panel-title'>Client</h3></div>
+            <div class="panel-body">
+                <h3>Nouveau client</h3>
+                <button><a><span class="glyphicon glyphicon-plus"></span></a></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-md-offset-1 col-xs-12">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading "><h3 class='panel-title'>Secteur</h3></div>
+            <div class="panel-body">
+                <h3>Nouveau secteur</h3>
+                <button><a><span class="glyphicon glyphicon-plus"></span></a></button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
