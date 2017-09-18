@@ -1,19 +1,4 @@
 <?php
-<<<<<<< HEAD
-class UserManager{
-    
-    /**
-     *
-     * @var Session
-     */
-    private $session;
-   
-    function __construct(Session $session) {
-        $this->session = $session;
-    }
-
-}
-=======
 
 namespace Service;
 
@@ -90,4 +75,3 @@ class UserManager {
         return '';
     }
 }
->>>>>>> origin/gregoire
