@@ -1,10 +1,7 @@
 /* Reset */
 
 *{    
-    margin: 0;    padding: 0;    border: 00;    font-size: 100%; 
-    /* taille de caractère par défaut du navigateur */ @    
-    font: inherit;    vertical-align: baseline;    
-    text-decoration: none; /* enlève le soulignement des liens */
+    margin: 0;    padding: 0;    border: 00;    font-size: 100%;
 }
 
 body {
@@ -25,15 +22,17 @@ span.glyphicon-log-out {
     width: 100%;
 }
 
-/*
-
-a.nav-link {
-    line-height: 5em;
+.gris {
+    -moz-box-shadow: 1px 3px 10px 0px #656565;
+    -webkit-box-shadow: 1px 3px 10px 0px #656565;
+    -o-box-shadow: 1px 3px 10px 0px #656565;
+    box-shadow: 1px 3px 10px 0px #656565;
+    filter: progid : DXImageTransform.Microsoft.Shadow(color=#656565, Direction=161, Strength=10);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.03);
 }
-
-*/
-
-/* APPARENCE DES BLOCS */
 
 .vert {
     -moz-box-shadow: 1px 3px 10px 0px #40a629;
@@ -62,6 +61,9 @@ a.nav-link {
 .bloc{
     margin-bottom: 30px;
     margin-top: 30px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
 
 #liens > div {
     padding: 0.5em;

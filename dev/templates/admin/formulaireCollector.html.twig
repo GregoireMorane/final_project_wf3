@@ -6,7 +6,7 @@
         <fieldset>
             <legend style="text-align: center;"><strong>Ajout d'un collecteur</strong></legend>
             <div class="form-group">
-            <label class="col-md-4 control-label" for="nom">Nom</label>  
+            <label class="col-md-4 control-label" for="lastname">Nom</label>  
                 <div class="col-md-4">
                     <input id="nom" name="lastname" type="text" placeholder="Nom" class="form-control input-md">
                     <span class="help-block">ex : Zheng</span>  
@@ -15,16 +15,16 @@
 
             <!-- Text input-->
             <div class="form-group">
-            <label class="col-md-4 control-label" for="prenom">prenom</label>  
+            <label class="col-md-4 control-label" for="prenom">Prénom</label>  
                 <div class="col-md-4">
-                    <input id="prenom" name="firstname" type="text" placeholder="pr�nom" class="form-control input-md">
+                    <input id="prénom" name="firstname" type="text" placeholder="prénom" class="form-control input-md">
                     <span class="help-block">ex : Simone</span>  
                 </div>
             </div>
 
          <!-- Text input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="adresse">adresse</label>  
+              <label class="col-md-4 control-label" for="adresse">Adresse</label>  
                    <div class="col-md-4">
                        <input id="adresse" name="address" type="text" placeholder="adresse" class="form-control input-md">
                        <span class="help-block">ex : 54 rue du compost</span>  
@@ -33,7 +33,7 @@
 
          <!-- Text input-->
          <div class="form-group">
-           <label class="col-md-4 control-label" for="ville">ville</label>  
+           <label class="col-md-4 control-label" for="ville">Ville</label>  
            <div class="col-md-4">
            <input id="ville" name="city" type="text" placeholder="ville" class="form-control input-md">
            <span class="help-block">ex : Paris</span>  
@@ -42,7 +42,7 @@
 
          <!-- Text input-->
          <div class="form-group">
-           <label class="col-md-4 control-label" for="codepostal">code postal</label>  
+           <label class="col-md-4 control-label" for="codepostal">Code postal</label>  
            <div class="col-md-4">
            <input id="codepostal" name="postal_code" type="text" placeholder="code postal" class="form-control input-md">
            <span class="help-block">ex : code postal</span>  
@@ -60,16 +60,16 @@
          
          <!-- Text input-->
          <div class="form-group">
-           <label class="col-md-4 control-label" for="telephone">T�l�phone</label>  
+           <label class="col-md-4 control-label" for="telephone">Téléphone</label>  
            <div class="col-md-4">
-           <input id="telephone" name="phone_number" type="text" placeholder="T�l�phone" class="form-control input-md">
+           <input id="telephone" name="phone_number" type="text" placeholder="Téléphone" class="form-control input-md">
            <span class="help-block">ex : 06 15 25 63 83</span>  
            </div>
          </div>
 
          <!-- Password input-->
          <div class="form-group">
-           <label class="col-md-4 control-label" for="mot de passe">mot de passe</label>
+           <label class="col-md-4 control-label" for="mot de passe">Mot de passe</label>
            <div class="col-md-4">
              <input id="mot de passe" name="password" type="password" placeholder="mot de passe" class="form-control input-md">
              <span class="help-block">ex : mot de passe</span>
@@ -82,8 +82,8 @@
            <label class="col-md-4 control-label" for="statut">Statut</label>
            <div class="col-md-4">
              <select id="statut" name="status" class="form-control">
-               <option value="salarié">Collecteur</option>
                <option value="admin">collecteur &amp; administrateur</option>
+                <option value="salarié">Collecteur</option>
              </select>
            </div>
          </div>
@@ -101,3 +101,4 @@
     </form>
     </div>
 {% endblock %}
+              

@@ -5,23 +5,36 @@ namespace Controller;
 use Entity\Collector;
 
 class CollectorController extends ControllerAbstract{
+    
+     public function listAction() 
+    {
+        $collector = $this->app['collector.repository']->findAll();
+        return $this->render('formulaireCollector.html.twig',
+            [
+               'collectors' => $collectors
+            ]
+            );
+    }
+    
     public function registerAction() {
         $collector = new Collector();
         $errors = [];
         
-        $collector->setLastname($_POST['lastname']);
-        $collector->setFirstname($_POST['firstname']); 
-        $collector->setPhone_number($_POST['phone_number']); 
-        $collector->setEmail($_POST['email']);
-        $collector->setStatus($_POST['status']);
-        $collector->setAddress($_POST['address']);
-        $collector->setCity($_POST['city']);
-        $collector->setPostal_code($_POST['postal_code']);
-        $collector->setPassword($_POST['password']);
+      
         
         if(!empty($_POST)){
+            dump($_POST);die();
 //            $this->sanitizePost();
-
+                $collector
+                          ->setLastname($_POST['lastname'])
+                          ->setFirstname($_POST['firstname'])
+                          ->setPhone_number($_POST['phone_number']) 
+                          ->setEmail($_POST['email'])
+                          ->setStatus($_POST['status'])
+                          ->setAddress($_POST['address'])
+                          ->setCity($_POST['city'])
+                          ->setPostal_code($_POST['postal_code'])
+                          ->setPassword($_POST['password']);
               
 //            if(empty($_POST['lastname'])){
 //                $errors['lastname'] = "Le nom est obligatoire";

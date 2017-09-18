@@ -17,16 +17,27 @@ class CollectorRepository extends RepositoryAbstract{
             return $this->buildEntity($dbCollector);
         }
     }
+    // pour afficher les infos collecteur dans les vues
+    public function findAll() 
+    {
+        $dbCollectors = $this->db->fetchAll('SELECT * FROM collector ORDER BY idcollector');
+        $collectors =[];
+        
+        foreach ($dbCollectors as $dbCollector){
+            $collectors[] = $this->buildEntity($dbCollector);
+        }
+        return $collectors;
+    }
     
     public function save(Collector $collector) {
         $data = [
             'lastname' => $collector->getLastname(),
             'firstname' => $collector->getFirstname(),
-            'phone_number' => $collector->getPhoneNumber(),
+            'phone_number' => $collector->getPhone_number(),
             'email' => $collector->getEmail(),
             'password' => $collector->getPassword(),
             'address' => $collector->getAddress(),
-            'postal_code' => $collector->getPostalCode(),
+            'postal_code' => $collector->getPostal_code(),
             'city' => $collector->getCity(),
             'status' => $collector->getStatus(),
         ];
@@ -47,22 +58,22 @@ class CollectorRepository extends RepositoryAbstract{
      * @param array $data
      * @return User
      */
-//    private function buildEntity(array $data) {
-//        $collector = new Collector();
-//        
-//        $collector
-//            ->setIdCollector($data['id_client'])
-//            ->setLastname($data['lastname'])
-//            ->setFirstname($data['firstname'])
-//            ->setPhoneNumber($data['phone_number'])
-//            ->setEmail($data['email'])
-//            ->setPassword($data['password'])
-//            ->setAddress($data['address'])                
-//            ->setPostalCode($data['postal_code'])
-//            ->setCity($data['city'])
-//            ->setStatus($data['status']);
-//
-//        
-//        return $collector;
-//    }        
+    private function buildEntity(array $data) {
+        $collector = new Collector();
+        
+        $collector
+            ->setIdcollector($data['idcollector'])
+            ->setLastname($data['lastname'])
+            ->setFirstname($data['firstname'])
+            ->setPhone_number($data['phone_number'])
+            ->setEmail($data['email'])
+            ->setPassword($data['password'])
+            ->setAddress($data['address'])                
+            ->setPostal_code($data['postal_code'])
+            ->setCity($data['city'])
+            ->setStatus($data['status']);
+
+        
+        return $collector;
+    }        
 }

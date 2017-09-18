@@ -40,6 +40,9 @@ class ProcessingLocation {
      */
     private $processing_location;
     
+ 
+    
+    //getter
     public function getId_location_processing() {
         return $this->id_location_processing;
     }
@@ -63,7 +66,10 @@ class ProcessingLocation {
     public function getProcessing_location() {
         return $this->processing_location;
     }
+    
 
+    
+    //setter
     public function setId_location_processing($id_location_processing) {
         $this->id_location_processing = $id_location_processing;
         return $this;
@@ -93,6 +99,9 @@ class ProcessingLocation {
         $this->processing_location = $processing_location;
         return $this;
     }
+   
+
+
 
 
 

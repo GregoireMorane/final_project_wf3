@@ -19,9 +19,10 @@
             <label class="col-md-4 control-label" for="collector_idcollector">Collecteur</label>
             <div class="col-md-4">
                 <select id="client" name="collector_idcollector" class="form-control">
-                    <option value="1">Collecteur 1</option>
-                    <option value="2">Collecteur 2</option>
-                    <option value="3">Collecteur 3</option>
+                    <option value="1">Choisissez le collecteur</option>
+                    {% for collector in collectors %}
+                             <option value="{{collector.idcollector}}">{{collector.firstname}} </option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
@@ -29,9 +30,10 @@
             <label class="col-md-4 control-label" for="location_processing_idlocation_processing">Lieu de traitement</label>
             <div class="col-md-4">
                 <select id="client" name="location_processing_idlocation_processing" class="form-control">
-                    <option value="1">Lieu 1</option>
-                    <option value="2">Lieu 2</option>
-                    <option value="3">Lieu 3</option>
+                    <option value="1">Lieu de traitement</option>
+                    {% for location in locations %}
+                            <option value="{{location.id_location_processing}}">{{location.processing_location}} </option>
+                    {% endfor %}
                 </select>
             </div>
         </div>

@@ -20,48 +20,6 @@ $app->get('/connexion', function () use ($app) {
 ->bind('connexion')
 ;
 
-$app->get('/fichecollecteur', function () use ($app) {
-    return $app['twig']->render('admin/formulaireCollector.html.twig', array());
-})
-->bind('fichecollecteur')
-;
-
-$app->get('/ficheclient', function () use ($app) {
-    return $app['twig']->render('admin/formulaireClient.html.twig', array());
-})
-->bind('ficheclient')
-;
-
-$app->get('/ajoutlieutraitement', function () use ($app) {
-    return $app['twig']->render('admin/formulaireLieuTraitement.html.twig', array());
-})
-->bind('ajoutlieutraitement')
-;
-
-$app->get('/ajoutlieucollecte', function () use ($app) {
-    return $app['twig']->render('admin/formulaireAdresseCollecte.html.twig', array());
-})
-->bind('ajoutlieucollecte')
-;
-
-$app->get('/ajouttraitementcollecteur', function () use ($app) {
-    return $app['twig']->render('admin/formulaireTraitementCollector.html.twig', array());
-})
-->bind('ajoutlieucollecte')
-;
-
-$app->get('/formulairecollecte', function () use ($app) {
-    return $app['twig']->render('collector/formulaireDeCollecte.html.twig', array());
-})
-->bind('ajoutcollecte')
-;
-
-$app->get('/formulairecompostesortie', function () use ($app) {
-    return $app['twig']->render('collector/formulaireOutputCompost.html.twig', array());
-})
-->bind('sortiecompost')
-;
-
 $app->get('/comptecollecteur', function () use ($app) {
     return $app['twig']->render('comptecollecteur.html.twig', array());
 })
@@ -75,16 +33,11 @@ $app->get('/compteadmin', function () use ($app) {
 
 ->bind('compteadmin')
 ;
-//Routes des actions
+
 $app->get('/compteclient', function () use ($app) {
     return $app['twig']->render('compteclient.html.twig', array());
 })
 ->bind('compteclient')
-;
-
-$app
-    ->match('/connexion','connexion.controller:loginAction') 
-    ->bind('verifconnexion')
 ;
 
 $app
@@ -120,6 +73,11 @@ $app
 $app
     ->match('/formulairecompostesortie','outputcompost.controller:registerAction') 
     ->bind('registeroutputcompost')
+;
+
+$app
+    ->match('/connexion','connexion.controller:loginAction') 
+    ->bind('verifconnexion')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
