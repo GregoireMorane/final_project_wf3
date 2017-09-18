@@ -5,6 +5,7 @@ namespace Controller;
 use Entity\Client;
 
 class ClientController extends ControllerAbstract{
+    
     public function registerAction() {
         $client = new Client();
         $errors = [];

@@ -22,8 +22,7 @@
                         <select id="lieucollecté" name="adress_collection_idadress_collection" class="form-control">
                             <option value="">choisissez </option>
                             {% for collector in collectors %}
-                             <option value="{{collector.idcollector}}">{{collector.firstname}} </option>
-                            
+                                 <option value="{{collector.idcollector}}">{{collector.firstname}} </option>
                             {% endfor %}
                         </select>
                     </div>
