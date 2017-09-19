@@ -10,6 +10,7 @@ use Entity\AdressesCollectionsHaveCollector;
  * @author ghmor
  */
 class CollecteRepository extends RepositoryAbstract{
+
     public function save(AdressesCollectionsHaveCollector $collecte){
         $data =[
             'adress_collection_idadress_collection' => $collecte->getAdress_collection_idadress_collection(),
@@ -34,7 +35,55 @@ class CollecteRepository extends RepositoryAbstract{
             $collecte->setId_adresses_collections_have_collector($this->db->lastInsertId());
         }
     }
+
+    public function findCurrentWeekBioWasteWeightByClientId($id, $date) {
+        $query = <<<SQL
+SELECT SUM(achc.weight)
+FROM adresses_collections_have_collector achc
+JOIN adresses_collectes ac ON ac.id_collection_address = achc.adress_collection_idadress_collection
+JOIN client ON client.id_client = ac.client_idclient
+WHERE client.id_client = :id 
+AND achc.collection_datetime BETWEEN :date AND now()
+SQL;
     
+        return $this->db->fetchColumn($query, [
+            ':id' => $id,
+            ':date' => date('Y-m-d', strtotime('last monday'))
+        ]);
+    }
+
+    public function findTotalBioWasteWeightByClientId($id) {
+        $query = <<<SQL
+SELECT SUM(achc.weight)
+FROM adresses_collections_have_collector achc
+JOIN adresses_collectes ac ON ac.id_collection_address = achc.adress_collection_idadress_collection
+JOIN client ON client.id_client = ac.client_idclient
+WHERE client.id_client = :id
+SQL;
+
+        return $this->db->fetchColumn($query, [':id' => $id]);
+    }
+    
+    public function findCollectionDateByClientId($id) {
+        $query = <<<SQL
+SELECT achc.*
+FROM adresses_collections_have_collector achc
+JOIN adresses_collectes ac ON ac.id_collection_address = achc.adress_collection_idadress_collection
+JOIN client ON client.id_client = ac.client_idclient
+WHERE client.id_client = :id
+ORDER BY collection_datetime DESC
+SQL;
+        
+        $dbCollectionDates = $this->db->fetchAll($query, [':id' => $id]);
+        $collectionDates = [];
+        
+        foreach ($dbCollectionDates as $dbCollectionDate) {
+            $collectionDates[] = $this->buildEntity($dbCollectionDate);
+        }
+        
+        return $collectionDates;
+    }
+
     private function buildEntity(array $data){
         $collecte = new AdressesCollectionsHaveCollector();
         

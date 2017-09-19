@@ -72,7 +72,7 @@ class LieuCollecte {
     }
 
     public function getAddress_collection() {
-        return $this->adress_collection;
+        return $this->address_collection;
     }
 
     public function getPostal_code() {
@@ -117,8 +117,8 @@ class LieuCollecte {
         return $this;
     }
     
-    public function setAddress_collection($adress_collection) {
-        $this->adress_collection = $adress_collection;
+    public function setAddress_collection($address_collection) {
+        $this->address_collection = $address_collection;
         return $this;
     }
 

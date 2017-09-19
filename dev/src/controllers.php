@@ -2,9 +2,6 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -20,6 +17,7 @@ $app->get('/', function () use ($app) {
 //->bind('connexion')
 //;
 
+
 $app->get('/compte/collecteur', function () use ($app) {
     return $app['twig']->render('comptecollecteur.html.twig', array());
 })
@@ -30,24 +28,14 @@ $app->get('/compte/collecteur', function () use ($app) {
 $app->get('/compte/admin', function () use ($app) {
     return $app['twig']->render('compteadmin.html.twig', array());
 })
-
 ->bind('compteadmin')
 ;
-//Routes des actions
-$app->get('/compte/client', function () use ($app) {
-    $client = $app['user.manager']->getUser();
-    $collectors = $app['collector.repository']->findByClientId($client->getIdClient());
-    
-    return $app['twig']->render('compteclient.html.twig', array('collectors' => $collectors));
-})
-->bind('compteclient')
-; 
 
-$app->get('/compte/client', function () use ($app) {
-    return $app['twig']->render('compteclient.html.twig', array());
-})
-->bind('compteclient')
-;
+//Routes des actions
+$app
+    ->match('/compte/client', 'client.controller:listAction')
+    ->bind('compteclient')
+; 
 
 $app
     ->match('/formulaire/ajout/collecteur','collector.controller:registerAction') 
@@ -95,7 +83,7 @@ $app
 ;
 
 $app
-    ->match('/comptecollecteur','lieucollecte.controller:listAction') 
+    ->match('/compte/collecteur','lieucollecte.controller:listAction') 
     ->bind('comptecollecteur')
 ;
 

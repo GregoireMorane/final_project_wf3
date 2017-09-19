@@ -14,7 +14,8 @@ class LieuCollecteRepository extends RepositoryAbstract{
     public function save(LieuCollecte $lieu)
     {
         $data = [
-          'adress_collection' => $lieu->getAddress_collection(),
+          'address_collection' => $lieu->getAddress_collection(),
+          'address_name' => $lieu->getAddress_name(),
           'postal_code' => $lieu->getPostal_code(),
           'city' => $lieu->getCity(),
           'further_information' => $lieu->getFurther_information(),
@@ -47,6 +48,24 @@ class LieuCollecteRepository extends RepositoryAbstract{
         return $lieux;
     }
     
+    public function findLieuCollecteByClientId($id) {
+        $query = <<<SQL
+SELECT ac.*
+FROM adresses_collectes ac
+WHERE client_idclient = :id
+ORDER BY id_collection_address
+SQL;
+        
+        $dbLieux = $this->db->fetchAll($query, [':id' => $id]);
+        $lieux =[];
+        
+        foreach ($dbLieux as $dbLieu){
+            $lieux[] = $this->buildEntity($dbLieu);
+        }
+        
+        return $lieux;
+    }
+    
     public function findByEmptyWeight() {
         $dbLieux = $this->db->fetchAll(
                 'SELECT a.address_name FROM adresses_collectes a '
@@ -65,8 +84,8 @@ class LieuCollecteRepository extends RepositoryAbstract{
         
         $lieu
                 ->setId_collection_address($data['id_collection_address'])
-                ->setAddress_name($data['adress_name'])
-                ->setAddress_collection($data['adress_collection'])
+                ->setAddress_name($data['address_name'])
+                ->setAddress_collection($data['address_collection'])
                 ->setPostal_code($data['postal_code'])
                 ->setCity($data['city'])
                 ->setFurther_information($data['further_information'])

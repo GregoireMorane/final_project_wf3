@@ -44,7 +44,7 @@ class UserManager {
     
     public function getFirstname(){
         if($this->session->has('user')){
-            return $this->getUser()->getFirstname();
+            return $this->getUser()->getFullName();
         }
         return '';
     }

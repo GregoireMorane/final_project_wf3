@@ -31,8 +31,8 @@ class LieuCollecteController extends ControllerAbstract{
         if(!empty($_POST)){
             
                 $lieu
-                    ->setAddress_collection($_POST['adress_collection'])
-                    ->setAddress_name($_POST[$address_name])
+                    ->setAddress_collection($_POST['address_collection'])
+                    ->setAddress_name($_POST['address_name'])
                     ->setPostal_code($_POST['postal_code'])
                     ->setCity($_POST['city'])
                     ->setFurther_information($_POST['further_information'])
@@ -46,8 +46,8 @@ class LieuCollecteController extends ControllerAbstract{
                 $errors['client_idclient'] = "Le client est obligatoire";
             }
             
-            if(empty($_POST['adress_collection'])){
-                $errors['adress_collection'] = "L'adresse est obligatoire";
+            if(empty($_POST['address_collection'])){
+                $errors['address_collection'] = "L'adresse est obligatoire";
             }
             
             if(empty($_POST['firm_type'])){
