@@ -88,7 +88,7 @@ $app
 ;
 
 $app
-    ->match('/compte/collecteur','lieucollecte.controller:listAction') 
+    ->match('/compte/collecteur','collector.controller:listAction') 
     ->bind('comptecollecteur')
 ;
 

@@ -17,9 +17,9 @@
     <div id="collecte" class="row bloc jaune">
         <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">
             <div class="panel panel-default text-center">
-                <div class="panel-heading "><h3 class='panel-title'>Nouveau formulaire</h3></div>
+                <div class="panel-heading "><h3 class='panel-title'>Nouvelle collecte</h3></div>
                 <div class="panel-body">
-                  <button type="button" class="btn btn-block">Créer un nouveau formulaire</button>
+                    <button type="button" class="btn btn-block btn-success">Ajouter</button>
                 </div>
             </div>
         </div>
@@ -43,27 +43,26 @@
                     <h3 class='panel-title'>Clients à collecter</h3>
                 </div>
                 <div class="panel-body">
-                    <h3>A récolter aujourd'hui</h3>
+                    <h3>A collecter aujourd'hui</h3>
+                    {%for adresse in adresses%}
                     <ul>
-                        <li>Société</li>
-                        <li>Adresse</li>
-                        <li>CP</li>
-                        <li>Ville</li>
-                        <li>Tel</li>
-                        <li>Contact</li>
-                        <li>Jours de collecte</li>
-                    </ul>
+                        <li>Etablissement: {{adresse.address_name}}</li>
+                        <li>Adresse: {{adresse.address_collection}}</li>
+                        <li>Code postal: {{adresse.postal_code}}</li>
+                        <li>Ville: {{adresse.city}}</li>
+                    </ul>                    
                     <hr>
+                    {%endfor%}
                     <h3>A récolter demain</h3>
+                    {%for adresse in adressesTomorrow%}
                     <ul>
-                        <li>Société</li>
-                        <li>Adresse</li>
-                        <li>CP</li>
-                        <li>Ville</li>
-                        <li>Tel</li>
-                        <li>Contact</li>
-                        <li>Jours de collecte</li>
-                    </ul>
+                        <li>Etablissement: {{adresse.address_name}}</li>
+                        <li>Adresse: {{adresse.address_collection}}</li>
+                        <li>Code postal: {{adresse.postal_code}}</li>
+                        <li>Ville: {{adresse.city}}</li>
+                    </ul>                    
+                    <hr>
+                    {%endfor%}
                 </div>
             </div>
         </div>
@@ -71,20 +70,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading text-center"><h3 class='panel-title'>Vos DAC de la semaine dernière</h3></div>
                 <div class="panel-body btn-group-vertical btn-block" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default">
-                        Nom Client
-                        <span class="glyphicon glyphicon-eye-open pull-right" aria-hidden="true"></span>
-                    </button>
                     
                     <button type="button" class="btn btn-default">
                         Nom Client
                         <span class="glyphicon glyphicon-eye-open pull-right" aria-hidden="true"></span>
                     </button>
-                    
-                    <button type="button" class="btn btn-default">
-                        Nom Client
-                        <span class="glyphicon glyphicon-eye-open pull-right" aria-hidden="true"></span>
-                    </button>
+
                 </div>
             </div>
         </div>
@@ -97,23 +88,17 @@
                 <div class="panel-body">
                     <form method="post">
                         <fieldset>
-                          <label class="col-md-4 control-label" for="composte_collecte"></label>  
-                          <input id="composte_collecte" name="composte_collecte" type="number" placeholder="" class="form-control input-md" required="">
-                          <span class="help-block">en kilos</span>  
-                          <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-success">Valider et envoyer</button>
+                          <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-success">Insérer</button>
                         </fieldset>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-    <br>
-    <div id="recap" class="bloc gris row">
         <div class="col-lg-4 col-md-4 col-sm-8 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
             <div class="panel panel-default text-center">
-                <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés aujourd'hui</h3></div>
+                <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés depuis le début de votre mission</h3></div>
                 <div class="panel-body">
-                    <strong>3000 kilos</strong><br>
+                    <strong>{{totalWaste}} kilos</strong><br>
                     <i>Super!</i>
                 </div>
             </div>
@@ -122,7 +107,7 @@
             <div class="panel panel-default text-center">
                 <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés cette semaine</h3></div>
                 <div class="panel-body">
-                    <strong>3000 kilos</strong><br>
+                    <strong>{{weeklyWaste}} kilos</strong><br>
                     <i>Bravo!</i>
                 </div>
             </div>
@@ -131,7 +116,7 @@
             <div class="panel panel-default text-center">
                 <div class="panel-heading "><h3 class='panel-title'>Composte collecté cette semaine</h3></div>
                 <div class="panel-body">
-                    <strong>3000 kilos</strong><br>
+                    <strong>{{weeklyOutput}} kilos</strong><br>
                     <i>:)</i>
                 </div>
             </div>
@@ -140,7 +125,7 @@
             <div class="panel panel-default text-center">
                 <div class="panel-heading "><h3 class='panel-title'>Composte collecté depuis le début de votre mission</h3></div>
                 <div class="panel-body">
-                    <strong>3000 kilos</strong><br>
+                    <strong>{{totalOutput}} kilos</strong><br>
                     <i>Génial</i>
                 </div>
             </div>
