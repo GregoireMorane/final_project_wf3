@@ -42,7 +42,8 @@ $app->get('/compte/client', function () use ($app) {
 ;
 
 $app
-    ->match('/formulaire/ajout/collecteur','collector.controller:registerAction') 
+    ->match('/formulaire/ajout/collecteur/{id}','collector.controller:registerAction')
+    ->value('id', null)
     ->bind('registercollector')
 ;
 
@@ -52,7 +53,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/lieutraitement','lieutraitement.controller:registerAction') 
+    ->match('/formulaire/ajout/lieutraitement/{id}','lieutraitement.controller:registerAction')
+    ->value('id', null)
     ->bind('registerlieutraitement')
 ;
 
@@ -62,7 +64,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/lieucollecte','lieucollecte.controller:registerAction') 
+    ->match('/formulaire/ajout/lieucollecte/{id}','lieucollecte.controller:registerAction')
+    ->value('id', null)
     ->bind('registerlieucollecte')
 ;
 

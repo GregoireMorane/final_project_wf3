@@ -44,6 +44,19 @@ SQL;
        return $this->db->fetchColumn($query);
 
    }
+   
+   public function findTotalBioWasteWeightByWeek() {
+       $query = <<<SQL
+SELECT SUM(achc.weight)
+FROM adresses_collections_have_collector achc
+WHERE  collection_datetime BETWEEN :date AND now()
+SQL;
+
+       return $this->db->fetchColumn($query,[
+                    ':date' => date('Y-m-d', strtotime('-1 week')),
+                ]);
+
+   }
     
     private function buildEntity(array $data){
         $collecte = new AdressesCollectionsHaveCollector();
@@ -60,5 +73,23 @@ SQL;
                 ->setFurther_information($data['further_information'])
                 ->setProcessing_datetime($data['processing_location']);
         return $collecte;
+    }
+    
+    public function delete(AdressesCollectionsHaveCollector $collecte){
+        $this->db->delete('adresses_collections_have_collector', ['id_adresses_collections_have_collector' => $collecte->getId_adresses_collections_have_collector()]);
+    }
+    
+    public function find($id_adresses_collections_have_collector)
+    {
+        $dbCollecte = $this->db->fetchAssoc(
+            'SELECT * FROM adresses_collections_have_collector WHERE id_adresses_collections_have_collector = :id_adresses_collections_have_collector',
+            [
+                ':id_adresses_collections_have_collector' => $id_adresses_collections_have_collector
+            ]
+        );
+        
+        if (!empty($dbCollecte)) {
+            return $this->buildEntity($dbCollecte);
+        }
     }
 }

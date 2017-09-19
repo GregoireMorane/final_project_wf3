@@ -15,74 +15,32 @@
                 <ul class=niveau1>
                     <li class="plus italic">Lieux de traitement</li>
                     {% for location in locations %}
-                        <li>{{location.processing_location}}<a href="#" class="italic">     modifier</a>
+                        <li>{{location.processing_location}}<a href="{{path ('registerlieutraitement', {id: location.id_location_processing}) }}" class="italic">     modifier</a>
                             <ul class=niveau2>
-                                <li class=plus> les collecteurs</li>
+                                <li class="plus italic"> les collecteurs</li>
                                     {% for collector in location.collectors %}
                                     <li class=plus>
-                                        {{collector.firstname}}<a href="#" class="italic">     modifier</a>
+                                        {{collector.firstname}}<a href="{{path ('registercollector', {id: collector.idcollector}) }}" class="italic">     modifier</a>
                                         <ul class=niveau3>
                                             <li class="plus italic"> les lieux de colectes</li>
                                             {% for lieu in location.lieux %}
                                              <li class=plus>
-                                            {{lieu.address_name}}<a href="#" class="italic">     modifier</a>
+                                            {{lieu.address_name}}<a href="{{path ('registerlieucollecte', {id: lieu.id_collection_address}) }}" class="italic">     modifier</a>
                                             </li>
                                             {% endfor %}
-                                            <li class=plus>ajouter un lieu de collecte à ce secteur<a class="buttonlink" href="{{ path('registerlieucollecte')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
-                                             
+                                            <li class="plus italic">ajouter un lieu de collecte à ce secteur<a class="buttonlink" href="{{ path('registerlieucollecte')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
                                         </ul>
                                     </li>
                                 {% endfor %}
                                 <li class="plus italic">ajouter un collectecteur à ce lieu de traitement<a class="buttonlink" href="{{ path('registertraitementcollector')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
                             </ul>
                         </li>{% endfor %}
-                        <li class="plus italic">ajouter un lieu de traitement<a class="buttonlink" href="{{ path('registerlieutraitement')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
+                        <li class="plus italic">ajouter un secteur<a class="buttonlink" href="{{ path('registerlieutraitement')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
                     </ul>
 
                 </div>
             </div>
-            {#le menu en responsive#}
-            <div class="listeresponsive row">
-                <div class="dropdown col-sm-4 col-xs-5">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Quel lieu de traitemnet
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        {% for location in locations %}
-                        <li><a href="#">{{location.processing_location}}</a></li>
-                        {% endfor %}
-                            {#<li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>#}
-                    </ul>
-                </div> 
-                <div class="dropdown col-sm-4 col-xs-5">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Quel le collecteur?
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">collecteur</a></li>
-                        <li><a href="#">collecteur 2</a></li>
-                        <li><a href="#">collecteur3</a></li>
-                            {#<li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>#}
-                    </ul>
-                </div> 
-                <div class="dropdown col-sm-4 col-xs-6">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Quel client?
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Client</a></li>
-                        <li><a href="#">Client 2</a></li>
-                        <li><a href="#">Client 3</a></li>
-                            {#<li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>#}
-                    </ul>
-                </div> 
-            </div>
+            
 
 
             <div class="row col-md-8"> 
@@ -90,7 +48,7 @@
                     <div class="panel panel-default text-center">
                         <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés cette semaine</h3></div>
                         <div class="panel-body">
-                            <p><strong>30000 kilos</strong></p>
+                            <p><strong>{{totalweightbyweek}}</strong></p>
                             <i>Bravo!</i>
                         </div>
                     </div>

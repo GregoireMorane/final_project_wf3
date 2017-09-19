@@ -91,5 +91,24 @@ class ClientRepository extends RepositoryAbstract{
 
         
         return $client;
-    }        
+    }
+    
+    public function delete(Client $client){
+        $this->db->delete('client', ['id_client' => $client->getIdClient()]);
+    }
+    
+    public function find($id_client)
+    {
+        $dbClient = $this->db->fetchAssoc(
+            'SELECT * FROM client WHERE id_client = :id_client',
+            [
+                ':id_client' => $id_client
+            ]
+        );
+        
+        if (!empty($dbClient)) {
+            return $this->buildEntity($dbClient);
+        }
+    }
+    
 }

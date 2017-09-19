@@ -61,24 +61,6 @@ class LieuCollecteRepository extends RepositoryAbstract{
         return $lieux;
     }
     
-    public function findAllByLocationId($locationId) 
-    {
-        $query = <<<SQL
-SELECT * FROM adresses_collectes ac 
-JOIN processing_location pl ON ac.location_processing_idlocation_processing = pl.id_location_processing 
-WHERE pl.id_location_processing = :location
-SQL;
-
-                
-        $dbLieux = $this->db->fetchAll($query, [':location' => $locationId]);
-        $Lieux =[];
-        
-        foreach ($dbLieux as $dbLieu){
-            $Lieux[] = $this->buildEntity($dbLieu);
-        }
-        return $Lieux;
-    }
-    
     private function buildEntity(array $data){
         $lieu = new LieuCollecte();
         
@@ -96,5 +78,41 @@ SQL;
                 ->setFirm_type($data['firm_type']);
        
        return $lieu;
+    }
+    
+    public function delete(LieuCollecte $lieu){
+        $this->db->delete('adresses_collectes', ['id_collection_address' => $lieu->getId_collection_address()]);
+    }
+    
+    public function find($id)
+    {
+        $dbLieuCollecte = $this->db->fetchAssoc(
+            'SELECT * FROM adresses_collectes WHERE id_collection_address = :id_collection_address',
+            [
+                ':id_collection_address' => $id
+            ]
+        );
+        
+        if (!empty($dbLieuCollecte)) {
+            return $this->buildEntity($dbLieuCollecte);
+        }
+    }
+    
+      public function findAllByLocationId($locationId) 
+    {
+        $query = <<<SQL
+SELECT * FROM adresses_collectes ac 
+JOIN processing_location pl ON ac.location_processing_idlocation_processing = pl.id_location_processing 
+WHERE pl.id_location_processing = :location
+SQL;
+
+                
+        $dbLieux = $this->db->fetchAll($query, [':location' => $locationId]);
+        $Lieux =[];
+        
+        foreach ($dbLieux as $dbLieu){
+            $Lieux[] = $this->buildEntity($dbLieu);
+        }
+        return $Lieux;
     }
 }
