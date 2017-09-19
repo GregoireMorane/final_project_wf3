@@ -14,7 +14,8 @@ class LieuCollecteRepository extends RepositoryAbstract{
     public function save(LieuCollecte $lieu)
     {
         $data = [
-          'adress_collection' => $lieu->getAddress_collection(),
+          'address_collection' => $lieu->getAddress_collection(),
+          'address_name' => $lieu->getAddress_name(),
           'postal_code' => $lieu->getPostal_code(),
           'city' => $lieu->getCity(),
           'further_information' => $lieu->getFurther_information(),
@@ -47,10 +48,43 @@ class LieuCollecteRepository extends RepositoryAbstract{
         return $lieux;
     }
     
+    public function findByEmptyWeight() {
+        $dbLieux = $this->db->fetchAll(
+                'SELECT a.address_name FROM adresses_collectes a '
+                . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
+                . ' WHERE b.weight IS NULL');
+        $lieux =[];
+        
+        foreach ($dbLieux as $dbLieu){
+            $lieux[] = $this->buildEntity($dbLieu);
+        }
+        return $lieux;
+    }
+    
+    public function findAllByLocationId($locationId) 
+    {
+        $query = <<<SQL
+SELECT * FROM adresses_collectes ac 
+JOIN processing_location pl ON ac.location_processing_idlocation_processing = pl.id_location_processing 
+WHERE pl.id_location_processing = :location
+SQL;
+
+                
+        $dbLieux = $this->db->fetchAll($query, [':location' => $locationId]);
+        $Lieux =[];
+        
+        foreach ($dbLieux as $dbLieu){
+            $Lieux[] = $this->buildEntity($dbLieu);
+        }
+        return $Lieux;
+    }
+    
     private function buildEntity(array $data){
         $lieu = new LieuCollecte();
         
-        $lieu->setId_collection_address($data['id_collection_address'])
+        $lieu
+                ->setId_collection_address($data['id_collection_address'])
+                ->setAddress_name($data['address_name'])
                 ->setAddress_collection($data['adress_collection'])
                 ->setPostal_code($data['postal_code'])
                 ->setCity($data['city'])

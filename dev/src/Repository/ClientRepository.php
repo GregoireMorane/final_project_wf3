@@ -47,14 +47,31 @@ class ClientRepository extends RepositoryAbstract{
         }
         return $clients;
     }
-    
+    // fonction utile au menu de la page admin ne pas enlever pour le moment
+//    public function findAllByLocationId() 
+//    {
+//        $query = <<<SQL
+//SELECT * FROM adresses_collectes ac 
+//JOIN processing_location pl ON ac.location_processing_idlocation_processing = pl.id_location_processing 
+//WHERE pl.id_location_processing = 1;
+//SQL;
+//
+//                
+//        $dbClients = $this->db->fetchAll('$query');
+//        $clients =[];
+//        
+//        foreach ($dbClients as $dbClient){
+//            $clients[] = $this->buildEntity($dbClient);
+//        }
+//        return $clients;
+//    }
     /**
      * 
      * @param array $data
      * @return Client
      */
     private function buildEntity(array $data) {
-        $client = new Client();
+            $client = new Client();
         
         $client
             ->setIdClient($data['id_client'])

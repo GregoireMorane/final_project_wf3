@@ -23,30 +23,40 @@
                     <li class="nav-item">
                       <a class="nav-link active" href="{{path('homepage')}}"><img class="logo" src="{{asset('images/Alchimiste_logo.png')}}"></a>
                     </li>
-
                 {# on affiche le rendu de la route categories_menu #}
                 {#{{ render(url('categories_menu')) }}#}
-                    <li class="nav-item">
-                      <a class="nav-link active" href="{{path('connexion')}}">Page de connexion</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Déconnexion</a>
-                    </li>
+                    {% if user_manager.user %}
+                        <li class="nav-item">
+                            <span>{{ user_manager.firstname }}</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{path('deconnexion')}}">Deconnexion</a>
+                        </li>
+                    {% else %} 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('connexion')}}">Connexion</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav
         </nav>
-
-        
-            {% block content %}
+            <div>
+                {% for type, flashes in app.session.flashbag.all %}
+                    {% for  flash in flashes %}
+                        {% if type == 'error' %} {% set type = 'danger' %} {% endif %}
+                        <div class="aler alert-{{type}}"> {{ flash | raw }} </div>
+                    {% endfor %}
+                {% endfor %}
+                {% block content %}
+                {% endblock %}
+            </div>
+            {% block javascripts %}
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script src="{{asset('js/homepagescript.js')}}"></script>
+                <script src="{{asset('js/menu.js')}}"></script>
             {% endblock %}
-        
-        {% block javascripts %}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            <script src="{{asset('js/homepagescript.js')}}"></script>
-            <script src="{{asset('js/menu.js')}}"></script>
-        {% endblock %}
     </body>
 </html>

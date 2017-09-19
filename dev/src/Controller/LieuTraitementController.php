@@ -26,9 +26,31 @@ class LieuTraitementController extends ControllerAbstract{
                      ->setCountry($_POST['country'])
                     ;
             
+            if(empty($_POST['processing_location'])){
+                $errors['processing_location'] = "Le lieu de traitement est obligatoire";
+            }
+            
+            if(empty($_POST['processing_address'])){
+                $errors['processing_address'] = "L'adresse du lieu de traitement est obligatoire";
+            }
+            
+            if(empty($_POST['postal_code'])){
+                $errors['postal_code'] = "Le code postal est obligatoire";
+            }
+            
+            if(empty($_POST['city'])){
+                $errors['city'] = "La ville est obligatoire";
+            }
+            
+            if(empty($_POST['country'])){
+                $errors['country'] = "Le pays est obligatoire";
+            }
+            
             if(empty($errors)){
                 $this->app['lieutraitement.repository']->save($location);
-                return $this->redirectRoute('homepage');
+                $message = '<strong>Le lieu de traitement à bien été enregistré</strong>';
+                $this->addFlashMessage($message, 'success');
+                return $this->redirectRoute('compteadmin');
             }
             else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';
@@ -45,14 +67,29 @@ class LieuTraitementController extends ControllerAbstract{
         
     }
     public function listAction() {
-        $clients = $this->app['client.repository']->findAll();
-        $collectors = $this->app['collector.repository']->findAll();
+       // $clients = $this->app['client.repository']->findAll();
+    //    $collectors = $this->app['collector.repository']->findAllByLocation();
+        
+        
+        $totalweight = $this->app['collecte.repository']->findTotalBioWasteWeight();
         $locations = $this->app['lieutraitement.repository']->findAll();
+        
+        foreach ($locations as $location) {
+            $collectors = $this->app['collector.repository']->findAllByLocationId($location->getId_location_processing());
+            $Lieux = $this->app['lieucollecte.repository']->findAllByLocationId($location->getId_location_processing());
+            
+            
+            $location->setCollectors($collectors);
+            $location->setLieux($Lieux);
+        } 
+        
+        
         return $this->render('compteadmin.html.twig', 
                     [
                     'locations' => $locations,
-                    'collectors' => $collectors,
-                    'clients' => $clients
+                    'totalweight' => $totalweight,
+//                    'collectors' => $collectors,
+//                    'clients' => $clients
                     ]
         );
     }

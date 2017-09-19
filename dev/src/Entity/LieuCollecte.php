@@ -14,6 +14,11 @@ class LieuCollecte {
     private $id_collection_address;
     /**
      *
+     * @var string 
+     */
+    private $address_name;
+    /**
+     *
      * @var string
      */
     private $address_collection;
@@ -61,9 +66,13 @@ class LieuCollecte {
     public function getId_collection_address() {
         return $this->id_collection_address;
     }
+    
+    public function getAddress_name() {
+        return $this->address_name;
+    }
 
     public function getAddress_collection() {
-        return $this->adress_collection;
+        return $this->address_collection;
     }
 
     public function getPostal_code() {
@@ -103,8 +112,13 @@ class LieuCollecte {
         return $this;
     }
 
-    public function setAddress_collection($adress_collection) {
-        $this->adress_collection = $adress_collection;
+    public function setAddress_name($address_name) {
+        $this->address_name = $address_name;
+        return $this;
+    }
+    
+    public function setAddress_collection($address_collection) {
+        $this->address_collection = $address_collection;
         return $this;
     }
 

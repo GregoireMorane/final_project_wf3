@@ -34,6 +34,16 @@ class CollecteRepository extends RepositoryAbstract{
             $collecte->setId_adresses_collections_have_collector($this->db->lastInsertId());
         }
     }
+    public function findTotalBioWasteWeight() {
+       $query = <<<SQL
+SELECT SUM(achc.weight)
+FROM adresses_collections_have_collector achc
+WHERE  collection_datetime >= '20170001'
+SQL;
+
+       return $this->db->fetchColumn($query);
+
+   }
     
     private function buildEntity(array $data){
         $collecte = new AdressesCollectionsHaveCollector();

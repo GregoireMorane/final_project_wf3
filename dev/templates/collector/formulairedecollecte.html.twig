@@ -5,12 +5,12 @@
                 <!-- Form Name -->
                 <legend style="text-align: center;"><strong>Formulaire de collecte des biodéchets</strong></legend>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="adress_collection_idadress_collection">Lieux collecté</label>
+                    <label class="col-md-4 control-label" for="adress_collection_idadress_collection">Lieu collecté</label>
                     <div class="col-md-4">
                         <select id="lieucollecté" name="adress_collection_idadress_collection" class="form-control">
+                            <option value="">Choississez un lieu collecté</option>
                             {% for lieu in lieux %}
                              <option value="{{lieu.id_collection_address}}">{{lieu.adress_collection}} </option>
-                            
                             {% endfor %}
                         </select>
                     </div>
@@ -19,39 +19,35 @@
                     <label class="col-md-4 control-label" for="collector_idcollector">Collecteur</label>
                     <div class="col-md-4">
                         <select id="lieucollecté" name="collector_idcollector" class="form-control">
+                            <option value="">Choississez un Collecteur</option>
                             {% for collector in collectors %}
-                                 <option value="{{collector.idcollector}}">{{collector.firstname}} </option>
+                             <option value="{{collector.idcollector}}">{{collector.firstname}} {{collector.lastname}}</option>
                             {% endfor %}
                         </select>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="collection_datetime">heure de ramassage</label>  
+                    <label class="col-md-4 control-label" for="collection_datetime">Date et Heure de ramassage</label>  
                     <div class="col-md-4">
-                        <input id="collection_datetime" name="collection_datetime" type="text" placeholder="date de collecte" class="form-control input-md">
-                        <span class="help-block">ex: 17h30</span>  
+                        <input id="collection_datetime" name="collection_datetime" type="text" placeholder="Date et Heure de ramassage" class="form-control input-md"> 
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="bin_number">numero du bac collecté</label>  
+                    <label class="col-md-4 control-label" for="bin_number">Numero du bac collecté</label>  
                     <div class="col-md-4">
-                        <input id="bin_number" name="bin_number" type="text" placeholder="numero du bac collecté" class="form-control input-md">
-                        <span class="help-block">ex : 1522563</span>  
+                        <input id="bin_number" name="bin_number" type="text" placeholder="Numéro du bac collecté" class="form-control input-md"> 
                     </div>
                 </div>
-                <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="weight">poids composté en kg</label>  
+                    <label class="col-md-4 control-label" for="weight">Poids composté en kg</label>  
                     <div class="col-md-4">
-                        <input id="poids composté" name="weight" type="text" placeholder="poids composté" class="form-control input-md">
-                        <span class="help-block">ex : 40</span>  
+                        <input id="poids composté" name="weight" type="text" placeholder="Poids composté en kg" class="form-control input-md"> 
                     </div>
                 </div>
-                <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="compost_quality">compostable</label>
+                    <label class="col-md-4 control-label" for="compost_quality">Qualité du compost</label>
                     <div class="col-md-4">
                         <select id="compostable" name="compost_quality" class="form-control">
                             <option value="bon">Bonne</option>
@@ -60,40 +56,32 @@
                         </select>
                     </div>
                 </div>
-                
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="commentaire">Commentaires</label>  
                     <div class="col-md-4">
-                        <input id="commentaire" name="further_information" type="textarea" placeholder="commentaires" class="form-control input-md">
-                        <span class="help-block">ex : pommes pourries</span>  
+                        <input id="commentaire" name="further_information" type="textarea" placeholder="Commentaires" class="form-control input-md"> 
                     </div>
                 </div>
-                
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="processing_datetime">date de traitement</label>  
+                    <label class="col-md-4 control-label" for="processing_datetime">Date de traitement</label>  
                     <div class="col-md-4">
-                        <input id="processing_datetime" name="processing_datetime" type="text" placeholder="date" class="form-control input-md">
-                        <span class="help-block">ex : 45</span>  
+                        <input id="processing_datetime" name="processing_datetime" type="text" placeholder="Date de traitement" class="form-control input-md"> 
                     </div>
                 </div>
-                
-                
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="processing_location">Lieu de traitement</label>
                     <div class="col-md-4">
                         <select id="processing_location " name="processing_location" class="form-control">
                             {% for location in locations %}
-                             <option value="{{location.id_location_processing}}">{{location.processing_location}} </option>
+                             <option value="{{location.id_location_processing}}">{{location.processing_location}}</option>
                             {% endfor %}
                         </select>
                     </div>
                 </div>
-                <!-- Button (Double) -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="">sauvegarde </label>
+                    <label class="col-md-4 control-label" for="button1id"></label>
                     <div class="col-md-8">
-                        <button id="" name="" class="btn btn-success" type="submit">sauvegarder</button>
-                        <button id="Valider et envoyer le formulaire" name="Valider et envoyer le formulaire"  class="btn btn-danger">Valider et envoyer le formulaire</button>
+                        <button id="button1id" name="button1id" class="btn btn-success" type="submit">Valider</button>
                     </div>
                 </div>
             </fieldset>

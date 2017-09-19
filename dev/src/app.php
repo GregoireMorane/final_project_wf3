@@ -11,6 +11,7 @@ $app->register(new TwigServiceProvider());
 $app->register(new HttpFragmentServiceProvider());
 $app['twig'] = $app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
+    $twig->addGlobal('user_manager', $app['user.manager']);
     return $twig;
 });
 //d�finition de la base de donn�e
@@ -91,5 +92,4 @@ $app['connexion.repository']= function () use ($app){
 $app['user.manager']= function () use ($app){
     return new Service\UserManager($app['session']);
 };
-
 return $app;

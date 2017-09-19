@@ -21,7 +21,7 @@ class CollecteControler extends ControllerAbstract{
         $locations = $this->app['lieutraitement.repository']->findAll();
        
         
-            if(!empty($_POST)){
+        if(!empty($_POST)){
             $collecte->setAdress_collection_idadress_collection($_POST['adress_collection_idadress_collection'])
                     ->setCollector_idcollector($_POST['collector_idcollector'])
                     ->setCollection_datetime($_POST['collection_datetime'])
@@ -31,13 +31,28 @@ class CollecteControler extends ControllerAbstract{
                     ->setCompost_quality($_POST['compost_quality'])
                     ->setFurther_information($_POST['further_information'])
                     ->setProcessing_location($_POST['processing_location']);
+
+            if(empty($_POST['adress_collection_idadress_collection'])){
+                $errors['adress_collection_idadress_collection'] = "L'adresse est obligatoire";
+            }
             
-                if(empty($errors)){
-                
+            if(empty($_POST['collector_idcollector'])){
+                $errors['collector_idcollector'] = "Le collecteur est obligatoire";
+            }
+            
+            if(empty($_POST['collection_datetime'])){
+                $errors['collection_datetime'] = "La date de heure est obligatoire";
+            }
+            
+            if(empty($_POST['bin_number'])){
+                $errors['bin_number'] = "Le numéro du bac obligatoire";
+            }
+
+            if(empty($errors)){
                 $this->app['collecte.repository']->save($collecte);
-                
-                return $this->redirectRoute('homepage');
-                
+                $message = '<strong>La collecte à bien été enregistré</strong>';
+                $this->addFlashMessage($message, 'success');
+                return $this->redirectRoute('comptecollecteur');
             }else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';
                 $message .= '<br>'.implode('<br>', $errors);
