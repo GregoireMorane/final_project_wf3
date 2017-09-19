@@ -97,5 +97,23 @@ SQL;
 
         
         return $collector;
-    }        
+    }
+    
+    public function delete(Collector $collector){
+        $this->db->delete('collector', ['idcollector' => $collector->getIdcollector()]);
+    }
+    
+    public function find($idcollector)
+    {
+        $dbCollector = $this->db->fetchAssoc(
+            'SELECT * FROM collector WHERE idcollector = :idcollector',
+            [
+                ':idcollector' => $idcollector
+            ]
+        );
+        
+        if (!empty($dbCollector)) {
+            return $this->buildEntity($dbCollector);
+        }
+    }
 }

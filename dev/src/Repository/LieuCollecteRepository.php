@@ -79,4 +79,22 @@ class LieuCollecteRepository extends RepositoryAbstract{
        
        return $lieu;
     }
+    
+    public function delete(LieuCollecte $lieu){
+        $this->db->delete('adresses_collectes', ['id_collection_address' => $lieu->getId_collection_address()]);
+    }
+    
+    public function find($id_collection_address)
+    {
+        $dbLieuCollecte = $this->db->fetchAssoc(
+            'SELECT * FROM adresses_collectes WHERE id_collection_address = :id_collection_address',
+            [
+                ':id_collection_address' => $id_collection_address
+            ]
+        );
+        
+        if (!empty($dbLieuCollecte)) {
+            return $this->buildEntity($dbLieuCollecte);
+        }
+    }
 }

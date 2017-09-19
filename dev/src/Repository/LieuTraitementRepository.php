@@ -57,4 +57,22 @@ class LieuTraitementRepository extends RepositoryAbstract{
         return $location;
     }
     
+    public function delete(ProcessingLocation $location){
+        $this->db->delete('processing_location', ['id_location_processing' => $location->getId_location_processing()]);
+    }
+    
+    public function find($id_location_processing)
+    {
+        $dbLocation = $this->db->fetchAssoc(
+            'SELECT * FROM processing_location WHERE id_location_processing = :id_location_processing',
+            [
+                ':id_location_processing' => $id_location_processing
+            ]
+        );
+        
+        if (!empty($dbLocation)) {
+            return $this->buildEntity($dbLocation);
+        }
+    }
+    
 }
