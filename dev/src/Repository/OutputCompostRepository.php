@@ -59,4 +59,22 @@ class OutputCompostRepository extends RepositoryAbstract{
         
         return $output;
     }
+    
+    public function delete(OutputCompost $output){
+        $this->db->delete('output_compost', ['idoutput_compost' => $client->getIdoutput_compost()]);
+    }
+    
+    public function find($idoutput_compost)
+    {
+        $dbOutput = $this->db->fetchAssoc(
+            'SELECT * FROM output_compost WHERE idoutput_compost = :idoutput_compost',
+            [
+                ':idoutput_compost' => $idoutput_compost
+            ]
+        );
+        
+        if (!empty($dbOutput)) {
+            return $this->buildEntity($dbOutput);
+        }
+    }
 }

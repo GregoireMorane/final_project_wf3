@@ -26,24 +26,20 @@ $app->get('/', function () use ($app) {
 //->bind('comptecollecteur')
 //;
 
-$app->get('/compte/admin', function () use ($app) {
-    return $app['twig']->render('compteadmin.html.twig', array());
-})
-->bind('compteadmin')
+//chemins pour la page compte admin
+$app
+    ->match('/compte/admin','lieutraitement.controller:listAction') 
+    ->bind('compteadmin')
 ;
-
 //Routes des actions
-$app->get('/compte/client', function () use ($app) {
-    $client = $app['user.manager']->getUser();
-    $collectors = $app['collector.repository']->findByClientId($client->getIdClient());
-
-    return $app['twig']->render('compteclient.html.twig', array('collectors' => $collectors));
-})
-->bind('compteclient')
+$app
+   ->match('/compte/client', 'client.controller:listAction')
+   ->bind('compteclient')
 ;
 
 $app
-    ->match('/formulaire/ajout/collecteur','collector.controller:registerAction') 
+    ->match('/formulaire/ajout/collecteur/{id}','collector.controller:registerAction')
+    ->value('id', null)
     ->bind('registercollector')
 ;
 
@@ -53,7 +49,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/lieutraitement','lieutraitement.controller:registerAction') 
+    ->match('/formulaire/ajout/lieutraitement/{id}','lieutraitement.controller:registerAction')
+    ->value('id', null)
     ->bind('registerlieutraitement')
 ;
 
@@ -63,12 +60,14 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/lieucollecte','lieucollecte.controller:registerAction') 
+    ->match('/formulaire/ajout/lieucollecte/{id}','lieucollecte.controller:registerAction')
+    ->value('id', null)
     ->bind('registerlieucollecte')
 ;
 
 $app
-    ->match('/formulaire/collecte','collecte.controller:registerAction')
+    ->match('/formulaire/collecte/{id}','collecte.controller:registerAction') 
+    ->value('id', null)
     ->bind('registercollecte')
 ;
 
@@ -91,6 +90,7 @@ $app
     ->match('/compte/collecteur','collector.controller:listAction') 
     ->bind('comptecollecteur')
 ;
+
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
