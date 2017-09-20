@@ -28,7 +28,7 @@ $app->get('/', function () use ($app) {
 
 //chemins pour la page compte admin
 $app
-    ->match('/compteadmin','lieutraitement.controller:listAction') 
+    ->match('/compte/admin','lieutraitement.controller:listAction') 
     ->bind('compteadmin')
 ;
 //Routes des actions
@@ -86,7 +86,7 @@ $app
 ;
 
 $app
-    ->match('/compte/collecteur','lieucollecte.controller:listAction') 
+    ->match('/compte/collecteur','collector.controller:listAction') 
     ->bind('comptecollecteur')
 ;
 

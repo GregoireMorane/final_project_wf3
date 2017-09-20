@@ -17,7 +17,7 @@ class LieuTraitementRepository extends RepositoryAbstract{
         
         if($location->getId_location_processing())
         {
-            $this->db->uptdate('processing_location', $data,
+            $this->db->update('processing_location', $data,
                     [
                         'id_location_processing' => $location->getId_location_processing()
                     ]);

@@ -66,7 +66,7 @@ SQL;
         return $lieux;
     }
     
-    public function findByEmptyWeight() {
+    public function findNameByEmptyWeight() {
         $dbLieux = $this->db->fetchAll(
                 'SELECT a.address_name FROM adresses_collectes a '
                 . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'

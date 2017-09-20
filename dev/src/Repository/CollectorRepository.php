@@ -73,11 +73,11 @@ SQL;
         $data = [
             'lastname' => $collector->getLastname(),
             'firstname' => $collector->getFirstname(),
-            'phone_number' => $collector->getPhoneNumber(),
+            'phone_number' => $collector->getPhone_number(),
             'email' => $collector->getEmail(),
             'password' => $collector->getPassword(),
             'address' => $collector->getAddress(),
-            'postal_code' => $collector->getPostalCode(),
+            'postal_code' => $collector->getPostal_code(),
             'city' => $collector->getCity(),
             'status' => $collector->getStatus(),
         ];
@@ -85,7 +85,7 @@ SQL;
         if ($collector->getIdcollector()) {
             $this->db->update('collector', $data,
                 [
-                    'id' => $collector->getId()
+                    'idcollector' => $collector->getIdcollector()
                 ]);
         } else {
             $this->db->insert('collector', $data);

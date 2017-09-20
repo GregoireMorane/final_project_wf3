@@ -105,7 +105,6 @@ class CollectorController extends ControllerAbstract{
             }
             
             if(empty($errors)){
-                $collector->setPassword($this->app['user.manager']->encodePassword($_POST['password']));
                 $this->app['collector.repository']->save($collector);
                 $message = '<strong>L\'utilisateur à bien été enregistré</strong>';
                 $this->addFlashMessage($message, 'success');
