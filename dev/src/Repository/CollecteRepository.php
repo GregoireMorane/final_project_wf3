@@ -10,7 +10,25 @@ use Entity\AdressesCollectionsHaveCollector;
  * @author ghmor
  */
 class CollecteRepository extends RepositoryAbstract{
-
+    public function totalWasteByCollector($id){
+        return $this->db->fetchColumn(
+                'SELECT SUM(weight) FROM adresses_collections_have_collector '
+                . ' WHERE collector_idcollector = :id', [':id' => $id]);
+    }
+    
+    public function weekWasteByCollector($id, $date){
+              
+        return $this->db->fetchColumn(
+                'SELECT SUM(weight) FROM adresses_collections_have_collector '
+                . ' WHERE collector_idcollector = :id AND collection_datetime BETWEEN :date AND now()', 
+                [
+                    ':id' => $id,
+                    ':date' => date('Y-m-d', strtotime('last monday'))
+                  //date('Y-m-d', strtotime('-1 week')) 
+                 //   'date2' => date('Y-m-d')
+                ]);
+    }
+       
     public function save(AdressesCollectionsHaveCollector $collecte){
         $data =[
             'adress_collection_idadress_collection' => $collecte->getAdress_collection_idadress_collection(),
