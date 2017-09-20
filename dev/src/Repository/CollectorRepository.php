@@ -29,8 +29,26 @@ class CollectorRepository extends RepositoryAbstract{
         }
         return $collectors;
     }
+    public function findAllByLocationId($locationId) 
+    {
+        
+        $query= <<<SQL
+SELECT * FROM collector c 
+JOIN collector_has_processing_location chpl ON c.idcollector = chpl.collector_idcollector 
+JOIN processing_location pl ON chpl.processing_location_id_location_processing = pl.id_location_processing 
+WHERE pl.id_location_processing = :location
+SQL;
+               
+        $dbCollectors = $this->db->fetchAll($query, [':location' => $locationId]);
+        $collectors =[];
+        
+        foreach ($dbCollectors as $dbCollector){
+            $collectors[] = $this->buildEntity($dbCollector);
+        }
+        return $collectors;
+    }
     
-    public function findByClientId($id) {
+    public function findCollectorByClientId($id) {
         $query = <<<SQL
 SELECT c.*
 FROM collector c
@@ -97,5 +115,23 @@ SQL;
 
         
         return $collector;
-    }        
+    }
+    
+    public function delete(Collector $collector){
+        $this->db->delete('collector', ['idcollector' => $collector->getIdcollector()]);
+    }
+    
+    public function find($id)
+    {
+        $dbCollector = $this->db->fetchAssoc(
+            'SELECT * FROM collector WHERE idcollector = :idcollector',
+            [
+                ':idcollector' => $id
+            ]
+        );
+        
+        if (!empty($dbCollector)) {
+            return $this->buildEntity($dbCollector);
+        }
+    }
 }

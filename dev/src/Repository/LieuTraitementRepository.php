@@ -1,13 +1,10 @@
 <?php
 
 namespace Repository;
+
 use Entity\ProcessingLocation;
 
-/**
- * Description of LieuTraitementRepository
- *
- * @author ghmor
- */
+
 class LieuTraitementRepository extends RepositoryAbstract{
     public function save(ProcessingLocation $location){
         $data = [
@@ -55,6 +52,24 @@ class LieuTraitementRepository extends RepositoryAbstract{
                 ->setCity($data['city'])
                 ->setCountry($data['country']);
         return $location;
+    }
+    
+    public function delete(ProcessingLocation $location){
+        $this->db->delete('processing_location', ['id_location_processing' => $location->getId_location_processing()]);
+    }
+    
+    public function find($id)
+    {
+        $dbLocation = $this->db->fetchAssoc(
+            'SELECT * FROM processing_location WHERE id_location_processing = :id_location_processing',
+            [
+                ':id_location_processing' => $id
+            ]
+        );
+        
+        if (!empty($dbLocation)) {
+            return $this->buildEntity($dbLocation);
+        }
     }
     
 }

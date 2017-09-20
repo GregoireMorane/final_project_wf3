@@ -45,6 +45,7 @@ $app['client.controller'] = function () use ($app)
 $app['client.repository']= function () use ($app){
     return new Repository\ClientRepository($app['db']);
 };
+
 $app['lieutraitement.controller'] = function () use ($app)
 {
     return new Controller\LieuTraitementController($app);
@@ -52,6 +53,7 @@ $app['lieutraitement.controller'] = function () use ($app)
 $app['lieutraitement.repository']= function () use ($app){
     return new Repository\LieuTraitementRepository($app['db']);
 };
+
 $app['lieucollecte.controller'] = function () use ($app)
 {
     return new Controller\LieuCollecteController($app);
@@ -91,4 +93,3 @@ $app['user.manager']= function () use ($app){
     return new Service\UserManager($app['session']);
 };
 return $app;
-//commentaire

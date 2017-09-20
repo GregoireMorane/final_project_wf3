@@ -10,7 +10,7 @@
                         <select id="lieucollecté" name="adress_collection_idadress_collection" class="form-control">
                             <option value="">Choississez un lieu collecté</option>
                             {% for lieu in lieux %}
-                             <option value="{{lieu.id_collection_address}}">{{lieu.adress_collection}} </option>
+                             <option value="{{lieu.id_collection_address}}">{{lieu.address_collection}} </option>
                             {% endfor %}
                         </select>
                     </div>
@@ -30,24 +30,24 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="collection_datetime">Date et Heure de ramassage</label>  
                     <div class="col-md-4">
-                        <input id="collection_datetime" name="collection_datetime" type="text" placeholder="Date et Heure de ramassage" class="form-control input-md"> 
+                        <input id="collection_datetime" name="collection_datetime" type="text" placeholder="Date et Heure de ramassage" class="form-control input-md" value="{{ collecte.collection_datetime }}"> 
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="bin_number">Numero du bac collecté</label>  
                     <div class="col-md-4">
-                        <input id="bin_number" name="bin_number" type="text" placeholder="Numéro du bac collecté" class="form-control input-md"> 
+                        <input id="bin_number" name="bin_number" type="text" placeholder="Numéro du bac collecté" class="form-control input-md" value="{{ collecte.bin_number }}"> 
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="weight">Poids composté en kg</label>  
                     <div class="col-md-4">
-                        <input id="poids composté" name="weight" type="text" placeholder="Poids composté en kg" class="form-control input-md"> 
+                        <input id="poids composté" name="weight" type="text" placeholder="Poids composté en kg" class="form-control input-md" value="{{ collecte.weight }}"> 
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="compost_quality">Qualité du compost</label>
+                    <label class="col-md-4 control-label" for="compost_quality">Qualitée du compost</label>
                     <div class="col-md-4">
                         <select id="compostable" name="compost_quality" class="form-control">
                             <option value="bon">Bonne</option>
@@ -57,21 +57,22 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="commentaire">Commentaires</label>  
+                    <label class="col-md-4 control-label" for="further_information">Remarques complémentaires</label>  
                     <div class="col-md-4">
-                        <input id="commentaire" name="further_information" type="textarea" placeholder="Commentaires" class="form-control input-md"> 
+                        <textarea class="form-control" id="remarques" name="further_information" placeholder="Remarques complémentaires" value="{{ collecte.further_information }}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="processing_datetime">Date de traitement</label>  
                     <div class="col-md-4">
-                        <input id="processing_datetime" name="processing_datetime" type="text" placeholder="Date de traitement" class="form-control input-md"> 
+                        <input id="processing_datetime" name="processing_datetime" type="text" placeholder="Date de traitement" class="form-control input-md" value="{{ collecte.processing_datetime }}"> 
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="processing_location">Lieu de traitement</label>
                     <div class="col-md-4">
                         <select id="processing_location " name="processing_location" class="form-control">
+                            <option value="">Choississez un lieu de traitement</option>
                             {% for location in locations %}
                              <option value="{{location.id_location_processing}}">{{location.processing_location}}</option>
                             {% endfor %}
