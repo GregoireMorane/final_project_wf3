@@ -19,7 +19,7 @@
             <div class="panel panel-default text-center">
                 <div class="panel-heading "><h3 class='panel-title'>Nouvelle collecte</h3></div>
                 <div class="panel-body">
-                    <button type="button" class="btn btn-block btn-success">Ajouter</button>
+                    <a type="button" class="btn btn-block btn-success">Ajouter</a>
                 </div>
             </div>
         </div>
@@ -28,18 +28,18 @@
                 <div class="panel-heading text-center"><h3 class='panel-title'>Formulaires à compléter</h3></div>
                 <div class="panel-body btn-group-vertical btn-block" role="group" aria-label="...">
                 {%for lieu in lieux%}
-                    <button type="button" class="btn btn-default">
+                    <a href="" class="btn btn-default">
                         {{ lieu }}
                         <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
-                    </button>
+                    </a>
                 {%endfor%}
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 col-xs-12">
             <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                    <img>
+                <div class="panel-heading text-center"> 
                     <h3 class='panel-title'>Clients à collecter</h3>
                 </div>
                 <div class="panel-body">
@@ -51,8 +51,11 @@
                         <li>Code postal: {{adresse.postal_code}}</li>
                         <li>Ville: {{adresse.city}}</li>
                     </ul>                    
-                    <hr>
+                    {% if not loop.last%} {# si ce n'est pas le dernier tour de boucle #}
+                        <hr>
+                    {% endif %}
                     {%endfor%}
+                    <hr>
                     <h3>A récolter demain</h3>
                     {%for adresse in adressesTomorrow%}
                     <ul>
@@ -61,7 +64,9 @@
                         <li>Code postal: {{adresse.postal_code}}</li>
                         <li>Ville: {{adresse.city}}</li>
                     </ul>                    
-                    <hr>
+                    {% if not loop.last%} {# si ce n'est pas le dernier tour de boucle #}
+                        <hr>
+                    {% endif %}
                     {%endfor%}
                 </div>
             </div>
@@ -71,10 +76,10 @@
                 <div class="panel-heading text-center"><h3 class='panel-title'>Vos DAC de la semaine dernière</h3></div>
                 <div class="panel-body btn-group-vertical btn-block" role="group" aria-label="...">
                     
-                    <button type="button" class="btn btn-default">
+                    <a type="button" class="btn btn-default">
                         Nom Client
                         <span class="glyphicon glyphicon-eye-open pull-right" aria-hidden="true"></span>
-                    </button>
+                    </a>
 
                 </div>
             </div>
@@ -88,7 +93,7 @@
                 <div class="panel-body">
                     <form method="post">
                         <fieldset>
-                          <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-success">Insérer</button>
+                          <a href="{{path('registeroutputcompost')}}" type="submit" id="singlebutton" name="singlebutton" class="btn btn-success">Insérer</a>
                         </fieldset>
                     </form>
                 </div>

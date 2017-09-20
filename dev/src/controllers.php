@@ -68,7 +68,7 @@ $app
 ;
 
 $app
-    ->match('/formulaire/collecte','collecte.controller:registerAction') 
+    ->match('/formulaire/collecte','collecte.controller:registerAction')
     ->bind('registercollecte')
 ;
 

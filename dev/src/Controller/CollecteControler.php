@@ -11,7 +11,7 @@ class CollecteControler extends ControllerAbstract{
     
     
     public function registerAction() {
-        $collecte = new AdressesCollectionsHaveCollector();
+        
         $errors = [];
         //affichages des infos de lieu à collecter
         $lieux = $this->app['lieucollecte.repository']->findAll();
