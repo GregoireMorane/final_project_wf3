@@ -40,8 +40,13 @@ class ProcessingLocation {
      */
     private $processing_location;
     
- 
+    private $collectors = [];
+    //possiblement utile pour la page admin et le menu
+    private $clients = [];
     
+    private $lieux =[];
+
+
     //getter
     public function getId_location_processing() {
         return $this->id_location_processing;
@@ -100,6 +105,33 @@ class ProcessingLocation {
         return $this;
     }
    
+    public function getCollectors() {
+        return $this->collectors;
+    }
+
+    public function setCollectors(array $collectors) {
+        $this->collectors = $collectors;
+        return $this;
+    }
+    //possiblement utile pour la page admin et le menu
+    public function getClients() {
+        return $this->clients;
+    }
+
+    public function setClients(array $clients) {
+        $this->clients = $clients;
+        return $this;
+    }
+
+    public function getLieux() {
+        return $this->lieux;
+    }
+
+    public function setLieux(array $lieux) {
+        $this->lieux = $lieux;
+        return $this;
+    }
+
 
 
 

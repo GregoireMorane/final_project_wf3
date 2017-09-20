@@ -2,6 +2,9 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -17,28 +20,31 @@ $app->get('/', function () use ($app) {
 //->bind('connexion')
 //;
 
+//$app->get('/compte/collecteur', function () use ($app) {
+//    return $app['twig']->render('comptecollecteur.html.twig', array());
+//})
+//->bind('comptecollecteur')
+//;
 
-$app->get('/compte/collecteur', function () use ($app) {
-    return $app['twig']->render('comptecollecteur.html.twig', array());
-})
-
-->bind('comptecollecteur')
+//chemins pour la page compte admin
+$app
+    ->match('/compte/admin','lieutraitement.controller:listAction') 
+    ->bind('compteadmin')
 ;
-
-$app->get('/compte/admin', function () use ($app) {
-    return $app['twig']->render('compteadmin.html.twig', array());
-})
-->bind('compteadmin')
-;
-
 //Routes des actions
 $app
-    ->match('/compte/client', 'client.controller:listAction')
-    ->bind('compteclient')
-; 
+   ->match('/compte/client', 'client.controller:listAction')
+   ->bind('compteclient')
+;
 
 $app
-    ->match('/formulaire/ajout/collecteur','collector.controller:registerAction') 
+    ->match('/compte/client/dac', 'client.controller:editOneDacDetails')
+    ->bind('compteclientdac')
+;
+
+$app
+    ->match('/formulaire/ajout/collecteur/{id}','collector.controller:registerAction')
+    ->value('id', null)
     ->bind('registercollector')
 ;
 
@@ -48,7 +54,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/lieutraitement','lieutraitement.controller:registerAction') 
+    ->match('/formulaire/ajout/lieutraitement/{id}','lieutraitement.controller:registerAction')
+    ->value('id', null)
     ->bind('registerlieutraitement')
 ;
 
@@ -58,7 +65,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/lieucollecte','lieucollecte.controller:registerAction') 
+    ->match('/formulaire/ajout/lieucollecte/{id}','lieucollecte.controller:registerAction')
+    ->value('id', null)
     ->bind('registerlieucollecte')
 ;
 
@@ -83,9 +91,10 @@ $app
 ;
 
 $app
-    ->match('/compte/collecteur','lieucollecte.controller:listAction') 
+    ->match('/compte/collecteur','collector.controller:listAction') 
     ->bind('comptecollecteur')
 ;
+
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {

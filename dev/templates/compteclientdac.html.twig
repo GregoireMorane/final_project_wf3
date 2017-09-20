@@ -1,0 +1,24 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="container-fluid">
+            <div id="liens" class="row">
+                <div class="col-md-6 col-xs-12">
+                    <ul>
+                        {% for oneDacDetail in oneDacDetails %}
+                            <li>{{ oneDacDetail.collection_datetime }}</li>
+                            <li>{{ oneDacDetail.bin_number }}</li>
+                            <li>{{ oneDacDetail.processing_datetime }}</li>
+                            <li>{{ oneDacDetail.weight }}</li>
+                            <li>{{ oneDacDetail.compost_quality }}</li>
+                            <li>{{ oneDacDetail.further_information }}</li>
+                            <li>{{ oneDacDetail.processing_location }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

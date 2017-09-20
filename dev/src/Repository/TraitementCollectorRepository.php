@@ -44,4 +44,22 @@ class TraitementCollectorRepository extends RepositoryAbstract{
     
         return $traitementAsCollector;
     }
+    
+    public function delete(TraitementCollector $traitementcollector){
+        $this->db->delete('collector_has_processing_location', ['id_collector_has_processing_location' => $traitementcollector->getId_collector_has_processing_location()]);
+    }
+    
+    public function find($id_collector_has_processing_location)
+    {
+        $dbtraitementcollector = $this->db->fetchAssoc(
+            'SELECT * FROM collector_has_processing_location WHERE id_collector_has_processing_location = :id_collector_has_processing_location',
+            [
+                ':id_collector_has_processing_location' => $id_collector_has_processing_location
+            ]
+        );
+        
+        if (!empty($dbtraitementcollector)) {
+            return $this->buildEntity($dbtraitementcollector);
+        }
+    }
 }

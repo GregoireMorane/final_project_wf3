@@ -1,2 +1,22 @@
+.btn-static {
+    border: 1px solid lightgrey;
+    cursor: default;
+}
 
+#liens > div {
+    padding: 0.5em;
+}
+
+.panel-body {
+    padding: 0px 15px 15px 15px;
+}
+
+span.glyphicon-eye-open {
+    font-size: 1.5em;
+}
+
+#biodechets, #contact {
+    position: relative;
+    bottom: 0em;
+}
 

@@ -66,7 +66,7 @@ SQL;
         return $lieux;
     }
     
-    public function findByEmptyWeight() {
+    public function findNameByEmptyWeight() {
         $dbLieux = $this->db->fetchAll(
                 'SELECT a.address_name FROM adresses_collectes a '
                 . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
@@ -96,5 +96,70 @@ SQL;
                 ->setFirm_type($data['firm_type']);
        
        return $lieu;
+    }
+    
+    public function delete(LieuCollecte $lieu){
+        $this->db->delete('adresses_collectes', ['id_collection_address' => $lieu->getId_collection_address()]);
+    }
+    
+    public function find($id)
+    {
+        $dbLieuCollecte = $this->db->fetchAssoc(
+            'SELECT * FROM adresses_collectes WHERE id_collection_address = :id_collection_address',
+            [
+                ':id_collection_address' => $id
+            ]
+        );
+        
+        if (!empty($dbLieuCollecte)) {
+            return $this->buildEntity($dbLieuCollecte);
+        }
+    }
+    
+    public function findAllByLocationId($locationId) 
+    {
+        $query = <<<SQL
+SELECT * FROM adresses_collectes ac 
+JOIN processing_location pl ON ac.location_processing_idlocation_processing = pl.id_location_processing 
+WHERE pl.id_location_processing = :location
+SQL;
+
+                
+        $dbLieux = $this->db->fetchAll($query, [':location' => $locationId]);
+        $Lieux =[];
+        
+        foreach ($dbLieux as $dbLieu){
+            $Lieux[] = $this->buildEntity($dbLieu);
+        }
+        return $Lieux;
+    }
+    
+    public function findNameByCollectionDate($id, \DateTime $date) {
+        $day = [
+            1 => 'lundi',
+            2 => 'mardi',
+            3 => 'mercredi',
+            4 => 'jeudi',
+            5 => 'vendredi',
+            6 => 'samedi',
+            7 => 'dimanche',
+
+        ];
+                
+        $dbAdresses = $this->db->fetchAll(
+                'SELECT distinct a.*  FROM adresses_collectes a '
+                . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
+                . ' WHERE a.collection_day = :date AND b.collector_idcollector = :id', 
+                [
+                    ':id' => $id,
+                    ':date' => $day[$date->format('N')]
+                ]
+        );
+        $adresses =[];
+
+        foreach ($dbAdresses as $dbAdresse){
+            $adresses[] = $this->buildEntity($dbAdresse);
+        }
+        return $adresses;
     }
 }

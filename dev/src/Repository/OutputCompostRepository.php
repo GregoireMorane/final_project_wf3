@@ -10,6 +10,23 @@ use Entity\OutputCompost;
  * @author ghmor
  */
 class OutputCompostRepository extends RepositoryAbstract{
+    public function totalOutputByCollector($id){
+        return $this->db->fetchColumn(
+                'SELECT SUM(quantity_exit) FROM output_compost '
+                . ' WHERE collector_idcollector = :id', [':id' => $id]);
+    }
+    public function weekOutputByCollector($id, $date){
+              
+        return $this->db->fetchColumn(
+                'SELECT SUM(quantity_exit) FROM output_compost '
+                . ' WHERE collector_idcollector = :id AND output_datetime BETWEEN :date AND now()', 
+                [
+                    ':id' => $id,
+                    ':date' => date('Y-m-d', strtotime('last monday')),
+                  //date('Y-m-d', strtotime('-1 week')) 
+                 //   'date2' => date('Y-m-d')
+                ]);
+    }
     public function save(OutputCompost $output){
         $data = [
             'output_datetime' => $output->getOutput_datetime(),
@@ -41,5 +58,23 @@ class OutputCompostRepository extends RepositoryAbstract{
                 ->setCollector_idcollector($data['collector_idcollector']);
         
         return $output;
+    }
+    
+    public function delete(OutputCompost $output){
+        $this->db->delete('output_compost', ['idoutput_compost' => $client->getIdoutput_compost()]);
+    }
+    
+    public function find($idoutput_compost)
+    {
+        $dbOutput = $this->db->fetchAssoc(
+            'SELECT * FROM output_compost WHERE idoutput_compost = :idoutput_compost',
+            [
+                ':idoutput_compost' => $idoutput_compost
+            ]
+        );
+        
+        if (!empty($dbOutput)) {
+            return $this->buildEntity($dbOutput);
+        }
     }
 }
