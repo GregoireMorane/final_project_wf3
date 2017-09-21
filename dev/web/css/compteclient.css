@@ -1,3 +1,7 @@
+.bloc-comptetitle {
+    padding: 0.7em 0;
+}
+
 .btn-static {
     border: 1px solid lightgrey;
     cursor: default;
@@ -20,3 +24,20 @@ span.glyphicon-eye-open {
     bottom: 0em;
 }
 
+.dactitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.8em;    
+}
+
+.tabtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.tabsubtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+}

@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+use DateTime;
+use Entity\AdressesCollectionsHaveCollector;
 use Entity\Client;
 
 class ClientController extends ControllerAbstract{
@@ -11,7 +13,7 @@ class ClientController extends ControllerAbstract{
         $collectors = $this->app['collector.repository']->findCollectorByClientId($client->getIdClient());
         $lieux = $this->app['lieucollecte.repository']->findLieuCollecteByClientId($client->getIdClient());
         $collectionDates = $this->app['collecte.repository']->findCollectionDateByClientId($client->getIdClient());
-        $date = new \DateTime();
+        $date = new DateTime();
         $currentWeekBioWasteWeight = $this->app['collecte.repository']->findCurrentWeekBioWasteWeightByClientId($client->getIdClient(), $date);
         $totalBioWasteWeight = $this->app['collecte.repository']->findTotalBioWasteWeightByClientId($client->getIdClient());
         
@@ -25,13 +27,18 @@ class ClientController extends ControllerAbstract{
                         ]);
     }
 
-    public function editOneDacDetails() {
+    public function editOneDacDetails($id_dac) {
         $client = $this->app['user.manager']->getUser();
-        $oneDacDetails = $this->app['collecte.repository']->findOneDacDetails($client->getIdClient());
+        $oneDacDetails = $this->app['collecte.repository']->findOneDacDetails($id_dac);
+        $collectors = $this->app['collector.repository']->findCollectorByClientId($client->getIdClient());
+        $lieux = $this->app['lieucollecte.repository']->findLieuCollecteByClientId($client->getIdClient());
         
         return $this->render('compteclientdac.html.twig', 
                 [
-                    'oneDacDetails' => $oneDacDetails
+//                    'client' => $client,
+                    'oneDacDetails' => $oneDacDetails,
+                    'collectors' => $collectors,
+                    'lieux' => $lieux,
                 ]
         );
     }

@@ -2,106 +2,107 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="container-fluid">
-            <div id="liens" class="row">
-                <div class="col-md-6 col-xs-12">
-                    <button type="button" class="btn btn-block"><a href="#biodechets">Vos biodéchets<a></button>
-                </div>
-                <div class=" col-md-6 col-xs-12">
-                    <button type="button" class="btn btn-block"><a href="#contact">Vous et les alchimistes</a></button>
+<div class="container">
+    <div class="container-fluid">
+        <div id="liens" class="row">
+            <div class="col-md-6 col-xs-12">
+                <button type="button" class="btn btn-block"><a href="#biodechets">Vos biodéchets<a></button>
+            </div>
+            <div class=" col-md-6 col-xs-12">
+                <button type="button" class="btn btn-block"><a href="#contact">Vous et les alchimistes</a></button>
+            </div>
+        </div>
+
+        <div id="biodechets"></div>
+        <div class="row jaune bloc-comptetitle bloc bloc-comptetitle">
+
+            <div class="col-xs-12 col-md-4 panel-body btn-group-vertical" role="group">
+                <button type="button" class="btn btn-primary btn-static">Vos DAC</button>
+                    {% for collectionDate in collectionDates %}
+                        <button type="button" class="btn btn-default btn-static">
+                            Collecte du {{ collectionDate.collection_datetime }}
+                            <a class="btn btn-default pull-right" href="{{ path('compteclientdac', {id_dac: collectionDate.id_adresses_collections_have_collector}) }}"><span class="glyphicon glyphicon-eye-open"></span></a>
+                        </button>
+                    {% endfor %}
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title">Nombre de kilos de biodéchets collectés<br />cette semaine</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        {{ currentWeekBioWasteWeight }}
+                    </div>
                 </div>
             </div>
 
-            <div id="biodechets"></div>
-            <div class="row bloc jaune">
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title">Nombre de kilos de biodéchets collectés<br />depuis le début</h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <p>{{ totalBioWasteWeight }}</p>
+                    </div>
+                </div>
+            </div>
 
-                <div class="col-xs-12 col-md-4 panel-body btn-group-vertical" role="group">
-                    <button type="button" class="btn btn-primary btn-static">Vos DAC</button>
-                        {% for collectionDate in collectionDates %}
-                                <a type="button" href="{{ path('compteclientdac') }}" class="btn btn-default">Collecte du {{ collectionDate.collection_datetime }}
-                                    <span class="glyphicon glyphicon-eye-open pull-right"></span>
-                                </a>
+        </div>
+
+        <div id="contact"></div>
+        <div class="row bloc vert bloc bloc-comptetitle">
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">Vos informations</h3>
+                    </div>
+                    <div class="panel-body text-left">
+                        <p>{{ user_manager.user.company }}</p>
+                        <p>{{ user_manager.user.billingaddress}} {{ user_manager.user.postalcode}} {{ user_manager.user.city}}.</p>
+                        <p>Tél. (de 9h à 17h30) : {{ user_manager.user.phonenumber }}.</p>
+                        <p>Contact : {{ user_manager.user.firstname }} {{ user_manager.user.lastname }}.</p>
+                        <p>Courriel : {{ user_manager.user.email }}.</p>
+                        {% for lieu in lieux %}
+                            <p>Jours de collecte : {{ lieu.collection_day }}</p>
                         {% endfor %}
-                </div>
-
-                <div class="col-xs-12 col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center">
-                            <h3 class="panel-title">Nombre de kilos de biodéchets collectés<br />cette semaine</h3>
-                        </div>
-                        <div class="panel-body text-center">
-                            {{ currentWeekBioWasteWeight }}
-                        </div>
                     </div>
                 </div>
-
-                <div class="col-xs-12 col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center">
-                            <h3 class="panel-title">Nombre de kilos de biodéchets collectés<br />depuis le début</h3>
-                        </div>
-                        <div class="panel-body text-center">
-                            <p>{{ totalBioWasteWeight }}</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <div id="contact"></div>
-            <div class="row bloc vert">
-                <div class="col-xs-12 col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center">Vos informations</h3>
-                        </div>
-                        <div class="panel-body text-left">
-                            <p>{{ user_manager.user.company }}</p>
-                            <p>{{ user_manager.user.billingaddress}} {{ user_manager.user.postalcode}} {{ user_manager.user.city}}.</p>
-                            <p>Tél. (de 9h à 17h30) : {{ user_manager.user.phonenumber }}.</p>
-                            <p>Contact : {{ user_manager.user.firstname }} {{ user_manager.user.lastname }}.</p>
-                            <p>Courriel : {{ user_manager.user.email }}.</p>
-                            {% for lieu in lieux %}
-                                <p>Jours de collecte : {{ lieu.collection_day }}</p>
-                            {% endfor %}
-                        </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">Votre collecteur</h3>
+                    </div>
+                    <div class="panel-body text-left">
+                        {% for collector in collectors %}
+                            <p>Contact : {{ collector.firstname }} {{ collector.lastname }}.</p>
+                            <p>Tél. (de 9h à 17h30): {{ collector.phone_number }}.</p>
+                            <p>Courriel :{{ collector.email }}</p>
+                            <p>Contactez {{ collector.firstname }} en cas de besoin de ramassage.</p>
+                        {% endfor %}                        
                     </div>
                 </div>
+            </div>
 
-                <div class="col-xs-12 col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center">Votre collecteur</h3>
-                        </div>
-                        <div class="panel-body text-left">
-                            {% for collector in collectors %}
-                                <p>Contact : {{ collector.firstname }} {{ collector.lastname }}.</p>
-                                <p>Tél. (de 9h à 17h30): {{ collector.phone_number }}.</p>
-                                <p>Courriel :{{ collector.email }}</p>
-                                <p>Contactez {{ collector.firstname }} en cas de besoin de ramassage.</p>
-                            {% endfor %}                        
-                        </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">Votre contact administrateur</h3>
                     </div>
-                </div>
-
-                <div class="col-xs-12 col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center">Votre contact administrateur</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>Contact : Fabien-Kenzo Sato</p>
-                            <p>Fixe (de 9h à 17h30): 01 84 21 47 89</p>
-                            <p>Mobile : 07 77 07 08 10</p>
-                            <p>Courriel : kenzo@alchimistes.co</p>
-                            <p>Contactez Kenzo pour tous les sujets relatifs aux Alchimistes</p>
-                        </div>
+                    <div class="panel-body">
+                        <p>Contact : Fabien-Kenzo Sato</p>
+                        <p>Fixe (de 9h à 17h30): 01 84 21 47 89</p>
+                        <p>Mobile : 07 77 07 08 10</p>
+                        <p>Courriel : kenzo@alchimistes.co</p>
+                        <p>Contactez Kenzo pour tous les sujets relatifs aux Alchimistes</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
                         
 {% include "footer.html.twig" %}
 {% endblock %}

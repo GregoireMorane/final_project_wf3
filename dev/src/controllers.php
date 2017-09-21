@@ -38,7 +38,8 @@ $app
 ;
 
 $app
-    ->match('/compte/client/dac', 'client.controller:editOneDacDetails')
+    ->match('/compte/client/dac/{id_dac}', 'client.controller:editOneDacDetails')
+    ->assert('id_dac', '\d+')
     ->bind('compteclientdac')
 ;
 

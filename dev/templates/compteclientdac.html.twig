@@ -2,23 +2,138 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="container-fluid">
-            <div id="liens" class="row">
-                <div class="col-md-6 col-xs-12">
-                    <ul>
-                        {% for oneDacDetail in oneDacDetails %}
-                            <li>{{ oneDacDetail.collection_datetime }}</li>
-                            <li>{{ oneDacDetail.bin_number }}</li>
-                            <li>{{ oneDacDetail.processing_datetime }}</li>
-                            <li>{{ oneDacDetail.weight }}</li>
-                            <li>{{ oneDacDetail.compost_quality }}</li>
-                            <li>{{ oneDacDetail.further_information }}</li>
-                            <li>{{ oneDacDetail.processing_location }}</li>
-                        {% endfor %}
-                    </ul>
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+
+                <div class="row">
+                    <div class="text-center bloc gris dactitle">
+                        DOCUMENT D'ACCOMPAGNEMENT COMMERCIAL<br />
+                        Pour le transport de sous-produits animaux de catégorie 3<br />
+                        Transformés ou non
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    {% for oneDacDetail in oneDacDetails %}
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr class="text-center">
+                                    <td colspan="4" class="tabtitle">Dénomination et poids des sous-produits</td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td colspan="4" class="tabsubtitle">Sous-produits animaux de CATEGORIE 3 - impropres à la consommation humaine</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <p>Description du produit :</p>
+                                        <p style="text-indent: 3em;">biodéchets triés à la source, issus de :{% for lieu in lieux %} {{ lieu.firm_type }} {% endfor %}</p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>N° du bac : {{ oneDacDetail.bin_number }}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Qualité des biodéchets : {{ oneDacDetail.compost_quality }}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">Espèces représentés : mélange (produits en vrac).</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <p>Informations complémentaires, nature des produits ajoutés (sel, anticoagulant...), le cas échéant:</p>
+                                        <p class="text-center">{{ oneDacDetail.further_information }}.</p>
+                                    </td>
+                                    <td colspan="2">Poids total (en Kg) pesé : {{ oneDacDetail.weight }}</td> 
+                                </tr>
+                                <tr class="text-center">
+                                    <td colspan="4" class="tabtitle">Etablissement de départ des sous-produits</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" rowspan="3">
+                                        <p>Type d'établissement : {% for lieu in lieux %} {{ lieu.firm_type }} {% endfor %}<p>
+                                        <p>Raison sociale et adresse :</p>
+                                        {% for lieu in lieux %}
+                                            <p class="text-center">
+                                                {{ lieu.address_collection }}<br /> {{ lieu.postal_code }}<br /> {{ lieu.city }}
+                                            </p>
+                                        {% endfor %}
+                                    </td>
+                                    <td colspan="2">N° de SIRET : {{ user_manager.user.siret }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Téléphone : {{ user_manager.user.phonenumber }}</td>
+                                    <td>Fax :</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Nom du responsable/représentant de l'établissement de départ:
+                                        <p class="text-center">{{ user_manager.user.firstname }} {{ user_manager.user.lastname }}</p>
+                                    </td>
+                                </tr>        
+                                <tr class="text-center">
+                                    <td colspan="4" class="tabtitle">Collecteur - Transporteur des sous-produits</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" rowspan="5">
+                                        <p>Raison sociale et adresse:</p>
+                                        <p class="text-center">
+                                            SAS Les Alchimistes<br/>6 rue Arnold Géraux<br/>93450 L'île Saint-Denis
+                                        </p>
+                                    </td>
+                                    <td colspan="2">N° d'enregistrement :</td>
+                                </tr>
+                                <tr>
+                                    <td>Téléphone : 01 84 21 47 89</td>
+                                    <td>Fax :</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">N° d'immatriculation :</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Date de chargement : {{ oneDacDetail.collection_datetime }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Nom et signature du chauffeur/collecteur : 
+                                        {% for collector in collectors %} {{ collector.firstname }} {% endfor %}
+                                    </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td colspan="4" class="tabtitle">Etablissement destinataire des sous-produits</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" rowspan="2">Type d'établissement : installation de compostage</td>
+                                    <td colspan="2">N° d'agrément : </td>
+                                </tr>
+                                <tr>
+                                    <td>Téléphone : 01 84 21 47 89</td>
+                                    <td>Fax :</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" rowspan="2">
+                                        <p>Raison sociale et adresse :</p>
+                                        <p class="text-center">
+                                            SAS Les Alchimistes<br/>
+                                            {{ oneDacDetail.processing_location }}
+                                        </p>
+                                    </td>
+                                    <td colspan="2">Date et heure de réception : {{ oneDacDetail.processing_datetime }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Nom du responsable du site de destination ou de son représentant :
+                                        <p class="text-center">Fabien-Kenzo Sato</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+{% include "footer.html.twig" %}
 {% endblock %}

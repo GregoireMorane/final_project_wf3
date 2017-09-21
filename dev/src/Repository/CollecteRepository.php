@@ -127,37 +127,21 @@ SQL;
         return $collectionDates;
     }
     
-    public function findOneDacDetails($id) {
+    public function findOneDacDetails($id_dac) {
+        
         $query = <<<SQL
 SELECT achc.*
 FROM adresses_collections_have_collector achc
-JOIN adresses_collectes ac ON ac.id_collection_address = achc.adress_collection_idadress_collection
-JOIN client ON client.id_client = ac.client_idclient
-WHERE client.id_client = :id
-AND achc.collection_datetime = ':date'
+WHERE id_adresses_collections_have_collector = :id_dac
 SQL;
+
+        $dbOneDacDetails = $this->db->fetchAll($query, [':id_dac' => $id_dac]);
         
-        $date = <<<SQL
-SELECT achc.collection_datetime
-FROM adresses_collections_have_collector achc
-JOIN adresses_collectes ac ON ac.id_collection_address = achc.adress_collection_idadress_collection
-JOIN client ON client.id_client = ac.client_idclient
-WHERE client.id_client = :id
-SQL;
-
-        $dbOneDacDetails = $this->db->fetchAll($query, 
-                [
-                    ':id' => $id,
-                    ':date' => $date
-                ]);
-        dump($dbOneDacDetails);
         $oneDacDetails=[];
-
         foreach ($dbOneDacDetails as $dbOneDacDetail){
             $oneDacDetails[] = $this->buildEntity($dbOneDacDetail);
+
         }
-        
-//        var_dump($oneDacDetails);
         
         return $oneDacDetails;
     }
@@ -175,7 +159,7 @@ SQL;
                 ->setWeight($data['weight'])
                 ->setCompost_quality($data['compost_quality'])
                 ->setFurther_information($data['further_information'])
-                ->setProcessing_datetime($data['processing_location']);
+                ->setProcessing_location($data['processing_location']);
         return $collecte;
     }
     
