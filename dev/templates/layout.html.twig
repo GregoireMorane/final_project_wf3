@@ -20,17 +20,18 @@
     <body>
         <nav class="navbar ombrage">
             <div class="container">
-                <div class="bloc-logo col-md-4">
-                    <a href="{{path('homepage')}}"><img class="logo" src="{{asset('images/Alchimiste_logo.png')}}" ></a>
+                <div style="max-width:300px;">
+                    <a href="{{path('homepage')}}"><img src="{{asset('images/Alchimiste_logo.png')}}" ></a>
                 </div>
             {% if user_manager.user %}
-                <div class="bloc-deconnexion col-md-3 col-md-offset-3">
-                    <span>{{ user_manager.firstname }}</span>
+                <div class="bloc-deconnexion col-lg-5 col-md-5 col-xs-10 col-lg-offset-7 col-md-offset-5 col-xs-offset-2" style="text-align: right;">
+                    <span>Bonjour {{ user_manager.firstname }}</span>
+                    <br>
                     <a href="{{path('deconnexion')}}">Deconnexion</a>
                 </div>
                 <div class="clear"></div>
             {% else %} 
-                <div class="bloc-connexion col-md-3 col-md-offset-3">
+                <div class="bloc-connexion col-lg-5 col-md-5 col-xs-10 col-lg-offset-7 col-md-offset-5 col-xs-offset-2" style="text-align: right;">
                     <a href="{{path('connexion')}}">Connexion</a>
                 </div>
                 <div class="clear"></div>
@@ -41,7 +42,7 @@
                 {% for type, flashes in app.session.flashbag.all %}
                     {% for  flash in flashes %}
                         {% if type == 'error' %} {% set type = 'danger' %} {% endif %}
-                        <div class="aler alert-{{type}}"> {{ flash | raw }} </div>
+                        <div class="alert alert-{{type}}"> {{ flash | raw }} </div>
                     {% endfor %}
                 {% endfor %}
                 {% block content %}
