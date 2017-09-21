@@ -90,6 +90,20 @@ $app
     ->bind('comptecollecteur')
 ;
 
+$app
+    ->match('/liste/client','client.controller:listAllClients')
+    ->bind('listeclient')
+;
+
+$app
+    ->match('/liste/collector','collector.controller:listAllCollectors')
+    ->bind('listecollector')
+;
+
+$app
+    ->match('/liste/lieutraitement','lieutraitement.controller:listAllLieuxTraitement')
+    ->bind('listelieutraitement')
+;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {

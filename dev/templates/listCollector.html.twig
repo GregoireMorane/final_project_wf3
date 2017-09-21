@@ -1,0 +1,37 @@
+{% extends "layout.html.twig"%}
+{% block content %}
+    <hr class="hrStyle col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1">
+    <div class="">
+        <div class="col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1">
+            <h1>Collecteurs</h1>
+            <a href="{{ path('registercollector') }}"><span>Ajouter un collecteur</span></a>
+            <br><br>
+        </div>
+        <table class="table">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>email</th>
+                <th>Numéro de téléphone</th>
+                <th>Adresse</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Statut</th>
+                <th>Mot de passe</th>
+            </tr>
+            {% for collector in collectors %}
+                <tr>
+                    <th>{{ collector.lastname }}</th>
+                    <th>{{ collector.firstname }}</th>
+                    <th>{{ collector.email }}</th>
+                    <th>{{ collector.phone_number }}</th>
+                    <th>{{ collector.address }}</th>
+                    <th>{{ collector.postal_code }}</th>
+                    <th>{{ collector.city }}</th>
+                    <th>{{ collector.status }}</th>
+                    <th>{{ collector.password }}</th>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
