@@ -37,17 +37,6 @@ class LieuCollecteRepository extends RepositoryAbstract{
         }
     }
     
-    public function findAll() 
-    {
-        $dbLieux = $this->db->fetchAll('SELECT * FROM adresses_collectes ORDER BY id_collection_address');
-        $lieux =[];
-        
-        foreach ($dbLieux as $dblieu){
-            $lieux[] = $this->buildEntity($dblieu);
-        }
-        return $lieux;
-    }
-    
     public function findLieuCollecteByClientId($id) {
         $query = <<<SQL
 SELECT ac.*
@@ -81,7 +70,7 @@ SQL;
     
     private function buildEntity(array $data){
         $lieu = new LieuCollecte();
-        
+
         $lieu
                 ->setId_collection_address($data['id_collection_address'])
                 ->setAddress_name($data['address_name'])
@@ -93,8 +82,10 @@ SQL;
                 ->setCollection_day($data['collection_day'])
                 ->setClient_idclient($data['client_idclient'])
                 ->setLocation_processing_idlocation_processing($data['location_processing_idlocation_processing'])
-                ->setFirm_type($data['firm_type']);
-       
+                ->setFirm_type($data['firm_type'])
+                ->setClientLastname($data['clientLastname'])
+                ->setClientFirstname($data['clientFirstname'])      
+       ;
        return $lieu;
     }
     
@@ -161,5 +152,17 @@ SQL;
             $adresses[] = $this->buildEntity($dbAdresse);
         }
         return $adresses;
+    }
+    
+    public function findAll() {
+        $dbLieucollectes = $this->db->fetchAll('SELECT ac.*, c.firstname AS clientFirstname, c.lastname AS clientLastname FROM adresses_collectes ac JOIN client c ON ac.client_idclient = c.id_client ORDER BY address_name DESC');
+        $collectes =[];
+        
+        foreach ($dbLieucollectes as $dbLieucollecte){
+            $collectes[] = $this->buildEntity($dbLieucollecte);
+            
+        }
+        return $collectes;
+        
     }
 }

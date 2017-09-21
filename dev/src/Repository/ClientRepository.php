@@ -39,7 +39,7 @@ class ClientRepository extends RepositoryAbstract{
     
     public function findAll() 
     {
-        $dbClients = $this->db->fetchAll('SELECT * FROM client ORDER BY id_client');
+        $dbClients = $this->db->fetchAll('SELECT * FROM client ORDER BY lastname');
         $clients =[];
         
         foreach ($dbClients as $dbClient){
