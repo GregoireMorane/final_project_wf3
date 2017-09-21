@@ -18,8 +18,15 @@
     clear: both;
 }
 
+.hrStyle{
+    border: 0;
+    height: 3px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
 #homepage{
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .imgHead{
@@ -47,12 +54,12 @@
 
 .blocGauche2{
     float: left;
-    background-color: green;
+    background-color: white;
 }
 
 .blocDroite2{
     float: left;
-    background-color: green;
+    background-color: white;
 }
 
 .blocGauche3{
@@ -66,26 +73,22 @@
 }
 
 .bloc1{
-    color: green;
+    color: black;
     text-align: center;
 }
 
 .bloc2{
-    color: white;
+    color: black;
     text-align: center;
 }
 .bloc3{
-    color: green;
-    text-align: center;
-}
-.footr{
-    color: white;
-    background-color: green;
+    color: black;
     text-align: center;
 }
 
-.footr > a{
-    text-decoration: none; 
+.bloc5{
+    color: black;
+    text-align: center;
 }
 
 #return-to-top {
