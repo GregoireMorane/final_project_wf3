@@ -10,8 +10,16 @@ use Entity\OutputCompost;
  * @author ghmor
  */
 class OutputCompostController extends ControllerAbstract{
-    public function registerAction(){
-        $output = new OutputCompost();
+    public function registerAction($id = null){
+        
+        if(is_null($id)){
+            $output = new OutputCompost();
+        } else {
+            $output = $this->app['outputcompost.repository']->find($id);
+            if(is_null($output)){
+                $this->app->abort(404);
+            }
+        }
         $errors = [];
         //affichages des infos  du collecteur
         $collectors = $this->app['collector.repository']->findAll();

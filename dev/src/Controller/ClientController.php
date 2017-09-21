@@ -6,8 +6,18 @@ use Entity\Client;
 
 class ClientController extends ControllerAbstract{
     
-    public function registerAction() {
-        $client = new Client();
+    public function registerAction($id =null) {
+        
+        if(is_null($id)){
+            $client = new Client();
+        } else {
+            $client = $this->app['client.repository']->find($id);
+            if(is_null($client)){
+                $this->app->abort(404);
+            }
+        }
+        
+        
         $errors = [];
         
         if(!empty($_POST)){

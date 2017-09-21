@@ -9,7 +9,7 @@
                 <select id="client" name="client_idclient" class="form-control">
                     <option value="">Choisissez un client</option>
                     {% for client in clients %}
-                             <option value="{{client.idClient}}">{{client.lastname}} </option>
+                             <option value="{{client.idClient}}"{% if client.idclient == adresses_collectes.id_collection_address %}selected{%endif%}>{{client.firstname}}{{client.lastname}} </option>
                     {% endfor %}
                 </select>
             </div>
@@ -61,7 +61,7 @@
                 <select id="lieu_traitement" name="location_processing_idlocation_processing" class="form-control">
                     <option value="">Choisissez un lieu de traitement</option>
                     {% for location in locations %}
-                             <option value="{{location.id_location_processing}}">{{location.processing_location}} </option>
+                             <option value="{{location.id_location_processing}}" {% if location.id_location_processing == adresses_collectes.id_collection_address %}selected{%endif%}>{{location.processing_location}} </option>
                     {% endfor %}
                 </select>
             </div>

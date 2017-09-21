@@ -67,7 +67,7 @@ class LieuCollecteRepository extends RepositoryAbstract{
         $lieu
                 ->setId_collection_address($data['id_collection_address'])
                 ->setAddress_name($data['address_name'])
-                ->setAddress_collection($data['adress_collection'])
+                ->setAddress_collection($data['address_collection'])
                 ->setPostal_code($data['postal_code'])
                 ->setCity($data['city'])
                 ->setFurther_information($data['further_information'])

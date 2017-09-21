@@ -1,55 +1,64 @@
 {% extends "layout.html.twig" %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    {#<link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css"/>#}
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('css/menuadmin.css') }}" rel="stylesheet" type="text/css"/>
-
-{% endblock %}
 {% block content %}
     <div class="container ">    
         {#le menu en deskotp#}
-        <div class="list col-md-4">
-            <div id=monmenu style="padding-left: 0px">
+        <div class="list col-md-2 col-sm-2 col-lg-2 col-xs-2">
+            {#menu niveau 1#}
+            <div id="monmenu" style="padding-left: 0px">
                 <ul class=niveau1>
                     <li class="plus italic">Lieux de traitement</li>
                     {% for location in locations %}
-                        <li>{{location.processing_location}}<a href="{{path ('registerlieutraitement', {id: location.id_location_processing}) }}" class="italic">     modifier</a>
+                    <li><a  class="col-md-9 col-sm-9 col-lg-9 col-xs-9" href="{{path ('registerlieutraitement', {id: location.id_location_processing}) }}" >{{location.processing_location}}</a><span class="glyphicon glyphicon-menu-right pull right" style="font-size:2em;"></span>
+                            
+                            {#menu niveau 2#}
                             <ul class=niveau2>
                                 <li class="plus italic"> les collecteurs</li>
-                                    {% for collector in location.collectors %}
-                                    <li class=plus>
-                                        {{collector.firstname}}<a href="{{path ('registercollector', {id: collector.idcollector}) }}" class="italic">     modifier</a>
-                                        <ul class=niveau3>
-                                            <li class="plus italic"> les lieux de colectes</li>
-                                            {% for lieu in location.lieux %}
-                                             <li class=plus>
-                                            {{lieu.address_name}}<a href="{{path ('registerlieucollecte', {id: lieu.id_collection_address}) }}" class="italic">     modifier</a>
-                                            </li>
-                                            {% endfor %}
-                                            <li class="plus italic">ajouter un lieu de collecte à ce secteur<a class="buttonlink" href="{{ path('registerlieucollecte')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
-                                        </ul>
-                                    </li>
+                                {% for collector in location.collectors %}
+                                <li class=plus><a class="col-md-9 col-sm-9 col-lg-9 col-xs-9" href="{{path ('registercollector', {id: collector.idcollector}) }}" >{{collector.firstname}}</a><span class="glyphicon glyphicon-menu-right pull right" style="font-size:2em;"></span>
+                                            
+                                            {#menu niveau 3#}
+                                            <ul class ="niveau3">
+                                                <li class="plus italic"> Clients à collecter</li>
+                                                {% for client in location.clients %}
+                                                <li class=plus>
+                                                <a class="col-md-9 col-sm-9 col-lg-9 col-xs-9" href="{{path ('registerclient', {id:client.idclient })}}">{{client.fullname}}</a><span class="glyphicon glyphicon-menu-right pull right" style="font-size:2em;"></span>
+                                                
+                                                        {#menu niveau 4#}
+                                                        <ul class=niveau4>
+                                                            <li class="plus italic"> les lieux de colectes</li>
+                                                            {% for lieu in location.lieux %}
+                                                            <li class=plus>
+                                                            <a href="{{path ('registerlieucollecte', {id: lieu.id_collection_address}) }}">{{lieu.address_name}}</a>
+                                                            </li>
+                                                            {% endfor %}
+                                                            <li class="plus italic">ajouter un lieu de collecte à ce secteur<a class="buttonlink" href="{{ path('registerlieucollecte')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
+                                                        </ul>{# fin menu niveau 4#}
+                                                        
+                                                </li>
+                                                {% endfor %}
+                                                <li class="plus italic">ajouter un client <a class="buttonlink" href="{{ path('registerclient')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
+                                            </ul>{# fin menu niveau 3#}
+                                </li>
                                 {% endfor %}
                                 <li class="plus italic">ajouter un collectecteur à ce lieu de traitement<a class="buttonlink" href="{{ path('registertraitementcollector')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
-                            </ul>
-                        </li>{% endfor %}
-                        <li class="plus italic">ajouter un secteur<a class="buttonlink" href="{{ path('registerlieutraitement')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
-                    </ul>
+                            </ul>{# fin menu niveau 2#}
+                            
+                    </li>{% endfor %}
+                    <li class="plus italic">ajouter un secteur<a class="buttonlink" href="{{ path('registerlieutraitement')}}"><span class="glyphicon glyphicon-plus"></span></a></li>
+                </ul>
+            </div>{# fin menu niveau 1#}
+        </div>
 
-                </div>
-            </div>
-            
 
 
-            <div class="row col-md-8"> 
+            <div class="row col-md-8 col-md-offset-1"> 
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
                     <div class="panel panel-default text-center">
                         <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés cette semaine</h3></div>
                         <div class="panel-body">
                             <p><strong>{{totalweightbyweek}}</strong></p>
-                            <i>Bravo!</i>
+                            <i>Bravo!</i><span class="fa-angle-right" aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
@@ -62,12 +71,15 @@
                         </div>
                     </div>
                 </div>
+                            
                 <div class="col-md-3 col-md-offset-1 col-xs-12">
                     <div class="panel panel-default text-center">
                         <div class="panel-heading "><h3 class='panel-title'>Collecteur</h3></div>
                         <div class="panel-body">
                             <h3>Nouveau collecteur</h3>
-                            <button><a href="{{ path('registercollector')}}"><span class="glyphicon glyphicon-plus"></span></a></button>
+                            <a href="{{ path('registercollector')}}">
+                                    <img  src="{{asset('images/add.png')}}">
+                                </a>
                         </div>
                     </div>
                 </div>
@@ -76,7 +88,9 @@
                         <div class="panel-heading "><h3 class='panel-title'>Client</h3></div>
                         <div class="panel-body">
                             <h3>Nouveau client</h3>
-                            <button><a href="{{ path('registerclient')}}"><span class="glyphicon glyphicon-plus"></span></a></button>
+                            <a href="{{ path('registerclient')}}">
+                                <img  src="{{asset('images/add.png')}}">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -85,7 +99,9 @@
                         <div class="panel-heading "><h3 class='panel-title'>Secteur</h3></div>
                         <div class="panel-body">
                             <h3>Nouveau secteur</h3>
-                            <button><a href="{{ path('registerlieutraitement')}}"><span class="glyphicon glyphicon-plus"></span></a></button>
+                            <a href="{{ path('registerlieutraitement')}}">
+                                <img  src="{{asset('images/add.png')}}">
+                            </a>
                         </div>
                     </div>
                 </div>

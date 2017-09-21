@@ -6,7 +6,12 @@
 }
 
 body {
+    font-family: 'Montserrat', sans-serif;
     margin: 0 auto;
+}
+
+.clear{
+    clear :both;
 }
 
 .ombrage {

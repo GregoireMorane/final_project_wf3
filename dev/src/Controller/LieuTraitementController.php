@@ -89,18 +89,20 @@ class LieuTraitementController extends ControllerAbstract{
         foreach ($locations as $location) {
             $collectors = $this->app['collector.repository']->findAllByLocationId($location->getId_location_processing());
             $Lieux = $this->app['lieucollecte.repository']->findAllByLocationId($location->getId_location_processing());
-            
+            $clients = $this->app['client.repository']->findAllByLocationId($location->getId_location_processing());
             
             $location->setCollectors($collectors);
             $location->setLieux($Lieux);
+            $location->setClients($clients);
         } 
         
         
         return $this->render('compteadmin.html.twig', 
                     [
                     'locations' => $locations,
+                    'clients' => $clients, //pour la requete 2 du client.rep
                     'totalweight' => $totalweight,
-                        'totalweightbyweek' => $totalweightbyweek
+                    'totalweightbyweek' => $totalweightbyweek
 //                    'collectors' => $collectors,
 //                    'clients' => $clients
                     ]

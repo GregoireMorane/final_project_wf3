@@ -10,8 +10,18 @@ use Entity\TraitementCollector;
  * @author ghmor
  */
 class TraitementCollectorController extends ControllerAbstract{
-    public function registerAction(){
-        $collectorAsTraitement = new TraitementCollector();
+    public function registerAction($id = null){
+        
+        if(is_null($id)){
+             $collectorAsTraitement = new TraitementCollector();
+        } else {
+            $collectorAsTraitement = $this->app['traitementcollector.repository']->find($id);
+            if(is_null($collectorAsTraitement)){
+                $this->app->abort(404);
+            }
+        }
+        
+       
         $errors = [];
         
         //affichages des infos de lieu du collecteur

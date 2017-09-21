@@ -48,7 +48,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/client','client.controller:registerAction') 
+    ->match('/formulaire/ajout/client/{id}','client.controller:registerAction')
+    ->value('id', null)
     ->bind('registerclient')
 ;
 
@@ -59,7 +60,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/traitementcollecteur','traitementcollector.controller:registerAction') 
+    ->match('/formulaire/ajout/traitementcollecteur','traitementcollector.controller:registerAction')
+    ->value('id', null)
     ->bind('registertraitementcollector')
 ;
 
@@ -70,17 +72,19 @@ $app
 ;
 
 $app
-    ->match('/formulaire/collecte','collecte.controller:registerAction') 
+    ->match('/formulaire/collecte','collecte.controller:registerAction')
+    ->value('id', null)
     ->bind('registercollecte')
 ;
 
 $app
-    ->match('/formulaire/sortiecompost','outputcompost.controller:registerAction') 
+    ->match('/formulaire/sortiecompost','outputcompost.controller:registerAction')
+    ->value('id', null)
     ->bind('registeroutputcompost')
 ;
 
 $app
-    ->match('/connexion','connexion.controller:loginAction') 
+    ->match('/connexion','connexion.controller:loginAction')
     ->bind('connexion')
 ;
 
