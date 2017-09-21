@@ -48,7 +48,25 @@ class LieuCollecteRepository extends RepositoryAbstract{
         return $lieux;
     }
     
-    public function findByEmptyWeight() {
+    public function findLieuCollecteByClientId($id) {
+        $query = <<<SQL
+SELECT ac.*
+FROM adresses_collectes ac
+WHERE client_idclient = :id
+ORDER BY id_collection_address
+SQL;
+        
+        $dbLieux = $this->db->fetchAll($query, [':id' => $id]);
+        $lieux =[];
+        
+        foreach ($dbLieux as $dbLieu){
+            $lieux[] = $this->buildEntity($dbLieu);
+        }
+        
+        return $lieux;
+    }
+    
+    public function findNameByEmptyWeight() {
         $dbLieux = $this->db->fetchAll(
                 'SELECT a.address_name FROM adresses_collectes a '
                 . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
@@ -98,7 +116,7 @@ class LieuCollecteRepository extends RepositoryAbstract{
         }
     }
     
-      public function findAllByLocationId($locationId) 
+    public function findAllByLocationId($locationId) 
     {
         $query = <<<SQL
 SELECT * FROM adresses_collectes ac 
@@ -114,5 +132,34 @@ SQL;
             $Lieux[] = $this->buildEntity($dbLieu);
         }
         return $Lieux;
+    }
+    
+    public function findNameByCollectionDate($id, \DateTime $date) {
+        $day = [
+            1 => 'lundi',
+            2 => 'mardi',
+            3 => 'mercredi',
+            4 => 'jeudi',
+            5 => 'vendredi',
+            6 => 'samedi',
+            7 => 'dimanche',
+
+        ];
+                
+        $dbAdresses = $this->db->fetchAll(
+                'SELECT distinct a.*  FROM adresses_collectes a '
+                . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
+                . ' WHERE a.collection_day = :date AND b.collector_idcollector = :id', 
+                [
+                    ':id' => $id,
+                    ':date' => $day[$date->format('N')]
+                ]
+        );
+        $adresses =[];
+
+        foreach ($dbAdresses as $dbAdresse){
+            $adresses[] = $this->buildEntity($dbAdresse);
+        }
+        return $adresses;
     }
 }

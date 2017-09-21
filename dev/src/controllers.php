@@ -28,17 +28,13 @@ $app->get('/', function () use ($app) {
 
 //chemins pour la page compte admin
 $app
-    ->match('/compteadmin','lieutraitement.controller:listAction') 
+    ->match('/compte/admin','lieutraitement.controller:listAction') 
     ->bind('compteadmin')
 ;
 //Routes des actions
-$app->get('/compte/client', function () use ($app) {
-    $client = $app['user.manager']->getUser();
-    $collectors = $app['collector.repository']->findByClientId($client->getIdClient());
-
-    return $app['twig']->render('compteclient.html.twig', array('collectors' => $collectors));
-})
-->bind('compteclient')
+$app
+   ->match('/compte/client', 'client.controller:listAction')
+   ->bind('compteclient')
 ;
 
 $app
@@ -94,7 +90,7 @@ $app
 ;
 
 $app
-    ->match('/compte/collecteur','lieucollecte.controller:listAction') 
+    ->match('/compte/collecteur','collector.controller:listAction') 
     ->bind('comptecollecteur')
 ;
 

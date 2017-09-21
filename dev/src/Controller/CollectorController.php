@@ -8,12 +8,31 @@ class CollectorController extends ControllerAbstract{
     
      public function listAction() 
     {
-        $collector = $this->app['collector.repository']->findAll();
-        return $this->render('formulaireCollector.html.twig',
+        $collectors = $this->app['collector.repository']->findAll();
+        $date = new \DateTime();
+        $tomorrow = new \DateTime('+1 day');
+        //echo $tomorrow->format('Y-m-d');
+        $user = $this->app['user.manager']->getUser();
+        $lieux = $this->app['lieucollecte.repository']->findNameByEmptyWeight($user->getIdCollector());
+        $adresses = $this->app['lieucollecte.repository']->findNameByCollectionDate($user->getIdCollector(), $date);
+        $adressesTomorrow = $this->app['lieucollecte.repository']->findNameByCollectionDate($user->getIdCollector(), $tomorrow);
+        $totalOutput = $this->app['outputcompost.repository']->totalOutputByCollector($user->getIdCollector());
+        $weeklyOutput = $this->app['outputcompost.repository']-> weekOutputByCollector($user->getIdCollector(), $date);
+        $totalWaste = $this->app['collecte.repository']->totalWasteByCollector($user->getIdCollector());
+        $weeklyWaste = $this->app['collecte.repository']-> weekWasteByCollector($user->getIdCollector(), $date);
+        
+        return $this->render('comptecollecteur.html.twig',
             [
-               'collectors' => $collectors
+               'collectors' => $collectors,
+               'lieux' => $lieux,
+               'adresses' => $adresses,
+               'adressesTomorrow'=> $adressesTomorrow,
+               'totalOutput' => $totalOutput,
+               'weeklyOutput' => $weeklyOutput,
+               'totalWaste' => $totalWaste,
+               'weeklyWaste' => $weeklyWaste
             ]
-            );
+        );
     }
     
     public function registerAction($id = null) {
@@ -86,7 +105,6 @@ class CollectorController extends ControllerAbstract{
             }
             
             if(empty($errors)){
-                $collector->setPassword($this->app['user.manager']->encodePassword($_POST['password']));
                 $this->app['collector.repository']->save($collector);
                 $message = '<strong>L\'utilisateur à bien été enregistré</strong>';
                 $this->addFlashMessage($message, 'success');

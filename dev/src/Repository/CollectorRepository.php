@@ -48,7 +48,7 @@ SQL;
         return $collectors;
     }
     
-    public function findByClientId($id) {
+    public function findCollectorByClientId($id) {
         $query = <<<SQL
 SELECT c.*
 FROM collector c
@@ -73,11 +73,11 @@ SQL;
         $data = [
             'lastname' => $collector->getLastname(),
             'firstname' => $collector->getFirstname(),
-            'phone_number' => $collector->getPhone_Number(),
+            'phone_number' => $collector->getPhone_number(),
             'email' => $collector->getEmail(),
             'password' => $collector->getPassword(),
             'address' => $collector->getAddress(),
-            'postal_code' => $collector->getPostal_Code(),
+            'postal_code' => $collector->getPostal_code(),
             'city' => $collector->getCity(),
             'status' => $collector->getStatus(),
         ];

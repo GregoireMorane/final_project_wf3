@@ -82,9 +82,13 @@ class LieuTraitementController extends ControllerAbstract{
        // $clients = $this->app['client.repository']->findAll();
     //    $collectors = $this->app['collector.repository']->findAllByLocation();
         
+        // pour les biodéchets
         $totalweightbyweek = $this->app['collecte.repository']->findTotalBioWasteWeightByWeek();
         $totalweight = $this->app['collecte.repository']->findTotalBioWasteWeight();
         $locations = $this->app['lieutraitement.repository']->findAll();
+        //pour le compost (matière valorisé)
+        $totalweightoutputcompost = $this->app['outputcompost.repository']->findTotalCompostWeight();
+        $totalweightoutputcompostbyweek = $this->app['outputcompost.repository']->findTotalCompostWeightByWeek();
         
         foreach ($locations as $location) {
             $collectors = $this->app['collector.repository']->findAllByLocationId($location->getId_location_processing());
@@ -102,7 +106,9 @@ class LieuTraitementController extends ControllerAbstract{
                     'locations' => $locations,
                     'clients' => $clients, //pour la requete 2 du client.rep
                     'totalweight' => $totalweight,
-                    'totalweightbyweek' => $totalweightbyweek
+                    'totalweightbyweek' => $totalweightbyweek,
+                        'totalweightoutputcompost' => $totalweightoutputcompost,
+                        'totalweightoutputcompostbyweek' => $totalweightoutputcompostbyweek
 //                    'collectors' => $collectors,
 //                    'clients' => $clients
                     ]

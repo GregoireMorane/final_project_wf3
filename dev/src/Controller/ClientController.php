@@ -6,6 +6,27 @@ use Entity\Client;
 
 class ClientController extends ControllerAbstract{
     
+    public function listAction() {
+        $client = $this->app['user.manager']->getUser();
+        $collectors = $this->app['collector.repository']->findCollectorByClientId($client->getIdClient());
+        $lieux = $this->app['lieucollecte.repository']->findLieuCollecteByClientId($client->getIdClient());
+        $collectionDates = $this->app['collecte.repository']->findCollectionDateByClientId($client->getIdClient());
+        $date = new \DateTime();
+        $currentWeekBioWasteWeight = $this->app['collecte.repository']->findCurrentWeekBioWasteWeightByClientId($client->getIdClient(), $date);
+        $totalBioWasteWeight = $this->app['collecte.repository']->findTotalBioWasteWeightByClientId($client->getIdClient());
+        
+        return $this->render('compteclient.html.twig', 
+                [
+                    'collectionDates' => $collectionDates,
+                    'collectors' => $collectors,
+                    'lieux' => $lieux,
+                    'currentWeekBioWasteWeight' => $currentWeekBioWasteWeight,
+                    'totalBioWasteWeight' => $totalBioWasteWeight
+                ]
+        );
+    }
+    
+   
     public function registerAction($id =null) {
         
         if(is_null($id)){

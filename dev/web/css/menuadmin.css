@@ -13,17 +13,27 @@
 }
 
 #monmenu {
-    font-size:  110%;
+    font-size:  100%;
     border: 1px black;
-
 }
-
+h3{
+    color: yellow;
+    font-weight: bold;
+    
+}
+ .accesliste{
+    color: #F17630;
+    font-weight: bold;
+    
+}
+.kg{
+    color: #423EB2;
+}
 #monmenu ul ul {
     padding-right: 0px;
     display:  none;
     padding-left: 0px;
     left: 200px;
-   
     padding-bottom: 0px;
     margin:  0px;
     margin-top: -39px;
@@ -47,7 +57,18 @@
     background-color: #e0e0e0;
     border: 1px solid #FBFFD9;
 }
-
+#monmenu li a{
+    color: #313131;
+    font-weight: bold;
+}
+#monmenu ul li span{
+    color : #40a529;
+    font-weight: bold;
+}
+#monmenu ul li ul li span{
+    color : #40a529;
+    font-weight: bold;
+}
 #monmenu li:hover {
     background: rgba(122,166,118,1);
     
@@ -99,4 +120,8 @@
 .italic{
     font-style: italic;
     font-size: 80%;
+}
+/*blocs créations*/
+h3{
+     color : #40a529;
 }
