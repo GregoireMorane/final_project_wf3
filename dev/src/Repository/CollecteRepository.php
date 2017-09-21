@@ -154,7 +154,6 @@ SQL;
                 ':id_adresses_collections_have_collector' => $id_adresses_collections_have_collector
             ]
         );
-        var_dump($dbCollecte);
         if (!empty($dbCollecte)) {
             return $this->buildEntity($dbCollecte);
         }

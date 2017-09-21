@@ -1,0 +1,81 @@
+.collector .gris{
+   -moz-box-shadow: 1px 3px 10px 0px #656565;
+   -webkit-box-shadow: 1px 3px 10px 0px #656565;
+   -o-box-shadow: 1px 3px 10px 0px #656565;
+   box-shadow: 1px 3px 10px 0px #656565;
+   filter: progid : DXImageTransform.Microsoft.Shadow(color=#656565, Direction=161, Strength=10);
+   -moz-border-radius: 10px;
+   -webkit-border-radius: 10px;
+   border-radius: 10px;
+   background: rgba(0,0,0,0.03);
+}
+
+.bloc-collector{
+    padding-top: 1.5em;
+}
+
+.panel-body-collector{
+    padding-top: 1em;
+}
+.panel-default>.panel-heading {
+    background-color: #fff;
+}
+.collector h1{
+    text-align: center;
+    font-size: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.collector a{
+    text-decoration: none;
+}
+
+#collector_nav button{
+    font-size: 1.5em;
+}
+
+.btn-composte{
+    background-color: lightgray;
+    color: #444;
+}
+.btn-composte:hover {
+    color: #fff;
+    background-color: #ccc;
+    border-color: #ccc;
+}
+
+#btn-composte{
+    background-color: lightgray;
+    color: #444;
+}
+#btn-composte:hover {
+    color: #fff;
+    background-color: #ccc;
+    border-color: #ccc;
+}
+
+.collector .panel-title{
+    font-weight: bold;
+}
+
+.collector .icon-edit{
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #eea236;
+}
+.collector{
+    padding: 2em;
+}
+.client-to-collect{
+    font-size: 1.2em;
+    font-style: italic;
+    padding: 0.5em;
+}
+.a-collecter h3{
+    margin-top: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #eea236;
+    text-align: center;
+}
