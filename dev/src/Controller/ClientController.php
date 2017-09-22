@@ -26,6 +26,17 @@ class ClientController extends ControllerAbstract{
         );
     }
     
+    public function listAllClients(){
+        $clients = $this->app['client.repository']->findAll();
+        
+        return $this->render(
+            'listClient.html.twig',
+            [
+                'clients' => $clients
+            ]
+        );
+    }
+    
     public function registerAction() {
         $client = new Client();
         $errors = [];

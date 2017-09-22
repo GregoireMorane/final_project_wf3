@@ -44,4 +44,15 @@ class TraitementCollectorController extends ControllerAbstract{
             ]
         );
     }
+    
+    public function listAllTraitementCollector(){
+        $lieux = $this->app['traitementcollector.repository']->findAll();
+        
+        return $this->render(
+            'listCollectorTraitement.html.twig',
+            [
+                'lieux' => $lieux
+            ]
+        );
+    }
 }

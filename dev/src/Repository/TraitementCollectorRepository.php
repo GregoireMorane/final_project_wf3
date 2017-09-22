@@ -40,7 +40,8 @@ class TraitementCollectorRepository extends RepositoryAbstract{
         $traitementAsCollector
                 ->setId_collector_has_processing_location($data['id_collector_has_processing_location'])
                 ->setCollector_idcollector($data['collector_idcollector'])
-                ->setProcessing_location_id_location_processing($data['processing_location_id_location_processing']);
+                ->setProcessing_location_id_location_processing($data['processing_location_id_location_processing'])
+                ;
     
         return $traitementAsCollector;
     }
@@ -63,4 +64,29 @@ class TraitementCollectorRepository extends RepositoryAbstract{
         }
     }
     
+    public function findAll() 
+    {
+        $dbLieux = $this->db->fetchAll('SELECT chpl.*, c.firstname AS collector_firstname, c.lastname AS collector_lastname, pl.processing_location AS traitement_nom FROM collector_has_processing_location chpl JOIN collector c ON chpl.collector_idcollector = c.idcollector JOIN processing_location pl ON chpl.processing_location_id_location_processing = pl.id_location_processing ORDER BY traitement_nom ASC');
+        $lieux =[];
+        
+        foreach ($dbLieux as $dbLieu){
+            $lieux[] = $this->buildEntityFind($dbLieu);
+        }
+        return $lieux;
+    }
+    
+    private function buildEntityFind(array $data){
+        $traitementAsCollector = new TraitementCollector();
+        
+        $traitementAsCollector
+                ->setId_collector_has_processing_location($data['id_collector_has_processing_location'])
+                ->setCollector_idcollector($data['collector_idcollector'])
+                ->setProcessing_location_id_location_processing($data['processing_location_id_location_processing'])
+                ->setTraitement_nom($data['traitement_nom'])
+                ->setCollector_lastname($data['collector_lastname'])
+                ->setCollector_firstname($data['collector_firstname'])
+                ;
+    
+        return $traitementAsCollector;
+    }
 }

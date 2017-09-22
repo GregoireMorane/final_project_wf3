@@ -63,6 +63,36 @@ class LieuCollecte {
      */
     private $firm_type;
     
+    /**
+     *
+     * @var string
+     */
+    private $clientFirstname;
+    
+    /**
+     *
+     * @var string 
+     */
+    private $clientLastname;
+    
+    public function getClientFirstname() {
+        return $this->clientFirstname;
+    }
+
+    public function getClientLastname() {
+        return $this->clientLastname;
+    }
+
+    public function setClientFirstname($clientFirstname) {
+        $this->clientFirstname = $clientFirstname;
+        return $this;
+    }
+
+    public function setClientLastname($clientLastname) {
+        $this->clientLastname = $clientLastname;
+        return $this;
+    }
+    
     public function getId_collection_address() {
         return $this->id_collection_address;
     }

@@ -167,4 +167,15 @@ class LieuTraitementController extends ControllerAbstract{
                     'locations' => $locations
                 ]);
     }
+    
+    public function listAllLieuxTraitement(){
+        $lieux = $this->app['lieutraitement.repository']->findAll();
+        
+        return $this->render(
+            'listLieuTraitement.html.twig',
+            [
+                'lieux' => $lieux
+            ]
+        );
+    }
 }
