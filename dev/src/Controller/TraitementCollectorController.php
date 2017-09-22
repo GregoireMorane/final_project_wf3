@@ -65,4 +65,15 @@ class TraitementCollectorController extends ControllerAbstract{
             ]
         );
     }
+    
+    public function deleteAction($id){
+       
+        $article = $this->app['traitementcollector.repository']->find($id);
+        
+        $this->app['traitementcollector.repository']->delete($id);
+        
+        return $this->render(
+                'listLieuTraitement.html.twig'
+                );
+    }
 }

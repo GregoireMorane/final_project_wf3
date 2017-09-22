@@ -70,7 +70,7 @@ SQL;
     
     private function buildEntity(array $data){
         $lieu = new LieuCollecte();
-
+      
         $lieu
                 ->setId_collection_address($data['id_collection_address'])
                 ->setAddress_name($data['address_name'])
@@ -83,8 +83,8 @@ SQL;
                 ->setClient_idclient($data['client_idclient'])
                 ->setLocation_processing_idlocation_processing($data['location_processing_idlocation_processing'])
                 ->setFirm_type($data['firm_type'])
-                ->setClientLastname($data['clientLastname'])
-                ->setClientFirstname($data['clientFirstname'])      
+               // ->setClientLastname($data['clientLastname'])
+                //->setClientFirstname($data['clientFirstname'])      
        ;
        return $lieu;
     }

@@ -106,6 +106,15 @@ $app
     ->match('/liste/traitementcollecteur','traitementcollector.controller:listAllTraitementCollector')
     ->bind('listetraitementcollector')
 ;
+$app
+    ->match('/liste/traitementcollecteurdelete/{id}','traitementcollector.controller:deleteAction')
+    ->value('id', null)
+    ->bind('listetraitementcollectordelete')
+;
+$app
+    ->match('/liste/lieutraitement','lieutraitement.controller:deleteAction')
+    ->bind('listelieutraitementdelete')
+;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {

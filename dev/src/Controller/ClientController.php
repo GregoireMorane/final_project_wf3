@@ -36,9 +36,6 @@ class ClientController extends ControllerAbstract{
             ]
         );
     }
-    
-    public function registerAction() {
-        $client = new Client();
    
     public function registerAction($id =null) {
         

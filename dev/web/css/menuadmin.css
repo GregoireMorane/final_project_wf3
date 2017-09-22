@@ -36,7 +36,7 @@ h3{
     left: 200px;
     padding-bottom: 0px;
     margin:  0px;
-    margin-top: -39px;
+    margin-top: -37px;
     margin-left: -2px;
     padding-top: 0px;
     position: absolute;
@@ -62,11 +62,11 @@ h3{
     font-weight: bold;
 }
 #monmenu ul li span{
-    color : #40a529;
+    color : white;
     font-weight: bold;
 }
 #monmenu ul li ul li span{
-    color : #40a529;
+    color : white;
     font-weight: bold;
 }
 #monmenu li:hover {

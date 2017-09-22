@@ -186,4 +186,12 @@ class LieuTraitementController extends ControllerAbstract{
             ]
         );
     }
+    public function deleteAction($id){
+       
+         $this->app['lieutraitement.repository']->delete($id);
+        
+        return $this->render(
+                'listLieuTraitement.html.twig'
+                );
+    }
 }
