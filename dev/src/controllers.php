@@ -66,7 +66,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/collecte','collecte.controller:registerAction') 
+    ->match('/formulaire/collecte/{id}','collecte.controller:registerAction') 
+    ->value('id', null)
     ->bind('registercollecte')
 ;
 
@@ -89,7 +90,6 @@ $app
     ->match('/compte/collecteur','collector.controller:listAction') 
     ->bind('comptecollecteur')
 ;
-
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {

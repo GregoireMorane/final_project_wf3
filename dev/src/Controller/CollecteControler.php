@@ -10,8 +10,17 @@ class CollecteControler extends ControllerAbstract{
      // affichage dans la page html
     
     
-    public function registerAction() {
-        $collecte = new AdressesCollectionsHaveCollector();
+    public function registerAction($id = null) {
+           
+        if(is_null($id)){
+            $collecte = new AdressesCollectionsHaveCollector();
+        } else {
+            $collecte = $this->app['collecte.repository']->findByCollectionAddress($id);
+            if(is_null($collecte)){
+                $this->app->abort(404);
+            }
+        }
+        
         $errors = [];
         //affichages des infos de lieu à collecter
         $lieux = $this->app['lieucollecte.repository']->findAll();

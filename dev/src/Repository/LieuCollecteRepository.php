@@ -66,13 +66,12 @@ SQL;
         return $lieux;
     }
     
-    public function findNameByEmptyWeight() {
+    public function findAllByEmptyWeight($id) {
         $dbLieux = $this->db->fetchAll(
-                'SELECT a.address_name FROM adresses_collectes a '
+                'SELECT a.* FROM adresses_collectes a '
                 . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
-                . ' WHERE b.weight IS NULL');
+                . ' WHERE b.weight = 0 AND b.collector_idcollector = :id', [':id' => $id]);
         $lieux =[];
-        
         foreach ($dbLieux as $dbLieu){
             $lieux[] = $this->buildEntity($dbLieu);
         }
@@ -147,19 +146,21 @@ SQL;
         ];
                 
         $dbAdresses = $this->db->fetchAll(
-                'SELECT distinct a.*  FROM adresses_collectes a '
-                . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
-                . ' WHERE a.collection_day = :date AND b.collector_idcollector = :id', 
-                [
-                    ':id' => $id,
-                    ':date' => $day[$date->format('N')]
-                ]
+            'SELECT distinct a.*  FROM adresses_collectes a '
+            . ' JOIN processing_location b ON a.location_processing_idlocation_processing = b.id_location_processing'
+            . ' JOIN collector_has_processing_location c ON c.id_collector_has_processing_location = b.id_location_processing'
+            . ' WHERE a.collection_day = :date AND c.collector_idcollector = :id ', 
+            [
+                ':id' => $id,
+                ':date' => $day[$date->format('N')]
+            ]
         );
         $adresses =[];
 
         foreach ($dbAdresses as $dbAdresse){
             $adresses[] = $this->buildEntity($dbAdresse);
         }
+
         return $adresses;
     }
 }

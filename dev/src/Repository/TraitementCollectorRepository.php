@@ -62,4 +62,5 @@ class TraitementCollectorRepository extends RepositoryAbstract{
             return $this->buildEntity($dbtraitementcollector);
         }
     }
+    
 }
