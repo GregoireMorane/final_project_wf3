@@ -168,6 +168,17 @@ SQL;
         );
         
         return $this->buildEntity($dbCollection);
-
+    }
+    
+    public function findBinByEmptyWeight($id) {
+        $dbBins = $this->db->fetchAll(
+            'SELECT * FROM adresses_collections_have_collector'
+            . ' WHERE weight = 0 AND collector_idcollector = :id', 
+            [
+                ':id' => $id
+            ]
+        );
+        
+        return $dbBins;
     }
 }

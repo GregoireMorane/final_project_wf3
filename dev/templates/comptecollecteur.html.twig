@@ -3,94 +3,85 @@
 {% block content %}
     <hr class="hrStyle col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1">
     <div class="container collector">
-    {#<h1>Bienvenue {{ user_manager.firstname }}!</h1>#}
-    <div id="collector_nav" class="row">
-        <a href="#collecte" class="col-md-4 col-xs-12">
-            <button class="btn btn-block btn-warning">Collecte de biodéchets</button>
-        </a>
-        <a href="#composte" class="col-md-4 col-xs-12">
-            <button class="btn btn-block btn-composte">Récolte de composte</button>
-        </a>
-        <a href="#recap" class="col-md-4 col-xs-12">
-            <button class="btn btn-block btn-success">Vos réussites</button>
-        </a>
-    </div>
-    <div id="collecte" class="row bloc bloc-collector jaune">
-        <div class="col-md-4 col-xs-12">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading "><h2 class='panel-title'>Nouvelle collecte</h2></div>
-                <div class="panel-body panel-body-collector">
-                    <a href="{{path('registercollecte')}}" type="button" class="btn btn-warning">Ajouter</a>
+        {#<h1>Bienvenue {{ user_manager.firstname }}!</h1>#}
+        <div id="collector_nav" class="row">
+            <a href="#collecte" class="col-md-4 col-xs-12">
+                <button class="btn btn-block btn-warning">Collecte de biodéchets</button>
+            </a>
+            <a href="#composte" class="col-md-4 col-xs-12">
+                <button class="btn btn-block btn-composte">Récolte de composte</button>
+            </a>
+            <a href="#recap" class="col-md-4 col-xs-12">
+                <button class="btn btn-block btn-success">Vos réussites</button>
+            </a>
+        </div>
+        <div id="collecte" class="row bloc bloc-collector jaune">
+            <div class="col-md-4 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h2 class='panel-title'>Nouvelle collecte</h2></div>
+                    <div class="panel-body panel-body-collector">
+                        <a href="{{path('registercollecte')}}" type="button" class="btn btn-warning">Ajouter</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center"><h3 class='panel-title'>Formulaires à compléter</h3></div>
-                <div class="panel-body panel-body-collector btn-group-vertical btn-block" role="group" aria-label="...">
-                {%for lieu in lieux%}
-                    <a href="{{path('registercollecte',{id: lieu.id_collection_address})}}" class="btn btn-default client-to-collect">
-                        {{ lieu.address_name }}
-                        <span class="icon-edit pull-right" aria-hidden="true"></span>
-                    </a>
-                {%endfor%}
+            <div class="col-md-4 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h3 class='panel-title'>Formulaires à compléter</h3></div>
+                    <div class="panel-body panel-body-collector btn-group-vertical btn-block" role="group" aria-label="...">
+                        {%for bin in bins%}                    
+                            <a href="{{path('registercollecte',{id: bin.adress_collection_idadress_collection})}}" class="btn btn-default client-to-collect">
+                                Numéro de bac: {{ bin.bin_number }}  
+                                <span class="icon-edit pull-right" aria-hidden="true"></span>
+                            </a>
+                        {%endfor%}
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-4 col-xs-12 a-collecter">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center"> 
-                    <h2 class='panel-title'>Clients à collecter</h2>
-                </div>
-                <div class="panel-body panel-body-collector">
-                    <h3>A collecter aujourd'hui</h3>
-                    <div class="row">
-                        <div class="col-xs-8 col-xs-offset-1">
-                            {%for adresse in adresses%}
+            <div class="col-md-4 col-xs-12 a-collecter">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"> 
+                        <h2 class='panel-title'>Clients à collecter</h2>
+                    </div>
+                    <div class="panel-body panel-body-collector">
+                        <h3>A collecter aujourd'hui</h3>
+
+                        {%for adresse in adresses%}
                             <ul>
                                 <li>{{adresse.address_name}}</li>
                                 <li>Adresse: {{adresse.address_collection}}</li>
                                 <li>Code postal: {{adresse.postal_code}}</li>
                                 <li>Ville: {{adresse.city}}</li>
                             </ul>                    
-                        </div>
-                        <div class="col-xs-3">
-                            <a href="{{path('registercollecte')}}">
-                                <br><span class="icon-edit icon-large" aria-hidden="true"></span>
-                            </a>
-                        </div>
+
+
                             {% if not loop.last%} {# si ce n'est pas le dernier tour de boucle #}
                                 <hr>
                             {% endif %}
-                            {%endfor%}                 
+                        {%endfor%}                 
                     </div>
                     <hr> 
-                    <div class="row">
-                        <div class="col-xs-8 col-xs-offset-1">
-                            <h3>A récolter demain</h3>
-                            {%for adresse in adressesTomorrow%}
+                    <div class="panel-body panel-body-collector">
+                        <h3>A récolter demain</h3>
+
+                        {%for adresse in adressesTomorrow%}
                             <ul>
                                 <li>{{adresse.address_name}}</li>
                                 <li>Adresse: {{adresse.address_collection}}</li>
                                 <li>Code postal: {{adresse.postal_code}}</li>
                                 <li>Ville: {{adresse.city}}</li>
                             </ul>
-                        </div>
-                        <div class="col-xs-3">
-                            <a href="{{path('registercollecte')}}">
-                                <br><br><span class="icon-edit icon-large" aria-hidden="true"></span>
-                            </a>
-                        </div>
+
                             {% if not loop.last%} {# si ce n'est pas le dernier tour de boucle #}
                                 <hr>
                             {% endif %}
-                            {%endfor%}
-                        </div>
+                        {%endfor%}
                     </div>
                 </div>
             </div>
         </div>
+
+
         {#<div class="col-md-4 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading text-center"><h3 class='panel-title'>Vos DAC de la semaine dernière</h3></div>
@@ -106,58 +97,58 @@
         </div>#}
 
 
-    <div id="composte" class="bloc bloc-collector gris row">
-        <div class="col-md-4 col-md-offset-4 col-xs-12">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading "><h3 class='panel-title'>Rentrez le composte collecté</h3></div>
-                <div class="panel-body panel-body-collector">
-                    <form method="post">
-                        <fieldset>
-                          <a href="{{path('registeroutputcompost')}}" type="submit" id="btn-composte" name="singlebutton" class="btn btn-default">Insérer</a>
-                        </fieldset>
-                    </form>
+        <div id="composte" class="bloc bloc-collector gris row">
+            <div class="col-md-4 col-md-offset-4 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h3 class='panel-title'>Rentrez le composte collecté</h3></div>
+                    <div class="panel-body panel-body-collector">
+                        <form method="post">
+                            <fieldset>
+                                <a href="{{path('registeroutputcompost')}}" type="submit" id="btn-composte" name="singlebutton" class="btn btn-default">Insérer</a>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-                        
-    <div id="recap" class="bloc bloc-collector vert row">
-        <div class="col-md-6 col-xs-12">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés depuis le début de votre mission</h3></div>
-                <div class="panel-body panel-body-collector">
-                    <strong>{{totalWaste}} kilos</strong><br>
-                    <i>Super!</i>
+
+        <div id="recap" class="bloc bloc-collector vert row">
+            <div class="col-md-6 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés depuis le début de votre mission</h3></div>
+                    <div class="panel-body panel-body-collector">
+                        <strong>{{totalWaste}} kilos</strong><br>
+                        <i>Super!</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés cette semaine</h3></div>
+                    <div class="panel-body panel-body-collector">
+                        <strong>{{weeklyWaste}} kilos</strong><br>
+                        <i>Bravo!</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h3 class='panel-title'>Composte collecté cette semaine</h3></div>
+                    <div class="panel-body panel-body-collector">
+                        <strong>{{weeklyOutput}} kilos</strong><br>
+                        <i>:)</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading "><h3 class='panel-title'>Composte collecté depuis le début de votre mission</h3></div>
+                    <div class="panel-body panel-body-collector">
+                        <strong>{{totalOutput}} kilos</strong><br>
+                        <i>Génial</i>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xs-12">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading "><h3 class='panel-title'>Biodéchets collectés cette semaine</h3></div>
-                <div class="panel-body panel-body-collector">
-                    <strong>{{weeklyWaste}} kilos</strong><br>
-                    <i>Bravo!</i>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading "><h3 class='panel-title'>Composte collecté cette semaine</h3></div>
-                <div class="panel-body panel-body-collector">
-                    <strong>{{weeklyOutput}} kilos</strong><br>
-                    <i>:)</i>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading "><h3 class='panel-title'>Composte collecté depuis le début de votre mission</h3></div>
-                <div class="panel-body panel-body-collector">
-                    <strong>{{totalOutput}} kilos</strong><br>
-                    <i>Génial</i>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 {% endblock %}

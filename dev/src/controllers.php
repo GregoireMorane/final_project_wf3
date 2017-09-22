@@ -91,7 +91,6 @@ $app
     ->bind('comptecollecteur')
 ;
 
-
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;

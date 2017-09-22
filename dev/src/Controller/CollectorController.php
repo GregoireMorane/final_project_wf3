@@ -20,6 +20,7 @@ class CollectorController extends ControllerAbstract{
         $weeklyOutput = $this->app['outputcompost.repository']-> weekOutputByCollector($user->getIdCollector(), $date);
         $totalWaste = $this->app['collecte.repository']->totalWasteByCollector($user->getIdCollector());
         $weeklyWaste = $this->app['collecte.repository']-> weekWasteByCollector($user->getIdCollector(), $date);
+        $bins = $this->app['collecte.repository']->findBinByEmptyWeight($user->getIdCollector());
         
         return $this->render('comptecollecteur.html.twig',
             [
@@ -30,7 +31,8 @@ class CollectorController extends ControllerAbstract{
                'totalOutput' => $totalOutput,
                'weeklyOutput' => $weeklyOutput,
                'totalWaste' => $totalWaste,
-               'weeklyWaste' => $weeklyWaste
+               'weeklyWaste' => $weeklyWaste,
+               'bins' => $bins
             ]
         );
     }
