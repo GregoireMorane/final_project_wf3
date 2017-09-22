@@ -21,7 +21,7 @@ class CollectorRepository extends RepositoryAbstract{
     
     public function findAll() 
     {
-        $dbCollectors = $this->db->fetchAll('SELECT * FROM collector ORDER BY idcollector');
+        $dbCollectors = $this->db->fetchAll('SELECT * FROM collector ORDER BY lastname');
         $collectors =[];
         
         foreach ($dbCollectors as $dbCollector){
