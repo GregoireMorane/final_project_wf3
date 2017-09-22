@@ -31,7 +31,7 @@ class LieuTraitementRepository extends RepositoryAbstract{
     //fonction pour boucler sur les lieux de traitements
      public function findAll() 
     {
-        $dbLocations = $this->db->fetchAll('SELECT * FROM processing_location ORDER BY id_location_processing');
+        $dbLocations = $this->db->fetchAll('SELECT * FROM processing_location ORDER BY processing_location');
         $locations =[];
         
         foreach ($dbLocations as $dbLocation){

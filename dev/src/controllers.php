@@ -14,18 +14,6 @@ $app->get('/', function () use ($app) {
 ->bind('homepage')
 ;
 
-//$app->get('/connexion', function () use ($app) {
-//    return $app['twig']->render('connexion.html.twig', array());
-//})
-//->bind('connexion')
-//;
-
-//$app->get('/compte/collecteur', function () use ($app) {
-//    return $app['twig']->render('comptecollecteur.html.twig', array());
-//})
-//->bind('comptecollecteur')
-//;
-
 //chemins pour la page compte admin
 $app
     ->match('/compte/admin','lieutraitement.controller:listAction') 
@@ -94,6 +82,30 @@ $app
     ->bind('comptecollecteur')
 ;
 
+$app
+    ->match('/liste/client','client.controller:listAllClients')
+    ->bind('listeclient')
+;
+
+$app
+    ->match('/liste/collecteur','collector.controller:listAllCollectors')
+    ->bind('listecollector')
+;
+
+$app
+    ->match('/liste/lieutraitement','lieutraitement.controller:listAllLieuxTraitement')
+    ->bind('listelieutraitement')
+;
+
+$app
+    ->match('/liste/lieucollecte','lieucollecte.controller:listAllLieuxCollecte')
+    ->bind('listelieucollecte')
+;
+
+$app
+    ->match('/liste/traitementcollecteur','traitementcollector.controller:listAllTraitementCollector')
+    ->bind('listetraitementcollector')
+;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {

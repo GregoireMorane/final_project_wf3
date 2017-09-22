@@ -1,0 +1,43 @@
+{% extends "layout.html.twig"%}
+{% block content %}
+    <hr class="hrStyle col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1">
+    <div class="">
+        <div class="col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1">
+            <h1>Clients</h1>
+            <a href="{{ path('registerclient') }}"><span>Ajouter un client</span></a>
+            <br><br>
+        </div>
+        <table class="table">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>email</th>
+                <th>Numéro de téléphone</th>
+                <th>Date de début de contrat</th>
+                <th>Adresse de facturation</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Entreprise</th>
+                <th>Numéro de siret</th>
+                <th>Mot de passe</th>
+            </tr>
+            {% for client in clients %}
+                <tr>
+                    <th>{{ client.lastname }}</th>
+                    <th>{{ client.firstname }}</th>
+                    <th>{{ client.email }}</th>
+                    <th>{{ client.phonenumber }}</th>
+                    <th>{{ client.startdatecontract }}</th>
+                    <th>{{ client.billingaddress }}</th>
+                    <th>{{ client.postalcode }}</th>
+                    <th>{{ client.city }}</th>
+                    <th>{{ client.country }}</th>
+                    <th>{{ client.company }}</th>
+                    <th>{{ client.siret }}</th>
+                    <th>{{ client.password }}</th>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

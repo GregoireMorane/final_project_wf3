@@ -183,4 +183,15 @@ class LieuCollecteController extends ControllerAbstract{
             ]
         );
     }
+    
+    public function listAllLieuxCollecte(){
+        $collectes = $this->app['lieucollecte.repository']->findAll();
+        
+        return $this->render(
+            'listLieuxCollecte.html.twig',
+            [
+                'collectes' => $collectes
+            ]
+        );
+    }
 }

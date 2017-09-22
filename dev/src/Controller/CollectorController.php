@@ -184,4 +184,15 @@ class CollectorController extends ControllerAbstract{
         );
     }
     
+    public function listAllCollectors(){
+        $collectors = $this->app['collector.repository']->findAll();
+        
+        return $this->render(
+            'listCollector.html.twig',
+            [
+                'collectors' => $collectors
+            ]
+        );
+    }
+    
 }
