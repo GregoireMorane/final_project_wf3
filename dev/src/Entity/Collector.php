@@ -7,8 +7,8 @@
 namespace Entity;
 
 class Collector{
-//    const STATUS_COLLECTEUR = 'salari�';
-//    const STATUS_ADMIN = 'admin';
+    const ROLE_COLLECTEUR = 'salarié';
+    const ROLE_ADMIN = 'admin';
     
     /**
      *
@@ -74,9 +74,9 @@ class Collector{
     function getPassword() {
        return $this->password;
     }
-    function getStatus() {
-        return $this->status;
-    }
+//    function getStatus() {
+//        return $this->status;
+//    }
     function getAddress() {
         return $this->address;
     }
@@ -128,10 +128,10 @@ class Collector{
         return $this;
     }
 
-    public function setStatus($status) {
-        $this->status = $status;
-        return $this;
-    }
+//    public function setStatus($status) {
+//        $this->status = $status;
+//        return $this;
+//    }
 
     public function setAddress($address) {
         $this->address = $address;
@@ -146,6 +146,31 @@ class Collector{
     public function setPostal_code($postal_code) {
         $this->postal_code = $postal_code;
         return $this;
+    }
+    
+    public function getStatus() {
+        return $this->role;
+    }
+    
+    public function setStatus($status)
+    {
+        if (!in_array($status, [self::ROLE_ADMIN, self::ROLE_COLLECTEUR])) {
+            throw new \UnexpectedValueException('Unrecognized role value');
+        }
+        
+        $this->role = $status;
+        
+        return $this;
+    }
+    
+    public function isAdmin()
+    {
+        return $this->role == self::ROLE_ADMIN;
+    }
+    
+    public function isCollector()
+    {
+        return $this->role == self::ROLE_COLLECTEUR;
     }
 
 }

@@ -8,6 +8,15 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
+//$admin = $app['controllers_factory'];
+
+// protection de l'accès au backoffice
+//$admin->before(function () use ($app) {
+//    if (!$app['user.manager']->isAdmin()) {
+//        $app->abort(403, 'Accès refusé');
+//    }
+//});
+
 $app->get('/', function () use ($app) {
     return $app['twig']->render('index.html.twig', array());
 })

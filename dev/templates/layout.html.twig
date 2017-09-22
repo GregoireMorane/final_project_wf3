@@ -30,9 +30,16 @@
                     <span>Bonjour {{ user_manager.firstname }}</span>
                     <br>
                     <a href="{{path('deconnexion')}}">Deconnexion</a>
+                    {% if user_manager.admin %}
+                        <a href="#">Page admin</a>
+                    {% elseif user_manager.collector %}
+                        <a href="#">Page collecteur</a>
+                    {% else %}
+                        <a href="#">Page client</a>
+                    {% endif %}
+            {% else %}
                 </div>
                 <div class="clear"></div>
-            {% else %} 
                 <div class="bloc-connexion col-lg-5 col-md-5 col-xs-10 col-lg-offset-7 col-md-offset-5 col-xs-offset-2" style="text-align: right;">
                     <a href="{{path('connexion')}}">Connexion</a>
                 </div>
