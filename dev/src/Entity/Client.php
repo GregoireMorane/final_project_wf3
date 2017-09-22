@@ -6,7 +6,7 @@
  */
 namespace Entity;
 class Client
-{   
+{
     /**
      *
      * @var int 
@@ -181,5 +181,15 @@ class Client
     public function setSiret($siret){
         $this->siret = $siret;
         return $this;
+    }
+    
+    public function isAdmin()
+    {
+        return false;
+    }
+    
+    public function isCollector()
+    {
+        return false;
     }
 }

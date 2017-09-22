@@ -42,6 +42,16 @@ class UserManager {
         return $this->session->get('user');
     }
     
+    public function isAdmin()
+    {
+        return $this->session->has('user') && $this->getUser()->isAdmin();
+    }
+    
+    public function isCollector()
+    {
+        return $this->session->has('user') && $this->getUser()->isCollector();
+    }
+    
     public function getFirstname(){
         if($this->session->has('user')){
             return $this->getUser()->getFullName();
