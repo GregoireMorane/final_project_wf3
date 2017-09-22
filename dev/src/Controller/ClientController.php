@@ -3,8 +3,8 @@
 namespace Controller;
 
 use DateTime;
-use Entity\AdressesCollectionsHaveCollector;
 use Entity\Client;
+use Html2pdf\PDF_HTML;
 
 class ClientController extends ControllerAbstract{
     
@@ -16,14 +16,18 @@ class ClientController extends ControllerAbstract{
         $date = new DateTime();
         $currentWeekBioWasteWeight = $this->app['collecte.repository']->findCurrentWeekBioWasteWeightByClientId($client->getIdClient(), $date);
         $totalBioWasteWeight = $this->app['collecte.repository']->findTotalBioWasteWeightByClientId($client->getIdClient());
-        
+        $id_lieu = $this->app['lieucollecte.repository']->findIdLieuCollecteByClientId($client->getIdClient());
+        $collectorLieuClients = $this->app['collector.repository']->findCollectorByLieuCollecteByClientId($client->getIdClient(), $id_lieu);
+
         return $this->render('compteclient.html.twig', 
                         [
                             'collectionDates' => $collectionDates,
                             'collectors' => $collectors,
                             'lieux' => $lieux,
                             'currentWeekBioWasteWeight' => $currentWeekBioWasteWeight,
-                            'totalBioWasteWeight' => $totalBioWasteWeight
+                            'totalBioWasteWeight' => $totalBioWasteWeight,
+                            'collectorLieuClients' => $collectorLieuClients,
+                            'id_lieu' => $id_lieu
                         ]);
     }
 
@@ -35,14 +39,36 @@ class ClientController extends ControllerAbstract{
         
         return $this->render('compteclientdac.html.twig', 
                 [
-//                    'client' => $client,
                     'oneDacDetails' => $oneDacDetails,
                     'collectors' => $collectors,
                     'lieux' => $lieux,
                 ]
         );
     }
-    
+
+    public function editOneDacDetailsToPDF() {
+        require(__DIR__ . '/../Html2pdf/html2pdf.php');
+        $file_path = '../templates/compteclientdac.html.twig';
+        $content = file_get_contents( $file_path );
+        
+        if('' == $content) {
+            echo "file is empty !";
+        } else {
+            $pdf= new PDF_HTML();
+            $pdf->SetFont('Arial','',12);
+            $pdf->AddPage();
+            $pdf->WriteHTML($content);
+            $dacPDF = $pdf->Output();
+//            exit;
+        }
+
+        return $this->render('compteclientdacpdf.html.twig', 
+                [
+                    'dacPDF' => $dacPDF,
+                ]
+        );
+    }
+
     public function registerAction() {
         $client = new Client();
         $errors = [];

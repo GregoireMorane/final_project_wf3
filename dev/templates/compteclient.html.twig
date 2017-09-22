@@ -16,12 +16,14 @@
         <div id="biodechets"></div>
         <div class="row jaune bloc-comptetitle bloc bloc-comptetitle">
 
-            <div class="col-xs-12 col-md-4 panel-body btn-group-vertical" role="group">
+            <div class="col-xs-12 col-md-4 panel-body btn-group-vertical dacbouton" role="group">
                 <button type="button" class="btn btn-primary btn-static">Vos DAC</button>
                     {% for collectionDate in collectionDates %}
                         <button type="button" class="btn btn-default btn-static">
                             Collecte du {{ collectionDate.collection_datetime }}
-                            <a class="btn btn-default pull-right" href="{{ path('compteclientdac', {id_dac: collectionDate.id_adresses_collections_have_collector}) }}"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            <a class="btn btn-default pull-right" href="{{ path('compteclientdac', {id_dac: collectionDate.id_adresses_collections_have_collector}) }}">
+                                <i class="fa fa-file" aria-hidden="true"></i>
+                            </a>
                         </button>
                     {% endfor %}
             </div>
@@ -43,7 +45,7 @@
                         <h3 class="panel-title">Nombre de kilos de biodéchets collectés<br />depuis le début</h3>
                     </div>
                     <div class="panel-body text-center">
-                        <p>{{ totalBioWasteWeight }}</p>
+                        {{ totalBioWasteWeight }}
                     </div>
                 </div>
             </div>
@@ -52,54 +54,71 @@
 
         <div id="contact"></div>
         <div class="row bloc vert bloc bloc-comptetitle">
-            <div class="col-xs-12 col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-center">Vos informations</h3>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">Vos informations client</h3>
+                        </div>
+                        <div class="panel-body text-left">
+                            <p>{{ user_manager.user.company }}</p>
+                            <p>{{ user_manager.user.billingaddress}}<br />{{ user_manager.user.postalcode}} {{ user_manager.user.city}}</p>
+                            <p>Contact : {{ user_manager.user.firstname }} {{ user_manager.user.lastname }}.</p>
+                            <p>Tél. (de 9h à 17h30) : {{ user_manager.user.phonenumber }}.</p>
+                            <p>Courriel : {{ user_manager.user.email }}.</p>
+                        </div>
                     </div>
-                    <div class="panel-body text-left">
-                        <p>{{ user_manager.user.company }}</p>
-                        <p>{{ user_manager.user.billingaddress}} {{ user_manager.user.postalcode}} {{ user_manager.user.city}}.</p>
-                        <p>Tél. (de 9h à 17h30) : {{ user_manager.user.phonenumber }}.</p>
-                        <p>Contact : {{ user_manager.user.firstname }} {{ user_manager.user.lastname }}.</p>
-                        <p>Courriel : {{ user_manager.user.email }}.</p>
-                        {% for lieu in lieux %}
-                            <p>Jours de collecte : {{ lieu.collection_day }}</p>
-                        {% endfor %}
+                </div>
+
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">Votre contact administrateur</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Contact : Fabien-Kenzo Sato</p>
+                            <p>Fixe (de 9h à 17h30): 01 84 21 47 89</p>
+                            <p>Mobile : 07 77 07 08 10</p>
+                            <p>Courriel : kenzo@alchimistes.co</p>
+                            <p>Contactez Kenzo pour tous les sujets relatifs aux Alchimistes</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-center">Votre collecteur</h3>
-                    </div>
-                    <div class="panel-body text-left">
-                        {% for collector in collectors %}
-                            <p>Contact : {{ collector.firstname }} {{ collector.lastname }}.</p>
-                            <p>Tél. (de 9h à 17h30): {{ collector.phone_number }}.</p>
-                            <p>Courriel :{{ collector.email }}</p>
-                            <p>Contactez {{ collector.firstname }} en cas de besoin de ramassage.</p>
-                        {% endfor %}                        
+        {% for lieu in lieux %}
+           <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">Votre lieu de collecte : {{ lieu.address_name }}</h3>
+                        </div>
+                        <div class="panel-body text-left">
+                            <p>{{ lieu.address_collection }}<br />{{ lieu.postal_code }} {{ lieu.city }}</p>
+                            <p>Type d'établissement : {{ lieu.firm_type }}.</p>
+                            <p>Jours de collecte : {{ lieu.collection_day }}.</p>
+                            <p>Information complémentaires : {{ lieu.further_information }}.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-xs-12 col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-center">Votre contact administrateur</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p>Contact : Fabien-Kenzo Sato</p>
-                        <p>Fixe (de 9h à 17h30): 01 84 21 47 89</p>
-                        <p>Mobile : 07 77 07 08 10</p>
-                        <p>Courriel : kenzo@alchimistes.co</p>
-                        <p>Contactez Kenzo pour tous les sujets relatifs aux Alchimistes</p>
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">Le collecteur pour ce lieu : {{ lieu.address_name }}</h3>
+                        </div>
+                        <div class="panel-body text-left">
+                            {% for collectorLieuClient in collectorLieuClients %}
+                                <p>Collecteur : {{ collectorLieuClient.firstname }} {{ collectorLieuClient.lastname }}.</p>
+                                <p>Tél. (de 9h à 17h30): {{ collectorLieuClient.phone_number }}.</p>
+                                <p>Courriel :{{ collectorLieuClient.email }}</p>
+                                <p>Contactez {{ collectorLieuClient.firstname }} en cas de besoin de ramassage.</p>
+                            {% endfor %}                        
+                        </div>
                     </div>
                 </div>
             </div>
+        {% endfor %}
         </div>
     </div>
 </div>

@@ -2,6 +2,10 @@
     padding: 0.7em 0;
 }
 
+div.dacbouton {
+    padding: 0 1.5em;
+}
+
 .btn-static {
     border: 1px solid lightgrey;
     cursor: default;
@@ -12,7 +16,11 @@
 }
 
 .panel-body {
-    padding: 0px 15px 15px 15px;
+    padding: 1.0em;
+}
+
+.panel-default {
+    margin: 1.0em;
 }
 
 span.glyphicon-eye-open {
@@ -40,4 +48,8 @@ span.glyphicon-eye-open {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 1.5em;
+}
+
+.ici {
+    margin: 2em 0;
 }

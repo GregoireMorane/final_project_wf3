@@ -44,6 +44,11 @@ $app
 ;
 
 $app
+    ->match('/compte/client/dac/pdf', 'client.controller:editOneDacDetailsToPDF')
+    ->bind('compteclientdacpdf')
+;
+
+$app
     ->match('/formulaire/ajout/collecteur/{id}','collector.controller:registerAction')
     ->value('id', null)
     ->bind('registercollector')

@@ -66,6 +66,17 @@ SQL;
         return $lieux;
     }
     
+   public function findIdLieuCollecteByClientId($id) {
+       $query = <<<SQL
+SELECT id_collection_address
+FROM adresses_collectes ac
+JOIN client ON client.id_client = ac.client_idclient
+WHERE client.id_client = :id
+SQL;
+   
+       return $this->db->fetchColumn($query, [':id' => $id]);
+   }
+    
     public function findNameByEmptyWeight() {
         $dbLieux = $this->db->fetchAll(
                 'SELECT a.address_name FROM adresses_collectes a '
