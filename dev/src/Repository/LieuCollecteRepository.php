@@ -55,18 +55,18 @@ SQL;
         return $lieux;
     }
     
-    public function findAllByEmptyWeight($id) {
-        $dbLieux = $this->db->fetchAll(
-                'SELECT a.* FROM adresses_collectes a '
-                . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
-                . ' WHERE b.weight = 0 AND b.collector_idcollector = :id', [':id' => $id]);
-        $lieux =[];
-        foreach ($dbLieux as $dbLieu){
-            $lieux[] = $this->buildEntity($dbLieu);
-        }
-        return $lieux;
-    }
-    
+//    public function findAllByEmptyWeight($id) {
+//        $dbLieux = $this->db->fetchAll(
+//                'SELECT a.* FROM adresses_collectes a '
+//                . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
+//                . ' WHERE b.weight = 0 AND b.collector_idcollector = :id', [':id' => $id]);
+//        $lieux =[];
+//        foreach ($dbLieux as $dbLieu){
+//            $lieux[] = $this->buildEntity($dbLieu);
+//        }
+//        return $lieux;
+//    }
+//    
     private function buildEntity(array $data){
         $lieu = new LieuCollecte();
 

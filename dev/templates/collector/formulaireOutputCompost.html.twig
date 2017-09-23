@@ -19,10 +19,10 @@
             <label class="col-md-4 control-label" for="collector_idcollector">Collecteur</label>
             <div class="col-md-4">
                 <select id="client" name="collector_idcollector" class="form-control">
-                    <option value="">Choisissez un collecteur</option>
-                    {% for collector in collectors %}
+                    <option value="{{user.idcollector}}">{{user.fullname}}</option>
+                    {#{% for collector in collectors %}
                              <option value="{{collector.idcollector}}">{{collector.firstname}} {{collector.lastname}}</option>
-                    {% endfor %}
+                    {% endfor %}#}
                 </select>
             </div>
         </div>

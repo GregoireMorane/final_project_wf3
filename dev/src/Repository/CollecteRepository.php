@@ -3,6 +3,7 @@
 namespace Repository;
 
 use Entity\AdressesCollectionsHaveCollector;
+use Entity\LieuCollecte;
 
 /**
  * Description of CollecteRepository
@@ -126,6 +127,10 @@ SQL;
     }
 
     private function buildEntity(array $data){
+        $collectionAddress = new LieuCollecte();
+        
+        $collectionAddress ->setAddress_name($data['address_name']);
+  
         $collecte = new AdressesCollectionsHaveCollector();
         
         $collecte
@@ -138,7 +143,10 @@ SQL;
                 ->setWeight($data['weight'])
                 ->setCompost_quality($data['compost_quality'])
                 ->setFurther_information($data['further_information'])
-                ->setProcessing_datetime($data['processing_location']);
+                ->setProcessing_datetime($data['processing_location'])
+                ->setLieuCollecte($collectionAddress)
+                ;
+
         return $collecte;
     }
     
@@ -146,31 +154,39 @@ SQL;
         $this->db->delete('adresses_collections_have_collector', ['id_adresses_collections_have_collector' => $collecte->getId_adresses_collections_have_collector()]);
     }
     
-    public function find($id_adresses_collections_have_collector)
+    public function find($id)
     {
+        dump($id); 
         $dbCollecte = $this->db->fetchAssoc(
-            'SELECT * FROM adresses_collections_have_collector WHERE id_adresses_collections_have_collector = :id_adresses_collections_have_collector',
-            [
-                ':id_adresses_collections_have_collector' => $id_adresses_collections_have_collector
-            ]
-        );
-        if (!empty($dbCollecte)) {
-            return $this->buildEntity($dbCollecte);
-        }
-    }
-    
-    public function findByCollectionAddress($id) {
-        $dbCollection = $this->db->fetchAssoc(
-            'SELECT * FROM adresses_collections_have_collector WHERE adress_collection_idadress_collection = :id',
+            //'SELECT a.*, b.address_name as name FROM adresses_collections_have_collector a'  
+                'SELECT a.bin_number, b.address_name as name FROM adresses_collections_have_collector a'  
+            . ' JOIN adresses_collectes b ON a.adress_collection_idadress_collection = b.id_collection_address'
+            . ' WHERE a.id_adresses_collections_have_collector = :id',
             [
                 ':id' => $id
             ]
         );
         
-        return $this->buildEntity($dbCollection);
+//        $collecte = [];
+//        foreach ($dbCollecte as $dbCollecte) {
+//            $collecte[] = $this->buildEntity($dbCollecte);
+//        }
+        
+          return $this->buildEntity($dbCollecte);
     }
     
-    public function findBinByEmptyWeight($id) {
+//    public function findByCollectionAddress($id) {
+//        $dbCollection = $this->db->fetchAssoc(
+//            'SELECT * FROM adresses_collections_have_collector WHERE adress_collection_idadress_collection = :id',
+//            [
+//                ':id' => $id
+//            ]
+//        );
+//        
+//        return $this->buildEntity($dbCollection);
+//    }
+    
+    public function findByEmptyWeight($id) {
         $dbBins = $this->db->fetchAll(
             'SELECT * FROM adresses_collections_have_collector'
             . ' WHERE weight = 0 AND collector_idcollector = :id', 
@@ -179,6 +195,12 @@ SQL;
             ]
         );
         
-        return $dbBins;
+        $bin = [];
+        foreach ($dbBins as $dbBin) {
+            $bin[] = $this->buildEntity($dbBin);
+        }
+        
+        return $bin;
+//        return $this->buildEntity($dbBins);
     }
 }

@@ -17,6 +17,7 @@ class OutputCompostController extends ControllerAbstract{
         $collectors = $this->app['collector.repository']->findAll();
         //affichages des infos de lieu de traitement
         $locations = $this->app['lieutraitement.repository']->findAll();
+        $user = $this->app['user.manager']->getUser();
         
         if(!empty($_POST)){
             $output->setOutput_datetime($_POST['output_datetime'])
@@ -58,7 +59,8 @@ class OutputCompostController extends ControllerAbstract{
                     [
                         'output' => $output,
                         'collectors' => $collectors,
-                        'locations' => $locations
+                        'locations' => $locations,
+                        'user' => $user
                     ]
                 );
     }
