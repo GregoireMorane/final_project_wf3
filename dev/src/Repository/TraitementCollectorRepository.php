@@ -49,8 +49,8 @@ class TraitementCollectorRepository extends RepositoryAbstract{
         return $traitementAsCollector;
     }
     
-    public function delete(article $id){
-        dump($id);
+    public function delete(TraitementCollector $id){
+        
         $this->db->delete('collector_has_processing_location', ['id_collector_has_processing_location' => $id->getId_collector_has_processing_location()]);
     }
     
@@ -74,8 +74,25 @@ class TraitementCollectorRepository extends RepositoryAbstract{
         $lieux =[];
         
         foreach ($dbLieux as $dbLieu){
-            $lieux[] = $this->buildEntity($dbLieu);
+            $lieux[] = $this->buildEntityFind($dbLieu);
         }
         return $lieux;
     }
+    
+    private function buildEntityFind(array $data){
+        $traitementAsCollector = new TraitementCollector();
+        
+        $traitementAsCollector
+                ->setId_collector_has_processing_location($data['id_collector_has_processing_location'])
+                ->setCollector_idcollector($data['collector_idcollector'])
+                ->setProcessing_location_id_location_processing($data['processing_location_id_location_processing'])
+                ->setTraitement_nom($data['traitement_nom'])
+                ->setCollector_lastname($data['collector_lastname'])
+                ->setCollector_firstname($data['collector_firstname'])
+                ;
+    
+        return $traitementAsCollector;
+    }
+    
 }
+

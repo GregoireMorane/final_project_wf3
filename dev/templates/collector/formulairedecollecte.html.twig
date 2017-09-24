@@ -3,14 +3,14 @@
         <form class="form-horizontal" method="post">
             <fieldset>
                 <!-- Form Name -->
-                <legend style="text-align: center;"><strong>Formulaire de collecte des biodéchets</strong></legend>
+                <legend style="text-align: center;"><strong>{% if collecte.id_adresses_collections_have_collector%}ajout sur le formulaire de collecte de : {{ collecte.processing_location }} {% else %}Ajout d'une collecte{% endif %}</strong></legend>
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="adress_collection_idadress_collection">Lieu collecté</label>
                     <div class="col-md-4">
                         <select id="lieucollecté" name="adress_collection_idadress_collection" class="form-control">
                             <option value="">Choississez un lieu collecté</option>
                             {% for lieu in lieux %}
-                             <option value="{{lieu.id_collection_address}}">{{lieu.address_collection}} </option>
+                             <option value="{{lieu.id_collection_address}}"{%if lieu.id_collection_address == collecte.adress_collection_idadress_collection %}selected{%endif%}>{{lieu.address_collection}} </option>
                             {% endfor %}
                         </select>
                     </div>
@@ -21,18 +21,12 @@
                         <select id="lieucollecté" name="collector_idcollector" class="form-control">
                             <option value="">Choississez un Collecteur</option>
                             {% for collector in collectors %}
-                             <option value="{{collector.idcollector}}">{{collector.firstname}} {{collector.lastname}}</option>
+                             <option value="{{collector.idcollector}}"{%if collector.idcollector == collecte.collector_idcollector%}selected{%endif%}>{{collector.firstname}} {{collector.lastname}}</option>
                             {% endfor %}
                         </select>
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="collection_datetime">Date et Heure de ramassage</label>  
-                    <div class="col-md-4">
-                        <input id="collection_datetime" name="collection_datetime" type="text" placeholder="Date et Heure de ramassage" class="form-control input-md" value="{{ collecte.collection_datetime }}"> 
-                    </div>
-                </div>
                 
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="bin_number">Numero du bac collecté</label>  
@@ -65,7 +59,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="processing_datetime">Date de traitement</label>  
                     <div class="col-md-4">
-                        <input id="processing_datetime" name="processing_datetime" type="text" placeholder="Date de traitement" class="form-control input-md" value="{{ collecte.processing_datetime }}"> 
+                        <input id="processing_datetime" name="processing_datetime" type="datetime-local" placeholder="Date de traitement" class="form-control input-md" value="{{ collecte.processing_datetime }}"> 
                     </div>
                 </div>
                 <div class="form-group">

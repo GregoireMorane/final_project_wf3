@@ -11,11 +11,11 @@ class CollecteControler extends ControllerAbstract{
     
     
     public function registerAction($id = null) {
-        
+           
         if(is_null($id)){
             $collecte = new AdressesCollectionsHaveCollector();
         } else {
-            $collecte = $this->app['collecte.repository']->find($id);
+            $collecte = $this->app['collecte.repository']->findByCollectionAddress($id);
             if(is_null($collecte)){
                 $this->app->abort(404);
             }

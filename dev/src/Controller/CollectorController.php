@@ -13,13 +13,14 @@ class CollectorController extends ControllerAbstract{
         $tomorrow = new \DateTime('+1 day');
         //echo $tomorrow->format('Y-m-d');
         $user = $this->app['user.manager']->getUser();
-        $lieux = $this->app['lieucollecte.repository']->findNameByEmptyWeight($user->getIdCollector());
+        $lieux = $this->app['lieucollecte.repository']->findAllByEmptyWeight($user->getIdCollector());
         $adresses = $this->app['lieucollecte.repository']->findNameByCollectionDate($user->getIdCollector(), $date);
         $adressesTomorrow = $this->app['lieucollecte.repository']->findNameByCollectionDate($user->getIdCollector(), $tomorrow);
         $totalOutput = $this->app['outputcompost.repository']->totalOutputByCollector($user->getIdCollector());
         $weeklyOutput = $this->app['outputcompost.repository']-> weekOutputByCollector($user->getIdCollector(), $date);
         $totalWaste = $this->app['collecte.repository']->totalWasteByCollector($user->getIdCollector());
         $weeklyWaste = $this->app['collecte.repository']-> weekWasteByCollector($user->getIdCollector(), $date);
+        $bins = $this->app['collecte.repository']->findBinByEmptyWeight($user->getIdCollector());
         
         return $this->render('comptecollecteur.html.twig',
             [
@@ -30,7 +31,8 @@ class CollectorController extends ControllerAbstract{
                'totalOutput' => $totalOutput,
                'weeklyOutput' => $weeklyOutput,
                'totalWaste' => $totalWaste,
-               'weeklyWaste' => $weeklyWaste
+               'weeklyWaste' => $weeklyWaste,
+               'bins' => $bins
             ]
         );
     }

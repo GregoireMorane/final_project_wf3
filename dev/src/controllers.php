@@ -32,7 +32,7 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/client/{id}','client.controller:registerAction')
+    ->match('/formulaire/ajout/client/{id}','client.controller:registerAction') 
     ->value('id', null)
     ->bind('registerclient')
 ;
@@ -44,8 +44,7 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/traitementcollecteur','traitementcollector.controller:registerAction')
-    ->value('id', null)
+    ->match('/formulaire/ajout/traitementcollecteur','traitementcollector.controller:registerAction') 
     ->bind('registertraitementcollector')
 ;
 
@@ -56,19 +55,18 @@ $app
 ;
 
 $app
-    ->match('/formulaire/collecte','collecte.controller:registerAction')
+    ->match('/formulaire/collecte/{id}','collecte.controller:registerAction') 
     ->value('id', null)
     ->bind('registercollecte')
 ;
 
 $app
-    ->match('/formulaire/sortiecompost','outputcompost.controller:registerAction')
-    ->value('id', null)
+    ->match('/formulaire/sortiecompost','outputcompost.controller:registerAction') 
     ->bind('registeroutputcompost')
 ;
 
 $app
-    ->match('/connexion','connexion.controller:loginAction')
+    ->match('/connexion','connexion.controller:loginAction') 
     ->bind('connexion')
 ;
 
@@ -106,6 +104,7 @@ $app
     ->match('/liste/traitementcollecteur','traitementcollector.controller:listAllTraitementCollector')
     ->bind('listetraitementcollector')
 ;
+
 $app
     ->match('/liste/traitementcollecteurdelete/{id}','traitementcollector.controller:deleteAction')
     ->value('id', null)
@@ -131,3 +130,18 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
 
     return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -55,13 +55,12 @@ SQL;
         return $lieux;
     }
     
-    public function findNameByEmptyWeight() {
+    public function findAllByEmptyWeight($id) {
         $dbLieux = $this->db->fetchAll(
-                'SELECT a.address_name FROM adresses_collectes a '
+                'SELECT a.* FROM adresses_collectes a '
                 . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
-                . ' WHERE b.weight IS NULL');
+                . ' WHERE b.weight = 0 AND b.collector_idcollector = :id', [':id' => $id]);
         $lieux =[];
-        
         foreach ($dbLieux as $dbLieu){
             $lieux[] = $this->buildEntity($dbLieu);
         }
@@ -82,9 +81,7 @@ SQL;
                 ->setCollection_day($data['collection_day'])
                 ->setClient_idclient($data['client_idclient'])
                 ->setLocation_processing_idlocation_processing($data['location_processing_idlocation_processing'])
-                ->setFirm_type($data['firm_type'])
-               // ->setClientLastname($data['clientLastname'])
-                //->setClientFirstname($data['clientFirstname'])      
+                ->setFirm_type($data['firm_type'])     
        ;
        return $lieu;
     }
@@ -138,19 +135,21 @@ SQL;
         ];
                 
         $dbAdresses = $this->db->fetchAll(
-                'SELECT distinct a.*  FROM adresses_collectes a '
-                . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
-                . ' WHERE a.collection_day = :date AND b.collector_idcollector = :id', 
-                [
-                    ':id' => $id,
-                    ':date' => $day[$date->format('N')]
-                ]
+            'SELECT distinct a.*  FROM adresses_collectes a '
+            . ' JOIN processing_location b ON a.location_processing_idlocation_processing = b.id_location_processing'
+            . ' JOIN collector_has_processing_location c ON c.id_collector_has_processing_location = b.id_location_processing'
+            . ' WHERE a.collection_day = :date AND c.collector_idcollector = :id ', 
+            [
+                ':id' => $id,
+                ':date' => $day[$date->format('N')]
+            ]
         );
         $adresses =[];
 
         foreach ($dbAdresses as $dbAdresse){
             $adresses[] = $this->buildEntity($dbAdresse);
         }
+
         return $adresses;
     }
     
@@ -159,10 +158,31 @@ SQL;
         $collectes =[];
         
         foreach ($dbLieucollectes as $dbLieucollecte){
-            $collectes[] = $this->buildEntity($dbLieucollecte);
+            $collectes[] = $this->buildEntityFind($dbLieucollecte);
             
         }
         return $collectes;
         
+    }
+    
+    private function buildEntityFind(array $data){
+        $lieu = new LieuCollecte();
+
+        $lieu
+                ->setId_collection_address($data['id_collection_address'])
+                ->setAddress_name($data['address_name'])
+                ->setAddress_collection($data['address_collection'])
+                ->setPostal_code($data['postal_code'])
+                ->setCity($data['city'])
+                ->setFurther_information($data['further_information'])
+                ->setCountry($data['country'])
+                ->setCollection_day($data['collection_day'])
+                ->setClient_idclient($data['client_idclient'])
+                ->setLocation_processing_idlocation_processing($data['location_processing_idlocation_processing'])
+                ->setFirm_type($data['firm_type'])
+                ->setClientLastname($data['clientLastname'])
+                ->setClientFirstname($data['clientFirstname'])      
+       ;
+       return $lieu;
     }
 }
