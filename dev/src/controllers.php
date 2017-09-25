@@ -41,7 +41,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/client','client.controller:registerAction') 
+    ->match('/formulaire/ajout/client/{id}','client.controller:registerAction')
+    ->value('id', null)
     ->bind('registerclient')
 ;
 
@@ -52,7 +53,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/traitementcollecteur','traitementcollector.controller:registerAction') 
+    ->match('/formulaire/ajout/traitementcollecteur','traitementcollector.controller:registerAction')
+    ->value('id', null)
     ->bind('registertraitementcollector')
 ;
 
@@ -69,7 +71,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/sortiecompost','outputcompost.controller:registerAction') 
+    ->match('/formulaire/sortiecompost','outputcompost.controller:registerAction')
+    ->value('id', null)
     ->bind('registeroutputcompost')
 ;
 
@@ -111,6 +114,17 @@ $app
 $app
     ->match('/liste/traitementcollecteur','traitementcollector.controller:listAllTraitementCollector')
     ->bind('listetraitementcollector')
+;
+
+$app
+    ->match('/liste/traitementcollecteurdelete/{id}','traitementcollector.controller:deleteAction')
+    ->value('id', null)
+    ->bind('listetraitementcollectordelete')
+;
+
+$app
+    ->match('/liste/lieutraitement','lieutraitement.controller:deleteAction')
+    ->bind('listelieutraitementdelete')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {

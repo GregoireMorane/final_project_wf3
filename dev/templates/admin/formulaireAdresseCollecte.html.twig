@@ -9,7 +9,7 @@
                 <select id="client" name="client_idclient" class="form-control">
                     <option value="">Choisissez un client</option>
                     {% for client in clients %}
-                             <option value="{{client.idClient}}">{{client.lastname}} </option>
+                            <option value="{{client.idClient}}"{% if client.idclient == adresses_collectes.id_collection_address %}selected{%endif%}>{{client.firstname}}{{client.lastname}} </option>
                     {% endfor %}
                 </select>
             </div>
@@ -30,10 +30,13 @@
             <label class="col-md-4 control-label" for="firm_type">Type d'établissement</label>
             <div class="col-md-4">
                 <select id="lieu_traitement" name="firm_type" class="form-control">
-                    <option value="">Choisissez un type d'établissement</option>
-                    <option value="epicerie">Epicerie</option>
-                    <option value="restaurant">Restaurant</option>
-                    <option value="restaurantCollectif">Restaurant Collectif</option>
+                    <option value="" selected>Choisissez un type d'établissement</option>
+                     <option value="{{adresses_collectes.firm_type}}" selected >{{firm_type[adresses_collectes.firm_type]}}</option>
+                    {% for type in firm_type %}
+                        {% if type != adresses_collectes.firm_type %}
+                            <option value="{{type}}">{{type}}</option>
+                        {%endif%}
+                    {% endfor %}
                 </select>
             </div>
         </div>
@@ -61,7 +64,7 @@
                 <select id="lieu_traitement" name="location_processing_idlocation_processing" class="form-control">
                     <option value="">Choisissez un lieu de traitement</option>
                     {% for location in locations %}
-                             <option value="{{location.id_location_processing}}">{{location.processing_location}} </option>
+                             <option value="{{location.id_location_processing}}" {% if location.id_location_processing == adresses_collectes.id_collection_address %}selected{%endif%}>{{location.processing_location}} </option>
                     {% endfor %}
                 </select>
             </div>
@@ -70,14 +73,13 @@
             <label class="col-md-4 control-label" for="collection_day">Jours de collecte</label>
             <div class="col-md-4">
                 <select id="jours_collecte" name="collection_day" class="form-control">
-                    <option value="">Choisissez un jour de collecte</option>
-                    <option value="lundi">Lundi</option>
-                    <option value="mardi">Mardi</option>
-                    <option value="mercredi">Mercredi</option>
-                    <option value="jeudi">Jeudi</option>
-                    <option value="vendredi">Vendredi</option>
-                    <option value="samedi">Samedi</option>
-                    <option value="dimanche">Dimanche</option>
+                    <option value="" selected>Choisissez un type d'établissement</option>
+                     <option value="{{adresses_collectes.collection_day}}" selected >{{collection_day[adresses_collectes.collection_day]}}</option>
+                    {% for type in collection_day %}
+                        {% if type != adresses_collectes.collection_day %}
+                            <option value="{{type}}">{{type}}</option>
+                        {%endif%}
+                    {% endfor %}
                 </select>
             </div>
         </div>

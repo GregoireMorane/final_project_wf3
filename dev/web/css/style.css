@@ -1,11 +1,12 @@
 /* Reset */
 *{    
     margin: 0;    padding: 0;    border: 0;    font-size: 100%;    
-    font-family: 'Montserrat', sans-serif;    vertical-align: baseline; /* taille de caract�re par d�faut du navigateur */ 
+    font: inherit;    vertical-align: baseline; /* taille de caract�re par d�faut du navigateur */ 
     text-decoration: none; /* enlève le soulignement des liens */
 }
 
 body {
+    font-family: 'Montserrat', sans-serif;
     margin: 0 auto;
 }
 
@@ -56,8 +57,8 @@ a.nav-link {
 }
 
 .bloc{
-    margin-bottom: 3em;
-    margin-top: 3em;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
     
 #liens > div {

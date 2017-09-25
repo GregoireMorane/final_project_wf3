@@ -7,23 +7,27 @@
             <a href="{{ path('registerlieutraitement') }}"><span>Ajouter un lieu de traitement</span></a>
             <br><br>
         </div>
-        <table class="table">
-            <tr>
-                <th>Adresse</th>
-                <th>Nom du lieu</th>
-                <th>Code Postal</th>
-                <th>Ville</th>
-                <th>Pays</th>
-            </tr>
-            {% for lieu in lieux %}
+        <div class="col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1">
+            <table class="table">
                 <tr>
-                    <th>{{ lieu.processing_address }}</th>
-                    <th>{{ lieu.processing_location }}</th>
-                    <th>{{ lieu.postal_code }}</th>
-                    <th>{{ lieu.city }}</th>
-                    <th>{{ lieu.country }}</th>
+                    <th>Adresse</th>
+                    <th>Nom du lieu</th>
+                    <th>Code Postal</th>
+                    <th>Ville</th>
+                    <th>Pays</th>
                 </tr>
-            {% endfor %}
-        </table>
+                {% for lieu in lieux %}
+                    <tr>
+                        <th>{{ lieu.processing_address }}</th>
+                        <th>{{ lieu.processing_location }}</th>
+                        <th>{{ lieu.postal_code }}</th>
+                        <th>{{ lieu.city }}</th>
+                        <th>{{ lieu.country }}</th>
+                        <th><a  href="{{path ('registertraitementcollector', {id: lieu.id_location_processing}) }}" style="font-weight: bold">Modifier</a></th>
+                        <th><a  href="{{path ('listetraitementcollectordelete', {id: lieu.id_location_processing}) }}" style="font-weight: bold">Supprimer</a></th>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 {% endblock %}

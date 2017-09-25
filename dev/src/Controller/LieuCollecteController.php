@@ -96,6 +96,8 @@ class LieuCollecteController extends ControllerAbstract{
             [
                 'adresses_collectes' => $lieu,
                 'clients' =>$clients,
+                'firm_type' =>array('epicerie' => "Epicerie",'restaurant' => "Restaurant",'restaurantCollectif' => "Restaurant collectif"),
+                'collection_day' =>array('lundi' => "Lundi",'mardi' => "Mardi",'mercredi' => "Mercredi",'jeudi' => "Jeudi",'vendredi' => "Vendredi",'samedi' => "Samedi",'dimanche' => "Dimanche"),
                 'locations' => $locations
             ]
         );

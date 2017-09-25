@@ -69,7 +69,7 @@ SQL;
     
     private function buildEntity(array $data){
         $lieu = new LieuCollecte();
-
+      
         $lieu
                 ->setId_collection_address($data['id_collection_address'])
                 ->setAddress_name($data['address_name'])
