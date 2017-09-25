@@ -45,6 +45,8 @@ class ProcessingLocation {
     private $clients = [];
     
     private $lieux =[];
+    
+   
 
 
     //getter

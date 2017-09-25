@@ -7,8 +7,9 @@
             <a href="{{ path('registerclient') }}"><span>Ajouter un client</span></a>
             <br><br>
         </div>
+        <div class="col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1">
         <table class="table">
-            <tr>
+            <tr style="font-weight: bold;">
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>email</th>
@@ -21,6 +22,8 @@
                 <th>Entreprise</th>
                 <th>Numéro de siret</th>
                 <th>Mot de passe</th>
+                <th> </th>
+                <th> </th>
             </tr>
             {% for client in clients %}
                 <tr>
@@ -36,8 +39,11 @@
                     <th>{{ client.company }}</th>
                     <th>{{ client.siret }}</th>
                     <th>{{ client.password }}</th>
+                    <th><a  href="{{path ('registerclient', {id: client.idclient}) }}" style="font-weight: bold">Modifier</a></th>
+                    <th><a  href="{{path ('registerclient', {id: client.idclient}) }}" style="font-weight: bold">Supprimer</a></th>
                 </tr>
             {% endfor %}
         </table>
+    </div>
     </div>
 {% endblock %}

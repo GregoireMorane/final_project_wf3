@@ -25,7 +25,7 @@ $app->get('/', function () use ($app) {
 
 //chemins pour la page compte admin
 $app
-    ->match('/compte/admin','lieutraitement.controller:listAction') 
+    ->match('/compte/admin','compteadmin.controller:listAction') 
     ->bind('compteadmin')
 ;
 //Routes des actions
@@ -41,7 +41,8 @@ $app
 ;
 
 $app
-    ->match('/formulaire/ajout/client','client.controller:registerAction') 
+    ->match('/formulaire/ajout/client/{id}','client.controller:registerAction') 
+    ->value('id', null)
     ->bind('registerclient')
 ;
 
@@ -111,6 +112,17 @@ $app
 $app
     ->match('/liste/traitementcollecteur','traitementcollector.controller:listAllTraitementCollector')
     ->bind('listetraitementcollector')
+;
+
+$app
+    ->match('/liste/traitementcollecteurdelete/{id}','traitementcollector.controller:deleteAction')
+    ->value('id', null)
+    ->bind('listetraitementcollectordelete')
+;
+
+$app
+    ->match('/liste/lieutraitement','lieutraitement.controller:deleteAction')
+    ->bind('listelieutraitementdelete')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {

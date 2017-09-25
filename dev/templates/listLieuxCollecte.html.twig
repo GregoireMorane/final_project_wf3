@@ -7,6 +7,7 @@
             <a href="{{ path('registerlieucollecte') }}"><span>Ajouter un lieu de collecte</span></a>
             <br><br>
         </div>
+        <div class="col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1">
         <table class="table">
             <tr>
                 <th>Adresse</th>
@@ -32,8 +33,11 @@
                     <th>{{ collecte.further_information }}</th>
                     <th>{{ collecte.clientFirstname }}</th>
                     <th>{{ collecte.clientLastname }}</th>
+                    <th><a  href="{{path ('registerlieucollecte', {id: collecte.id_collection_address}) }}" style="font-weight: bold">Modifier</a></th>
+                    <th><a  href="{{path ('registerlieucollecte', {id: collecte.id_collection_address}) }}" style="font-weight: bold">Supprimer</a></th>
                 </tr>
             {% endfor %}
         </table>
+    </div>
     </div>
 {% endblock %}

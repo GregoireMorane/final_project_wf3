@@ -10,8 +10,17 @@ use Entity\TraitementCollector;
  * @author ghmor
  */
 class TraitementCollectorController extends ControllerAbstract{
-    public function registerAction(){
-        $collectorAsTraitement = new TraitementCollector();
+    public function registerAction($id = null){
+        
+        if(is_null($id)){
+             $collectorAsTraitement = new TraitementCollector();
+        } else {
+            $collectorAsTraitement = $this->app['traitementcollector.repository']->find($id);
+            if(is_null($collectorAsTraitement)){
+                $this->app->abort(404);
+            }
+        }
+      
         $errors = [];
         
         //affichages des infos de lieu du collecteur
@@ -54,5 +63,16 @@ class TraitementCollectorController extends ControllerAbstract{
                 'lieux' => $lieux
             ]
         );
+    }
+    
+    public function deleteAction($id){
+       
+        //$liste = $this->app['traitementcollector.repository']->find($id);
+        
+        $this->app['traitementcollector.repository']->delete($id);
+        
+        return $this->render(
+                'listLieuTraitement.html.twig'
+                );
     }
 }

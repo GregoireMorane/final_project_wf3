@@ -46,8 +46,9 @@ class TraitementCollectorRepository extends RepositoryAbstract{
         return $traitementAsCollector;
     }
     
-    public function delete(TraitementCollector $traitementcollector){
-        $this->db->delete('collector_has_processing_location', ['id_collector_has_processing_location' => $traitementcollector->getId_collector_has_processing_location()]);
+    public function delete(TraitementCollector $id){
+        
+        $this->db->delete('collector_has_processing_location', ['id_collector_has_processing_location' => $id->getId_collector_has_processing_location()]);
     }
     
     public function find($id_collector_has_processing_location)

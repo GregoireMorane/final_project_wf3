@@ -31,6 +31,10 @@ $app->register (
 // gestionnaire de sessions de Symfony($app['session']
 $app->register(new Silex\Provider\SessionServiceProvider());
 //Admin inscription d'un collecteur brouillon
+$app['compteadmin.controller'] = function () use ($app)
+{
+    return new Controller\CompteAdminController($app);
+};
 $app['collector.controller'] = function () use ($app)
 {
     return new Controller\CollectorController($app);

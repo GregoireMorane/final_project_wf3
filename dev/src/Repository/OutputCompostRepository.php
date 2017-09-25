@@ -77,4 +77,28 @@ class OutputCompostRepository extends RepositoryAbstract{
             return $this->buildEntity($dbOutput);
         }
     }
+    
+    public function findTotalCompostWeight() {
+       $query = <<<SQL
+SELECT SUM(oc.quantity_exit)
+FROM output_compost oc
+WHERE  output_datetime >= '20170001'
+SQL;
+
+       return $this->db->fetchColumn($query);
+
+   }
+   
+   public function findTotalCompostWeightByWeek() {
+       $query = <<<SQL
+SELECT SUM(oc.quantity_exit)
+FROM output_compost oc
+WHERE  output_datetime BETWEEN :date AND now()
+SQL;
+
+       return $this->db->fetchColumn($query,[
+                    ':date' => date('Y-m-d', strtotime('-1 week')),
+                ]);
+
+   }
 }

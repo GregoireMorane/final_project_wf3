@@ -36,9 +36,19 @@ class ClientController extends ControllerAbstract{
             ]
         );
     }
-    
-    public function registerAction() {
-        $client = new Client();
+   
+    public function registerAction($id =null) {
+        
+        if(is_null($id)){
+            $client = new Client();
+        } else {
+            $client = $this->app['client.repository']->find($id);
+            if(is_null($client)){
+                $this->app->abort(404);
+            }
+        }
+        
+        
         $errors = [];
         
         if(!empty($_POST)){
@@ -211,7 +221,7 @@ class ClientController extends ControllerAbstract{
                 $errors['email'] = "L'email est obligatoire";
             }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
                 $errors['email'] = "L'email n'est pas valide";
-            }elseif (!is_null($this->app['client.repository']->findByEmail($_POST['email']))) {
+            }elseif (!is_null($this->app['connexion.repository']->findByEmailClient($_POST['email']))) {
                 $errors['email'] = "L'email est déjà utilisé";
             }
 
@@ -268,38 +278,4 @@ class ClientController extends ControllerAbstract{
             ]
         );
     }
-    
-//    public function loginAction() {
-//        
-//        $email = "";
-//        
-//        if(!empty($_POST['email'])){
-//            $this->sanitizePost();
-//
-//            $email = $_POST['email'];
-//            $user = $this->app['client.repository']->findByEmail($email);
-//
-//            if(!is_null($user)){
-//                if ($this->app['client.manager']->verifyPassword($_POST['password'], $client->getPassword())){
-//                    $this->app['client.manager']->login($client);
-//                    
-//                    return $this->redirectRoute('homepage');
-//                }
-//            }
-//            
-//            $this->addFlashMessage('identification incorrecte', 'error');
-//        }
-//        
-//        return $this->render(
-//                'user/login.html.twig',
-//                [
-//                    'email' => $email
-//                ]
-//        );
-//    }
-//    
-//    public function logoutAction() {
-//        $this->app['user.manager']->logout();
-//        return $this->redirectRoute('homepage');
-//    }
 }

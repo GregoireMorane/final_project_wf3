@@ -1,11 +1,12 @@
 /* Reset */
 *{    
     margin: 0;    padding: 0;    border: 0;    font-size: 100%;    
-    font-family: 'Montserrat', sans-serif;    vertical-align: baseline; /* taille de caract�re par d�faut du navigateur */ 
+    font: inherit;    vertical-align: baseline; /* taille de caract�re par d�faut du navigateur */ 
     text-decoration: none; /* enlève le soulignement des liens */
 }
 
 body {
+    font-family: 'Montserrat', sans-serif;
     margin: 0 auto;
 }
 
@@ -56,8 +57,8 @@ a.nav-link {
 }
 
 .bloc{
-    margin-bottom: 3em;
-    margin-top: 3em;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
     
 #liens > div {
@@ -69,11 +70,130 @@ a.nav-link {
 }
 
 span.glyphicon-eye-open {
-    font-size: 1.5em;
+    font-size: 100%;
 }
 
 #biodechets, #contact {
     position: relative;
     bottom: 0em;
 }
+gestion des pictos
+.logo{
+    width: 30%;
+}
+.img{
+    float: left;
+}
+.bloclegende{
+     width: 11%;
+     text-align: center;
+     margin-left: 2%;
+ }
+ .bloclegende2{
+     width: 16%;
+     text-align: center;
+     margin-left: 2%;
+ }
+ .bloclegende3{
+     width: 16%;
+     text-align: center;
+     margin-left: 2%;
+ }
+ .bloclegende4{
+     width: 17%;
+     text-align: center;
+     margin-left: 2%;
+ }
+ 
+ .bloclegende a, .bloclegende2 a,  .bloclegende3 a,  .bloclegende4 a {
+     color: green;
+     font-size: 1.3em;
+     font-weight: bold;
+ }
+.une{
+    width:100%;
+    margin: 1%;
+    margin-bottom: 13%;
+}
+.deux{
+    width:100%;
+    margin: 1%;
+    margin-bottom: 14%;
+}
+.trois{
+    width:100%;
+    margin: 1%;
+    margin-bottom: -10%;
+}
+.quatre{
+    width:100%;
+    margin: 1%;
+    margin-top: 10%;
+    margin-bottom: 8%;
+}
+.clear {
+  clear: both;
+  }
+.lienacces{
+/*    margin-right: 30px;*/
+      text-decoration: none;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #4DB744;
+      margin-top: -15px;
+ }
+ .connexion{
+     margin-left:7%;
+ }
+ .alchimistes{
+     margin-left: 2%;
+ }
+ .collecteur{
+     margin-left:-2%;
+ }
+ .client{
+     margin-left:1%;
+ }
+ .navresponsive{
+     display: none;
+ }
+ .affiname{
+     font-size: 2em;
+     font-weight: bold;
+     color: green;
+ }
+ 
+ 
+@media (max-width: 995px) {
+    .img {
+    float: left;
+}
 
+.bloclegende a, .bloclegende2 a,  .bloclegende3 a,  .bloclegende4 a {
+    display: none
+ }
+.navresponsive{
+    display: block;
+}
+/*.bloclegende{
+     width: 40%;
+     text-align: center;
+     margin-left: 2%;
+ }
+ .bloclegende2{
+     width: 40%;
+     text-align: center;
+     margin-left: 2%;
+ }
+ .bloclegende3{
+     width: 40%;
+     text-align: center;
+     margin-left: 2%;
+ }
+ .bloclegende4{
+     width: 40%;
+     text-align: center;
+     margin-left: 2%;
+ }*/
+
+}

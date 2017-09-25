@@ -84,35 +84,7 @@ class LieuTraitementController extends ControllerAbstract{
                 ]);
         
     }
-    public function listAction() {
-       // $clients = $this->app['client.repository']->findAll();
-    //    $collectors = $this->app['collector.repository']->findAllByLocation();
         
-        $totalweightbyweek = $this->app['collecte.repository']->findTotalBioWasteWeightByWeek();
-        $totalweight = $this->app['collecte.repository']->findTotalBioWasteWeight();
-        $locations = $this->app['lieutraitement.repository']->findAll();
-        
-        foreach ($locations as $location) {
-            $collectors = $this->app['collector.repository']->findAllByLocationId($location->getId_location_processing());
-            $Lieux = $this->app['lieucollecte.repository']->findAllByLocationId($location->getId_location_processing());
-            
-            
-            $location->setCollectors($collectors);
-            $location->setLieux($Lieux);
-        } 
-        
-        
-        return $this->render('compteadmin.html.twig', 
-                    [
-                    'locations' => $locations,
-                    'totalweight' => $totalweight,
-                        'totalweightbyweek' => $totalweightbyweek
-//                    'collectors' => $collectors,
-//                    'clients' => $clients
-                    ]
-        );
-    }
-    
     public function editAction($id = null){
         if(is_null($id)){
             $location = new ProcessingLocation();
@@ -189,5 +161,13 @@ class LieuTraitementController extends ControllerAbstract{
                 'lieux' => $lieux
             ]
         );
+    }
+    public function deleteAction($id){
+       
+         $this->app['lieutraitement.repository']->delete($id);
+        
+        return $this->render(
+                'listLieuTraitement.html.twig'
+                );
     }
 }
