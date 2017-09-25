@@ -16,22 +16,24 @@
         <div id="biodechets"></div>
         <div class="row jaune bloc-comptetitle bloc">
 
-            <div class="col-xs-12 col-md-4 panel-body btn-group-vertical dacbouton" role="group">
+            <div class="col-xs-12 col-md-6 panel-body btn-group-vertical dacbouton" role="group">
                 <button type="button" class="btn btn-primary btn-static">Vos DAC</button>
+                    <div class="btn btn-default  btn-group-vertical" style="max-height: 10em; overflow-y: scroll;">
                     {% for collectionDate in collectionDates %}
-                        <button type="button" class="btn btn-default btn-static">
+                        <button type="button" class="btn btn-default btn-static text-left">
                             Collecte du {{ collectionDate.collection_datetime }}
                             <a class="btn btn-default pull-right" href="{{ path('compteclientdac', {id_dac: collectionDate.id_adresses_collections_have_collector}) }}">
                                 <i class="fa fa-file" aria-hidden="true"></i>
                             </a>
                         </button>
                     {% endfor %}
+                    </div>
             </div>
 
-            <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
-                        <h3 class="panel-title">Nombre de kilos de biodéchets collectés<br />cette semaine</h3>
+                        <h3 class="panel-title">Biodéchets collectés cette semaine (en Kg).</h3>
                     </div>
                     <div class="panel-body text-center">
                         {{ currentWeekBioWasteWeight }}
@@ -39,10 +41,10 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
-                        <h3 class="panel-title">Nombre de kilos de biodéchets collectés<br />depuis le début</h3>
+                        <h3 class="panel-title">Biodéchets collectés depuis le début (en Kg).</h3>
                     </div>
                     <div class="panel-body text-center">
                         {{ totalBioWasteWeight }}
@@ -101,7 +103,7 @@
 
                                 {% if lieu.collector.idcollector is empty %}
                                    <div class="col-md-6">
-                                       <h4><strong>Le collecteur a contacté pour ce lieu</strong></h4>
+                                       <h4><strong>Le collecteur a contacter pour ce lieu</strong></h4>
                                        <p>Pour le moment, aucun collecteur n'est attribué à ce lieu.</p>
                                    </div>
                                 {% else %}
@@ -121,6 +123,4 @@
         </div>
     </div>
 </div>
-           
-{% include "footer.html.twig" %}
 {% endblock %}

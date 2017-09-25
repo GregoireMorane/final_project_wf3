@@ -166,7 +166,7 @@ SQL;
                 ->setId_adresses_collections_have_collector($data['id_adresses_collections_have_collector'])
                 ->setAdress_collection_idadress_collection($data['adress_collection_idadress_collection'])
                 ->setCollector_idcollector($data['collector_idcollector'])
-                //->setCollection_datetime($data['collection_datetime'])
+                ->setCollection_datetime($data['collection_datetime'])
                 ->setBin_number($data['bin_number'])
                 ->setProcessing_datetime($data['processing_datetime'])
                 ->setWeight($data['weight'])

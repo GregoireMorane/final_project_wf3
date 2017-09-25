@@ -40,10 +40,11 @@ class LieuCollecteRepository extends RepositoryAbstract{
     
     public function findLieuCollecteByClientId($id) {
         $query = <<<SQL
-SELECT ac.*, collector.*
+SELECT ac.*, collector.*, chpl.*
 FROM adresses_collectes ac
-LEFT JOIN adresses_collections_have_collector achc ON achc.adress_collection_idadress_collection = ac.id_collection_address
-LEFT JOIN collector ON collector.idcollector = achc.collector_idcollector
+JOIN processing_location pl ON pl.id_location_processing = ac.location_processing_idlocation_processing
+JOIN collector_has_processing_location chpl ON chpl.processing_location_id_location_processing = pl.id_location_processing
+JOIN collector ON collector.idcollector = chpl.	collector_idcollector
 WHERE client_idclient = :id
 GROUP BY address_name
 SQL;

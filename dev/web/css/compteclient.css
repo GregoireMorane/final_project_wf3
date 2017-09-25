@@ -1,9 +1,17 @@
+.btn.btn-block {
+    font-size: 1.5em;
+}
+
 .bloc-comptetitle {
     padding: 0.7em 0;
 }
 
 div.dacbouton {
     padding: 0 1.5em;
+}
+
+.btn.btn-primary.btn-static {
+    font-size: 1.5em;
 }
 
 .btn-static {
