@@ -34,7 +34,7 @@ class CollecteRepository extends RepositoryAbstract{
         $data =[
             'adress_collection_idadress_collection' => $collecte->getAdress_collection_idadress_collection(),
             'collector_idcollector' => $collecte->getCollector_idcollector(),
-            'collection_datetime' => $collecte->getCollection_datetime(),
+//            'collection_datetime' => $collecte->getCollection_datetime(),
             'bin_number' => $collecte->getBin_number(),
             'processing_datetime' => $collecte->getProcessing_datetime(),
             'weight' => $collecte->getWeight(),
@@ -129,7 +129,9 @@ SQL;
     private function buildEntity(array $data){
         $collectionAddress = new LieuCollecte();
         
-        $collectionAddress ->setAddress_name($data['address_name']);
+        $collectionAddress 
+                ->setAddress_name($data['address_name'])
+                ->setId_Collection_Address($data['id_collection_address']);
   
         $collecte = new AdressesCollectionsHaveCollector();
         
@@ -137,15 +139,14 @@ SQL;
                 ->setId_adresses_collections_have_collector($data['id_adresses_collections_have_collector'])
                 ->setAdress_collection_idadress_collection($data['adress_collection_idadress_collection'])
                 ->setCollector_idcollector($data['collector_idcollector'])
-                ->setCollection_datetime($data['collection_datetime'])
+//                ->setCollection_datetime($data['collection_datetime'])
                 ->setBin_number($data['bin_number'])
                 ->setProcessing_datetime($data['processing_datetime'])
                 ->setWeight($data['weight'])
                 ->setCompost_quality($data['compost_quality'])
                 ->setFurther_information($data['further_information'])
                 ->setProcessing_datetime($data['processing_location'])
-                ->setLieuCollecte($collectionAddress)
-                ;
+                ->setLieuCollecte($collectionAddress);               ;
 
         return $collecte;
     }
@@ -155,18 +156,17 @@ SQL;
     }
     
     public function find($id)
-    {
-        dump($id); 
+    { 
         $dbCollecte = $this->db->fetchAssoc(
             //'SELECT a.*, b.address_name as name FROM adresses_collections_have_collector a'  
-                'SELECT a.bin_number, b.address_name as name FROM adresses_collections_have_collector a'  
+                'SELECT a.*, b.address_name, b.id_collection_address FROM adresses_collections_have_collector a'  
             . ' JOIN adresses_collectes b ON a.adress_collection_idadress_collection = b.id_collection_address'
             . ' WHERE a.id_adresses_collections_have_collector = :id',
             [
                 ':id' => $id
             ]
         );
-        
+
 //        $collecte = [];
 //        foreach ($dbCollecte as $dbCollecte) {
 //            $collecte[] = $this->buildEntity($dbCollecte);
@@ -186,21 +186,16 @@ SQL;
 //        return $this->buildEntity($dbCollection);
 //    }
     
-    public function findByEmptyWeight($id) {
+    public function findBinByEmptyWeight($id) {
         $dbBins = $this->db->fetchAll(
-            'SELECT * FROM adresses_collections_have_collector'
+            'SELECT bin_number, id_adresses_collections_have_collector FROM adresses_collections_have_collector'
             . ' WHERE weight = 0 AND collector_idcollector = :id', 
             [
                 ':id' => $id
             ]
         );
-        
-        $bin = [];
-        foreach ($dbBins as $dbBin) {
-            $bin[] = $this->buildEntity($dbBin);
-        }
-        
-        return $bin;
+
+        return $dbBins;
 //        return $this->buildEntity($dbBins);
     }
 }

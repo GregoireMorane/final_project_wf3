@@ -29,7 +29,7 @@ class OutputCompostRepository extends RepositoryAbstract{
     }
     public function save(OutputCompost $output){
         $data = [
-            'output_datetime' => $output->getOutput_datetime(),
+//            'output_datetime' => $output->getOutput_datetime(),
             'quantity_exit' => $output->getQuantity_exit(),
             'location_processing_idlocation_processing' => $output->getLocation_processing_idlocation_processing(),
             'collector_idcollector' => $output->getCollector_idcollector()
@@ -52,7 +52,7 @@ class OutputCompostRepository extends RepositoryAbstract{
         
         $output
                 ->setIdoutput_compost($data['idoutput_compost'])
-                ->setOutput_datetime($data['output_datetime'])
+//                ->setOutput_datetime($data['output_datetime'])
                 ->setQuantity_exit($data['quantity_exit'])
                 ->setLocation_processing_idlocation_processing($data['location_processing_idlocation_processing'])
                 ->setCollector_idcollector($data['collector_idcollector']);

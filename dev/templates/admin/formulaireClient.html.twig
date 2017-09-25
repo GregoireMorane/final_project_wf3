@@ -12,7 +12,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="start_date_contract">Date début contrat</label>  
             <div class="col-md-4">
-                <input id="date" name="start_date_contract" type="text" placeholder="Date début contrat format : 30/12/2000" class="form-control input-md" value="{{ client.startdatecontract }}">
+                <input id="date" name="start_date_contract" type="date" placeholder="Date début contrat format : 30/12/2000" class="form-control input-md" value="{{ client.startdatecontract }}">
             </div>
         </div>
         <div class="form-group">
@@ -36,13 +36,13 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="email">Email</label>  
             <div class="col-md-4">
-                <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" value="{{ client.email }}">
+                <input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" value="{{ client.email }}">
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label" for="phone_number">Numéro de téléphone</label>  
             <div class="col-md-4">
-                <input id="tel" name="phone_number" type="text" placeholder="Numéro de téléphone" class="form-control input-md" value="{{ client.phonenumber }}">
+                <input id="tel" name="phone_number" type="tel" placeholder="Numéro de téléphone" class="form-control input-md" value="{{ client.phonenumber }}">
             </div>
         </div>
         <div class="form-group">

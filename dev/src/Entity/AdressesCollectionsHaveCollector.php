@@ -174,4 +174,11 @@ class AdressesCollectionsHaveCollector {
        }
        return '';
    }
+   
+   public function getIdLieuCollecte() {
+       if(!is_null($this->lieuCollecte)){
+           return $this->lieuCollecte->getId_collection_address();
+       }
+       return '';
+   }
 }

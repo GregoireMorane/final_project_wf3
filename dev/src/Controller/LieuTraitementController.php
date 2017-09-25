@@ -30,9 +30,13 @@ class LieuTraitementController extends ControllerAbstract{
         $locations = $this->app['lieutraitement.repository']->findAll();
         
         if(!empty($_POST)){
+            $this->sanitizePost();
+            
+            $postalCode = str_replace(" ", "", $_POST['postal_code']);
+            
             $location->setProcessing_location($_POST['processing_location'])
                      ->setProcessing_address($_POST['processing_address'])
-                     ->setPostal_code($_POST['postal_code'])
+                     ->setPostal_code($postalCode)
                      ->setCity($_POST['city'])
                      ->setCountry($_POST['country'])
                     ;
@@ -47,6 +51,8 @@ class LieuTraitementController extends ControllerAbstract{
             
             if(empty($_POST['postal_code'])){
                 $errors['postal_code'] = "Le code postal est obligatoire";
+            }elseif (strlen($postalCode) != 5) {
+                $errors['postal_code'] = "Le code postal doit contenir 5 chiffres";
             }
             
             if(empty($_POST['city'])){
@@ -121,9 +127,13 @@ class LieuTraitementController extends ControllerAbstract{
         $locations = $this->app['lieutraitement.repository']->findAll();
         
         if(!empty($_POST)){
+            $this->sanitizePost();
+            
+            $postalCode = str_replace(" ", "", $_POST['postal_code']);
+            
             $location->setProcessing_location($_POST['processing_location'])
                      ->setProcessing_address($_POST['processing_address'])
-                     ->setPostal_code($_POST['postal_code'])
+                     ->setPostal_code($postalCode)
                      ->setCity($_POST['city'])
                      ->setCountry($_POST['country'])
                     ;
@@ -138,6 +148,8 @@ class LieuTraitementController extends ControllerAbstract{
             
             if(empty($_POST['postal_code'])){
                 $errors['postal_code'] = "Le code postal est obligatoire";
+            }elseif (strlen($postalCode) != 5) {
+                $errors['postal_code'] = "Le code postal doit contenir 5 chiffres";
             }
             
             if(empty($_POST['city'])){

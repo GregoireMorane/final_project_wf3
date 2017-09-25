@@ -20,15 +20,16 @@ class OutputCompostController extends ControllerAbstract{
         $user = $this->app['user.manager']->getUser();
         
         if(!empty($_POST)){
-            $output->setOutput_datetime($_POST['output_datetime'])
+            $output
+//                    ->setOutput_datetime($_POST['output_datetime'])
                     ->setQuantity_exit($_POST['quantity_exit'])
                     ->setLocation_processing_idlocation_processing($_POST['location_processing_idlocation_processing'])
                     ->setCollector_idcollector($_POST['collector_idcollector']);
             
-            if(empty($_POST['output_datetime'])){
-                $errors['output_datetime'] = "La date est obligatoire";
-            }
-            
+//            if(empty($_POST['output_datetime'])){
+//                $errors['output_datetime'] = "La date est obligatoire";
+//            }
+//            
             if(empty($_POST['quantity_exit'])){
                 $errors['quantity_exit'] = "La quantité est obligatoire";
             }
@@ -83,15 +84,16 @@ class OutputCompostController extends ControllerAbstract{
         $locations = $this->app['lieutraitement.repository']->findAll();
         
         if(!empty($_POST)){
-            $output->setOutput_datetime($_POST['output_datetime'])
+            $output
+//                    ->setOutput_datetime($_POST['output_datetime'])
                     ->setQuantity_exit($_POST['quantity_exit'])
                     ->setLocation_processing_idlocation_processing($_POST['location_processing_idlocation_processing'])
                     ->setCollector_idcollector($_POST['collector_idcollector']);
             
-            if(empty($_POST['output_datetime'])){
-                $errors['output_datetime'] = "La date est obligatoire";
-            }
-            
+//            if(empty($_POST['output_datetime'])){
+//                $errors['output_datetime'] = "La date est obligatoire";
+//            }
+//            
             if(empty($_POST['quantity_exit'])){
                 $errors['quantity_exit'] = "La quantité est obligatoire";
             }
