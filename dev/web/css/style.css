@@ -24,6 +24,15 @@ span.glyphicon-log-out {
     font-size: 1.5em;
 }
 
+.bloc-deconnexion{
+    margin-top: 50px;
+}
+
+.imageLogoHeader{
+    width: 150px;
+    height: 100px;
+}
+
 /*
 a.nav-link {
     line-height: 5em;

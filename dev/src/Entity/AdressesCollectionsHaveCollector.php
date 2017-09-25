@@ -176,10 +176,11 @@ class AdressesCollectionsHaveCollector {
         return $this;
     }
     
-    public function getLieuCollecte(): LieuCollecte {
+    public function getLieuCollecte() {
         return $this->lieuCollecte;
     }
 
+    
     public function setLieuCollecte(LieuCollecte $lieuCollecte) {
         $this->lieuCollecte = $lieuCollecte;
         return $this;
