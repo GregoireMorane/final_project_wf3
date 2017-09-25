@@ -4,7 +4,18 @@ namespace Repository;
 use Entity\Client;
 
 class ClientRepository extends RepositoryAbstract{
-
+    public function findByEmail($email) {
+        $dbUser = $this->db->fetchAssoc(
+            'SELECT * FROM client WHERE email = :email',
+            [
+                ':email' => $email
+            ]
+        );
+        
+        if(!empty($dbUser)){
+            return $this->buildEntity($dbUser);
+        }
+    }
     /**
      * 
      * @param \Repository\Client $client

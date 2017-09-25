@@ -91,18 +91,22 @@ class ClientController extends ControllerAbstract{
 
             $this->sanitizePost();
             
+            $phoneNumber = str_replace(" ", "", $_POST['phone_number']);
+            $siret = str_replace(" ", "", $_POST['siret']);
+            $postalCode = str_replace(" ", "", $_POST['postal_code']);
+            
             $client->setFirstname($_POST['firstname'])
                    ->setLastname($_POST['lastname'])
                    ->setEmail($_POST['email'])
                    ->setStartDateContract($_POST['start_date_contract'])
-                   ->setPhoneNumber($_POST['phone_number'])
+                   ->setPhoneNumber($phoneNumber)
                    ->setBillingAddress($_POST['billing_address'])
-                   ->setPostalCode($_POST['postal_code'])
+                   ->setPostalCode($postalCode)
                    ->setCity($_POST['city'])
                    ->setCountry($_POST['country'])
                    ->setIsActive($_POST['is_active'])
                    ->setCompany($_POST['company'])
-                   ->setSiret($_POST['siret'])
+                   ->setSiret($siret)
                    ->setPassword($_POST['password'])
                     ;
 
@@ -116,6 +120,8 @@ class ClientController extends ControllerAbstract{
 
             if(empty($_POST['siret'])){
                 $errors['siret'] = "Le numéro de siret est obligatoire";
+            }elseif (strlen($siret) != 14) {
+                $errors['siret'] = "Le numéro de siret doit contenir 14 chiffres";
             }
             
             if(empty($_POST['lastname'])){
@@ -123,13 +129,15 @@ class ClientController extends ControllerAbstract{
             }
             
             if(empty($_POST['firstname'])){
-                $errors['firstname'] = "Le prenom est obligatoire";
+                $errors['firstname'] = "Le prénom est obligatoire";
             }
             
             if(empty($_POST['email'])){
                 $errors['email'] = "L'email est obligatoire";
             }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
                 $errors['email'] = "L'email n'est pas valide";
+            }elseif (!is_null($this->app['client.repository']->findByEmail($_POST['email']))) {
+                $errors['email'] = "L'email est déjà utilisé";
             }
 
             if(empty($_POST['password'])){
@@ -146,6 +154,8 @@ class ClientController extends ControllerAbstract{
             
             if(empty($_POST['phone_number'])){
                 $errors['phone_number'] = "Le numéro de téléphone est obligatoire";
+            }elseif (strlen($phoneNumber) != 10) {
+                $errors['phone_number'] = "Le numéro de téléphone doit contenir 10 chiffres";
             }
             
             if(empty($_POST['billing_address'])){
@@ -154,6 +164,8 @@ class ClientController extends ControllerAbstract{
             
             if(empty($_POST['postal_code'])){
                 $errors['postal_code'] = "Le code postal est obligatoire";
+            }elseif (strlen($postalCode) != 5) {
+                $errors['postal_code'] = "Le code postal doit contenir 5 chiffres";
             }
             
             if(empty($_POST['city'])){
@@ -166,6 +178,7 @@ class ClientController extends ControllerAbstract{
             
             if(empty($errors)){
                 //$client->setPassword($this->app['user.manager']->encodePassword($_POST['password']));
+//                $client->setPhoneNumber(str_replace($_POST['phone_number'], " ", ""));
                 $this->app['client.repository']->save($client);
                 $message = '<strong>L\'utilisateur à bien été enregistré</strong>';
                 $this->addFlashMessage($message, 'success');
@@ -198,18 +211,24 @@ class ClientController extends ControllerAbstract{
         
         $errors = [];
         if(!empty($_POST)){
+            $this->sanitizePost();
+            
+            $phoneNumber = str_replace(" ", "", $_POST['phone_number']);
+            $siret = str_replace(" ", "", $_POST['siret']);
+            $postalCode = str_replace(" ", "", $_POST['postal_code']);
+            
             $client->setFirstname($_POST['firstname'])
                    ->setLastname($_POST['lastname'])
                    ->setEmail($_POST['email'])
                    ->setStartDateContract($_POST['start_date_contract'])
-                   ->setPhoneNumber($_POST['phone_number'])
+                   ->setPhoneNumber($phoneNumber)
                    ->setBillingAddress($_POST['billing_address'])
-                   ->setPostalCode($_POST['postal_code'])
+                   ->setPostalCode($postalCode)
                    ->setCity($_POST['city'])
                    ->setCountry($_POST['country'])
                    ->setIsActive($_POST['is_active'])
                    ->setCompany($_POST['company'])
-                   ->setSiret($_POST['siret'])
+                   ->setSiret($siret)
                    ->setPassword($_POST['password'])
                     ;
             if(empty($_POST['company'])){
@@ -222,6 +241,8 @@ class ClientController extends ControllerAbstract{
 
             if(empty($_POST['siret'])){
                 $errors['siret'] = "Le numéro de siret est obligatoire";
+            }elseif (str_replace(" ", "", $_POST['siret']) != 14) {
+                $errors['siret'] = "Le numéro de siret doit contenir 14 chiffres";
             }
             
             if(empty($_POST['lastname'])){
@@ -236,6 +257,8 @@ class ClientController extends ControllerAbstract{
                 $errors['email'] = "L'email est obligatoire";
             }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
                 $errors['email'] = "L'email n'est pas valide";
+            }elseif (!is_null($this->app['client.repository']->findByEmail($_POST['email']))) {
+                $errors['email'] = "L'email est déjà utilisé";
             }
 
             if(empty($_POST['password'])){
@@ -252,6 +275,8 @@ class ClientController extends ControllerAbstract{
             
             if(empty($_POST['phone_number'])){
                 $errors['phone_number'] = "Le numéro de téléphone est obligatoire";
+            }elseif (str_replace(" ", "", $_POST['phone_number']) != 10) {
+                $errors['phone_number'] = "Le numéro de téléphone doit contenir 10 chiffres";
             }
             
             if(empty($_POST['billing_address'])){
@@ -289,4 +314,38 @@ class ClientController extends ControllerAbstract{
             ]
         );
     }
+    
+//    public function loginAction() {
+//        
+//        $email = "";
+//        
+//        if(!empty($_POST['email'])){
+//            $this->sanitizePost();
+//
+//            $email = $_POST['email'];
+//            $user = $this->app['client.repository']->findByEmail($email);
+//
+//            if(!is_null($user)){
+//                if ($this->app['client.manager']->verifyPassword($_POST['password'], $client->getPassword())){
+//                    $this->app['client.manager']->login($client);
+//                    
+//                    return $this->redirectRoute('homepage');
+//                }
+//            }
+//            
+//            $this->addFlashMessage('identification incorrecte', 'error');
+//        }
+//        
+//        return $this->render(
+//                'user/login.html.twig',
+//                [
+//                    'email' => $email
+//                ]
+//        );
+//    }
+//    
+//    public function logoutAction() {
+//        $this->app['user.manager']->logout();
+//        return $this->redirectRoute('homepage');
+//    }
 }

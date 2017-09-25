@@ -159,6 +159,12 @@ SQL;
     }
 
     private function buildEntity(array $data){
+        $collectionAddress = new LieuCollecte();
+        
+        $collectionAddress 
+                ->setAddress_name($data['address_name'])
+                ->setId_Collection_Address($data['id_collection_address']);
+  
         $collecte = new AdressesCollectionsHaveCollector();
         
         $collecte
@@ -171,6 +177,8 @@ SQL;
                 ->setWeight($data['weight'])
                 ->setCompost_quality($data['compost_quality'])
                 ->setFurther_information($data['further_information'])
+                ->setProcessing_datetime($data['processing_location'])
+                ->setLieuCollecte($collectionAddress)
                 ->setProcessing_location($data['processing_location']);
         return $collecte;
     }
@@ -179,17 +187,22 @@ SQL;
         $this->db->delete('adresses_collections_have_collector', ['id_adresses_collections_have_collector' => $collecte->getId_adresses_collections_have_collector()]);
     }
     
-    public function find($id_adresses_collections_have_collector)
-    {
+    public function find($id)
+    { 
         $dbCollecte = $this->db->fetchAssoc(
-            'SELECT * FROM adresses_collections_have_collector WHERE id_adresses_collections_have_collector = :id_adresses_collections_have_collector',
+            //'SELECT a.*, b.address_name as name FROM adresses_collections_have_collector a'  
+                'SELECT a.*, b.address_name, b.id_collection_address FROM adresses_collections_have_collector a'  
+            . ' JOIN adresses_collectes b ON a.adress_collection_idadress_collection = b.id_collection_address'
+            . ' WHERE a.id_adresses_collections_have_collector = :id',
             [
-                ':id_adresses_collections_have_collector' => $id_adresses_collections_have_collector
+                ':id' => $id
             ]
         );
-        if (!empty($dbCollecte)) {
-            return $this->buildEntity($dbCollecte);
-        }
+//        $collecte = [];
+//        foreach ($dbCollecte as $dbCollecte) {
+//            $collecte[] = $this->buildEntity($dbCollecte);
+//        }
+          return $this->buildEntity($dbCollecte);
     }
     
     private function buildEntity2(array $data){
@@ -254,23 +267,44 @@ SQL;
     public function findByCollectionAddress($id) {
         $dbCollection = $this->db->fetchAssoc(
             'SELECT * FROM adresses_collections_have_collector WHERE adress_collection_idadress_collection = :id',
+            //'SELECT a.*, b.address_name as name FROM adresses_collections_have_collector a'  
+                'SELECT a.*, b.address_name, b.id_collection_address FROM adresses_collections_have_collector a'  
+            . ' JOIN adresses_collectes b ON a.adress_collection_idadress_collection = b.id_collection_address'
+            . ' WHERE a.id_adresses_collections_have_collector = :id',
             [
                 ':id' => $id
             ]
         );
+
+//        $collecte = [];
+//        foreach ($dbCollecte as $dbCollecte) {
+//            $collecte[] = $this->buildEntity($dbCollecte);
+//        }
         
-        return $this->buildEntity($dbCollection);
+          return $this->buildEntity($dbCollecte);
     }
+    
+//    public function findByCollectionAddress($id) {
+//        $dbCollection = $this->db->fetchAssoc(
+//            'SELECT * FROM adresses_collections_have_collector WHERE adress_collection_idadress_collection = :id',
+//            [
+//                ':id' => $id
+//            ]
+//        );
+//        
+//        return $this->buildEntity($dbCollection);
+//    }
     
     public function findBinByEmptyWeight($id) {
         $dbBins = $this->db->fetchAll(
-            'SELECT * FROM adresses_collections_have_collector'
+            'SELECT bin_number, id_adresses_collections_have_collector FROM adresses_collections_have_collector'
             . ' WHERE weight = 0 AND collector_idcollector = :id', 
             [
                 ':id' => $id
             ]
         );
-        
+
         return $dbBins;
+//        return $this->buildEntity($dbBins);
     }
 }

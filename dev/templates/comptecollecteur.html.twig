@@ -3,7 +3,7 @@
 {% block content %}
     <hr class="hrStyle col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1">
     <div class="container collector">
-        {#<h1>Bienvenue {{ user_manager.firstname }}!</h1>#}
+{#        <h1>Bienvenue {{ user.idcollector }}!</h1>#}
         <div id="collector_nav" class="row">
             <a href="#collecte" class="col-md-4 col-xs-12">
                 <button class="btn btn-block btn-warning">Collecte de biodéchets</button>
@@ -29,7 +29,7 @@
                     <div class="panel-heading text-center"><h3 class='panel-title'>Formulaires à compléter</h3></div>
                     <div class="panel-body panel-body-collector btn-group-vertical btn-block" role="group" aria-label="...">
                         {%for bin in bins%}                    
-                            <a href="{{path('registercollecte',{id: bin.adress_collection_idadress_collection})}}" class="btn btn-default client-to-collect">
+                            <a href="{{path('registercollecte',{id: bin.id_adresses_collections_have_collector})}}" class="btn btn-default client-to-collect">
                                 Numéro de bac: {{ bin.bin_number }}  
                                 <span class="icon-edit pull-right" aria-hidden="true"></span>
                             </a>

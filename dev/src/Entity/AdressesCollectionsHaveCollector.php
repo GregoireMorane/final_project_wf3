@@ -76,6 +76,12 @@ class AdressesCollectionsHaveCollector {
      */
     private $lieu;
     
+    /**
+     *
+     * @object LieuCollecte 
+     */
+    private $lieuCollecte;
+    
     public function getAdress_collection_idadress_collection() {
         return $this->adress_collection_idadress_collection;
     }
@@ -117,8 +123,6 @@ class AdressesCollectionsHaveCollector {
         return $this->processing_location;
     }
 
-    
-    
     
     public function setAdress_collection_idadress_collection($adress_collection_idadress_collection) {
         $this->adress_collection_idadress_collection = $adress_collection_idadress_collection;
@@ -171,7 +175,29 @@ class AdressesCollectionsHaveCollector {
         $this->id_adresses_collections_have_collector = $id_adresses_collections_have_collector;
         return $this;
     }
+    
+    public function getLieuCollecte(): LieuCollecte {
+        return $this->lieuCollecte;
+    }
 
+    public function setLieuCollecte(LieuCollecte $lieuCollecte) {
+        $this->lieuCollecte = $lieuCollecte;
+        return $this;
+    }
+   
+    public function getLieuCollecteName() {
+       if(!is_null($this->lieuCollecte)){
+           return $this->lieuCollecte->getAddress_name();
+       }
+       return '';
+    }
+
+    public function getIdLieuCollecte() {
+        if(!is_null($this->lieuCollecte)){
+            return $this->lieuCollecte->getId_collection_address();
+        }
+        return '';
+    }
     public function getCollector() {
         return $this->collector;
     }

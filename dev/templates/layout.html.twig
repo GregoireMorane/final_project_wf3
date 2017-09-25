@@ -61,7 +61,7 @@
                         </nav>
                     </div>
                 <div style="max-width:300px;">
-                    <a href="{{path('homepage')}}"><img src="{{asset('images/Alchimiste_logo.png')}}" ></a>
+                    <a href="{{path('homepage')}}"><img id="logo" src="{{asset('images/Alchimiste_logo.png')}}"></a>
                 </div>
             {% if user_manager.user %}
                 <div class="bloc-deconnexion col-lg-5 col-md-5 col-xs-10 col-lg-offset-7 col-md-offset-5 col-xs-offset-2" style="text-align: right;">
@@ -69,11 +69,11 @@
                     <br>
                     <a href="{{path('deconnexion')}}">Deconnexion</a>
                     {% if user_manager.admin %}
-                        <a href="#">Page admin</a>
+                        <a href="{{path('compteadmin')}}">Page d'administration</a>
                     {% elseif user_manager.collector %}
-                        <a href="#">Page collecteur</a>
+                        <a href="{{path('comptecollecteur')}}">Page collecteur</a>
                     {% else %}
-                        <a href="#">Page client</a>
+                        <a href="{{path('compteclient')}}">Page client</a>
                     {% endif %}
             {% else %}
                 </div>
