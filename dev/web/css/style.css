@@ -20,6 +20,10 @@ body {
     bottom: 20px;
 }
 
+#img404{
+    width: 100%;
+}
+    
 span.glyphicon-log-out {
     font-size: 1.5em;
 }
