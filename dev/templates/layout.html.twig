@@ -87,18 +87,8 @@
                 <div class="bloc-connexion col-lg-5 col-md-5 col-xs-10 col-lg-offset-7 col-md-offset-5 col-xs-offset-2" style="text-align: right;">
                     <a href="{{path('connexion')}}">Connexion</a>
                 </div>
-                {% if user_manager.user %}
-                    <div class="" style="text-align: left;">
-                        <span style="font-size:1.7em;font-weight: bold;">Bonjour {{ user_manager.firstname }}</span>
-                        <br>
-                        <a style="font-size:1.3em;font-weight: bold;" href="{{path('deconnexion')}}">Deconnexion</a>
-                    </div>
-                    <div class="clear"></div>
-                {% else %}
-
-
-                    <div class="clear"></div>
-                {% endif %}
+                <div class="clear"></div>
+            {% endif %}
             </div>
         </nav>
         <div>
