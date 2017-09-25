@@ -20,8 +20,7 @@ class TraitementCollectorController extends ControllerAbstract{
                 $this->app->abort(404);
             }
         }
-        
-       
+      
         $errors = [];
         
         //affichages des infos de lieu du collecteur
@@ -68,7 +67,7 @@ class TraitementCollectorController extends ControllerAbstract{
     
     public function deleteAction($id){
        
-        $article = $this->app['traitementcollector.repository']->find($id);
+        //$liste = $this->app['traitementcollector.repository']->find($id);
         
         $this->app['traitementcollector.repository']->delete($id);
         

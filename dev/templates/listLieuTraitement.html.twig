@@ -23,7 +23,7 @@
                         <th>{{ lieu.postal_code }}</th>
                         <th>{{ lieu.city }}</th>
                         <th>{{ lieu.country }}</th>
-                        <th><a  href="{{path ('registertraitementcollector', {id: lieu.id_location_processing}) }}" style="font-weight: bold">Modifier</a></th>
+                        <th><a  href="{{path ('registerlieutraitement', {id: lieu.id_location_processing}) }}" style="font-weight: bold">Modifier</a></th>
                         <th><a  href="{{path ('listetraitementcollectordelete', {id: lieu.id_location_processing}) }}" style="font-weight: bold">Supprimer</a></th>
                     </tr>
                 {% endfor %}

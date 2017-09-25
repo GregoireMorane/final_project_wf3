@@ -10,21 +10,62 @@
         {% block stylesheets %}
             <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-            <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
             <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-             <link href="{{ asset('css/menuadmin.css') }}" rel="stylesheet" type="text/css"/>
             <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('css/homepage.css') }}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('css/collector.css') }}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('css/menuadmin.css') }}" rel="stylesheet" type="text/css"/>
             <link href="https://fonts.googleapis.com/css?family=Anton|Arvo|Oswald|Poppins" rel="stylesheet">
             <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-            <link href="{{ asset('css/collector.css') }}" rel="stylesheet" type="text/css"/>            
+
+
+
+
+
+
         {% endblock %}
     </head>
     <body>
+
         <nav class="navbar ombrage">
             <div class="container">
+                <div {#style="max-width:300px;"#} >
+                    <a href="{{path('homepage')}}"><img class="img logo" src="{{asset('images/Alchimiste_logo.png')}}"></a>
+                    <div class="img bloclegende">
+                        <a href="{{path('compteclient')}}"><img class=" une" src="{{asset('images/déchets2.png')}}" >Compte Client</a><div class="clear"></div>
+                    </div>
+                    <div class="img bloclegende2"><a href="{{path('comptecollecteur')}}"><img class="img deux" src="{{asset('images/velo.png')}}" >Compte Collecteur</a></div>
+                    <div class="img bloclegende3"><a href="{{path('compteadmin')}}"><img class="img trois" src="{{asset('images/composteur2.png')}}">Compte Alchimistes</a></div>
+                    <div class="img bloclegende4"><a href="{{path('connexion')}}"><img class="img quatre" src="{{asset('images/plante.png')}}">Connexion</a></div>
+                    <div class="clear"></div>
+                    <div class="navresponsive">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <a class="navbar-brand" href="{{path('homepage')}}">
+                                        Acceuil
+                                    </a>
+                                </div>
+                                <div class="navbar-header">
+                                    <a class="navbar-brand" href="{{path('compteclient')}}">
+                                        Compte client
+                                    </a>
+                                </div>
+                                <div class="navbar-header">
+                                    <a class="navbar-brand" href="{{path('comptecollecteur')}}">
+                                        Compte collecteur
+                                    </a>
+                                </div>
+                                <div class="navbar-header">
+                                    <a class="navbar-brand" href="{{path('connexion')}}">
+                                        Connexion
+                                    </a>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
                 <div style="max-width:300px;">
                     <a href="{{path('homepage')}}"><img src="{{asset('images/Alchimiste_logo.png')}}" ></a>
                 </div>
@@ -46,26 +87,36 @@
                 <div class="bloc-connexion col-lg-5 col-md-5 col-xs-10 col-lg-offset-7 col-md-offset-5 col-xs-offset-2" style="text-align: right;">
                     <a href="{{path('connexion')}}">Connexion</a>
                 </div>
-                <div class="clear"></div>
-            {% endif %}
+                {% if user_manager.user %}
+                    <div class="" style="text-align: left;">
+                        <span style="font-size:1.7em;font-weight: bold;">Bonjour {{ user_manager.firstname }}</span>
+                        <br>
+                        <a style="font-size:1.3em;font-weight: bold;" href="{{path('deconnexion')}}">Deconnexion</a>
+                    </div>
+                    <div class="clear"></div>
+                {% else %}
+
+
+                    <div class="clear"></div>
+                {% endif %}
             </div>
         </nav>
-            <div>
-                {% for type, flashes in app.session.flashbag.all %}
-                    {% for  flash in flashes %}
-                        {% if type == 'error' %} {% set type = 'danger' %} {% endif %}
-                        <div class="alert alert-{{type}}"> {{ flash | raw }} </div>
-                    {% endfor %}
+        <div>
+            {% for type, flashes in app.session.flashbag.all %}
+                {% for  flash in flashes %}
+                    {% if type == 'error' %} {% set type = 'danger' %} {% endif %}
+                    <div class="alert alert-{{type}}"> {{ flash | raw }} </div>
                 {% endfor %}
-                {% block content %}
-                {% endblock %}
-            </div>
-            {% block javascripts %}
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                <script src="{{asset('js/homepagescript.js')}}"></script>
-                <script src="{{asset('js/menu.js')}}"></script>
+            {% endfor %}
+            {% block content %}
             {% endblock %}
+        </div>
+        {% block javascripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script src="{{asset('js/homepagescript.js')}}"></script>
+            <script src="{{asset('js/menu.js')}}"></script>
+        {% endblock %}
     </body>
 </html>
