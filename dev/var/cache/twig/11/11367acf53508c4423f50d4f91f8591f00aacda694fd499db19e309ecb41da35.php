@@ -1,7 +1,7 @@
 <?php
 
 /* errors/404.html.twig */
-class __TwigTemplate_b676e28b684df3a66810d5c93f8835ec7a660061494858a416e0f6f79ecc99c9 extends Twig_Template
+class __TwigTemplate_2d79de4bca7a57354167d68dff26a0d4b21ef1dc4d92ed7827591a66b0e7a7dc extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -41,10 +41,10 @@ class __TwigTemplate_b676e28b684df3a66810d5c93f8835ec7a660061494858a416e0f6f79ec
         </p>
         <br>
     </div>
-    <img id=\"img404\" src=\"";
+            <img id=\"img404\" src=\"";
         // line 14
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/background-image.jpg"), "html", null, true);
-        echo "\" alt=\"\">
+        echo "\" alt=\"\"> <br>
     
 ";
     }
@@ -74,6 +74,6 @@ class __TwigTemplate_b676e28b684df3a66810d5c93f8835ec7a660061494858a416e0f6f79ec
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "errors/404.html.twig", "C:\\xampp\\htdocs\\projet_final\\final_project_wf3\\dev\\templates\\errors\\404.html.twig");
+        return new Twig_Source("", "errors/404.html.twig", "C:\\xampp\\htdocs\\gregoire_morane\\final_project_wf3\\dev\\templates\\errors\\404.html.twig");
     }
 }
