@@ -136,7 +136,7 @@ class ClientController extends ControllerAbstract{
                 $errors['email'] = "L'email est obligatoire";
             }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
                 $errors['email'] = "L'email n'est pas valide";
-            }elseif (!is_null($this->app['client.repository']->findByEmail($_POST['email']))) {
+            }elseif (!is_null($this->app['connexion.repository']->findByEmailClient($_POST['email']))) {
                 $errors['email'] = "L'email est déjà utilisé";
             }
 
