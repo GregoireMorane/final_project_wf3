@@ -65,6 +65,11 @@ class LieuCollecte {
     
     /**
      *
+     * @var sring
+     */
+    private $collector;
+    /**
+     *
      * @var string
      */
     private $clientFirstname;
@@ -191,4 +196,14 @@ class LieuCollecte {
         $this->firm_type = $firm_type;
         return $this;
     }
+    
+    public function getCollector() {
+        return $this->collector;
+    }
+
+    public function setCollector($collector) {
+        $this->collector = $collector;
+        return $this;
+    }    
+    
 }

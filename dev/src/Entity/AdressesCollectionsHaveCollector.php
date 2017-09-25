@@ -58,6 +58,23 @@ class AdressesCollectionsHaveCollector {
      * @var string
      */
     private $processing_location;
+    /**
+     *
+     * @var string
+     */
+    private $location_processing;
+    
+    /**
+     *
+     * @var string
+     */
+    private $collector;
+    
+    /**
+     *
+     * @var string
+     */
+    private $lieu;
     
     /**
      *
@@ -173,12 +190,39 @@ class AdressesCollectionsHaveCollector {
            return $this->lieuCollecte->getAddress_name();
        }
        return '';
-   }
-   
-   public function getIdLieuCollecte() {
-       if(!is_null($this->lieuCollecte)){
-           return $this->lieuCollecte->getId_collection_address();
-       }
-       return '';
-   }
+    }
+
+    public function getIdLieuCollecte() {
+        if(!is_null($this->lieuCollecte)){
+            return $this->lieuCollecte->getId_collection_address();
+        }
+        return '';
+    }
+    public function getCollector() {
+        return $this->collector;
+    }
+
+    public function setCollector($collector) {
+        $this->collector = $collector;
+        return $this;
+    }    
+    
+    function getLieu() {
+        return $this->lieu;
+    }
+
+    function setLieu($lieu) {
+        $this->lieu = $lieu;
+        return $this;
+    }
+    
+    function getLocation_processing() {
+        return $this->location_processing;        
+    }
+    
+    function setLocation_processing($location_processing) {
+    $this->location_processing = $location_processing;
+    return $this;
+    }
+
 }

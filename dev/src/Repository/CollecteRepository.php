@@ -3,7 +3,9 @@
 namespace Repository;
 
 use Entity\AdressesCollectionsHaveCollector;
+use Entity\Collector;
 use Entity\LieuCollecte;
+use Entity\ProcessingLocation;
 
 /**
  * Description of CollecteRepository
@@ -11,6 +13,7 @@ use Entity\LieuCollecte;
  * @author ghmor
  */
 class CollecteRepository extends RepositoryAbstract{
+
     public function totalWasteByCollector($id){
         return $this->db->fetchColumn(
                 'SELECT SUM(weight) FROM adresses_collections_have_collector '
@@ -29,12 +32,12 @@ class CollecteRepository extends RepositoryAbstract{
                  //   'date2' => date('Y-m-d')
                 ]);
     }
-       
+
     public function save(AdressesCollectionsHaveCollector $collecte){
         $data =[
             'adress_collection_idadress_collection' => $collecte->getAdress_collection_idadress_collection(),
             'collector_idcollector' => $collecte->getCollector_idcollector(),
-//            'collection_datetime' => $collecte->getCollection_datetime(),
+            //'collection_datetime' => $collecte->getCollection_datetime(),
             'bin_number' => $collecte->getBin_number(),
             'processing_datetime' => $collecte->getProcessing_datetime(),
             'weight' => $collecte->getWeight(),
@@ -82,6 +85,7 @@ SQL;
 
         return $this->db->fetchColumn($query, [':id' => $id]);
     }
+
     public function findTotalBioWasteWeight() {
        $query = <<<SQL
 SELECT SUM(achc.weight)
@@ -115,7 +119,7 @@ JOIN client ON client.id_client = ac.client_idclient
 WHERE client.id_client = :id
 ORDER BY collection_datetime DESC
 SQL;
-        
+
         $dbCollectionDates = $this->db->fetchAll($query, [':id' => $id]);
         $collectionDates = [];
         
@@ -125,13 +129,36 @@ SQL;
         
         return $collectionDates;
     }
+    
+    public function findOneDacDetails($id, $id_dac) {
+        
+        $query = <<<SQL
+SELECT achc.*, ac.*, collector.*, pl.*
+FROM adresses_collectes ac
+LEFT JOIN processing_location pl ON pl.id_location_processing = ac.location_processing_idlocation_processing
+LEFT JOIN adresses_collections_have_collector achc ON achc.adress_collection_idadress_collection = ac.id_collection_address
+LEFT JOIN collector ON collector.idcollector = achc.collector_idcollector
+WHERE client_idclient = :id
+AND achc.id_adresses_collections_have_collector = :id_dac
+SQL;
+
+        $dbOneDacDetails = $this->db->fetchAll($query, 
+                [
+                    ':id' => $id,
+                    ':id_dac' => $id_dac
+                ]);
+        
+        $oneDacDetails=[];
+        
+        foreach ($dbOneDacDetails as $dbOneDacDetail){
+            $oneDacDetails[] = $this->buildEntity2($dbOneDacDetail);
+
+        }
+
+        return $oneDacDetails;
+    }
 
     private function buildEntity(array $data){
-        $collectionAddress = new LieuCollecte();
-        
-        $collectionAddress 
-                ->setAddress_name($data['address_name'])
-                ->setId_Collection_Address($data['id_collection_address']);
   
         $collecte = new AdressesCollectionsHaveCollector();
         
@@ -139,15 +166,13 @@ SQL;
                 ->setId_adresses_collections_have_collector($data['id_adresses_collections_have_collector'])
                 ->setAdress_collection_idadress_collection($data['adress_collection_idadress_collection'])
                 ->setCollector_idcollector($data['collector_idcollector'])
-//                ->setCollection_datetime($data['collection_datetime'])
+                //->setCollection_datetime($data['collection_datetime'])
                 ->setBin_number($data['bin_number'])
                 ->setProcessing_datetime($data['processing_datetime'])
                 ->setWeight($data['weight'])
                 ->setCompost_quality($data['compost_quality'])
                 ->setFurther_information($data['further_information'])
-                ->setProcessing_datetime($data['processing_location'])
-                ->setLieuCollecte($collectionAddress);               ;
-
+                ->setProcessing_location($data['processing_location']);
         return $collecte;
     }
     
@@ -158,6 +183,83 @@ SQL;
     public function find($id)
     { 
         $dbCollecte = $this->db->fetchAssoc(
+            //'SELECT a.*, b.address_name as name FROM adresses_collections_have_collector a'  
+                'SELECT a.*, b.address_name, b.id_collection_address FROM adresses_collections_have_collector a'  
+            . ' JOIN adresses_collectes b ON a.adress_collection_idadress_collection = b.id_collection_address'
+            . ' WHERE a.id_adresses_collections_have_collector = :id',
+            [
+                ':id' => $id
+            ]
+        );
+//        $collecte = [];
+//        foreach ($dbCollecte as $dbCollecte) {
+//            $collecte[] = $this->buildEntity($dbCollecte);
+//        }
+          return $this->buildEntitySimone($dbCollecte);
+    }
+    
+    private function buildEntity2(array $data){
+        $location_processing = new ProcessingLocation();
+        
+        $location_processing
+                ->setId_location_processing($data['id_location_processing'])
+                ->setProcessing_location($data['processing_location'])
+                ->setProcessing_address($data['processing_address'])
+                ->setPostal_code($data['postal_code'])
+                ->setCity($data['city'])
+                ->setCountry($data['country']);
+        
+        $collector = new Collector();
+        
+        $collector
+                ->setIdcollector($data['idcollector'])
+                ->setLastname($data['lastname'])
+                ->setFirstname($data['firstname'])
+                ->setPhone_number($data['phone_number'])
+                ->setEmail($data['email'])
+                ->setPassword($data['password'])
+                ->setAddress($data['address'])                
+                ->setPostal_code($data['postal_code'])
+                ->setCity($data['city'])
+                ->setStatus($data['status']);
+
+        $lieu = new LieuCollecte();
+
+        $lieu
+                ->setId_collection_address($data['id_collection_address'])
+                ->setAddress_name($data['address_name'])
+                ->setAddress_collection($data['address_collection'])
+                ->setPostal_code($data['postal_code'])
+                ->setCity($data['city'])
+                ->setFurther_information($data['further_information'])
+                ->setCountry($data['country'])
+                ->setCollection_day($data['collection_day'])
+                ->setClient_idclient($data['client_idclient'])
+                ->setLocation_processing_idlocation_processing($data['location_processing_idlocation_processing'])
+                ->setFirm_type($data['firm_type']);
+        
+        $collecte = new AdressesCollectionsHaveCollector();
+        
+        $collecte
+                ->setId_adresses_collections_have_collector($data['id_adresses_collections_have_collector'])
+                ->setAdress_collection_idadress_collection($data['adress_collection_idadress_collection'])
+                ->setCollector_idcollector($data['collector_idcollector'])
+                ->setCollection_datetime($data['collection_datetime'])
+                ->setBin_number($data['bin_number'])
+                ->setProcessing_datetime($data['processing_datetime'])
+                ->setWeight($data['weight'])
+                ->setCompost_quality($data['compost_quality'])
+                ->setFurther_information($data['further_information'])
+                ->setProcessing_location($data['processing_location'])
+                ->setLocation_Processing($location_processing)
+                ->setCollector($collector)                      
+                ->setLieu($lieu);          
+        return $collecte;
+    }
+    
+    public function findByCollectionAddress($id) {
+        $dbCollection = $this->db->fetchAssoc(
+            'SELECT * FROM adresses_collections_have_collector WHERE adress_collection_idadress_collection = :id',
             //'SELECT a.*, b.address_name as name FROM adresses_collections_have_collector a'  
                 'SELECT a.*, b.address_name, b.id_collection_address FROM adresses_collections_have_collector a'  
             . ' JOIN adresses_collectes b ON a.adress_collection_idadress_collection = b.id_collection_address'
@@ -197,5 +299,29 @@ SQL;
 
         return $dbBins;
 //        return $this->buildEntity($dbBins);
+    }
+    
+    private function buildEntitySimone(array $data) {
+        $collectionAddress = new LieuCollecte();
+        
+        $collectionAddress 
+                ->setAddress_name($data['address_name'])
+                ->setId_Collection_Address($data['id_collection_address']);
+  
+        $collecte = new AdressesCollectionsHaveCollector();
+        
+        $collecte
+                ->setId_adresses_collections_have_collector($data['id_adresses_collections_have_collector'])
+                ->setAdress_collection_idadress_collection($data['adress_collection_idadress_collection'])
+                ->setCollector_idcollector($data['collector_idcollector'])
+                //->setCollection_datetime($data['collection_datetime'])
+                ->setBin_number($data['bin_number'])
+                ->setProcessing_datetime($data['processing_datetime'])
+                ->setWeight($data['weight'])
+                ->setCompost_quality($data['compost_quality'])
+                ->setFurther_information($data['further_information'])
+                ->setLieuCollecte($collectionAddress)
+                ->setProcessing_location($data['processing_location']);
+        return $collecte;
     }
 }

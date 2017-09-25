@@ -26,15 +26,15 @@
 
             <link href="{{ asset('css/homepage.css') }}" rel="stylesheet" type="text/css"/>
 
+            <link href="{{ asset('css/compteclient.css') }}" rel="stylesheet" type="text/css" />
+
             <link href="{{ asset('css/collector.css') }}" rel="stylesheet" type="text/css"/>
 
             <link href="{{ asset('css/menuadmin.css') }}" rel="stylesheet" type="text/css"/>
 
             <link href="https://fonts.googleapis.com/css?family=Anton|Arvo|Oswald|Poppins" rel="stylesheet">
 
-            <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
-            <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         {% endblock %}
 
@@ -46,167 +46,123 @@
 
             <div class="container">
 
-                <div>
+                <div {#style="max-width:300px;"#} >
 
                     <a href="{{path('homepage')}}"><img class="img logo" src="{{asset('images/Alchimiste_logo.png')}}"></a>
 
+                    <div class="img bloclegende">
 
-
-                    {% if user_manager.user %}
-
-                        {% if user_manager.admin%}
-
-                        {% elseif  user_manager.collector %}
-
-                        {% else %} 
-
-                            <div class="img bloclegende"><a href="{{path('compteclient')}}"><img class=" une" src="{{asset('images/déchets2.png')}}" >Compte Client</a><div class="clear"></div>
-
-                        {% endif %}{% endif %}
-
-
-
-                        {% if user_manager.user %}
-
-                            {% if user_manager.admin %} 
-
-                            {% elseif  user_manager.collector %}
-
-                                <div class="img bloclegende2"><a href="{{path('comptecollecteur')}}"><img class="img deux" src="{{asset('images/velo.png')}}" >Compte Collecteur</a></div>
-
-                            {% else %}
-
-                            {% endif %}
-
-                        {% endif %}
-
-
-
-
-
-                        {% if user_manager.user %}
-
-                            {% if user_manager.admin %}
-
-                                <div class="img bloclegende3"><a href="{{path('compteadmin')}}"><img class="img trois" src="{{asset('images/composteur2.png')}}">Compte Alchimistes</a></div>
-
-                            {% elseif  user_manager.collector %}
-
-                            {% elseif not user_manager.collector and not user_manager.collector%}
-
-                            {% else %}
-
-                        {% endif %}{% endif %}
-
-
-
-                        {% if user_manager.user is empty %}
-
-
-
-                            <div class="img bloclegende">
-
-                                <a href="{{path('compteclient')}}"><img class=" une" src="{{asset('images/déchets2.png')}}" >Compte Client</a><div class="clear"></div>
-
-                            </div>
-
-                            <div class="img bloclegende2"><a href="{{path('comptecollecteur')}}"><img class="img deux" src="{{asset('images/velo.png')}}" >Compte Collecteur</a></div>
-
-                            <div class="img bloclegende3"><a href="{{path('compteadmin')}}"><img class="img trois" src="{{asset('images/composteur2.png')}}">Compte Alchimistes</a></div>
-
-                            <div class="img bloclegende4"><a href="{{path('connexion')}}"><img class="img quatre" src="{{asset('images/plante.png')}}">Connexion</a></div>
-
-                            <div class="clear"></div>
-
-                        {% else %}
-
-                        {% endif %}
-
-
-
-                        {#<div class="clear"></div>#}
-
-                        {% if user_manager.user is empty%}
-
-                            <div class="navresponsive">
-
-                                <nav class="navbar navbar-default col-lg-12 col-md-12 col-xs-12 col-sm-12">
-
-                                    <div class="container-fluid">
-
-                                        <div class="navbar-header">
-
-                                            <a class="navbar-brand" href="{{path('homepage')}}">
-
-                                                Acceuil
-
-                                            </a>
-
-                                        </div>
-
-                                        <div class="navbar-header">
-
-                                            <a class="navbar-brand" href="{{path('compteclient')}}">
-
-                                                Compte client
-
-                                            </a>
-
-                                        </div>
-
-                                        <div class="navbar-header">
-
-                                            <a class="navbar-brand" href="{{path('comptecollecteur')}}">
-
-                                                Compte collecteur
-
-                                            </a>
-
-                                        </div>
-
-                                        <div class="navbar-header">
-
-                                            <a class="navbar-brand" href="{{path('connexion')}}">
-
-                                                Connexion
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
-                                </nav>
-
-                            </div>
-
-                        {% endif %}
+                        <a href="{{path('compteclient')}}"><img class=" une" src="{{asset('images/déchets2.png')}}" >Compte Client</a><div class="clear"></div>
 
                     </div>
 
+                    <div class="img bloclegende2"><a href="{{path('comptecollecteur')}}"><img class="img deux" src="{{asset('images/velo.png')}}" >Compte Collecteur</a></div>
 
+                    <div class="img bloclegende3"><a href="{{path('compteadmin')}}"><img class="img trois" src="{{asset('images/composteur2.png')}}">Compte Alchimistes</a></div>
 
-                    {% if user_manager.user %}
+                    <div class="img bloclegende4"><a href="{{path('connexion')}}"><img class="img quatre" src="{{asset('images/plante.png')}}">Connexion</a></div>
 
-                        <div class=" col-lg-12 col-md-12 col-xs-12 col-sm-12" style="text-align: left;">
+                    <div class="clear"></div>
 
-                            <span style="font-size:1.7em;font-weight: bold;">Bonjour {{ user_manager.firstname }}</span>
+                    <div class="navresponsive">
 
-                            <br>
+                        <nav class="navbar navbar-default">
 
-                            <a style="font-size:1.3em;font-weight: bold;" href="{{path('deconnexion')}}">Deconnexion</a>
+                            <div class="container-fluid">
 
-                        </div>
+                                <div class="navbar-header">
 
-                        <div class="clear"></div>{% else %}
+                                    <a class="navbar-brand" href="{{path('homepage')}}">
 
+                                        Acceuil
 
+                                    </a>
 
-                        <div class="clear"></div>
+                                </div>
+
+                                <div class="navbar-header">
+
+                                    <a class="navbar-brand" href="{{path('compteclient')}}">
+
+                                        Compte client
+
+                                    </a>
+
+                                </div>
+
+                                <div class="navbar-header">
+
+                                    <a class="navbar-brand" href="{{path('comptecollecteur')}}">
+
+                                        Compte collecteur
+
+                                    </a>
+
+                                </div>
+
+                                <div class="navbar-header">
+
+                                    <a class="navbar-brand" href="{{path('connexion')}}">
+
+                                        Connexion
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </nav>
+
+                    </div>
+
+                <div style="max-width:300px;">
+
+                    <a href="{{path('homepage')}}"><img id="logo" src="{{asset('images/Alchimiste_logo.png')}}"></a>
+
+                </div>
+
+            {% if user_manager.user %}
+
+                <div class="bloc-deconnexion col-lg-5 col-md-5 col-xs-10 col-lg-offset-7 col-md-offset-5 col-xs-offset-2" style="text-align: right;">
+
+                    <span>Bonjour {{ user_manager.firstname }}</span>
+
+                    <br>
+
+                    <a href="{{path('deconnexion')}}">Deconnexion</a>
+
+                    {% if user_manager.admin %}
+
+                        <a href="{{path('compteadmin')}}">Page d'administration</a>
+
+                    {% elseif user_manager.collector %}
+
+                        <a href="{{path('comptecollecteur')}}">Page collecteur</a>
+
+                    {% else %}
+
+                        <a href="{{path('compteclient')}}">Page client</a>
 
                     {% endif %}
 
+            {% else %}
+
                 </div>
+
+                <div class="clear"></div>
+
+                <div class="bloc-connexion col-lg-5 col-md-5 col-xs-10 col-lg-offset-7 col-md-offset-5 col-xs-offset-2" style="text-align: right;">
+
+                    <a href="{{path('connexion')}}">Connexion</a>
+
+                </div>
+
+                <div class="clear"></div>
+
+            {% endif %}
+
+            </div>
 
         </nav>
 
@@ -247,3 +203,4 @@
     </body>
 
 </html>
+

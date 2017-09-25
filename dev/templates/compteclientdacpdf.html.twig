@@ -1,0 +1,39 @@
+                                <h1><strong>DOCUMENT D'ACCOMPAGNEMENT COMMERCIAL (DAC)</strong><br />
+                pour le transport de sous-produits animaux de catégorie 3 transformés ou non</h1>
+{% for oneDacDetail in oneDacDetails %}
+    <p><strong>DENOMINATION ET POIDS DES SOUS-PRODUITS</strong><br />
+    Sous-produits animaux de CATEGORIE 3 - impropres à la consommation humaine<br />
+    <strong>Description du produit :</strong> biodéchets triés à la source, issus de : {{ oneDacDetail.lieu.firm_type }}.<br />
+    <strong>N° du bac : </strong>{{ oneDacDetail.bin_number }}.<br />
+    <strong>Qualité des biodéchets :</strong> {{ oneDacDetail.compost_quality }}.<br />
+    <strong>Espèces représentés :</strong> mélange (produits en vrac).<br />
+    <strong>Informations complémentaires, nature des produits ajoutés (sel, anticoagulant...), le cas échéant : </strong>{{ oneDacDetail.further_information }}.<br />
+    <strong>Poids total (en Kg) pesé : </strong>{{ oneDacDetail.weight }}.</p>
+
+    <p><strong>ETABLISSEMENT DE DEPART DES SOUS-PRODUITS</strong><br />
+    <strong>Type d'établissement : </strong>{{ oneDacDetail.lieu.firm_type }}.<br />
+    <strong>Raison sociale et adresse :</strong>{{ oneDacDetail.lieu.address_collection }} {{ oneDacDetail.lieu.postal_code }} {{ oneDacDetail.lieu.city }}<br />
+    <strong>N° de SIRET :</strong>{{ user_manager.user.siret }}.<br />
+    <strong>Téléphone : </strong>{{ user_manager.user.phonenumber }}.<br />
+    <strong>Fax : </strong><br />
+    <strong>Nom du responsable/représentant de l'établissement de départ : </strong>{{ user_manager.user.firstname }} {{ user_manager.user.lastname }}</p>
+
+    <p><strong>COLLECTEUR - TRANSPORTEUR DES SOUS-PRODUITS</strong><br />
+    <strong>Raison sociale et adresse:</strong>SAS Les Alchimistes, 6 rue Arnold Géraux, 93450 L'île Saint-Denis<br />
+    <strong>N° d'enregistrement : </strong><br />
+    <strong>Téléphone : 01 84 21 47 89.</strong><br />
+    <strong>Fax : </strong><br />
+    <strong>N° d'immatriculation : </strong><br />
+    <strong>Date de chargement : </strong>{{ oneDacDetail.collection_datetime }}.<br />
+    <strong>Nom et signature du chauffeur/collecteur : </strong>{{ oneDacDetail.collector.firstname }} {{ oneDacDetail.collector.lastname }}.</p>
+
+    <p><strong>ETABLISSEMENT DESTINATAIRE DES SOUS-PRODUITS</strong><br />
+    <strong>Type d'établissement : </strong> installation de compostage.<br />
+    <strong>N° d'agrément : </strong><br />
+    <strong>Téléphone : </strong>01 84 21 47 89.<br />
+    <strong>Fax : </strong><br />
+    <strong>Raison sociale et adresse : </strong>SAS Les Alchimistes - {{ oneDacDetail.processing_location }}<br />
+    <strong>Date et heure de réception : </strong>{{ oneDacDetail.processing_datetime }}.<br />
+    <strong>Nom du responsable du site de destination ou de son représentant : </strong>Fabien-Kenzo Sato.</p>
+{% endfor %}
+

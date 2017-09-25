@@ -100,8 +100,7 @@ SQL;
             ->setPostal_code($data['postal_code'])
             ->setCity($data['city'])
             ->setStatus($data['status']);
-
-        
+               
         return $collector;
     }
     
@@ -121,5 +120,5 @@ SQL;
         if (!empty($dbCollector)) {
             return $this->buildEntity($dbCollector);
         }
-    }
+    }    
 }
