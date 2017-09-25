@@ -6,18 +6,6 @@ use Entity\Collector;
 use Symfony\Component\Security\Core\User\User;
 
 class CollectorRepository extends RepositoryAbstract{
-    public function findByEmail($email) {
-        $dbCollector = $this->db->fetchAssoc(
-            'SELECT * FROM collector WHERE email = :email',
-            [
-                ':email' => $email
-            ]
-        );
-        
-        if(!empty($dbCollector)){
-            return $this->buildEntity($dbCollector);
-        }
-    }
     
     public function findAll() 
     {

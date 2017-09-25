@@ -159,11 +159,6 @@ SQL;
     }
 
     private function buildEntity(array $data){
-        $collectionAddress = new LieuCollecte();
-        
-        $collectionAddress 
-                ->setAddress_name($data['address_name'])
-                ->setId_Collection_Address($data['id_collection_address']);
   
         $collecte = new AdressesCollectionsHaveCollector();
         
@@ -177,8 +172,6 @@ SQL;
                 ->setWeight($data['weight'])
                 ->setCompost_quality($data['compost_quality'])
                 ->setFurther_information($data['further_information'])
-                ->setProcessing_datetime($data['processing_location'])
-                ->setLieuCollecte($collectionAddress)
                 ->setProcessing_location($data['processing_location']);
         return $collecte;
     }
@@ -202,7 +195,7 @@ SQL;
 //        foreach ($dbCollecte as $dbCollecte) {
 //            $collecte[] = $this->buildEntity($dbCollecte);
 //        }
-          return $this->buildEntity($dbCollecte);
+          return $this->buildEntitySimone($dbCollecte);
     }
     
     private function buildEntity2(array $data){
@@ -306,5 +299,29 @@ SQL;
 
         return $dbBins;
 //        return $this->buildEntity($dbBins);
+    }
+    
+    private function buildEntitySimone(array $data) {
+        $collectionAddress = new LieuCollecte();
+        
+        $collectionAddress 
+                ->setAddress_name($data['address_name'])
+                ->setId_Collection_Address($data['id_collection_address']);
+  
+        $collecte = new AdressesCollectionsHaveCollector();
+        
+        $collecte
+                ->setId_adresses_collections_have_collector($data['id_adresses_collections_have_collector'])
+                ->setAdress_collection_idadress_collection($data['adress_collection_idadress_collection'])
+                ->setCollector_idcollector($data['collector_idcollector'])
+                //->setCollection_datetime($data['collection_datetime'])
+                ->setBin_number($data['bin_number'])
+                ->setProcessing_datetime($data['processing_datetime'])
+                ->setWeight($data['weight'])
+                ->setCompost_quality($data['compost_quality'])
+                ->setFurther_information($data['further_information'])
+                ->setLieuCollecte($collectionAddress)
+                ->setProcessing_location($data['processing_location']);
+        return $collecte;
     }
 }

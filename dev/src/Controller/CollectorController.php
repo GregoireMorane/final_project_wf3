@@ -96,7 +96,7 @@ class CollectorController extends ControllerAbstract{
                 $errors['email'] = "L'email est obligatoire";
             }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
                 $errors['email'] = "L'email n'est pas valide";
-            }elseif (!is_null($this->app['collector.repository']->findByEmail($_POST['email']))) {
+            }elseif (!is_null($this->app['connexion.repository']->findByEmailCollectorAdmin($_POST['email']))) {
                 $errors['email'] = "L'email est déjà utilisé";
             }
             
@@ -210,37 +210,4 @@ class CollectorController extends ControllerAbstract{
         );
     }
     
-//    public function loginAction() {
-//        
-//        $email = "";
-//        
-//        if(!empty($_POST['email'])){
-//            $this->sanitizePost();
-//
-//            $email = $_POST['email'];
-//            $collector = $this->app['collector.repository']->findByEmail($email);
-//
-//            if(!is_null($collector)){
-//                if ($this->app['user.manager']->verifyPassword($_POST['password'], $user->getPassword())){
-//                    $this->app['user.manager']->login($user);
-//                    
-//                    return $this->redirectRoute('homepage');
-//                }
-//            }
-//            
-//            $this->addFlashMessage('identification incorrecte', 'error');
-//        }
-//        
-//        return $this->render(
-//                'collector/login.html.twig',
-//                [
-//                    'email' => $email
-//                ]
-//        );
-//    }
-//    
-//    public function logoutAction() {
-//        $this->app['user.manager']->logout();
-//        return $this->redirectRoute('homepage');
-//    }
 }
