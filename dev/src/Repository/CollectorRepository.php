@@ -69,33 +69,6 @@ SQL;
         return $collectors;
     }
     
-    public function findCollectorByLieuCollecteByClientId($id, $idlieu) {
-        $query = <<<SQL
-SELECT c.*
-FROM collector c
-JOIN adresses_collections_have_collector achc ON achc.id_adresses_collections_have_collector = c.idcollector
-JOIN adresses_collectes ac ON ac.id_collection_address = achc.adress_collection_idadress_collection
-JOIN client ON client.id_client = ac.client_idclient
-WHERE client.id_client = :id 
-AND ac.id_collection_address = :idlieu
-SQL;
-
-        $dbCollectorLieuClients = $this->db->fetchAll($query, 
-                [
-                    ':id' => $id,
-                    ':idlieu' => $idlieu
-                ]);
-
-        dump($dbCollectorLieuClients);
-        $collectorLieuClients = [];
-
-        foreach ($dbCollectorLieuClients as $dbCollectorLieuClient) {
-            $collectorLieuClients[] = $this->buildEntity($dbCollectorLieuClient);
-        }
-        
-        return $collectorLieuClients;
-    }
-    
     public function save(Collector $collector) {
         $data = [
             'lastname' => $collector->getLastname(),
@@ -139,8 +112,7 @@ SQL;
             ->setPostal_code($data['postal_code'])
             ->setCity($data['city'])
             ->setStatus($data['status']);
-
-        
+               
         return $collector;
     }
     
@@ -160,5 +132,5 @@ SQL;
         if (!empty($dbCollector)) {
             return $this->buildEntity($dbCollector);
         }
-    }
+    }    
 }

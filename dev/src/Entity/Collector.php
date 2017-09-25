@@ -61,6 +61,9 @@ class Collector{
      */
     private $postal_code;
     
+    private $lieu;
+
+
     //GETTERS
     function getIdcollector() {
         return $this->idcollector;

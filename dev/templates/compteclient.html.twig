@@ -14,7 +14,7 @@
         </div>
 
         <div id="biodechets"></div>
-        <div class="row jaune bloc-comptetitle bloc bloc-comptetitle">
+        <div class="row jaune bloc-comptetitle bloc">
 
             <div class="col-xs-12 col-md-4 panel-body btn-group-vertical dacbouton" role="group">
                 <button type="button" class="btn btn-primary btn-static">Vos DAC</button>
@@ -53,12 +53,12 @@
         </div>
 
         <div id="contact"></div>
-        <div class="row bloc vert bloc bloc-comptetitle">
+        <div class="row bloc vert bloc-comptetitle">
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title text-center">Vos informations client</h3>
+                            <h3 class="panel-title text-center"><strong>Vos informations client</strong></h3>
                         </div>
                         <div class="panel-body text-left">
                             <p>{{ user_manager.user.company }}</p>
@@ -73,7 +73,7 @@
                 <div class="col-xs-12 col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title text-center">Votre contact administrateur</h3>
+                            <h3 class="panel-title text-center"><strong>Votre contact administrateur</strong></h3>
                         </div>
                         <div class="panel-body">
                             <p>Contact : Fabien-Kenzo Sato</p>
@@ -86,39 +86,38 @@
                 </div>
             </div>
 
-        {% for lieu in lieux %}
-           <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center">Votre lieu de collecte : {{ lieu.address_name }}</h3>
-                        </div>
-                        <div class="panel-body text-left">
-                            <p>{{ lieu.address_collection }}<br />{{ lieu.postal_code }} {{ lieu.city }}</p>
-                            <p>Type d'établissement : {{ lieu.firm_type }}.</p>
-                            <p>Jours de collecte : {{ lieu.collection_day }}.</p>
-                            <p>Information complémentaires : {{ lieu.further_information }}.</p>
-                        </div>
-                    </div>
-                </div>
+            {% for lieu in lieux %}
+               <div class="row ">
+                    <div class="col-xs-12 col-md-10 col-md-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-md-6">
+                                    <h4><strong>Votre lieu de collecte : {{ lieu.address_name }}</strong></h4>
+                                <p class="text-left">{{ lieu.address_collection }}<br />{{ lieu.postal_code }} {{ lieu.city }}</p>
+                                <p class="text-left">Type d'établissement : {{ lieu.firm_type }}.</p>
+                                <p class="text-left">Jours de collecte : {{ lieu.collection_day }}.</p>
+                                <p class="text-left">Information complémentaires : {{ lieu.further_information }}.
+                                </div>
 
-                <div class="col-xs-12 col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center">Le collecteur pour ce lieu : {{ lieu.address_name }}</h3>
-                        </div>
-                        <div class="panel-body text-left">
-                            {% for collectorLieuClient in collectorLieuClients %}
-                                <p>Collecteur : {{ collectorLieuClient.firstname }} {{ collectorLieuClient.lastname }}.</p>
-                                <p>Tél. (de 9h à 17h30): {{ collectorLieuClient.phone_number }}.</p>
-                                <p>Courriel :{{ collectorLieuClient.email }}</p>
-                                <p>Contactez {{ collectorLieuClient.firstname }} en cas de besoin de ramassage.</p>
-                            {% endfor %}                        
+                                {% if lieu.collector.idcollector is empty %}
+                                   <div class="col-md-6">
+                                       <h4><strong>Le collecteur a contacté pour ce lieu</strong></h4>
+                                       <p>Pour le moment, aucun collecteur n'est attribué à ce lieu.</p>
+                                   </div>
+                                {% else %}
+                                    <div class="col-md-6">
+                                        <h4><strong>Le collecteur a contacter pour ce lieu</strong></h4>
+                                    <p class="text-left">Collecteur : {{ lieu.collector.firstname }} {{ lieu.collector.lastname }}.</p>
+                                    <p class="text-left">Tél. (de 9h à 17h30): {{ lieu.collector.phone_number }}.</p>
+                                    <p class="text-left">Courriel :{{ lieu.collector.email }}</p>
+                                    <p class="text-leftt">Contactez {{ lieu.collector.firstname }} en cas de besoin de ramassage.</p>
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
         </div>
     </div>
 </div>

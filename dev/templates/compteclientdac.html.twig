@@ -15,8 +15,8 @@
                     </div>
                 </div>
 
-                <div class="table-responsive">
-                    {% for oneDacDetail in oneDacDetails %}
+                {% for oneDacDetail in oneDacDetails %}                
+                    <div class="table-responsive">
                         <table class="table table-bordered">
                             <tbody>
                                 <tr class="text-center">
@@ -28,13 +28,13 @@
                                 <tr>
                                     <td colspan="4">
                                         <p><strong>Description du produit :</strong></p>
-                                        <p style="text-indent: 3em;"><strong>biodéchets triés à la source, issus de : </strong>{% for lieu in lieux %}{{ lieu.firm_type }} {% endfor %}</p>
+                                        <p style="text-indent: 3em;"><strong>biodéchets triés à la source, issus de : </strong>{{ oneDacDetail.lieu.firm_type }}.</p>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <p><strong>N° du bac :</strong> {{ oneDacDetail.bin_number }}</p>
+                                                <p><strong>N° du bac : </strong>{{ oneDacDetail.bin_number }}.</p>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><strong>Qualité des biodéchets :</strong> {{ oneDacDetail.compost_quality }}</p>
+                                                <p><strong>Qualité des biodéchets :</strong> {{ oneDacDetail.compost_quality }}.</p>
                                             </div>
                                         </div>
                                     </td>
@@ -44,23 +44,21 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <p><strong>Informations complémentaires, nature des produits ajoutés (sel, anticoagulant...), le cas échéant:</strong></p>
-                                        <p class="text-center">{{ oneDacDetail.further_information }}.</p>
+                                        <p><strong>Informations complémentaires, nature des produits ajoutés (sel, anticoagulant...), le cas échéant : </strong>
+                                            {{ oneDacDetail.further_information }}.</p>
                                     </td>
-                                    <td colspan="2"><strong>Poids total (en Kg) pesé :</strong>{{ oneDacDetail.weight }}</td> 
+                                    <td colspan="2"><strong>Poids total (en Kg) pesé : </strong>{{ oneDacDetail.weight }}.</td> 
                                 </tr>
                                 <tr class="text-center">
                                     <td colspan="4" class="tabtitle">Etablissement de départ des sous-produits</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" rowspan="3">
-                                        <p><strong>Type d'établissement :</strong>{% for lieu in lieux %} {{ lieu.firm_type }}{% endfor %}.<p>
+                                        <p><strong>Type d'établissement : </strong>{{ oneDacDetail.lieu.firm_type }}.<p>
                                         <p><strong>Raison sociale et adresse :</strong></p>
-                                        {% for lieu in lieux %}
                                             <p class="text-center">
-                                                {{ lieu.address_collection }}<br /> {{ lieu.postal_code }}<br /> {{ lieu.city }}
+                                                {{ oneDacDetail.lieu.address_collection }}<br /> {{ oneDacDetail.lieu.postal_code }} {{ oneDacDetail.lieu.city }}
                                             </p>
-                                        {% endfor %}
                                     </td>
                                     <td colspan="2"><strong>N° de SIRET :</strong>{{ user_manager.user.siret }}.</td>
                                 </tr>
@@ -96,8 +94,7 @@
                                     <td colspan="2"><strong>Date de chargement : </strong>{{ oneDacDetail.collection_datetime }}.</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Nom et signature du chauffeur/collecteur :</strong> 
-                                        {% for collector in collectors %} {{ collector.firstname }}{% endfor %}.
+                                    <td colspan="2"><strong>Nom et signature du chauffeur/collecteur : </strong>{{ oneDacDetail.collector.firstname }} {{ oneDacDetail.collector.lastname }}.
                                     </td>
                                 </tr>
                                 <tr class="text-center">
@@ -116,7 +113,7 @@
                                         <p><strong>Raison sociale et adresse :</strong></p>
                                         <p class="text-center">
                                             SAS Les Alchimistes<br/>
-                                            {{ oneDacDetail.processing_location }}
+                                            {{ oneDacDetail.location_processing.processing_address }}<br /> {{ oneDacDetail.location_processing.postal_code }} {{ oneDacDetail.location_processing.city }}.
                                         </p>
                                     </td>
                                     <td colspan="2"><strong>Date et heure de réception : </strong>{{ oneDacDetail.processing_datetime }}.</td>
@@ -128,15 +125,14 @@
                                 </tr>
                             </tbody>
                         </table>
-                    {% endfor %}
-                </div>
-                
-                <div class="row">
-                    <div class="text-center">
-                        <p class="ici">Pour obtenir votre DAC au format PDF, cliquez <a href="{{ path('compteclientdacpdf') }}">ici</a>.</p>
                     </div>
-                </div>
-                
+
+                    <div class="row">
+                        <div class="text-center">
+                            <p class="ici">Pour obtenir votre DAC au format PDF, cliquez <a href="{{ path('dacpdf', {id_dac: oneDacDetail.id_adresses_collections_have_collector}) }}">ici</a>.</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

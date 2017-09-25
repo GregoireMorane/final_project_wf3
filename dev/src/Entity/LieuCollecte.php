@@ -63,6 +63,8 @@ class LieuCollecte {
      */
     private $firm_type;
     
+    private $collector;
+    
     public function getId_collection_address() {
         return $this->id_collection_address;
     }
@@ -161,4 +163,14 @@ class LieuCollecte {
         $this->firm_type = $firm_type;
         return $this;
     }
+    
+    public function getCollector() {
+        return $this->collector;
+    }
+
+    public function setCollector($collector) {
+        $this->collector = $collector;
+        return $this;
+    }    
+    
 }

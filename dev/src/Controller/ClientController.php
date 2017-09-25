@@ -5,19 +5,18 @@ namespace Controller;
 use DateTime;
 use Entity\Client;
 use Html2pdf\PDF_HTML;
+use Symfony\Component\HttpFoundation\Response;
 
 class ClientController extends ControllerAbstract{
     
     public function listAction() {
         $client = $this->app['user.manager']->getUser();
-        $collectors = $this->app['collector.repository']->findCollectorByClientId($client->getIdClient());
+        $collectors = $this->app['collector.repository']->findCollectorByClientId($client->getIdClient());       
         $lieux = $this->app['lieucollecte.repository']->findLieuCollecteByClientId($client->getIdClient());
         $collectionDates = $this->app['collecte.repository']->findCollectionDateByClientId($client->getIdClient());
         $date = new DateTime();
         $currentWeekBioWasteWeight = $this->app['collecte.repository']->findCurrentWeekBioWasteWeightByClientId($client->getIdClient(), $date);
         $totalBioWasteWeight = $this->app['collecte.repository']->findTotalBioWasteWeightByClientId($client->getIdClient());
-        $id_lieu = $this->app['lieucollecte.repository']->findIdLieuCollecteByClientId($client->getIdClient());
-        $collectorLieuClients = $this->app['collector.repository']->findCollectorByLieuCollecteByClientId($client->getIdClient(), $id_lieu);
 
         return $this->render('compteclient.html.twig', 
                         [
@@ -26,48 +25,42 @@ class ClientController extends ControllerAbstract{
                             'lieux' => $lieux,
                             'currentWeekBioWasteWeight' => $currentWeekBioWasteWeight,
                             'totalBioWasteWeight' => $totalBioWasteWeight,
-                            'collectorLieuClients' => $collectorLieuClients,
-                            'id_lieu' => $id_lieu
                         ]);
     }
 
     public function editOneDacDetails($id_dac) {
         $client = $this->app['user.manager']->getUser();
-        $oneDacDetails = $this->app['collecte.repository']->findOneDacDetails($id_dac);
-        $collectors = $this->app['collector.repository']->findCollectorByClientId($client->getIdClient());
-        $lieux = $this->app['lieucollecte.repository']->findLieuCollecteByClientId($client->getIdClient());
+        $oneDacDetails = $this->app['collecte.repository']->findOneDacDetails($client->getIdClient(), $id_dac);
         
         return $this->render('compteclientdac.html.twig', 
                 [
-                    'oneDacDetails' => $oneDacDetails,
-                    'collectors' => $collectors,
-                    'lieux' => $lieux,
+                    'oneDacDetails' => $oneDacDetails
                 ]
         );
     }
 
-    public function editOneDacDetailsToPDF() {
-        require(__DIR__ . '/../Html2pdf/html2pdf.php');
-        $file_path = '../templates/compteclientdac.html.twig';
-        $content = file_get_contents( $file_path );
+    public function editOneDacDetailsToPDF($id_dac) {
+        $client = $this->app['user.manager']->getUser();
+        $oneDacDetails = $this->app['collecte.repository']->findOneDacDetails($client->getIdClient(), $id_dac);
         
-        if('' == $content) {
-            echo "file is empty !";
-        } else {
-            $pdf= new PDF_HTML();
-            $pdf->SetFont('Arial','',12);
-            $pdf->AddPage();
-            $pdf->WriteHTML($content);
-            $dacPDF = $pdf->Output();
-//            exit;
-        }
-
-        return $this->render('compteclientdacpdf.html.twig', 
+        $html = $this->render('compteclientdacpdf.html.twig', 
                 [
-                    'dacPDF' => $dacPDF,
+                    'oneDacDetails' => $oneDacDetails
                 ]
         );
-    }
+        
+        require(__DIR__ . '/../Html2pdf/html2pdf.php');
+        
+        $pdf= new PDF_HTML();
+        $pdf->SetFont('Arial','',12);
+        $pdf->AddPage();
+        $pdf->WriteHTML(mb_convert_encoding($html, 'iso-8859-15'));
+
+        $response = new Response($pdf->Output());
+        $response->headers->set('Content-Type', 'application/pdf');
+        
+        return $response;
+    } 
 
     public function registerAction() {
         $client = new Client();

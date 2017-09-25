@@ -58,6 +58,23 @@ class AdressesCollectionsHaveCollector {
      * @var string
      */
     private $processing_location;
+    /**
+     *
+     * @var string
+     */
+    private $location_processing;
+    
+    /**
+     *
+     * @var string
+     */
+    private $collector;
+    
+    /**
+     *
+     * @var string
+     */
+    private $lieu;
     
     public function getAdress_collection_idadress_collection() {
         return $this->adress_collection_idadress_collection;
@@ -155,5 +172,31 @@ class AdressesCollectionsHaveCollector {
         return $this;
     }
 
+    public function getCollector() {
+        return $this->collector;
+    }
+
+    public function setCollector($collector) {
+        $this->collector = $collector;
+        return $this;
+    }    
+    
+    function getLieu() {
+        return $this->lieu;
+    }
+
+    function setLieu($lieu) {
+        $this->lieu = $lieu;
+        return $this;
+    }
+    
+    function getLocation_processing() {
+        return $this->location_processing;        
+    }
+    
+    function setLocation_processing($location_processing) {
+    $this->location_processing = $location_processing;
+    return $this;
+    }
 
 }

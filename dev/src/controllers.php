@@ -44,8 +44,9 @@ $app
 ;
 
 $app
-    ->match('/compte/client/dac/pdf', 'client.controller:editOneDacDetailsToPDF')
-    ->bind('compteclientdacpdf')
+    ->match('/compte/client/dac/pdf/dac_{id_dac}.pdf', 'client.controller:editOneDacDetailsToPDF')
+    //->assert('id_dac', '\d+')    
+    ->bind('dacpdf')
 ;
 
 $app
