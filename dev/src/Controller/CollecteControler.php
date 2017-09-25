@@ -33,7 +33,7 @@ class CollecteControler extends ControllerAbstract{
         if(!empty($_POST)){
             $collecte->setAdress_collection_idadress_collection($_POST['adress_collection_idadress_collection'])
                     ->setCollector_idcollector($_POST['collector_idcollector'])
-                    ->setCollection_datetime($_POST['collection_datetime'])
+                    //->setCollection_datetime($_POST['collection_datetime'])
                     ->setBin_number($_POST['bin_number'])
                     ->setProcessing_datetime($_POST['processing_datetime'])
                     ->setWeight($_POST['weight'])
@@ -49,9 +49,9 @@ class CollecteControler extends ControllerAbstract{
                 $errors['collector_idcollector'] = "Le collecteur est obligatoire";
             }
             
-            if(empty($_POST['collection_datetime'])){
-                $errors['collection_datetime'] = "La date de heure est obligatoire";
-            }
+//            if(empty($_POST['collection_datetime'])){
+//                $errors['collection_datetime'] = "La date de heure est obligatoire";
+//            }
             
             if(empty($_POST['bin_number'])){
                 $errors['bin_number'] = "Le numéro du bac obligatoire";

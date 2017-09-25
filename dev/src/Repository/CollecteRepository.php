@@ -33,7 +33,7 @@ class CollecteRepository extends RepositoryAbstract{
         $data =[
             'adress_collection_idadress_collection' => $collecte->getAdress_collection_idadress_collection(),
             'collector_idcollector' => $collecte->getCollector_idcollector(),
-            'collection_datetime' => $collecte->getCollection_datetime(),
+            //'collection_datetime' => $collecte->getCollection_datetime(),
             'bin_number' => $collecte->getBin_number(),
             'processing_datetime' => $collecte->getProcessing_datetime(),
             'weight' => $collecte->getWeight(),
@@ -132,7 +132,7 @@ SQL;
                 ->setId_adresses_collections_have_collector($data['id_adresses_collections_have_collector'])
                 ->setAdress_collection_idadress_collection($data['adress_collection_idadress_collection'])
                 ->setCollector_idcollector($data['collector_idcollector'])
-                ->setCollection_datetime($data['collection_datetime'])
+                //->setCollection_datetime($data['collection_datetime'])
                 ->setBin_number($data['bin_number'])
                 ->setProcessing_datetime($data['processing_datetime'])
                 ->setWeight($data['weight'])
