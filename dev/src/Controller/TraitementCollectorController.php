@@ -67,12 +67,13 @@ class TraitementCollectorController extends ControllerAbstract{
     
     public function deleteAction($id){
        
-        //$liste = $this->app['traitementcollector.repository']->find($id);
+        $collector = $this->app['traitementcollector.repository']->find($id);
         
-        $this->app['traitementcollector.repository']->delete($id);
+        $this->app['traitementcollector.repository']->delete($collector);
         
-        return $this->render(
-                'listLieuTraitement.html.twig'
-                );
+        $message ='Cette assignation a été supprimée';
+        $this->addFlashMessage($message, 'success');
+        
+        return $this->redirectRoute('listetraitementcollector');
     }
 }

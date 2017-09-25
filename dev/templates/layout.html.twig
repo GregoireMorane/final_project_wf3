@@ -19,29 +19,55 @@
             <link href="https://fonts.googleapis.com/css?family=Anton|Arvo|Oswald|Poppins" rel="stylesheet">
             <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
-
-
-
-
-
         {% endblock %}
     </head>
     <body>
 
         <nav class="navbar ombrage">
             <div class="container">
-                <div {#style="max-width:300px;"#} >
+                <div>
                     <a href="{{path('homepage')}}"><img class="img logo" src="{{asset('images/Alchimiste_logo.png')}}"></a>
+                    
+                     {% if user_manager.user %}
+                         {% if user_manager.admin%}
+                         {% elseif  user_manager.collector %}
+                         {% else %} 
+                        <div class="img bloclegende"><a href="{{path('compteclient')}}"><img class=" une" src="{{asset('images/déchets2.png')}}" >Compte Client</a><div class="clear"></div>
+                        {% endif %}{% endif %}
+                    
+                    {% if user_manager.user %}
+                        {% if user_manager.admin %} 
+                        {% elseif  user_manager.collector %}
+                            <div class="img bloclegende2"><a href="{{path('comptecollecteur')}}"><img class="img deux" src="{{asset('images/velo.png')}}" >Compte Collecteur</a></div>
+                        {% else %}
+                        {% endif %}
+                    {% endif %}
+                    
+                    
+                    {% if user_manager.user %}
+                        {% if user_manager.admin %}
+                        <div class="img bloclegende3"><a href="{{path('compteadmin')}}"><img class="img trois" src="{{asset('images/composteur2.png')}}">Compte Alchimistes</a></div>
+                        {% elseif  user_manager.collector %}
+                        {% elseif not user_manager.collector and not user_manager.collector%}
+                        {% else %}
+                        {% endif %}{% endif %}
+                    
+                    {% if user_manager.user is empty %}
+                    
                     <div class="img bloclegende">
-                        <a href="{{path('compteclient')}}"><img class=" une" src="{{asset('images/déchets2.png')}}" >Compte Client</a><div class="clear"></div>
+                        <a href="{{path('connexion')}}"><img class=" une" src="{{asset('images/déchets2.png')}}" >Compte Client</a><div class="clear"></div>
                     </div>
-                    <div class="img bloclegende2"><a href="{{path('comptecollecteur')}}"><img class="img deux" src="{{asset('images/velo.png')}}" >Compte Collecteur</a></div>
-                    <div class="img bloclegende3"><a href="{{path('compteadmin')}}"><img class="img trois" src="{{asset('images/composteur2.png')}}">Compte Alchimistes</a></div>
+                    <div class="img bloclegende2"><a href="{{path('connexion')}}"><img class="img deux" src="{{asset('images/velo.png')}}" >Compte Collecteur</a></div>
+                    <div class="img bloclegende3"><a href="{{path('connexion')}}"><img class="img trois" src="{{asset('images/composteur2.png')}}">Compte Alchimistes</a></div>
                     <div class="img bloclegende4"><a href="{{path('connexion')}}"><img class="img quatre" src="{{asset('images/plante.png')}}">Connexion</a></div>
                     <div class="clear"></div>
+                    {% else %}
+                    {% endif %}
+                    
+                    {#<div class="clear"></div>#}
+                    {% if user_manager.user is empty%}
                     <div class="navresponsive">
-                        <nav class="navbar navbar-default">
+                        <nav class="navbar navbar-default col-lg-12 col-md-12 col-xs-12 col-sm-12">
                             <div class="container-fluid">
                                 <div class="navbar-header">
                                     <a class="navbar-brand" href="{{path('homepage')}}">
@@ -66,17 +92,17 @@
                             </div>
                         </nav>
                     </div>
+                    {% endif %}
                 </div>
+                                        
                 {% if user_manager.user %}
-                    <div class="" style="text-align: left;">
+                    <div class=" col-lg-12 col-md-12 col-xs-12 col-sm-12" style="text-align: left;">
                         <span style="font-size:1.7em;font-weight: bold;">Bonjour {{ user_manager.firstname }}</span>
                         <br>
                         <a style="font-size:1.3em;font-weight: bold;" href="{{path('deconnexion')}}">Deconnexion</a>
                     </div>
-                    <div class="clear"></div>
-                {% else %}
-
-
+                    <div class="clear"></div>{% else %}
+                    
                     <div class="clear"></div>
                 {% endif %}
             </div>
@@ -98,5 +124,4 @@
             <script src="{{asset('js/homepagescript.js')}}"></script>
             <script src="{{asset('js/menu.js')}}"></script>
         {% endblock %}
-    </body>
-</html>
+ 

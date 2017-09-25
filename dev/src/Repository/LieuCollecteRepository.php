@@ -86,8 +86,8 @@ SQL;
        return $lieu;
     }
     
-    public function delete(LieuCollecte $lieu){
-        $this->db->delete('adresses_collectes', ['id_collection_address' => $lieu->getId_collection_address()]);
+    public function delete(LieuCollecte $lieucollecte){
+        $this->db->delete('adresses_collectes', ['id_collection_address' => $lieucollecte->getId_collection_address()]);
     }
     
     public function find($id)

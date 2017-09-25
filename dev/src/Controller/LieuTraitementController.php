@@ -187,11 +187,14 @@ class LieuTraitementController extends ControllerAbstract{
         );
     }
     public function deleteAction($id){
-       
-         $this->app['lieutraitement.repository']->delete($id);
         
-        return $this->render(
-                'listLieuTraitement.html.twig'
-                );
+        $lieu = $this->app['lieutraitement.repository']->find($id);
+        
+         $this->app['lieutraitement.repository']->delete($lieu);
+         
+         $message ='Ce lieu de traitement a été supprimé';
+        $this->addFlashMessage($message, 'success');
+        
+        return $this->redirectRoute('listelieutraitement');
     }
 }
