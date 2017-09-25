@@ -121,7 +121,7 @@ class CollectorController extends ControllerAbstract{
                 $this->app['collector.repository']->save($collector);
                 $message = '<strong>L\'utilisateur à bien été enregistré</strong>';
                 $this->addFlashMessage($message, 'success');
-                return $this->redirectRoute('connexion');
+                return $this->redirectRoute('compteadmin');
             }else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';
                 $message .= '<br>'.implode('<br>', $errors);

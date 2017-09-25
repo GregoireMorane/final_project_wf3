@@ -90,4 +90,19 @@ class TraitementCollectorRepository extends RepositoryAbstract{
     
         return $traitementAsCollector;
     }
+    
+    public function findByLocationIdAndCollectorId($idLocation, $idCollector)
+    {
+        $dbtraitementcollector = $this->db->fetchAssoc(
+            'SELECT * FROM collector_has_processing_location WHERE processing_location_id_location_processing = :idLocation',
+            [
+                ':idLocation' => $idLocation,
+                ':idCollector' => $idCollector
+            ]
+        );
+        
+        if (!empty($dbtraitementcollector)) {
+            return $this->buildEntity($dbtraitementcollector);
+        }
+    }
 }

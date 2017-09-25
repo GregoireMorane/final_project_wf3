@@ -136,7 +136,7 @@ class ClientController extends ControllerAbstract{
                 $errors['email'] = "L'email est obligatoire";
             }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
                 $errors['email'] = "L'email n'est pas valide";
-            }elseif (!is_null($this->app['client.repository']->findByEmail($_POST['email']))) {
+            }elseif (!is_null($this->app['connexion.repository']->findByEmailClient($_POST['email']))) {
                 $errors['email'] = "L'email est déjà utilisé";
             }
 
@@ -182,7 +182,7 @@ class ClientController extends ControllerAbstract{
                 $this->app['client.repository']->save($client);
                 $message = '<strong>L\'utilisateur à bien été enregistré</strong>';
                 $this->addFlashMessage($message, 'success');
-                return $this->redirectRoute('connexion');
+                return $this->redirectRoute('compteadmin');
             }else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';
                 $message .= '<br>'.implode('<br>', $errors);
@@ -300,7 +300,7 @@ class ClientController extends ControllerAbstract{
                 $this->app['client.repository']->save($client);
                 $message = '<strong>L\'utilisateur à bien été mis à jour</strong>';
                 $this->addFlashMessage($message, 'success');
-                return $this->redirectRoute('connexion');
+                return $this->redirectRoute('compteadmin');
             }else{
                 $message = '<strong>Le formulaire contient des erreurs</strong>';
                 $message .= '<br>'.implode('<br>', $errors);
