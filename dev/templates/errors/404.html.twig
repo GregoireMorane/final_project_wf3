@@ -1,5 +1,16 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-    Page not found.
+    <div class="col-xs-10 col-xs-offset-1">
+        <p style='text-align: center; font-size: 1.5em;'>
+            Oups ! La page que vous avez demandé est introuvable  :(
+        </p>
+        <br>
+        <p style='text-align: center; font-size: 1.4em;'>
+            <a href="{{path('homepage')}}" style='color: green; font-weight: bold; text-decoration: none;'>Retour à la page d'accueil</a>
+        </p>
+        <br>
+    </div>
+            <img id="img404" src="{{asset('images/background-image.jpg')}}" alt=""> <br>
+    
 {% endblock %}

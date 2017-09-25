@@ -31,7 +31,7 @@ class ClientController extends ControllerAbstract{
     public function editOneDacDetails($id_dac) {
         $client = $this->app['user.manager']->getUser();
         $oneDacDetails = $this->app['collecte.repository']->findOneDacDetails($client->getIdClient(), $id_dac);
-        
+       
         return $this->render('compteclientdac.html.twig', 
                 [
                     'oneDacDetails' => $oneDacDetails
@@ -307,6 +307,7 @@ class ClientController extends ControllerAbstract{
                 $this->addFlashMessage($message, 'error');
             }
         }
+        
         return $this->render(
             'admin/formulaireClient.html.twig',
             [
