@@ -40,7 +40,7 @@
                     <th>{{ client.siret }}</th>
                     <th>{{ client.password }}</th>
                     <th><a  href="{{path ('registerclient', {id: client.idclient}) }}" style="font-weight: bold">Modifier</a></th>
-                    <th><a  href="{{path ('registerclient', {id: client.idclient}) }}" style="font-weight: bold">Supprimer</a></th>
+                    <th><a  href="{{path ('listeclientdelete', {id: client.idclient}) }}" style="font-weight: bold">Supprimer</a></th>
                 </tr>
             {% endfor %}
         </table>

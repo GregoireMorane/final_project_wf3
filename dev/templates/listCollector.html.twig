@@ -34,7 +34,7 @@
                     <th>{{ collector.status }}</th>
                     <th>{{ collector.password }}</th>
                     <th><a  href="{{path ('registercollector', {id: collector.idcollector}) }}" style="font-weight: bold">Modifier</a></th>
-                    <th><a  href="{{path ('registercollector', {id: collector.idcollector}) }}" style="font-weight: bold">Supprimer</a></th>
+                    <th><a  href="{{path ('listecollectordelete', {id: collector.idcollector}) }}" style="font-weight: bold">Supprimer</a></th>
                 </tr>
             {% endfor %}
         </table>

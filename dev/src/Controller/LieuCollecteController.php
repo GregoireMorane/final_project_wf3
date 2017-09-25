@@ -194,4 +194,15 @@ class LieuCollecteController extends ControllerAbstract{
             ]
         );
     }
+    
+    public function deleteAction($id){
+       
+        $lieucollecte = $this->app['lieucollecte.repository']->find($id);
+        
+        $this->app['lieucollecte.repository']->delete($lieucollecte);
+        
+        $message ='le lieu de collecte a été supprimé';
+        $this->addFlashMessage($message, 'success');
+        return $this->redirectRoute('listelieucollecte');
+    }
 }

@@ -113,16 +113,28 @@ $app
     ->match('/liste/traitementcollecteur','traitementcollector.controller:listAllTraitementCollector')
     ->bind('listetraitementcollector')
 ;
-
+//DELETE
 $app
-    ->match('/liste/traitementcollecteurdelete/{id}','traitementcollector.controller:deleteAction')
+    ->match('/liste/traitementcollecteurdelete/{id}','lieutraitement.controller:deleteAction')
     ->value('id', null)
     ->bind('listetraitementcollectordelete')
 ;
 
 $app
+    ->match('/liste/client/delete/{id}','client.controller:deleteAction')
+    ->bind('listeclientdelete')
+;
+$app
     ->match('/liste/lieutraitement','lieutraitement.controller:deleteAction')
     ->bind('listelieutraitementdelete')
+;
+$app
+    ->match('/liste/collecteur/{id}','collector.controller:deleteAction')
+    ->bind('listecollectordelete')
+;
+$app
+    ->match('/liste/lieucollecte/{id}','lieucollecte.controller:deleteAction')
+    ->bind('listelieucollectedelete')
 ;
 
 $app

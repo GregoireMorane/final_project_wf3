@@ -34,7 +34,7 @@
                     <th>{{ collecte.clientFirstname }}</th>
                     <th>{{ collecte.clientLastname }}</th>
                     <th><a  href="{{path ('registerlieucollecte', {id: collecte.id_collection_address}) }}" style="font-weight: bold">Modifier</a></th>
-                    <th><a  href="{{path ('registerlieucollecte', {id: collecte.id_collection_address}) }}" style="font-weight: bold">Supprimer</a></th>
+                    <th><a  href="{{path ('listelieucollectedelete', {id: collecte.id_collection_address}) }}" style="font-weight: bold">Supprimer</a></th>
                 </tr>
             {% endfor %}
         </table>

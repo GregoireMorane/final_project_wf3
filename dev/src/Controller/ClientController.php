@@ -314,4 +314,17 @@ class ClientController extends ControllerAbstract{
             ]
         );
     }
+    
+     public function deleteAction($id){
+       
+        $client = $this->app['client.repository']->find($id);
+        
+        $this->app['client.repository']->delete($client);
+        
+        $message ='Ce cleint a été supprimé';
+        $this->addFlashMessage($message, 'success');
+        
+        return $this->redirectRoute('listeclient');
+    }
+    
 }

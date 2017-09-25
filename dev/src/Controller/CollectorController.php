@@ -210,4 +210,15 @@ class CollectorController extends ControllerAbstract{
         );
     }
     
+    public function deleteAction($id){
+       
+        $collector = $this->app['collector.repository']->find($id);
+        
+        $this->app['collector.repository']->delete($collector);
+        
+        $message ='Ce collector a été supprimé';
+        $this->addFlashMessage($message, 'success');
+        return $this->redirectRoute('listecollector');
+    }
+    
 }
