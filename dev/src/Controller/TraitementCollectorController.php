@@ -32,6 +32,11 @@ class TraitementCollectorController extends ControllerAbstract{
             $collectorAsTraitement->setCollector_idcollector($_POST['collector_idcollector'])
                     ->setProcessing_location_id_location_processing($_POST['processing_location_id_location_processing']);
         
+            if(!is_null($this->app['traitementcollector.repository']->findByLocationIdAndCollectorId($_POST['processing_location_id_location_processing'], $_POST['collector_idcollector']))){
+   
+                    $errors['processing_location_id_location_processing'] = "Ce lieu de traitement est déjà attribué à ce collecteur";
+            }
+                
             if(empty($errors)){
                 $this->app['traitementcollector.repository']->save($collectorAsTraitement);
                 $message = '<strong>Le collecteur à bien été assigné au lieu de traitement</strong>';
