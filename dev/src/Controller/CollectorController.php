@@ -13,7 +13,7 @@ class CollectorController extends ControllerAbstract{
         $tomorrow = new \DateTime('+1 day');
         //echo $tomorrow->format('Y-m-d');
         $user = $this->app['user.manager']->getUser();
-        $lieux = $this->app['lieucollecte.repository']->findAllByEmptyWeight($user->getIdCollector());
+        //$lieux = $this->app['lieucollecte.repository']->findAllByEmptyWeight($user->getIdCollector());
         $adresses = $this->app['lieucollecte.repository']->findNameByCollectionDate($user->getIdCollector(), $date);
         $adressesTomorrow = $this->app['lieucollecte.repository']->findNameByCollectionDate($user->getIdCollector(), $tomorrow);
         $totalOutput = $this->app['outputcompost.repository']->totalOutputByCollector($user->getIdCollector());
@@ -25,7 +25,7 @@ class CollectorController extends ControllerAbstract{
         return $this->render('comptecollecteur.html.twig',
             [
                'collectors' => $collectors,
-               'lieux' => $lieux,
+               //'lieux' => $lieux,
                'adresses' => $adresses,
                'adressesTomorrow'=> $adressesTomorrow,
                'totalOutput' => $totalOutput,

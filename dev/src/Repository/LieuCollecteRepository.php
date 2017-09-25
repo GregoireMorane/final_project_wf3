@@ -2,6 +2,7 @@
 
 namespace Repository;
 
+use Entity\Collector;
 use Entity\LieuCollecte;
 
 /**
@@ -39,28 +40,42 @@ class LieuCollecteRepository extends RepositoryAbstract{
     
     public function findLieuCollecteByClientId($id) {
         $query = <<<SQL
-SELECT ac.*
+SELECT ac.*, collector.*
 FROM adresses_collectes ac
+LEFT JOIN adresses_collections_have_collector achc ON achc.adress_collection_idadress_collection = ac.id_collection_address
+LEFT JOIN collector ON collector.idcollector = achc.collector_idcollector
 WHERE client_idclient = :id
-ORDER BY id_collection_address
+GROUP BY address_name
 SQL;
         
         $dbLieux = $this->db->fetchAll($query, [':id' => $id]);
-        $lieux =[];
+        $lieux =[]; 
         
         foreach ($dbLieux as $dbLieu){
-            $lieux[] = $this->buildEntity($dbLieu);
+            $lieux[] = $this->buildEntity2($dbLieu);
         }
-        
+
         return $lieux;
     }
     
-    public function findAllByEmptyWeight($id) {
+    public function findIdLieuCollecteByClientId($id) {
+        $query = <<<SQL
+SELECT id_collection_address
+FROM adresses_collectes ac
+JOIN client ON client.id_client = ac.client_idclient
+WHERE client.id_client = :id
+SQL;
+   
+       return $this->db->fetchColumn($query, [':id' => $id]);
+   }
+    
+    public function findNameByEmptyWeight() {
         $dbLieux = $this->db->fetchAll(
-                'SELECT a.* FROM adresses_collectes a '
+                'SELECT a.address_name FROM adresses_collectes a '
                 . ' JOIN adresses_collections_have_collector b ON a.id_collection_address = b.adress_collection_idadress_collection'
-                . ' WHERE b.weight = 0 AND b.collector_idcollector = :id', [':id' => $id]);
+                . ' WHERE b.weight IS NULL');
         $lieux =[];
+        
         foreach ($dbLieux as $dbLieu){
             $lieux[] = $this->buildEntity($dbLieu);
         }
@@ -149,9 +164,44 @@ SQL;
         foreach ($dbAdresses as $dbAdresse){
             $adresses[] = $this->buildEntity($dbAdresse);
         }
-
         return $adresses;
     }
+    
+    /**
+     * 
+     * @param array $data
+     * @return LieuCollecte
+     */
+    private function buildEntity2(array $data){
+        $collector = new Collector();
+        
+        $collector
+                ->setIdcollector($data['idcollector'])
+                ->setLastname($data['lastname'])
+                ->setFirstname($data['firstname'])
+                ->setPhone_number($data['phone_number'])
+                ->setEmail($data['email'])
+                ->setPassword($data['password'])
+                ->setAddress($data['address'])                
+                ->setPostal_code($data['postal_code'])
+                ->setCity($data['city']);
+                //->setStatus($data['status']);
+        $lieu = new LieuCollecte();
+        $lieu
+                ->setId_collection_address($data['id_collection_address'])
+                ->setAddress_name($data['address_name'])
+                ->setAddress_collection($data['address_collection'])
+                ->setPostal_code($data['postal_code'])
+                ->setCity($data['city'])
+                ->setFurther_information($data['further_information'])
+                ->setCountry($data['country'])
+                ->setCollection_day($data['collection_day'])
+                ->setClient_idclient($data['client_idclient'])
+                ->setLocation_processing_idlocation_processing($data['location_processing_idlocation_processing'])
+                ->setFirm_type($data['firm_type'])
+                ->setCollector($collector);
+       return $lieu;
+} 
     
     public function findAll() {
         $dbLieucollectes = $this->db->fetchAll('SELECT ac.*, c.firstname AS clientFirstname, c.lastname AS clientLastname FROM adresses_collectes ac JOIN client c ON ac.client_idclient = c.id_client ORDER BY address_name DESC');

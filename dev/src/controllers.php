@@ -125,6 +125,17 @@ $app
     ->bind('listelieutraitementdelete')
 ;
 
+$app
+    ->match('/compte/client/dac/{id_dac}', 'client.controller:editOneDacDetails')
+    ->assert('id_dac', '\d+')
+    ->bind('compteclientdac')
+;
+$app
+    ->match('/compte/client/dac/pdf/dac_{id_dac}.pdf', 'client.controller:editOneDacDetailsToPDF')
+    //->assert('id_dac', '\d+')    
+    ->bind('dacpdf')
+;
+
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;

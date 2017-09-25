@@ -2,29 +2,65 @@
 
 namespace Controller;
 
+use DateTime;
 use Entity\Client;
+use Html2pdf\PDF_HTML;
+use Symfony\Component\HttpFoundation\Response;
 
 class ClientController extends ControllerAbstract{
     
     public function listAction() {
         $client = $this->app['user.manager']->getUser();
-        $collectors = $this->app['collector.repository']->findCollectorByClientId($client->getIdClient());
+        $collectors = $this->app['collector.repository']->findCollectorByClientId($client->getIdClient());       
         $lieux = $this->app['lieucollecte.repository']->findLieuCollecteByClientId($client->getIdClient());
         $collectionDates = $this->app['collecte.repository']->findCollectionDateByClientId($client->getIdClient());
-        $date = new \DateTime();
+        $date = new DateTime();
         $currentWeekBioWasteWeight = $this->app['collecte.repository']->findCurrentWeekBioWasteWeightByClientId($client->getIdClient(), $date);
         $totalBioWasteWeight = $this->app['collecte.repository']->findTotalBioWasteWeightByClientId($client->getIdClient());
-        
+
         return $this->render('compteclient.html.twig', 
+                        [
+                            'collectionDates' => $collectionDates,
+                            'collectors' => $collectors,
+                            'lieux' => $lieux,
+                            'currentWeekBioWasteWeight' => $currentWeekBioWasteWeight,
+                            'totalBioWasteWeight' => $totalBioWasteWeight,
+                        ]);
+    }
+
+    public function editOneDacDetails($id_dac) {
+        $client = $this->app['user.manager']->getUser();
+        $oneDacDetails = $this->app['collecte.repository']->findOneDacDetails($client->getIdClient(), $id_dac);
+        
+        return $this->render('compteclientdac.html.twig', 
                 [
-                    'collectionDates' => $collectionDates,
-                    'collectors' => $collectors,
-                    'lieux' => $lieux,
-                    'currentWeekBioWasteWeight' => $currentWeekBioWasteWeight,
-                    'totalBioWasteWeight' => $totalBioWasteWeight
+                    'oneDacDetails' => $oneDacDetails
                 ]
         );
     }
+
+    public function editOneDacDetailsToPDF($id_dac) {
+        $client = $this->app['user.manager']->getUser();
+        $oneDacDetails = $this->app['collecte.repository']->findOneDacDetails($client->getIdClient(), $id_dac);
+        
+        $html = $this->render('compteclientdacpdf.html.twig', 
+                [
+                    'oneDacDetails' => $oneDacDetails
+                ]
+        );
+        
+        require(__DIR__ . '/../Html2pdf/html2pdf.php');
+        
+        $pdf= new PDF_HTML();
+        $pdf->SetFont('Arial','',12);
+        $pdf->AddPage();
+        $pdf->WriteHTML(mb_convert_encoding($html, 'iso-8859-15'));
+
+        $response = new Response($pdf->Output());
+        $response->headers->set('Content-Type', 'application/pdf');
+        
+        return $response;
+    } 
     
     public function listAllClients(){
         $clients = $this->app['client.repository']->findAll();
