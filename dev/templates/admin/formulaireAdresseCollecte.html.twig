@@ -9,7 +9,7 @@
                     <select id="client" name="client_idclient" class="form-control">
                         <option value="">Choisissez un client</option>
                         {% for client in clients %}
-                            <option value="{{client.idClient}}"{% if client.idclient == adresses_collectes.id_collection_address %}selected{%endif%}>{{client.firstname}}{{client.lastname}} </option>
+                            <option value="{{client.idClient}}"{% if client.idclient == adresses_collectes.id_collection_address %}selected{%endif%}>{{client.firstname}} {{client.lastname}}</option>
                         {% endfor %}
                     </select>
                 </div>

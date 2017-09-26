@@ -51,7 +51,7 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
             <div class=\"container\">
 
                 <div>
-                    <div class=\"col-lg-3 col-md-3 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1\">
+                    <div class=\"col-lg-3 col-md-3 col-xs-12\">
                         <a href=\"";
         // line 49
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
@@ -63,23 +63,23 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
         // line 51
         if ($this->getAttribute((isset($context["user_manager"]) ? $context["user_manager"] : null), "user", array())) {
             // line 52
-            echo "                        <div style=\"text-align:center;\" class=\"bloc-deconnexion col-lg-3 col-md-3 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1\" style=\"text-align: left;\">
+            echo "                        <div style=\"text-align:center;\" class=\"bloc-deconnexion col-md-3 col-xs-10 col-md-offset-2 col-xs-offset-1\" style=\"text-align: left;\">
                             <span>Bonjour ";
             // line 53
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user_manager"]) ? $context["user_manager"] : null), "firstname", array()), "html", null, true);
             echo "</span>
                             <br>
-                            <a href=\"";
+                            <a style=\"color: #40a529; text-decoration: none; font-weight: bold;\" href=\"";
             // line 55
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("deconnexion");
-            echo "\">Deconnexion</a>
+            echo "\">Déconnexion</a>
                         </div>
                             ";
             // line 57
             if ($this->getAttribute((isset($context["user_manager"]) ? $context["user_manager"] : null), "admin", array())) {
                 // line 58
                 echo "                                <div style=\"text-align:center;\" class=\"col-lg-3 col-md-3 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1\">
-                                    <a href=\"";
+                                    <a style=\"color: #40a529; text-decoration: none; font-weight: bold;\" href=\"";
                 // line 59
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("compteadmin");
                 echo "\"><img class=\"imageLogoHeader\" src=\"";
@@ -95,7 +95,7 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
 (isset($context["user_manager"]) ? $context["user_manager"] : null), "collector", array())) {
                 // line 66
                 echo "                                <div style=\"text-align:center;\" class=\"col-lg-3 col-md-3 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1\">
-                                    <a href=\"";
+                                    <a style=\"color: #40a529; text-decoration: none; font-weight: bold;\" href=\"";
                 // line 67
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("comptecollecteur");
                 echo "\"><img class=\"imageLogoHeader\" src=\"";
@@ -110,7 +110,7 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
             } else {
                 // line 74
                 echo "                                <div style=\"text-align:center;\" class=\"col-lg-3 col-md-3 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1\">
-                                    <a href=\"";
+                                    <a style=\"color: #40a529; text-decoration: none; font-weight: bold;\" href=\"";
                 // line 75
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("compteclient");
                 echo "\"><img class=\"imageLogoHeader\" src=\"";
@@ -128,24 +128,27 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
                     ";
         } else {
             // line 84
-            echo "                        <div style=\"text-align:center;\" class=\"col-lg-3 col-md-3 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1\">
-                            <a href=\"";
+            echo "                        <div style=\"text-align:center;\" class=\"col-lg-3 col-md-3 col-xs-10 col-lg-offset-5 col-md-offset-5 col-xs-offset-1\">
+                            <a style=\"color: #40a529; text-decoration: none; font-weight: bold;\" href=\"";
             // line 85
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("connexion");
-            echo "\"><img class=\"imageLogoHeaderConnexion\" src=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/connexion4.png"), "html", null, true);
+            echo "\">
+                                <img class=\"imageLogoHeaderConnexion\" src=\"";
+            // line 86
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/fleur.png"), "html", null, true);
             echo "\" >
+                                Connexion
                             </a>
                         </div>
                         <div class=\"clear\"></div>
                     ";
         }
-        // line 90
+        // line 92
         echo "                    
                     
                     
                     ";
-        // line 185
+        // line 187
         echo "                </div>
             </div>
                 </div>
@@ -155,30 +158,30 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
         <div>
 
             ";
-        // line 193
+        // line 195
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "session", array()), "flashbag", array()), "all", array()));
         foreach ($context['_seq'] as $context["type"] => $context["flashes"]) {
-            // line 194
+            // line 196
             echo "
                 ";
-            // line 195
+            // line 197
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable($context["flashes"]);
             foreach ($context['_seq'] as $context["_key"] => $context["flash"]) {
-                // line 196
+                // line 198
                 echo "
                     ";
-                // line 197
+                // line 199
                 if (($context["type"] == "error")) {
                     echo " ";
                     $context["type"] = "danger";
                     echo " ";
                 }
-                // line 198
+                // line 200
                 echo "
                     <div class=\"alert alert-";
-                // line 199
+                // line 201
                 echo twig_escape_filter($this->env, $context["type"], "html", null, true);
                 echo "\"> ";
                 echo $context["flash"];
@@ -189,33 +192,33 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['flash'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 202
+            // line 204
             echo "
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['type'], $context['flashes'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 204
+        // line 206
         echo "
             ";
-        // line 205
+        // line 207
         $this->displayBlock('content', $context, $blocks);
-        // line 208
+        // line 210
         echo "
         </div>
 
         <hr class=\"hrStyle col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1\">
         <div class=\"clear\"></div>
-        <br>
+
         
-        <div class=\"footr text-center\">
+        <div class=\"footr text-justify\">
             <div class=\"blocMap col-lg-3 col-md-3 col-xs-10 col-lg-offset-2 col-md-offset-1 col-xs-offset-1\">
                 <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.1274968258563!2d2.3321566154971847!3d48.83670671018753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671c7785c4fdb%3A0xb118bc844f2f417a!2sLes+Grands+Voisins!5e0!3m2!1sfr!2sfr!4v1505995015490\" width=\"275\" height=\"300\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>
             </div>
             
             ";
-        // line 226
+        // line 228
         echo "            
             <div class=\"blocInfo col-lg-3 col-md-3 col-xs-10 col-lg-offset-0 col-md-offset-1 col-xs-offset-1\">
                 <h3>Contact :</h3>
@@ -227,7 +230,7 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
                 <span>+33 1 84 21 47 89</span><br>
                 <span>contact@alchimistes.co</span><br>
             </div>
-            <div class=\"blocReseaux col-lg-3 col-md-3 col-xs-10 col-lg-offset-0 col-md-offset-1 col-xs-offset-1\">
+            <div class=\"blocReseaux col-md-3 col-xs-10 col-md-offset-1 col-xs-offset-1\">
                 <h3>Nous suivre sur :</h3>
                 <a class=\"text-left\" href=\"\" id=\"gh\" target=\"_blank\" title=\"Twitter\">
                     <span class=\"fa-stack fa-lg\">
@@ -248,17 +251,17 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
                     </span>Linkedin
                 </a>
             </div>
-            <div class=\"col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1 text-center\">
-                <p>Copyright © Morane/Zheng/Corré/Keita (2017) | <a>Politique de Confidentialité</a> | <a>Mentions Légales</a></p>
+            <div class=\"col-lg-10 col-md-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-xs-offset-1 text-right\">
+                <br><p>Copyright © Morane/Zheng/Corré/Keita (2017) | <a>Politique de Confidentialité</a> | <a>Mentions Légales</a></p>
             </div>
         </div>
             
         <a href=\"javascript:\" id=\"return-to-top\"><i class=\"icon-chevron-up\"></i></a>
         
         ";
-        // line 265
+        // line 267
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 278
+        // line 280
         echo "
     </body>
 
@@ -316,18 +319,18 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
         ";
     }
 
-    // line 205
+    // line 207
     public function block_content($context, array $blocks = array())
     {
-        // line 206
+        // line 208
         echo "
             ";
     }
 
-    // line 265
+    // line 267
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 266
+        // line 268
         echo "
             <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>
 
@@ -336,12 +339,12 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
             <script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>
 
             <script src=\"";
-        // line 273
+        // line 275
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/homepagescript.js"), "html", null, true);
         echo "\"></script>
 
             <script src=\"";
-        // line 275
+        // line 277
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/menu.js"), "html", null, true);
         echo "\"></script>
 
@@ -360,7 +363,7 @@ class __TwigTemplate_e77fc26382d636284df607cd23abff9caf3717bb9f70c5835486a68795c
 
     public function getDebugInfo()
     {
-        return array (  345 => 275,  340 => 273,  331 => 266,  328 => 265,  323 => 206,  320 => 205,  309 => 31,  304 => 29,  299 => 27,  294 => 25,  289 => 23,  280 => 16,  277 => 15,  271 => 13,  262 => 278,  260 => 265,  219 => 226,  205 => 208,  203 => 205,  200 => 204,  193 => 202,  182 => 199,  179 => 198,  173 => 197,  170 => 196,  166 => 195,  163 => 194,  159 => 193,  149 => 185,  144 => 90,  134 => 85,  131 => 84,  127 => 82,  115 => 75,  112 => 74,  100 => 67,  97 => 66,  95 => 65,  84 => 59,  81 => 58,  79 => 57,  74 => 55,  69 => 53,  66 => 52,  64 => 51,  57 => 49,  44 => 38,  42 => 15,  37 => 13,  23 => 1,);
+        return array (  348 => 277,  343 => 275,  334 => 268,  331 => 267,  326 => 208,  323 => 207,  312 => 31,  307 => 29,  302 => 27,  297 => 25,  292 => 23,  283 => 16,  280 => 15,  274 => 13,  265 => 280,  263 => 267,  222 => 228,  208 => 210,  206 => 207,  203 => 206,  196 => 204,  185 => 201,  182 => 200,  176 => 199,  173 => 198,  169 => 197,  166 => 196,  162 => 195,  152 => 187,  147 => 92,  138 => 86,  134 => 85,  131 => 84,  127 => 82,  115 => 75,  112 => 74,  100 => 67,  97 => 66,  95 => 65,  84 => 59,  81 => 58,  79 => 57,  74 => 55,  69 => 53,  66 => 52,  64 => 51,  57 => 49,  44 => 38,  42 => 15,  37 => 13,  23 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
