@@ -20,7 +20,7 @@ class CollecteRepository extends RepositoryAbstract{
                 . ' WHERE collector_idcollector = :id', [':id' => $id]);
     }
     
-    public function weekWasteByCollector($id, $date){
+    public function weekWasteByCollector($id){
               
         return $this->db->fetchColumn(
                 'SELECT SUM(weight) FROM adresses_collections_have_collector '

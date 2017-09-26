@@ -27,7 +27,7 @@
             <div class="col-md-4 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h3 class='panel-title'>Formulaires à compléter</h3></div>
-                    <div class="panel-body panel-body-collector btn-group-vertical btn-block" role="group" aria-label="...">
+                    <div style="overflow-y: scroll;" class="panel-body panel-body-collector btn-group-vertical btn-block" role="group" aria-label="...">
                         {%for bin in bins%}                    
                             <a href="{{path('registercollecte',{id: bin.id_adresses_collections_have_collector})}}" class="btn btn-default client-to-collect">
                                 Numéro de bac: {{ bin.bin_number }}  
@@ -43,7 +43,7 @@
                     <div class="panel-heading text-center"> 
                         <h2 class='panel-title'>Clients à collecter</h2>
                     </div>
-                    <div class="panel-body panel-body-collector">
+                    <div class="panel-body panel-body-collector" style="overflow-y: scroll;">
                         <h3>A collecter aujourd'hui</h3>
 
                         {%for adresse in adresses%}
@@ -61,7 +61,7 @@
                         {%endfor%}                 
                     </div>
                     <hr> 
-                    <div class="panel-body panel-body-collector">
+                    <div class="panel-body panel-body-collector" style="overflow-y: scroll;">
                         <h3>A récolter demain</h3>
 
                         {%for adresse in adressesTomorrow%}

@@ -15,7 +15,7 @@ class OutputCompostRepository extends RepositoryAbstract{
                 'SELECT SUM(quantity_exit) FROM output_compost '
                 . ' WHERE collector_idcollector = :id', [':id' => $id]);
     }
-    public function weekOutputByCollector($id, $date){
+    public function weekOutputByCollector($id){
               
         return $this->db->fetchColumn(
                 'SELECT SUM(quantity_exit) FROM output_compost '
