@@ -44,13 +44,12 @@
 
 
                     {% if user_manager.user %}
-                        {% if user_manager.admin %}
-                            <div class="img bloclegende3"><a href="{{path('compteadmin')}}"><img class="img trois" src="{{asset('images/composteur2.png')}}">Compte Alchimistes</a></div>
-                                {% elseif  user_manager.collector %}
-                                {% elseif not user_manager.collector and not user_manager.collector%}
-                                {% else %}
-                                {% endif %}
-                            {% endif %}
+                            {% if user_manager.admin %}
+                                <div class="img bloclegende3"><a href="{{path('compteadmin')}}"><img class="img trois" src="{{asset('images/composteur2.png')}}">Compte Alchimistes</a></div>
+                            {% elseif  user_manager.collector %}
+                            {% else %}
+                        {% endif %}
+                    {% endif %}
 
                     {% if user_manager.user is empty %}
                         <div class="img bloclegende4"><a href="{{path('connexion')}}"><img class="img quatre" src="{{asset('images/plante.png')}}">Connexion</a></div>
@@ -93,7 +92,7 @@
                     </div>                         
                 </div>
                         {% if user_manager.user %}
-                            <div class=" col-lg-12 col-md-12 col-xs-12 col-sm-12" style="text-align: left;">
+                            <div class=" col-lg-12 col-md-12 col-xs-12 col-sm-12" style="text-align: right;">
                                 <span style="font-size:1.7em;font-weight: bold;">Bonjour {{ user_manager.firstname }}</span>
                                 <br>
                                 <a style="font-size:1.3em;font-weight: bold;" href="{{path('deconnexion')}}">Deconnexion</a>
