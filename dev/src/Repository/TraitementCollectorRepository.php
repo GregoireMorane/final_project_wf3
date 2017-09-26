@@ -94,7 +94,7 @@ class TraitementCollectorRepository extends RepositoryAbstract{
     public function findByLocationIdAndCollectorId($idLocation, $idCollector)
     {
         $dbtraitementcollector = $this->db->fetchAssoc(
-            'SELECT * FROM collector_has_processing_location WHERE processing_location_id_location_processing = :idLocation',
+            'SELECT * FROM collector_has_processing_location WHERE processing_location_id_location_processing = :idLocation AND collector_idcollector = :idCollector',
             [
                 ':idLocation' => $idLocation,
                 ':idCollector' => $idCollector
