@@ -51,11 +51,9 @@ class ClientRepository extends RepositoryAbstract{
     public function findAllByLocationId($location) 
     {
         $query = <<<SQL
-SELECT c.* FROM CLIENT c JOIN adresses_collectes ac ON c.id_client = ac.client_idclient 
-JOIN adresses_collections_have_collector achc ON ac.id_collection_address = achc.adress_collection_idadress_collection 
-JOIN collector col ON achc.collector_idcollector = col.idcollector 
-JOIN collector_has_processing_location chpl ON col.idcollector = chpl.id_collector_has_processing_location 
-JOIN processing_location pl ON chpl.processing_location_id_location_processing = pl.id_location_processing 
+SELECT c.* FROM CLIENT c 
+JOIN adresses_collectes ac ON c.id_client = ac.client_idclient 
+JOIN processing_location pl ON pl.id_location_processing = ac.location_processing_idlocation_processing
 WHERE pl.id_location_processing = :id
 SQL;
 

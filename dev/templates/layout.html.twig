@@ -130,6 +130,8 @@
                     {% else %}
                     {% endif %}
 
+                    {% if user_manager.user is empty %}
+                        <div class="img bloclegende4"><a href="{{path('connexion')}}"><img class="img quatre" src="{{asset('images/plante.png')}}">Connexion</a></div>
                         <div class="clear"></div>
                         {% if user_manager.user is empty%}
                         <div class="navresponsive">
